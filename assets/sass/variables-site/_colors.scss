@@ -1,0 +1,44 @@
+$color__background-body: #fff;
+$color__background-screen: #f1f1f1;
+$color__background-hr: #ccc;
+$color__background-button: #e6e6e6;
+$color__background-pre: #eee;
+$color__background-ins: #fff9c0;
+
+$color__text-screen: #21759b;
+$color__text-input: #666;
+$color__text-input-focus: #111;
+$color__link: royalblue;
+$color__link-visited: purple;
+$color__link-hover: midnightblue;
+$color__text-main: #424141;
+
+$color__border-button: #ccc #ccc #bbb;
+$color__border-button-hover: #ccc #bbb #aaa;
+$color__border-button-focus: #aaa #bbb #bbb;
+$color__border-input: #ccc;
+$color__border-abbr: #666;
+
+$color-red: #924020;
+$color-yellow: #c4a92f;
+$color-gray: #eeeeee;
+$color-med-gray: #9f9f9f;
+$color-dark-gray: #58595b; // h3
+$color-black: #262425; // h2 & h4
+$color-light-gray: #cecece;
+
+
+
+.color-red {color: $color-red;}
+.color-yellow {color: $color-yellow;}
+.color-gray {color: $color-gray;}
+.color-med-gray {color: $color-med-gray;}
+.color-dark-gray {color: $color-dark-gray;}
+.color-black {color: $color-black;}
+
+.bg-red {background-color: $color-red;}
+.bg-yellow {background-color: $color-yellow;}
+.bg-gray {background-color: $color-gray;}
+.bg-med-gray {background-color: $color-med-gray;}
+.bg-dark-gray {background-color: $color-dark-gray;}
+.bg-black {background-color: $color-black;}

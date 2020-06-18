@@ -1,0 +1,631 @@
+.mainnav-wrap {
+	width: 100%;
+	float: left;
+	background-color: $color-black;
+  padding: 35px 0 35px 0;
+  @media screen and (min-width: $tabwidth) {
+    margin: 0;
+    padding: 0;
+  }
+}
+.menu-main-navigation-container {
+	@media screen and (min-width: $tabwidth) {
+		width: auto;
+		float: right;
+	}
+}
+.main-navigation {
+	clear: both;
+	display: block;
+	text-align: center;
+	width: 100%;
+  font-family: $font__main;
+	
+	@media screen and (min-width: $tabwidth) {
+		clear: none;
+		width: auto;
+		float: right;
+    background-color: $color-black;
+	}
+	@media screen and (min-width: $deskwidth) {
+		text-align: left;
+	}
+	.menu {
+		@include transition(all ease 1s);
+		/*overflow: none;*/
+		display: block;
+	}
+	&.toggled .menu {
+		max-height: 1000px;
+	}
+	.menu {
+		max-height: 0;
+		@media screen and (min-width: $tabwidth) {
+			max-height: 1000px;
+		}
+	}
+
+	ul {
+		display: none;
+		list-style: none;
+		margin: 0;
+		padding-left: 0;
+		@media screen and (min-width: $tabwidth) {
+			display: flex;
+		}
+
+		ul {
+			box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+			float: left;
+			position: absolute;
+			top: 3.2em;
+			left: -999em;
+			z-index: 99999;
+
+			ul.sub-menu {
+				left: -999em;
+				top: 0;
+			}
+
+			li {
+        display: block;
+        background-color: #333;
+
+        a{
+          font-size: 0.8rem;
+        }
+
+				&:hover > ul,
+				&.focus > ul {
+					left: 100%;
+          background-color: #c4a92f;
+				}
+				@media screen and (min-width: $tabwidth) {
+		
+				}
+				@media screen and (min-width: $deskwidth) {
+					
+				}
+			}
+
+
+			a {
+				width: 200px;
+				@media screen and (min-width: $tabwidth) {
+		
+				}
+				@media screen and (min-width: $deskwidth) {
+					
+				}
+			}
+
+			:hover > a,
+			.focus > a {
+			}
+
+			a:hover,
+			a.focus {
+			}
+		}
+
+		li:hover > ul,
+		li.focus > ul {
+			left: auto;
+		}
+	}
+	li {
+		// float: left;
+		position: relative;
+		text-align: center;
+		display: inline-block;
+		hyphens: none;
+		padding: 0 ;
+		width: 100%;
+		@media screen and (min-width: $tabwidth) {
+			// border-left: 1px solid #000;
+			line-height: 3.2;
+			width: auto;
+			// padding: 0 20px;
+			&:first-of-type {
+				border: 0;
+			}
+      .splat {
+        position: absolute;
+        display: block;
+        z-index: 1;
+        top: 10px;
+        right: -20px;
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        vertical-align: middle;
+        padding: 3px 0 0 0;
+        box-sizing: border-box;
+        line-height: 1;
+        border-radius: 50%;
+        background-color: red;
+        color: white;
+        font-size: 12px;
+      }
+		}
+		@media screen and (min-width: $deskwidth) {
+			// padding: 0 30px;
+		}
+
+		&:hover > a,
+		&.focus > a {
+		}
+	}
+	a {
+		display: block;
+		// align-items: center;
+		text-decoration: none;
+		padding: 10px 0px;
+		color: #fff;
+		@include transition(all ease .4s);
+		@media screen and (min-width: $tabwidth) {
+			padding: 0% 16px;
+		}
+		@media screen and (min-width: $deskwidth) {
+			padding: 0% 30px;
+		}
+		&:hover, &.active {
+			background-color: rgba($color-yellow, 1);
+			color: #fff;
+		}
+	}
+
+	.current_page_item > a,
+	.current-menu-item > a,
+	.current_page_ancestor > a,
+	.current-menu-ancestor > a {
+	}
+}
+
+/* Small menu. */
+.menu-toggle,
+.main-navigation.toggled ul {
+	display: block;
+	// background-color: $color-red;
+  	ul.sub-menu {
+  		background-color: rgba(255,255,255,.1);
+      z-index:999999;
+      left:0;
+
+  	}
+	
+}
+
+
+@media screen and (min-width: $tabwidth) {
+	.menu-toggle {
+		display: none;
+	}
+	.main-navigation ul {
+		// display: block;
+	}
+}
+button.menu-toggle {
+	border: 0px;
+	text-shadow: none;
+	background-color: #ccc;
+	color: #fff;
+	box-shadow: none;
+	width: auto;
+	display: inline-block;
+	margin: 10px auto;
+	border-radius: 0;
+	text-transform: uppercase;
+	font: {
+		
+		weight :300;
+		size: 20px;
+	}
+	
+	@media screen and (min-width: $tabwidth) {
+		display: none;
+	}
+}
+
+.comment-navigation,
+.posts-navigation,
+.post-navigation {
+
+	.site-main & {
+		margin: 0 0 1.5em;
+		overflow: hidden;
+	}
+
+	.nav-previous {
+		float: left;
+		width: 50%;
+	}
+
+	.nav-next {
+		float: right;
+		text-align: right;
+		width: 50%;
+	}
+}
+
+
+// Burger parts
+//
+// (---) top    -> &::before
+// [---] middle -> &
+// (---) bottom -> &::after
+
+
+// Vendor prefixes
+$sass-burger-add-vendor-prefixes: true !default;
+
+// Burger
+@mixin burger($width: 30px, $height: 5px, $gutter: 3px, $color: #000, $border-radius: 0, $transition-duration: .3s) {
+    $burger-height: $height !global;
+    $burger-gutter: $gutter !global;
+
+    position: relative;
+    margin-top: $height + $gutter;
+    margin-bottom: $height + $gutter;
+
+    @if $sass-burger-add-vendor-prefixes {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+    }
+    user-select: none;
+
+    // 1. Fixes jagged edges in Firefox, see issue #10.
+    &, &::before, &::after {
+        display: block;
+        width: $width;
+        height: $height;
+        background-color: $color;
+        outline: 1px solid transparent; // 1
+        @if $border-radius != 0 {
+            border-radius: $border-radius;
+        }
+
+        @if $sass-burger-add-vendor-prefixes {
+            -webkit-transition-property: background-color, -webkit-transform;
+            -moz-transition-property: background-color, -moz-transform;
+            -o-transition-property: background-color, -o-transform;
+        }
+        transition-property: background-color, transform;
+
+        @if $sass-burger-add-vendor-prefixes {
+            -webkit-transition-duration: $transition-duration;
+            -moz-transition-duration: $transition-duration;
+            -o-transition-duration: $transition-duration;
+        }
+        transition-duration: $transition-duration;
+    }
+
+    &::before, &::after {
+        position: absolute;
+        content: "";
+    }
+
+    &::before {
+        top: -($height + $gutter);
+    }
+
+    &::after {
+        top: $height + $gutter;
+    }
+}
+
+
+// Select parts of the burger
+@mixin burger-parts {
+    &, &::before, &::after {
+        @content;
+    }
+}
+
+@mixin burger-top {
+    &::before {
+        @content;
+    }
+}
+
+@mixin burger-middle {
+    & {
+        @content;
+    }
+}
+
+@mixin burger-bottom {
+    &::after {
+        @content;
+    }
+}
+
+
+// Burger animations
+@mixin burger-to-cross($color: auto) {
+    & {
+        background-color: transparent;
+    }
+    @if ($color != auto) {
+        &::before, &::after {
+            background-color: $color;
+        }
+    }
+    &::before {
+        @if $sass-burger-add-vendor-prefixes {
+            -webkit-transform: translateY($burger-gutter + $burger-height) rotate(45deg);
+            -moz-transform: translateY($burger-gutter + $burger-height) rotate(45deg);
+            -ms-transform: translateY($burger-gutter + $burger-height) rotate(45deg);
+            -o-transform: translateY($burger-gutter + $burger-height) rotate(45deg);
+        }
+        transform: translateY($burger-gutter + $burger-height) rotate(45deg);
+    }
+    &::after {
+        @if $sass-burger-add-vendor-prefixes {
+            -webkit-transform: translateY(-($burger-gutter + $burger-height)) rotate(-45deg);
+            -moz-transform: translateY(-($burger-gutter + $burger-height)) rotate(-45deg);
+            -ms-transform: translateY(-($burger-gutter + $burger-height)) rotate(-45deg);
+            -o-transform: translateY(-($burger-gutter + $burger-height)) rotate(-45deg);
+        }
+        transform: translateY(-($burger-gutter + $burger-height)) rotate(-45deg);
+    }
+}
+/*  COLORS
+========================================== */
+$black: #000000;
+$white: #ffffff;
+$gray: #2a2a2a;
+$gold: #b7ac7f;
+
+/*  FONTS
+========================================== */
+
+$raleway: 'Raleway', sans-serif;
+$spectral: 'Spectral', serif;
+
+
+/*  MIXINS
+========================================== */
+
+@mixin transform($transform) {
+  -webkit-transform: $transform;
+     -moz-transform: $transform;
+      -ms-transform: $transform;
+       -o-transform: $transform;
+          transform: $transform;
+}
+
+@mixin transition($transition) {
+  -webkit-transition: #{$transition};
+     -moz-transition: #{$transition};
+       -o-transition: #{$transition};
+          transition: #{$transition};
+}
+
+@mixin transition-delay($transition-delay) {
+  -webkit-transition-delay: #{$transition-delay};
+     -moz-transition-delay: #{$transition-delay};
+       -o-transition-delay: #{$transition-delay};
+          transition-delay: #{$transition-delay};
+}
+
+/*  RESET
+========================================== */
+
+*, *:before, *:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  
+  &.overflow {
+    overflow: hidden;
+  }
+}
+/*  BURGER
+========================================== */
+
+.burger {
+  width: 50px;
+  height: 50px;
+  position: relative;
+  // top: 0px;
+  // left: 15px;
+  border-radius: 4px;
+  z-index: 100002;
+  float: right;
+  right: 0;
+  top: -4px;
+  @media screen and (min-width: $tabwidth) {
+    position: relative;
+    top: 0;
+    right: 0;
+    margin-right: 0;
+  }
+  @media screen and (min-width: $midwidth) {
+    margin-right: 15px;
+  }
+  
+  span {
+    @include burger(30px, 4px, 6px, #fff); // gray
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -15px;
+    margin-top: -1.5px;
+    width: 30px;
+    &:before {
+      width: 30px;
+    }
+     &:after {
+      width: 30px;
+    }
+  }
+  
+  &.clicked {
+    span {
+      @include burger-to-cross;
+      
+      &:before, &:after {
+        background-color: #fff;
+        width: 30px;
+      }
+    }
+  }
+  
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+
+/*  NAV
+========================================== */
+
+nav.mobilemenu {
+  background-color: rgba($color-black, 1);
+  position: fixed;
+  font-family: $font__main;
+  z-index: 9;
+  top: 0;
+  right: 0;
+  height: 100%;
+  max-width: 515px;
+  width: 100%;
+  padding: 100px 40px 60px 40px;
+  overflow-y: auto;
+  z-index: 100001;
+  @include transform(translateX(100%));
+  @include transition(transform .55s cubic-bezier(0.785, 0.135, 0.15, 0.86));
+  @media screen and (min-width: $tabwidth) {
+  	// display: none;
+  }
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    width: 100%;
+    float: left;
+    margin: 0;
+    line-height: 1.3;
+    font-size: 18px;
+  }
+  a {
+    color: rgba(#fff, .9);
+    text-decoration: none;
+    display: block;
+  }
+  .mobilemain {
+    a {
+      padding: 10px 20px ;
+      font-size: 20px;
+      background-color: rgba(#fff, .1);
+    }
+    @media screen and (min-width: $tabwidth) {
+      display: none;
+
+    }
+    ul#primary-menu {
+      margin-bottom: 20px;
+      float: left;
+      li {
+        border-bottom: 1px solid #000;
+      }
+    }
+  }
+  
+  &.show {
+    @include transform(translateX(0px));
+    ul.main, ul.menu {
+      li {
+        @include transform(translateX(0px));
+        @include transition(all .3s ease);
+        @for $i from 1 to 10 { 
+          &:nth-child(#{$i}) {
+            transition-delay: $i * 0.15s;
+          }
+        }
+      }
+    }
+    ul.main {
+      a {
+        color: $color-yellow;
+        text-decoration: none;
+        display: block;
+        padding: 5px;
+        border-bottom: 1px solid rgba(#fff, .2);
+        @include transition(all .3s ease);
+        &:hover {
+          background-color: rgba(#fff, .1);
+        }
+      }
+      li {
+        opacity: 1;
+        color: $color-red;
+        cursor:pointer;
+        ul.children {
+          margin: 0 0 20px 10px;
+          float: left;
+        }
+        
+        ul.dropdown {
+        	max-height: 0;
+        	overflow: hidden;
+        	li {
+        		list-style: none;
+        		font-size: 14px;
+            a {
+              color: $color-yellow;
+              &:hover {
+                background-color: rgba(#fff, .4);
+              }
+            }
+        	}
+        }
+        ul.dropdown.active {
+        	max-height: 1000px;
+        }
+      }
+    }
+    
+    
+  }
+}
+
+@media screen and (max-width: $tabwidth - 1px) {
+  nav.mobilemenu .mobilemain ul.sub-menu {
+    a {
+      padding-left: 40px;
+    }
+  }
+}
+
+
+/*  OVERLAY
+========================================== */
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height:100%;
+  @include transition(all 0.3s ease-in-out);
+  background-color: $gold;
+  opacity: 0;
+  visibility: hidden;
+  
+  &.show {
+    opacity: 0.8;
+    visibility: visible;
+  }
+}
+

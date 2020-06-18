@@ -1,0 +1,95 @@
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+input[type="tel"],
+input[type="range"],
+input[type="date"],
+input[type="month"],
+input[type="week"],
+input[type="time"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="color"],
+textarea {
+	color: $color__text-input;
+	border: 1px solid $color__border-input;
+	border-radius: 3px;
+
+	&:focus {
+		color: $color__text-input-focus;
+	}
+}
+
+select {
+	border: 1px solid $color__border-input;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+input[type="tel"],
+input[type="range"],
+input[type="date"],
+input[type="month"],
+input[type="week"],
+input[type="time"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="color"] {
+	padding: 3px;
+	background-color: #eee;
+	border-radius: 0;
+}
+
+textarea {
+	padding-left: 3px;
+	width: 100%;
+	background-color: #eee;
+	border-radius: 0;
+}
+.search {
+	width: auto;
+	display: inline-block;
+}
+form.biz {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: center;
+	input.searchfield {
+		background-color: rgba(#fff, .3);
+		color: #fff;
+		border: 0;
+		@include innershadow();
+		padding-left: 5px;
+	}
+	input.searchicon {
+		background-color: rgba(#fff, 0);
+		width: 25px;
+		margin-left: 10px;
+	}
+}
+input[type="submit"] {
+	box-shadow: none;
+	border-radius: 0;
+	background-color: #000;
+	color: $color-yellow;
+	text-shadow: none;
+	border: 1px solid #000;
+	text-transform: uppercase;
+	font-weight: bold;
+	@include transition(all ease .2s);
+	&:hover {
+		box-shadow: none;
+		border: 1px solid #000;
+		background-color: $color-red;
+		color: #fff;
+	}
+}

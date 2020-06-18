@@ -1,0 +1,900 @@
+.clear {clear: both;}
+.cf:before, .cf:after {
+    content: " "; 
+    display: table; 
+}
+.cf:after { clear: both; }
+.cf { *zoom: 1; }
+
+.wrapper-mnav {
+	width: 100%;
+	margin: 0px auto;
+	padding: 0;
+	position: relative;
+	@media screen and (min-width: $deskwidth) {
+		max-width: 1150px;
+	}
+}
+.wrapper-header {
+	width: 100%;
+	margin: 0px auto;
+	padding: 0 20px;
+	position: relative;
+	
+	@media screen and (min-width: $tabwidth) {
+		width: 100%;
+		
+	}
+	@media screen and (min-width: $deskwidth) {
+		max-width: 1250px;
+		padding: 0;
+	}
+}
+.wrapper,
+body.single .site-footer .wrapper {
+	width: 100%;
+	margin: 0px auto;
+	padding: 0 20px;
+	position: relative;
+	
+	@media screen and (min-width: $tabwidth) {
+		width: 100%;
+		
+	}
+	@media screen and (min-width: $deskwidth) {
+		/*max-width: 1250px;*/
+		padding: 0;
+	}
+	.right, .left {
+		width: 100%;
+		margin-bottom: 30px;
+		@media screen and (min-width: $tabwidth) {
+			width: 46%;
+		}
+	}
+	.right {
+		float: right;
+	}
+	.left {
+		float: left;
+	}
+	
+}
+body.single {
+	.wrapper {
+		@media screen and (min-width: $deskwidth) {
+			max-width: 990px;
+		}
+	}
+	
+}
+body.category {
+	.wrapper {
+		@media screen and (min-width: $deskwidth) {
+			max-width: 1050px;
+		}
+	}
+	#content {
+		@media screen and (min-width: $tabwidth) {
+			margin-top: 60px;
+		}
+	}
+	
+}
+#content {
+	margin-top: 5px;
+	width: 100%;
+	float: left;
+	clear: both;
+	@media screen and (min-width: $tabwidth) {
+		margin-top: 25px;
+	}
+	@media screen and (min-width: $deskwidth) {
+
+	}
+}
+.content-area-single {
+	width: 100%;
+	margin: 0px auto;
+	max-width: 700px;
+}
+.content-area-title {
+	width: 100%;
+	margin: 0px auto;
+	@media screen and (min-width: $tabwidth) {
+		width: 66%;
+		float: left;
+		margin: 0;
+	}
+}
+.content-area {
+	width: 100%;
+	margin: 0px auto;
+	
+	@media screen and (min-width: $tabwidth) {
+		width: 68%;
+		float: left;
+		margin: 0;
+		padding-bottom: 50px;
+		min-height: 800px;
+	}
+	@media screen and (min-width: $deskwidth) {
+		/*width: 1200px;*/
+	}
+}
+.widget-area {
+	width: 100%;
+	margin: 0px auto;
+	clear: both;
+	@media screen and (min-width: $tabwidth) {
+		width: 26%;
+		float: right;
+		margin: 0;
+		clear: none;
+		padding-bottom: 40px;
+	}
+	@media screen and (min-width: $deskwidth) {
+		/*width: 1200px;*/
+	}
+}
+section.red-band {
+	width: 100%;
+	float: left;
+	position: relative;
+	margin: 20px 0 4px 0;
+	background-color: $color-red;
+	padding: 2px 0;
+	text-align: right;
+	color: #fff;
+	font-size: 13px;
+	display: none;
+	@media screen and (min-width: $tabwidth) {
+		display: block;
+	}
+	a {
+		display: inline-block;
+		padding: 3px;
+		color: #fff;
+		@include transition(all ease .2s);
+		text-decoration: none;
+		&:hover {
+			background-color: #fff;
+			color: $color-red;
+		}
+	}
+}
+.side-offer {
+	width: 100%;
+	text-align: center;
+	padding: 20px;
+	background-color: $color-red;
+	margin-bottom: 40px;
+	color: #fff;
+	h3 {
+		font-size: 18px;
+		margin-bottom: 15px;
+	}
+	form#category-select {
+		margin-bottom: 20px;
+	}
+}
+.sponsored-by {
+	width: 100%;
+	text-align: lft;
+	padding: 20px;
+	background-color: $color-gray;
+	margin-bottom: 40px;
+	border-bottom: 8px solid $color-light-gray;
+	color: $color-black;
+	h2 {
+		font-size: 18px;
+		margin-bottom: 15px;
+		font-weight: normal;
+		margin-bottom: 15px;
+	}
+	img {
+		margin-bottom: 10px;
+	}
+	form#category-select {
+		margin-bottom: 20px;
+	}
+	.btn-red {
+		width: 100%;
+		font-size: 14px;
+		a {
+			background-color: $color-red;
+			color: #fff;
+			padding: 8px;
+		}
+	}
+}
+.next-stories {
+	width: 100%;
+	float: left;
+	margin-bottom: 30px;
+	h3 {
+		margin-bottom: 20px;
+	}
+}
+.btn {
+	width: auto;
+	display: inline-block;
+	text-transform: uppercase;
+	a {
+		display: block;
+		padding: 5px 25px;
+		text-decoration: none;
+		@include transition(all ease .2s);
+		&.white {
+			background-color: #fff;
+			color: $color-red;
+			&:hover {
+				background-color: $color-yellow;
+				color: #fff;
+			}
+		}
+		&.red {
+			background-color: $color-red;
+			color: #fff;
+			&:hover {
+				background-color: $color-yellow;
+				color: #fff;
+			}
+		}
+		&.yellow {
+			background-color: $color-yellow;
+			color: #fff;
+			&:hover {
+				background-color: $color-red;
+				color: #fff;
+			}
+		}
+	}
+}
+.more {
+	width: 100%;
+	float: left;
+	text-align: center;
+	
+	a {
+		padding: 5px 0;
+		color: #fff;
+		display: block;
+		text-decoration: none;
+		@include transition(all ease .2s);
+		&.red {
+			background-color: $color-red;
+		}
+		&.gray {
+			background-color: $color-med-gray;
+		}
+		&:hover {
+			background-color: $color-yellow;
+		}
+	}
+}
+/* Logo */
+.logo , h1.logo {
+	width: 25%;
+	// height: 227px;
+	// background-image: url(images/qc-logo.png);	
+	margin: 10px auto;
+	position: absolute;
+	top: 10px;
+	left: 37.5%;
+	z-index: 100000;
+	@media screen and (min-width: $tabwidth) {
+		width: 130px;
+		margin: 0;
+		
+		top: 10px;
+		left: 0;
+	}
+	@media screen and (min-width: $deskwidth) {
+		/*width: 1200px;*/
+	}
+	img {
+		width: 100%;
+	}
+}
+.logo a, h1.logo a {
+	width: 100%;
+	display: block;
+
+	@media screen and (min-width: $tabwidth) {
+		
+	}
+	@media screen and (min-width: $deskwidth) {
+		
+	}
+}
+.tags {
+	width: 100%;
+	float: left;
+	padding: 20px 0;
+	margin-bottom: 20px;
+	border-bottom: 3px solid rgba(#000,.2);
+	color: $color-med-gray;
+	.title {
+		text-transform: uppercase;
+		color: $color-dark-gray;
+	}
+	a {
+		color: $color-med-gray;
+		text-decoration: none;
+	}
+}
+.site-footer {
+	width: 100%;
+	clear: both;
+	background-color: rgba($color-black, 1);
+	color: rgba(#fff, .5);
+	padding: 20px 0;
+	overflow: hidden;
+	a {
+		text-decoration: none;
+		color: rgba(#fff, .5);
+		&:hover {
+			color: rgba($color-yellow, 1);
+		}
+	}
+	.logo-footer {
+		width: 100px;
+		margin: 20px auto;
+		opacity: .5;
+		@media screen and (min-width: $tabwidth) {
+			float: left;
+			margin: 0;
+		}
+		@media screen and (min-width: $deskwidth) {
+			
+		}
+		img {
+			width: 100%;
+		}
+	}
+	.footer-nav {
+		width: 100%;
+		margin: 0;
+		padding: 20px 0;
+		float: left;
+		@media screen and (min-width: $tabwidth) {
+			width: 50%;
+			padding: 0 0 0 5%;
+		}
+		@media screen and (min-width: $deskwidth) {
+			
+		}
+		.footer-main-nav{
+			display: block;
+			text-align: center;
+			ul {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+			li {
+				display: inline-block;
+				/*float: left;*/
+				font-size: 20px;
+				margin-right: 30px;
+
+				/*a{
+					color: white;
+				}*/
+			}
+		}
+
+		.footer-submenu-nav{
+			display: block;
+			margin-top: 8px;
+			text-align: center;
+			ul {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				text-align: center;
+			}
+			li {
+				display: inline-block;
+				/*float: left;*/
+				font-size: 13px;
+				margin-right: 20px;
+				/*a{
+					color: white;
+				}*/
+			}
+		}
+		
+	}
+}
+.social, .footer-newsletter {
+	width: 100%;
+	margin: 30px auto;
+	float: left;
+	@media screen and (min-width: $tabwidth) {
+		width: 15%;
+		margin: 0 0 0 5%;
+	}
+	@media screen and (min-width: $deskwidth) {
+		
+	}
+	h3 {
+		font-size: 15px;
+		font-weight: normal;
+		margin: 0 0 5px 0;
+		text-align: center;
+		display: inline-block;
+		width: 100%;
+		@media screen and (min-width: $tabwidth) {
+			text-align: left;
+		}
+	}
+	a.btn {
+		width: 100%;
+		display: block;
+		padding: 2px 0;
+		text-align: center;
+		color: #fff;
+		background-color: rgba(#fff, .6);
+		&:hover {
+			background-color: rgba($color-yellow, 1);
+		}
+	}
+}
+.footer-newsletter {
+	text-align: center;
+}
+.social {
+	text-align: center;
+	display: inline-block;
+	@media screen and (min-width: $tabwidth) {
+		text-align: left;
+	}
+	a {
+		display: inline-block;
+		margin: 0 5px 0 5px;
+		@media screen and (min-width: $tabwidth) {
+			margin: 0 10px 0 0;
+		}
+	}
+}
+.subscribe-wrap {
+	width: 100%;
+	clear: both;
+	padding: 60px 0;
+
+}
+.subscribe {
+	width: 100%;
+	clear: both;
+	margin: 0;
+	padding: 10px;
+	background-color: $color-red;
+	color: #fff;
+	text-align: center;
+	a {
+		padding: 3px 5px;
+		background-color: none;
+		color: #fff;
+		display: inline-block;
+		text-decoration: none;
+	}
+}
+section.news-home {
+	width: 100%;
+	float: left;
+	margin: 0 0 40px 0;
+	section.twocol {
+		@media screen and (min-width: $tabwidth) {
+			width: 66.555555%;
+			float: left;
+		}
+		@media screen and (max-width: 767px) {
+			width: 100%;
+		}
+	}
+	.ads-home {
+		@media screen and (min-width: $tabwidth) {
+			width: 31%;
+			float: right;
+		}
+		@media screen and (max-width: 768px) {
+			display: none;
+		}
+	}
+}
+section.twocol {
+	width: 100%;
+	float: left;
+	@media screen and (min-width: $tabwidth) {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		align-items: stretch;
+	}
+}
+section.twocol {
+	.story-block {
+		@media screen and (min-width: $tabwidth) {
+			flex-basis: 48%;
+		}
+	}
+	
+	
+}
+header.section-title {
+	width: 100%;
+	clear: both;
+	margin: 0 0 15px 0;
+	position: relative;
+	text-align: center;
+	@media screen and (min-width: $tabwidth) {
+		text-align: left;
+	}
+	&:after {
+		content: '';
+		height: 2px;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		background-color: $color-dark-gray;
+		width: 100%;
+	}
+	h1, h2 {
+		width: auto;
+		display: inline-block;
+		background-color: $color-dark-gray;
+		color: #fff;
+		padding: 5px 30px 5px 15px;
+		border-radius: 5px 5px 0 0;
+		font-weight: normal;
+		font-size: 14px;
+		@media screen and (min-width: $tabwidth) {
+			border-radius: 0 10px 0 0;
+		}
+		@media screen and (min-width: $deskwidth) {
+		
+		}
+	}
+}
+.story-image {
+	width: 100%;
+	margin-bottom: 40px;
+	img {
+		width: 100%;
+	}
+}
+
+header.biz {
+	width: 100%;
+	float: left;
+	background-color: $color-red;
+	color: #fff;
+	text-align: center;
+	padding: 5px 0;
+	margin: 60px 0;
+	h1 {
+		font-size: 18px;
+		@media screen and (min-width: $tabwidth) {
+			font-size: 22px;
+		}
+		@media screen and (min-width: $deskwidth) {
+			font-size: 28px;
+		}
+	}
+}
+.banner {
+	width: 100%;
+	float: left;
+	position: relative;
+	margin-bottom: 30px;
+	line-height: 0;
+	img {
+		width: 100%;
+	}
+	.banner-info {
+		height: 100%;
+		width: 100%;
+		display: flex;
+		position: absolute; 
+		top: 0;
+		left: 0;
+		text-align: center;
+		flex-direction: column;
+		justify-content: center;
+		color: #fff;
+		line-height: 1.2;
+		a {
+			color: #fff;
+		}
+		h1 {
+			margin-bottom: 3px;
+		}
+		h1.biz {
+			margin-bottom: 5px;
+			font-size: 18px;
+			@media screen and (min-width: $tabwidth) {
+				margin-bottom: 20px;
+				font-size: 24px;
+			}
+			@media screen and (min-width: $deskwidth) {
+				margin-bottom: 30px;
+				font-size: 30px;
+			}
+		}
+		.sub {
+			margin-bottom: 5px;
+			font-size: 13px;
+			width: 100%;
+			display: inline-block;
+			@media screen and (min-width: $tabwidth) {
+				margin-bottom: 20px;
+				font-size: 18px;
+			}
+			@media screen and (min-width: $deskwidth) {
+				margin-bottom: 30px;
+				font-size: 22px;
+			}
+		}
+	}
+	.row-2 {
+		width: 100%;
+		float: left;
+		margin-bottom: 5px;
+		@media screen and (min-width: $tabwidth) {
+			margin-bottom: 20px;
+		}
+		@media screen and (min-width: $deskwidth) {
+			margin-bottom: 30px;
+		}
+	}
+	.bottom {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		justify-content: center;
+		.btn {
+			margin: 0 20px 0 20px;
+		}
+	}
+}
+.event-butts .bottom {
+	justify-content: flex-start;
+	padding:  5px 0 20px 0;
+	float: left;
+	.btn {
+		margin: 0 10px;
+		@media screen and (min-width: $tabwidth) {
+			margin: 0 20px 0 0;
+		}
+	}
+}
+.bottom, .event-butts .bottom {
+	width: 100%;
+	display: flex;
+	.btn {
+		
+		font-size: 14px;
+		a {
+			padding: 10px 25px;
+			background-color: $color-yellow;
+			color: #fff;
+		}
+	}
+	.banner-button {
+		margin: 0 20px 0 20px;
+		padding: 10px 20px;
+		ul {
+			width: 300px;
+			padding: 10px 0;
+			background-color: $color-yellow;
+		}
+		li {
+			font-size: 14px;
+			a {
+				padding: 5px 20px;
+				&:hover {
+					background-color: rgba(#fff, .2);
+				}
+			}
+		}
+	}
+}
+.banner-button {
+	margin: 10px 5px 0 5px;
+	color: #fff;
+	padding: 7px 20px;
+	// text-transform: uppercase;
+	font-size: 14px;
+	display: inline-block;
+	cursor: pointer;
+	position: relative;
+	background-color: $color-yellow;
+	ul {
+		display: none;
+		margin: 0;
+		padding: 0;
+		li {
+			list-style-type: none;
+			display: block;
+			background-color: $color-yellow;
+			font-size: 14px;
+			a {
+				color: #803F26;
+				text-decoration: none;
+				display: block;
+				padding: 10px;
+				text-align: left;
+				// font-size: 18px;
+			}
+		}
+	}
+	&:hover ul {
+		width: 250px;
+		box-sizing: border-box;
+		display: block;
+		position: absolute;
+		top: 100%;
+		left: 0;
+		-webkit-box-shadow: 2px 2px 11px 0px rgba(0,0,0,0.37);
+		-moz-box-shadow: 2px 2px 11px 0px rgba(0,0,0,0.37);
+		box-shadow: 2px 2px 11px 0px rgba(0,0,0,0.37);
+		z-index: 100;
+		border-bottom: 3px solid #803F26;
+	}
+}
+article.small {
+	width: 100%;
+	float: left;
+	position: relative;
+	margin: 0 0 15px 0;
+	@include transition(all ease .2s);
+	a {
+		color: #000;
+	}
+	&:hover {
+		border-left: 3px solid $color-yellow;
+	}
+	.img {
+		width: 30%;
+		float: left;
+		margin-right: 10px;
+		img {
+			width: 100%;
+		}
+	}
+	.xtitle {
+		width: 65%;
+		float: right;
+		font-size: 13px;
+	}
+}
+/*
+ *   Popups
+ */
+.newsletter {
+	max-width: 0px;
+	position: fixed;	
+	top: 190px;
+	right: 0;
+	background-color: rgba(0,0,0,.8);
+	overflow: hidden;
+}
+#mc_form_pop {
+	padding: 50px 20px 50px 20px;
+	
+	color: #fff;
+	text-align: center;
+}
+#mc_form_pop h2 {
+	width: 100%;
+	float: left;
+	display:inline-block;
+	font-size:20px;
+	text-transform:uppercase;
+	line-height: 1.2;
+	clear:both;
+	margin: 0 0 50px 0;
+	text-align: left;
+	color: #fff;
+}
+form.email-form {margin-bottom: 50px;}
+.close {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	width: auto;
+	font-size: 24px;
+	cursor: pointer;
+}
+.nothanks {
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	width: auto;
+	font-size: 12px;
+	cursor: pointer;
+}
+.popup-form {
+	padding: 5%;
+	background-color: #fff;
+	@media screen and (min-width: $tabwidth) {
+		width: 80%;
+		margin: 2% auto;
+	}
+	@media screen and (min-width: $deskwidth) {
+		margin-bottom: 30px;
+		width: 70%;
+	}
+}
+/*
+ *   / Popups
+ */
+.wp-block-image figcaption,
+figure figcaption,
+figcaption {
+	font-size: 12px;
+}
+.googleadswrap {
+	background-color: $color-gray;
+	padding: 30px 10px;
+	text-align: left;
+	margin: 20px 0;
+	width: 100%;
+	float: left;
+	// width: 100vw;
+	// margin-left: -15%;
+	.promote {
+		font-size: 12px;
+		width: 100%;
+		text-align: center;
+		padding: 10px 0 0 0;
+	}
+}
+.is-style-qbuttonred, .is-style-qbuttonyellow, .is-style-qbuttonblack {
+
+	a {
+		text-align: center;
+		text-decoration: none;
+		border-radius: 0;
+		@include transition(all ease .2s);
+		&:hover {
+			text-decoration: none;
+		}
+	}
+}
+.is-style-qbuttonred {
+	a {
+		background-color: $color-red;
+		color: $color-yellow;
+		&:hover {
+			background-color: $color-black;
+			color: $color-yellow;
+		}
+	}
+	
+}
+.is-style-qbuttonyellow {
+	a {
+		background-color: $color-yellow;
+		color: $color-black;
+		&:hover {
+			background-color: $color-black;
+			color: $color-yellow;
+		}
+	}
+}
+.is-style-qbuttonblack {
+	a {
+		background-color: $color-black;
+		color: $color-yellow;
+		&:hover {
+			background-color: $color-yellow;
+			color: $color-black;
+		}
+	}
+}
