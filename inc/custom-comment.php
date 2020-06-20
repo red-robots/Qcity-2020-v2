@@ -121,16 +121,12 @@ function verify_comment_meta_data( $commentdata ) {
         if($responseKeys["success"]) {
             return $commentdata;
         } else {
-            //header($redirectURL . '?recaptcha=invalid');
-            // wp_redirect( $redirectURL . '?recaptcha=invalid');
-            // exit;
-            exit('ERROR: Failed to validate Recaptcha');
+            $error_message = 'ERROR: Failed to validate reCaptcha. <a href="javascript:history.back()">&laquo; Back</a>';
+            exit($error_message);
         }
     } else {
-        //header($redirectURL . '?recaptcha=empty');
-        // wp_redirect( $redirectURL . '?recaptcha=empty');
-        // exit;
-        exit('ERROR: Please enter reCaptcha');
+        $error_message = 'ERROR: Please enter reCaptcha. <a href="javascript:history.back()">&laquo; Back</a>';
+        exit($error_message);
     }
 }
 
