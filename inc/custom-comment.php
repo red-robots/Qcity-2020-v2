@@ -80,6 +80,26 @@ function save_comment_meta_data( $comment_id ) {
 }
 add_filter('comment_post','save_comment_meta_data');
 
+
+add_filter( 'preprocess_comment', 'verify_comment_captcha' );
+function verify_comment_captcha($commentdata) {
+    if (isset($_POST["g-recaptcha-response"])) {
+        $key = get_recaptcha_api_keys();
+        $recaptcha_secret = $key['secret_key'];
+        $response = wp_remote_get("https://www.google.com/recaptcha/api/siteverify?secret=". $recaptcha_secret ."&response=". $_POST["g-recaptcha-response"]);
+        $response = json_decode($response["body"], true);
+        if (true == $response["success"]) {
+            return $commentdata;
+        } else {
+            exit("Please fill reCaptcha.");
+            //return null;
+        }
+    } else {
+        exit("Please enable JavaScript in browser.");
+        //return null;
+    }
+}
+
 // add_filter( 'preprocess_comment', 'verify_comment_meta_data' );
 // function verify_comment_meta_data( $commentdata ) {
 //     $errors = [];
