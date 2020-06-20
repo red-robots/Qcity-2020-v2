@@ -111,22 +111,26 @@ function verify_comment_meta_data( $commentdata ) {
     $key = get_recaptcha_api_keys();
     $secretKey = $key['secret_key']; 
     $comment_post_ID = ( isset($_POST['comment_post_ID']) && $_POST['comment_post_ID'] ) ? $_POST['comment_post_ID'] : 0;
-    $redirectURL = get_permalink($comment_post_ID);
-    if( isset($_POST['g-recaptcha-response']) && $_POST['g-recaptcha-response'] ) {
-        $captcha=$_POST['g-recaptcha-response'];
-        $url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($secretKey) .  '&response=' . urlencode($captcha);
-        $response = file_get_contents($url);
-        $responseKeys = json_decode($response,true);
-        // should return JSON with success as true
-        if($responseKeys["success"]) {
-            return $commentdata;
+    //$redirectURL = get_permalink($comment_post_ID);
+    if( is_user_logged_in() ) {
+        return $commentdata;
+    } else {
+        if( isset($_POST['g-recaptcha-response']) && $_POST['g-recaptcha-response'] ) {
+            $captcha=$_POST['g-recaptcha-response'];
+            $url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($secretKey) .  '&response=' . urlencode($captcha);
+            $response = file_get_contents($url);
+            $responseKeys = json_decode($response,true);
+            // should return JSON with success as true
+            if($responseKeys["success"]) {
+                return $commentdata;
+            } else {
+                $error_message = 'ERROR: Failed to validate reCaptcha. <a href="javascript:history.back()">&laquo; Back</a>';
+                exit($error_message);
+            }
         } else {
-            $error_message = 'ERROR: Failed to validate reCaptcha. <a href="javascript:history.back()">&laquo; Back</a>';
+            $error_message = 'ERROR: Please enter reCaptcha. <a href="javascript:history.back()">&laquo; Back</a>';
             exit($error_message);
         }
-    } else {
-        $error_message = 'ERROR: Please enter reCaptcha. <a href="javascript:history.back()">&laquo; Back</a>';
-        exit($error_message);
     }
 }
 
