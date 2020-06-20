@@ -84,8 +84,8 @@ add_filter( 'preprocess_comment', 'verify_comment_meta_data' );
 function verify_comment_meta_data( $commentdata ) {
     $errors = [];
     $key = get_recaptcha_api_keys();
-    if( empty($_POST['email']) ) {
-        exit('Email address is required!');
+    if( empty($_POST['city']) ) {
+        exit('City is required!');
     }
     // if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])){ 
     //     $secretKey = $key['secret_key']; 
