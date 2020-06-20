@@ -566,68 +566,6 @@ function post_visibility_head_scripts(){ ?>
 /* end of meta box custom field */
 
 
-// Save the comment meta data along with comment
-
-add_action( 'comment_post', 'save_custom_comment_meta_data' );
-function save_custom_comment_meta_data( $comment_id ) {
-
-    if ( ( isset( $_POST['city'] ) ) && ( $_POST['city'] != ’) )
-    $rating = wp_filter_nohtml_kses($_POST['city']);
-    add_comment_meta( $comment_id, 'city', $rating );
-
-    if ( ( isset( $_POST['phone'] ) ) && ( $_POST['phone'] != ’) )
-    $phone = wp_filter_nohtml_kses($_POST['phone']);
-    add_comment_meta( $comment_id, 'phone', $phone );
-  
-}
-
-add_action( 'edit_comment', 'extend_comment_edit_metafields' );
-function extend_comment_edit_metafields( $comment_id ) {
-    //if( ! isset( $_POST['extend_comment_update'] ) || ! wp_verify_nonce( $_POST['extend_comment_update'], 'extend_comment_update' ) ) return;
-
-    if ( ( isset( $_POST['phone'] ) ) && ( $_POST['phone'] != ’) ) :
-    $phone = wp_filter_nohtml_kses($_POST['phone']);
-    update_comment_meta( $comment_id, 'phone', $phone );
-    else :
-    delete_comment_meta( $comment_id, 'phone');
-    endif;
-
-    if ( ( isset( $_POST['city'] ) ) && ( $_POST['city'] != ’) ):
-    $city = wp_filter_nohtml_kses($_POST['city']);
-    update_comment_meta( $comment_id, 'city', $city );
-    else :
-    delete_comment_meta( $comment_id, 'city');
-    endif;
-}
-
-
-if( isset($_GET['action']) && $_GET['action']=='editcomment' ) {
-function action_admin_footer( $array ) { 
-    $comment_id = ( isset($_GET['c']) && $_GET['c'] ) ? $_GET['c'] : '';
-    if($comment_id) {
-        $phone = get_comment_meta( $comment_id, 'phone', true );
-        $city = get_comment_meta( $comment_id, 'city', true );
-        $author_ip = get_comment_author_IP($comment_id);
-        ?>
-        <script>
-        jQuery(document).ready(function($){
-            var info_container = $("#namediv");
-            var city = '<?php echo $city;?>';
-            var phone = '<?php echo $phone;?>';
-            var author_ip = '<?php echo $author_ip;?>';
-            var fields = '<tr><td class="first"><label for="phone">Daytime Phone:</label></td><td><input type="text" id="phone" name="phone" value="'+phone+'"></td></tr>';
-                fields += '<tr><td class="first"><label for="city">City:</label></td><td><input type="text" id="city" name="city" value="'+city+'"></td></tr>';
-                fields += '<tr><td class="first"><label for="authorip">User IP:</label></td><td><input type="text" value="'+author_ip+'" disabled></td></tr>';
-            $("#namediv .editcomment tbody").append(fields);
-        });
-        </script>
-    <?php
-    }
-}; 
-add_action( 'admin_footer', 'action_admin_footer', 10, 1 ); 
-}
-
-
 function get_the_user_ip() {
 if ( ! empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
 //check ip from share internet

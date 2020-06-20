@@ -45,7 +45,7 @@ add_filter( 'comment_form_defaults', 'qcity_comment_form_defaults', 10, 1 );
 
 
 
-
+add_filter('comment_post','save_comment_meta_data');
 function save_comment_meta_data( $comment_id ) {
     if ( ( isset( $_POST['phone'] ) ) && ( $_POST['phone'] != '') )
         $phone = wp_filter_nohtml_kses($_POST['phone']);
@@ -55,11 +55,16 @@ function save_comment_meta_data( $comment_id ) {
         $city = wp_filter_nohtml_kses($_POST['city']);
     add_comment_meta( $comment_id, 'city', $city );
 
-    $email_recipient = 'mailbag@qcitymetro.com';
-    //$email_recipient = 'cathy@bellaworksweb.com';
-    //$email_recipient = 'hermiebarit@gmail.com';
+    /* Notify */
     $comment = get_comment( $comment_id );
     $postid = $comment->comment_post_ID;
+    notify_for_new_comment($comment_id,$postid);
+
+    //$email_recipient = 'mailbag@qcitymetro.com';
+    //$email_recipient = 'cathy@bellaworksweb.com';
+    //$email_recipient = 'hermiebarit@gmail.com';
+    //$comment = get_comment( $comment_id );
+    //$postid = $comment->comment_post_ID;
     // if( $email_recipient ):
     //     $message = 'New comment on <a href="' . get_permalink( $postid ) . '">' .  get_the_title( $postid ) . '</a>';
     //     $message .= '<p>Name: '. $comment->comment_author .'</p>';
@@ -76,29 +81,30 @@ function save_comment_meta_data( $comment_id ) {
     //     add_filter( 'wp_mail_content_type', create_function( '', 'return "text/html";' ) );
     //     wp_mail( $email_recipient, 'New Comment from ' . $comment->comment_author, $message );
     // endif;
-    return true;
 }
-add_filter('comment_post','save_comment_meta_data');
 
+function notify_for_new_comment($comment_id,$postid) {
+    $email_recipient = get_field("notify_for_comment","option");
+    if($email_recipient) {
+        if( $comment = get_comment( $comment_id ) ) {
+            $postid = $comment->comment_post_ID;
+            $subject = 'New Comment from ' . $comment->comment_author;
+            
+            $message = 'New comment on <strong><a href="' . get_permalink( $postid ) . '">' .  get_the_title( $postid ) . '</a></strong><br>';
+            $message .= '<p>Name: '. $comment->comment_author .'<br>';
+            $message .= 'Email: '. $comment->comment_author_email .'<br>';
+            $message .= 'City: '. $city .'<br>';
+            $message .= 'Daytime Phone: '. $phone .'<br>';
+            $message .= '</p>';
+            $message .= 'Content:<br>'. $comment->comment_content;
+            
+            add_filter( 'wp_mail_content_type', create_function( '', 'return "text/html";' ) );
+            $is_sent = wp_mail( $email_recipient,$subject,$message );
+            return ($is_sent) ? true : false;
+        }
+    }   
+}
 
-// add_filter( 'preprocess_comment', 'verify_comment_captcha' );
-// function verify_comment_captcha($commentdata) {
-//     if (isset($_POST["g-recaptcha-response"])) {
-//         $key = get_recaptcha_api_keys();
-//         $recaptcha_secret = $key['secret_key'];
-//         $response = wp_remote_get("https://www.google.com/recaptcha/api/siteverify?secret=". $recaptcha_secret ."&response=". $_POST["g-recaptcha-response"]);
-//         $response = json_decode($response["body"], true);
-//         if (true == $response["success"]) {
-//             return $commentdata;
-//         } else {
-//             exit("Please fill reCaptcha.");
-//             //return null;
-//         }
-//     } else {
-//         exit("Please enable JavaScript in browser.");
-//         //return null;
-//     }
-// }
 
 add_filter( 'preprocess_comment', 'verify_comment_meta_data' );
 function verify_comment_meta_data( $commentdata ) {
@@ -121,18 +127,55 @@ function verify_comment_meta_data( $commentdata ) {
 }
 
 
+add_action( 'edit_comment', 'extend_comment_edit_metafields' );
+function extend_comment_edit_metafields( $comment_id ) {
+    //if( ! isset( $_POST['extend_comment_update'] ) || ! wp_verify_nonce( $_POST['extend_comment_update'], 'extend_comment_update' ) ) return;
+
+    if ( ( isset( $_POST['phone'] ) ) && ( $_POST['phone'] != ’) ) :
+    $phone = wp_filter_nohtml_kses($_POST['phone']);
+    update_comment_meta( $comment_id, 'phone', $phone );
+    else :
+    delete_comment_meta( $comment_id, 'phone');
+    endif;
+
+    if ( ( isset( $_POST['city'] ) ) && ( $_POST['city'] != ’) ):
+    $city = wp_filter_nohtml_kses($_POST['city']);
+    update_comment_meta( $comment_id, 'city', $city );
+    else :
+    delete_comment_meta( $comment_id, 'city');
+    endif;
+}
+
+
+if( isset($_GET['action']) && $_GET['action']=='editcomment' ) {
+function action_admin_footer( $array ) { 
+    $comment_id = ( isset($_GET['c']) && $_GET['c'] ) ? $_GET['c'] : '';
+    if($comment_id) {
+        $phone = get_comment_meta( $comment_id, 'phone', true );
+        $city = get_comment_meta( $comment_id, 'city', true );
+        $author_ip = get_comment_author_IP($comment_id);
+        ?>
+        <script>
+        jQuery(document).ready(function($){
+            var info_container = $("#namediv");
+            var city = '<?php echo $city;?>';
+            var phone = '<?php echo $phone;?>';
+            var author_ip = '<?php echo $author_ip;?>';
+            var fields = '<tr><td class="first"><label for="phone">Daytime Phone:</label></td><td><input type="text" id="phone" name="phone" value="'+phone+'"></td></tr>';
+                fields += '<tr><td class="first"><label for="city">City:</label></td><td><input type="text" id="city" name="city" value="'+city+'"></td></tr>';
+                fields += '<tr><td class="first"><label for="authorip">User IP:</label></td><td><input type="text" value="'+author_ip+'" disabled></td></tr>';
+            $("#namediv .editcomment tbody").append(fields);
+        });
+        </script>
+    <?php
+    }
+}; 
+add_action( 'admin_footer', 'action_admin_footer', 10, 1 ); 
+}
 
 function get_recaptcha_api_keys() {
     $key['site_key'] = '6Lf6MqYZAAAAAMad_rrxrHM6qaGOr2wS9sTy-TYu';
     $key['secret_key'] = '6Lf6MqYZAAAAADTI1-nSSS4R0PcKvlxxqdvtIbsD';
-
-    // $key['site_key'] = '6LdIC6cZAAAAACYa0mTzi2doOf-2imI3klLa4LV2';
-    // $key['secret_key'] = '6LdIC6cZAAAAAJvtHZG-Aal_Vyww0NEV4wasRRzP';
     return $key;
 }
 
-
-/*add_filter('wp_mail_from','qcity_wp_mail_from');
-function qcity_wp_mail_from( $content_type ) {
-  return 'From: QCity Metro <mailbag@qcitymetro.com>';
-}*/

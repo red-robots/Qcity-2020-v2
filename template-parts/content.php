@@ -15,6 +15,8 @@ $hide_ads 		= get_field('hide_ads');
 $chooseAuthor 	= get_field( 'choose_author' );
 $single_post_comment_text = get_field('single_post_comment_text', 'option');
 
+$show_comment = ( isset($_GET['unapproved']) && isset($_GET['moderation-hash']) ) ? true : false;
+
 
 if( !defined('HIDE_ADS') ){
 	define('HIDE_ADS', $hide_ads);
@@ -68,11 +70,10 @@ if( !defined('HIDE_ADS') ){
 				</div>
 			</div>
 
-			<div class="comments-block">
+			<div class="comments-block" style="display:block;">
 				<?php 
 					// If comments are open or we have at least one comment, load up the comment template.
-					comments_template();		
-					//get_template_part( 'inc/custom-comment-v2');		
+					comments_template();			
 				?>
 			</div>			
 		</div>
