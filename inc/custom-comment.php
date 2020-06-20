@@ -121,14 +121,14 @@ function verify_comment_meta_data( $commentdata ) {
         if($responseKeys["success"]) {
             return $commentdata;
         } else {
-            wp_redirect( $redirectURL . '?recaptcha=invalid');
-            exit;
-            //exit('Failed to validate Recaptcha');
+            // wp_redirect( $redirectURL . '?recaptcha=invalid');
+            // exit;
+            exit('Failed to validate Recaptcha');
         }
     } else {
-        wp_redirect( $redirectURL . '?recaptcha=empty');
-        exit;
-        //exit('Please enter reCaptcha');
+        // wp_redirect( $redirectURL . '?recaptcha=empty');
+        // exit;
+        exit('Please enter reCaptcha');
     }
 }
 
