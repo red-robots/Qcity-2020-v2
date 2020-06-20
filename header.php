@@ -73,7 +73,10 @@ window.googletag = window.googletag || {cmd: []};
     clear: none !important;
   }
 </style>
-
+<script>
+var currentURL = '<?php echo get_permalink();?>';
+var params={};location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(s,k,v){params[k]=v});
+</script>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 

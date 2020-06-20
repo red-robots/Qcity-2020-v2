@@ -2644,6 +2644,8 @@ ul.rp4wp-posts-list .rp4wp-col-last{width:99% !important;padding-right:0 !import
 .entry-comments h3{font-size:30px;margin-bottom:30px}
 .comment-respond h3,.entry-pings h3{font-size:20px;margin-bottom:30px}
 .comment-respond{padding-bottom:5%;margin:20px 1px 20px 1px;border-left:none !important;display:none}
+.comment-respond input#submit{padding:8px 15px 6px;font-size:14px}
+#commentFormResponse{background:#ffe0e0;padding:8px 10px 7px;font-size:14px;font-weight:bold;line-height:1.2;color:#9a0f0f;border-radius:4px;border:1px solid #f5b3b3}
 .comment-header{color:#adaeb3;font-size:14px;margin-bottom:20px}
 .comment-header cite a{border:0;font-style:normal;font-size:16px;font-weight:bold}
 .comment-header .comment-meta a{border:0;color:#adaeb3}

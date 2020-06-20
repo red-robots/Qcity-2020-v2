@@ -136,7 +136,7 @@ jQuery(document).ready(function ($) {
 
     if( $img_width < 700) {
         $('.c-sponsor-block__image').css('height', '170px');
-        console.log('Sponsor paid image is 160 px ...' + $img_width);
+        //console.log('Sponsor paid image is 160 px ...' + $img_width);
     }
     
     
@@ -383,8 +383,8 @@ jQuery(document).ready(function ($) {
                 
             }, 
             error: function(response){
-                console.log('Error: ');
-                console.log(response);
+                // console.log('Error: ');
+                // console.log(response);
             }
         });
 
@@ -441,8 +441,8 @@ jQuery(document).ready(function ($) {
                 
             }, 
             error: function(response){
-                console.log('Error: ');
-                console.log(response);
+                // console.log('Error: ');
+                // console.log(response);
             }
         });
 
@@ -495,8 +495,8 @@ jQuery(document).ready(function ($) {
                 
             }, 
             error: function(response){
-                console.log('Error: ');
-                console.log(response);
+                // console.log('Error: ');
+                // console.log(response);
             }
         });
 
@@ -550,7 +550,7 @@ jQuery(document).ready(function ($) {
                         $('.listing_search_result span.load-icon').hide();
                         message = '<h4>Oops! Something went wrong. Please try again later. </h4>';
                         $('.listing_search_result').html(message);
-                        console.log( response );
+                        //console.log( response );
                     }
                 });
             }
@@ -562,7 +562,7 @@ jQuery(document).ready(function ($) {
         
     $('.qcity_search_icon').on('click', function(){
         var search_word = $('#qcity_search').val();
-        console.log('Search clicked! Looking for ' + search_word);
+        //console.log('Search clicked! Looking for ' + search_word);
         if( search_word != '' ){
             window.location.href = '/?s=' + search_word + '&pg=1&perpage=20';
         }
@@ -587,6 +587,21 @@ jQuery(document).ready(function ($) {
         $('.comments-trigger').hide();
         $("#comments .comment-respond").show();
     });
+
+    if( $("form#commentform").length > 0 ) {
+        if( typeof params.recaptcha !=='undefined' ) {
+            var error = params.recaptcha;
+            var message = '';
+            if(error=='invalid') {
+                message = '<div id="commentFormResponse">Invalid reCAPTCHA. Please try again.</div>';
+            }
+            else if(error=='empty') {
+                message = '<div id="commentFormResponse">Please enter reCAPTCHA to prove you\'re a human.</div>';
+            }
+            $(message).prependTo("form#commentform");
+            history.replaceState('', document.title, currentURL);
+        }
+    }
 
     // $(document).on("click","#commentBtn",function(e){
     //     e.preventDefault();

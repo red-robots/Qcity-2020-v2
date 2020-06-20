@@ -110,7 +110,9 @@ add_filter( 'preprocess_comment', 'verify_comment_meta_data' );
 function verify_comment_meta_data( $commentdata ) {
     $key = get_recaptcha_api_keys();
     $secretKey = $key['secret_key']; 
+    $comment_post_ID = ( isset($_POST['comment_post_ID']) && $_POST['comment_post_ID'] ) ? $_POST['comment_post_ID'] : 0;
     if( isset($_POST['g-recaptcha-response']) && $_POST['g-recaptcha-response'] ) {
+        $redirectURL = get_permalink($comment_post_ID);
         $captcha=$_POST['g-recaptcha-response'];
         $url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($secretKey) .  '&response=' . urlencode($captcha);
         $response = file_get_contents($url);
@@ -119,10 +121,14 @@ function verify_comment_meta_data( $commentdata ) {
         if($responseKeys["success"]) {
             return $commentdata;
         } else {
-            exit('Failed to validate Recaptcha');
+            wp_redirect( $redirectURL . '?recaptcha=invalid');
+            exit;
+            //exit('Failed to validate Recaptcha');
         }
     } else {
-        exit('Please enter reCaptcha');
+        wp_redirect( $redirectURL . '?recaptcha=empty');
+        exit;
+        //exit('Please enter reCaptcha');
     }
 }
 
