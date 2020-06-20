@@ -408,7 +408,6 @@ function get_posts_ids($right_posts) {
             }
         }
     }
-    
     return $ids;
 }
 
@@ -422,7 +421,7 @@ function custom_meta_post_visibility_box($object) {
     $action = ( isset($screen->action) && $screen->action=='add' ) ? 'add':'edit';
     $is_selected = ($display_post==1) ? ' checked':'';
     ?>
-    <div class="components-panel__row">
+    <div id="compStickToRight" class="components-panel__row">
         <div class="components-base-control">
             <div class="components-base-control__field">
                 <label for="meta_display_post<?php echo $val; ?>" class="components-checkbox-control__input-container">
@@ -474,21 +473,46 @@ if($is_post) { ?>
     jQuery(document).ready(function($){
         var selectedVal = ( typeof $("#display-post-meta-box input.cmeta_display_post:checked").val() !== 'undefined' ) ? $("#display-post-meta-box input.cmeta_display_post:checked").val() : '';
         var postmetaForm = $("#display-post-meta-box .components-base-control").clone();
-        $(postmetaForm).addClass('display-post-meta-box-control');
-        $(postmetaForm).insertAfter(".edit-post-sidebar .edit-post-post-schedule");
-        if(selectedVal) {
-            $(".display-post-meta-box-control input.cmeta_display_post").attr("checked",true);
-        } else {
-            $(".display-post-meta-box-control input.cmeta_display_post").attr("checked",false);
-        }
-        
-        $(document).on("click",".display-post-meta-box-control input.cmeta_display_post",function(){
-            if(this.checked) {
-                $("input.cmeta_display_post").attr("checked",true);
-            } else {
-                $("input.cmeta_display_post").attr("checked",false);
+        $(".components-base-control__field").each(function(){
+            var str = $(this).text().replace(/\s/g,"").trim().toLowerCase();
+            if(str=='sticktothetopoftheblog') {
+                var parent = $(this).parents(".components-base-control");
+                parent.addClass("stickyOptionsDiv");
+                var newInputField = '<div id="stickToRightInputDiv" class="components-base-control__field" style="margin-bottom:5px"><span class="components-checkbox-control__input-container"><input id="inspector-checkbox-control-888" class="components-checkbox-control__input stickToRightInput" type="checkbox" value=""><i class="chxboxstat"></i></span><label class="components-checkbox-control__label" for="inspector-checkbox-control-888">Stick On Right Side</label></div>';
+                parent.prepend(newInputField);
             }
         });
+        if(selectedVal) {
+            $("input.stickToRightInput").prop("checked",true);
+            $("input.stickToRightInput").attr("checked",true);
+        } 
+
+        $(document).on("click","input.stickToRightInput",function(){
+            if(this.checked) {
+                $("input.cmeta_display_post").prop("checked",true);
+                $("input.cmeta_display_post").attr("checked",true);
+            } else {
+                $("input.cmeta_display_post").prop("checked",false);
+                $("input.cmeta_display_post").removeAttr("checked",false);
+            }
+        });
+        
+
+        // $(postmetaForm).addClass('display-post-meta-box-control');
+        // $(postmetaForm).insertAfter(".edit-post-sidebar .edit-post-post-schedule");
+        // if(selectedVal) {
+        //     $(".display-post-meta-box-control input.cmeta_display_post").attr("checked",true);
+        // } else {
+        //     $(".display-post-meta-box-control input.cmeta_display_post").attr("checked",false);
+        // }
+        
+        // $(document).on("click",".display-post-meta-box-control input.cmeta_display_post",function(){
+        //     if(this.checked) {
+        //         $("input.cmeta_display_post").attr("checked",true);
+        //     } else {
+        //         $("input.cmeta_display_post").attr("checked",false);
+        //     }
+        // });
     });
     </script>
 <?php
@@ -499,67 +523,115 @@ add_action( 'admin_print_scripts', 'jupload_scripts' );
 add_action( 'admin_head', 'post_visibility_head_scripts' );
 function post_visibility_head_scripts(){ ?>
     <style>
-        .display-post-meta-box-control {
-            margin-top: 15px;
-        }
-        .display-post-meta-box-control label {
-            display: block;
-            width: 100%;
-        }
-        .display-post-meta-box-control .components-base-control__field label.components-checkbox-control__input-container {
-            display: block;
-            width: 100%;
-            position: relative;
-            margin: 0 0;
-            padding: 0 0 0 22px;
-        }
-        .display-post-meta-box-control .components-base-control__field input {
-            margin-right: 2px;
-            position: absolute;
-            top: 1px;
-            left: 0;
-            z-index: 5;
-            background: transparent!important;
-        }
-        .display-post-meta-box-control .components-base-control__field .chxboxstat {
-            display: block;
-            width: 16px;
-            height: 16px;
-            position: absolute;
-            top: 1px;
-            left: 0;
-            z-index: 3;
-            border: 2px solid transparent;
-            border-radius:2px;
-            transition: none;
-            font-style: normal;
-        }
-        .display-post-meta-box-control .components-base-control__field input:checked + .chxboxstat {
-            background: #11a0d2;
-            border-color: #11a0d2;
-        }.display-post-meta-box-control .components-base-control__field input:checked + .chxboxstat:before {
-            content: "\2714";
-            display: inline-block;
-            position: absolute;
-            top: 0px;
-            left: 1px;
-            color: #FFF;
-            font-size: 12px;
-            line-height: 1;
-        }
-        #display-post-meta-box label.components-checkbox-control__input-container {
-            width: 100%!important;
-            position: relative;
-            padding-left: 22px;
-        }
-        #display-post-meta-box .components-base-control__field input {
-            visibility: visible;
-            position: absolute;
-            top: 1px;
-            left: 0;
-        }
-        /* This is the actual meta box. This will do the trick. */
-        .metabox-location-side #display-post-meta-box{display:none!important;}
+    .stickyOptionsDiv {
+        position: relative;
+        top: -57px;
+    }
+    .edit-post-sidebar .editor-post-format {
+        position: relative;
+        top: 60px;
+    }
+    .display-post-meta-box-control {
+        margin-top: 15px;
+    }
+    .display-post-meta-box-control label {
+        display: block;
+        width: 100%;
+    }
+    .display-post-meta-box-control .components-base-control__field label.components-checkbox-control__input-container {
+        display: block;
+        width: 100%;
+        position: relative;
+        margin: 0 0;
+        padding: 0 0 0 22px;
+    }
+    .display-post-meta-box-control .components-base-control__field input {
+        margin-right: 2px;
+        position: absolute;
+        top: 1px;
+        left: 0;
+        z-index: 5;
+        background: transparent!important;
+    }
+    .display-post-meta-box-control .components-base-control__field .chxboxstat {
+        display: block;
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        top: 1px;
+        left: 0;
+        z-index: 3;
+        border: 2px solid transparent;
+        border-radius:2px;
+        transition: none;
+        font-style: normal;
+    }
+    .display-post-meta-box-control .components-base-control__field input:checked + .chxboxstat {
+        background: #11a0d2;
+        border-color: #11a0d2;
+    }.display-post-meta-box-control .components-base-control__field input:checked + .chxboxstat:before {
+        content: "\2714";
+        display: inline-block;
+        position: absolute;
+        top: 0px;
+        left: 1px;
+        color: #FFF;
+        font-size: 12px;
+        line-height: 1;
+    }
+    #stickToRightInputDiv .components-checkbox-control__input-container {
+       /* position: absolute;
+        z-index: 10;*/
+        position: relative;
+    }
+    #stickToRightInputDiv input {
+        position: absolute;
+        z-index: 10;
+        opacity: 0;
+    }
+    #stickToRightInputDiv .chxboxstat{
+        display: block;
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        top: 1px;
+        left: 0;
+        z-index: 3;
+        border: 2px solid transparent;
+        border-radius:2px;
+        transition: none;
+        font-style: normal;
+        background: #FFF;
+        border: 2px solid #6c7781;
+    }
+    #stickToRightInputDiv input:checked + .chxboxstat {
+        background: #11a0d2;
+        border-color: #11a0d2;
+        border: 2px solid #6c7781;
+    }
+    #stickToRightInputDiv input:checked + .chxboxstat:before {
+        content: "\2714";
+        display: inline-block;
+        position: absolute;
+        top: 0px;
+        left: 2px;
+        color: #FFF;
+        font-size: 10px;
+        line-height: 1;
+    }
+    #display-post-meta-box label.components-checkbox-control__input-container {
+        width: 100%!important;
+        position: relative;
+        padding-left: 22px;
+    }
+    #display-post-meta-box .components-base-control__field input {
+        visibility: visible;
+        position: absolute;
+        top: 1px;
+        left: 0;
+    }
+    
+    .metabox-location-side #display-post-meta-box{display:none!important;} /* This is the actual meta box. This will do the trick. */
     </style>
 <?php
 }

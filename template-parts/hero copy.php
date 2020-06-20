@@ -73,6 +73,7 @@ if ($wp_query->have_posts()) : ?>
 				'post_type'			=>'post',
 				'posts_per_page' 	=> 3,
 				'post_status'  		=> 'publish',
+				'post__not_in' 		=> $postIDs,
 				'category__not_in' 	=> array( $catID ),
 				'orderby' 			=> 'date', 
 			    'order' 			=> 'DESC', 
@@ -87,60 +88,55 @@ if ($wp_query->have_posts()) : ?>
 							    )		
 			);
 
-			if($postIDs) {
-				$args['post__not_in'] = $postIDs;
-			}
-
 			$right_posts = new WP_Query( $args ); 
+			$max = 3;
 
 			if ( $right_posts->post_count  < 3 ){
 
 				$remaining = 3 - $right_posts->post_count;
-				$r_post_ids = array();
-				if( $x = get_posts_ids($right_posts->posts) ) {
-					$r_post_ids[] = $x;
-				}
-
-				$exclude_ids = array();
-				if($postIDs && $r_post_ids) {
-					foreach($postIDs as $id) {
-						if(!in_array($id,$r_post_ids)) {
-							$exclude_ids[] = $id;
-						}
-					}
-				}
-								
+				$postIDs[] = get_posts_ids($right_posts);
 				$args2 = array(
 					'post_type'			=>'post',
 					'posts_per_page' 	=> $remaining,
 					'post_status'  		=> 'publish',
+					'post__not_in' 		=> $postIDs,
 					'category__not_in' 	=> array( $catID ),
 					'orderby' 			=> 'date', 
 				    'order' 			=> 'DESC',				    	
 				);
 
-				if($exclude_ids) {
-					$args2['post__not_in'] = $exclude_ids;
-				}
-
 				$remaining_posts = new WP_Query( $args2 ); 	
+				//print_r($remaining_posts);
+				if( isset($remaining_posts->posts) && $remaining_posts->posts ) {
+					if( $remaining_posts->have_posts() ) {
+						$x=0; while ($remaining_posts->have_posts()) :  $remaining_posts->the_post();
+							if($postIDs) {
+								$xId = get_the_ID();
+								if(in_array($xId, $postIDs)) {
+									unset( $remaining_posts->posts[$x] );
+								}
+							}
+						$x++; endwhile;  wp_reset_postdata();
+					}
+				}
 			} 
 
 			$recent_query = new WP_Query();
+			
 
-			if ( $right_posts->post_count  < 3 ){
+			if ( $right_posts->post_count  < $max ){
 				$recent_query->posts = array_merge( $right_posts->posts, $remaining_posts->posts );
 			} else {
 				$recent_query->posts = $right_posts->posts;
 			}
 
-			$recent_query->post_count = count( $recent_query->posts );	
-
-		
+			$recent_query->post_count = count( $recent_query->posts );			
 			
 			if( $recent_query->have_posts() ):
 
+				//print_r( $recent_query->post_count );
 				$i = 0;
+				$featuredRightPosts = array();
 				while ($recent_query->have_posts()) :  $recent_query->the_post();
 					$img 	= get_field('story_image');
 					$video 	= get_field('video_single_post');
@@ -150,13 +146,13 @@ if ($wp_query->have_posts()) : ?>
 						$embed = youtube_setup($video);
 					endif;
 
-					//$postIDs[] 	= get_the_ID();
 					$pid = get_the_ID();
 					$text 		= get_the_excerpt();
 					$excerpt 	= ( strlen($text) > 100 ) ? substr($text, 0, 100) . ' ...' : $text;
-
-			?>
+					
+					?>
 					<article class="story-block">
+
 						<div class="photo story-home-right">
 							<?php if( $video ): ?>	
 								<iframe class="video-homepage"  src="<?php echo $embed; ?>"></iframe>
@@ -183,7 +179,7 @@ if ($wp_query->have_posts()) : ?>
 					</article>
 					<?php
 						$i++;
-						if($i < 3){
+						if($i < $max){
 	                        get_template_part( 'template-parts/separator');
 	                    }
 
@@ -192,8 +188,7 @@ if ($wp_query->have_posts()) : ?>
 	                 	echo '<div class="mobile-version bottom-20 align-center">'. $ads_right_hero['ad_script'] . '</div>';
 	                 }   
 
-			 		endwhile; 
-			 		wp_reset_postdata();
+			 		endwhile;  wp_reset_postdata();
 				 ?>
 			</div>
 			</section>

@@ -178,8 +178,8 @@ add_action( 'admin_footer', 'action_admin_footer', 10, 1 );
 }
 
 function get_recaptcha_api_keys() {
-    $key['site_key'] = '6Lf6MqYZAAAAAMad_rrxrHM6qaGOr2wS9sTy-TYu';
-    $key['secret_key'] = '6Lf6MqYZAAAAADTI1-nSSS4R0PcKvlxxqdvtIbsD';
+    $key['site_key'] = get_field("reCAPTCHASiteKey","option");
+    $key['secret_key'] = get_field("reCAPTCHASecretKey","option");
     return $key;
 }
 

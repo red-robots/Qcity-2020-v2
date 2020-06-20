@@ -603,12 +603,6 @@ jQuery(document).ready(function ($) {
         }
     }
 
-    // $(document).on("click","#commentBtn",function(e){
-    //     e.preventDefault();
-    //     alert("TEST!");
-    //     $(".comments-block").show();
-    // });
-
     /*
     *   Stripe Payment Section
     */
