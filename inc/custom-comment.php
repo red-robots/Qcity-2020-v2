@@ -25,7 +25,7 @@ function qcity_comment_form_default_fields( $fields ) {
         'phone' => '<p class="comment-form-phone"><label for="city">' . __( 'Daytime Phone' ) . ' </label> ' .
         '<input id="phone" name="phone" type="text" size="30" /></p>',     
         'comment_field' => '<p class="comment-form-comment"><label for="comment">' . _x( 'Comment *', 'noun', 'textdomain' ) . '</label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" aria-required="true" required="required"></textarea></p>',
-        'recaptcha_field' => '<div id="gRecaptcha" class="g-recaptcha" data-sitekey="6LdIC6cZAAAAACYa0mTzi2doOf-2imI3klLa4LV2"></div>',
+        'recaptcha_field' => '<div id="gRecaptcha" class="g-recaptcha" data-sitekey="'.$key['site_key'].'"></div>',
     ];
 
     return $fields;
@@ -84,42 +84,54 @@ add_filter( 'preprocess_comment', 'verify_comment_meta_data' );
 function verify_comment_meta_data( $commentdata ) {
     $errors = [];
     $key = get_recaptcha_api_keys();
+    if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])){ 
+        $secretKey = $key['secret_key']; 
+        // Verify the reCAPTCHA response 
+        $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secretKey.'&response='.$_POST['g-recaptcha-response']); 
+        $responseData = json_decode($verifyResponse); 
+        if(!$responseData->success){ 
+            exit('Failed to validate Recaptcha. Please try again.');
+        }
+    }
 
-    if (empty($_POST['g-recaptcha-response'])) {
-        exit('Please set recaptcha variable');
-    }
-    // validate recaptcha
-    $response = $_POST['recaptcha'];
-    $post = http_build_query(
-        array (
-            'response' => $response,
-            'secret' => '6LdIC6cZAAAAAJvtHZG-Aal_Vyww0NEV4wasRRzP',
-            'remoteip' => $_SERVER['REMOTE_ADDR']
-        )
-    );
-    $opts = array('http' => 
-        array (
-            'method' => 'POST',
-            'header' => 'application/x-www-form-urlencoded',
-            'content' => $post
-        )
-    );
-    $context = stream_context_create($opts);
-    $serverResponse = @file_get_contents('https://www.google.com/recaptcha/api/siteverify', false, $context);
-    if (!$serverResponse) {
-        exit('Failed to validate Recaptcha');
-    }
-    $result = json_decode($serverResponse);
-    if (!$result ->success) {
-        exit('Invalid Recaptcha');
-    }
+    // if (empty($_POST['g-recaptcha-response'])) {
+    //     exit('Please set recaptcha variable');
+    // }
+    // // validate recaptcha
+    // $response = $_POST['recaptcha'];
+    // $post = http_build_query(
+    //     array (
+    //         'response' => $response,
+    //         'secret' => $key['secret_key'],
+    //         'remoteip' => $_SERVER['REMOTE_ADDR']
+    //     )
+    // );
+    // $opts = array('http' => 
+    //     array (
+    //         'method' => 'POST',
+    //         'header' => 'application/x-www-form-urlencoded',
+    //         'content' => $post
+    //     )
+    // );
+    // $context = stream_context_create($opts);
+    // $serverResponse = @file_get_contents('https://www.google.com/recaptcha/api/siteverify', false, $context);
+    // if (!$serverResponse) {
+    //     exit('Failed to validate Recaptcha');
+    // }
+    // $result = json_decode($serverResponse);
+    // if (!$result ->success) {
+    //     exit('Invalid Recaptcha');
+    // }
 }
 
 
 
 function get_recaptcha_api_keys() {
-    $key['site_key'] = '6Lf6MqYZAAAAAMad_rrxrHM6qaGOr2wS9sTy-TYu';
-    $key['secret_key'] = '6Lf6MqYZAAAAADTI1-nSSS4R0PcKvlxxqdvtIbsD';
+    // $key['site_key'] = '6Lf6MqYZAAAAAMad_rrxrHM6qaGOr2wS9sTy-TYu';
+    // $key['secret_key'] = '6Lf6MqYZAAAAADTI1-nSSS4R0PcKvlxxqdvtIbsD';
+
+    $key['site_key'] = '6LdIC6cZAAAAACYa0mTzi2doOf-2imI3klLa4LV2';
+    $key['secret_key'] = '6LdIC6cZAAAAAJvtHZG-Aal_Vyww0NEV4wasRRzP';
     return $key;
 }
 
