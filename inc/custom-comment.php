@@ -25,7 +25,7 @@ function qcity_comment_form_default_fields( $fields ) {
         'phone' => '<p class="comment-form-phone"><label for="city">' . __( 'Daytime Phone' ) . ' </label> ' .
         '<input id="phone" name="phone" type="text" size="30" /></p>',     
         'comment_field' => '<p class="comment-form-comment"><label for="comment">' . _x( 'Comment *', 'noun', 'textdomain' ) . '</label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" aria-required="true" required="required"></textarea></p>',
-        'recaptcha_field' => '<div class="g-recaptcha" data-sitekey="'.$key['site_key'].'"></div>',
+        'recaptcha_field' => '<div id="gRecaptcha" class="g-recaptcha" data-sitekey="6LdIC6cZAAAAACYa0mTzi2doOf-2imI3klLa4LV2"></div>',
     ];
 
     return $fields;
@@ -93,7 +93,7 @@ function verify_comment_meta_data( $commentdata ) {
     $post = http_build_query(
         array (
             'response' => $response,
-            'secret' => $key['secret_key'],
+            'secret' => '6LdIC6cZAAAAAJvtHZG-Aal_Vyww0NEV4wasRRzP',
             'remoteip' => $_SERVER['REMOTE_ADDR']
         )
     );
