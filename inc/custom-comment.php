@@ -7,6 +7,7 @@ function qcity_comment_form_default_fields( $fields ) {
     // $commenter     = wp_get_current_commenter();
     // $user          = wp_get_current_user();
     // $user_identity = $user->exists() ? $user->display_name : '';
+    $key = get_recaptcha_api_keys();
     $req           = get_option( 'require_name_email' );
     $aria_req      = ( $req ? " aria-required='true'" : '' );
     $html_req      = ( $req ? " required='required'" : '' );
@@ -24,6 +25,7 @@ function qcity_comment_form_default_fields( $fields ) {
         'phone' => '<p class="comment-form-phone"><label for="city">' . __( 'Daytime Phone' ) . ' </label> ' .
         '<input id="phone" name="phone" type="text" size="30" /></p>',     
         'comment_field' => '<p class="comment-form-comment"><label for="comment">' . _x( 'Comment *', 'noun', 'textdomain' ) . '</label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" aria-required="true" required="required"></textarea></p>',
+        'recaptcha_field' => '<div class="g-recaptcha" data-sitekey="'.$key['site_key'].'"></div>',
     ];
 
     return $fields;
@@ -58,24 +60,69 @@ function save_comment_meta_data( $comment_id ) {
     //$email_recipient = 'hermiebarit@gmail.com';
     $comment = get_comment( $comment_id );
     $postid = $comment->comment_post_ID;
-    if( $email_recipient ):
-        $message = 'New comment on <a href="' . get_permalink( $postid ) . '">' .  get_the_title( $postid ) . '</a>';
-        $message .= '<p>Name: '. $comment->comment_author .'</p>';
-        $message .= '<p>Email: '. $comment->comment_author_email .'</p>';
-        //$message .= '<p>Website: '. $comment->comment_author_url .'</p>';
-        if( $city ){
-            $message .= '<p>City: '. $city .'</p>';
-        }
-        if( $phone ){
-            $message .= '<p>Daytime Phone: '. $phone .'</p>';
-        }
-        $message .= '<p>Content: '. $comment->comment_content .'</p>';
+    // if( $email_recipient ):
+    //     $message = 'New comment on <a href="' . get_permalink( $postid ) . '">' .  get_the_title( $postid ) . '</a>';
+    //     $message .= '<p>Name: '. $comment->comment_author .'</p>';
+    //     $message .= '<p>Email: '. $comment->comment_author_email .'</p>';
+    //     //$message .= '<p>Website: '. $comment->comment_author_url .'</p>';
+    //     if( $city ){
+    //         $message .= '<p>City: '. $city .'</p>';
+    //     }
+    //     if( $phone ){
+    //         $message .= '<p>Daytime Phone: '. $phone .'</p>';
+    //     }
+    //     $message .= '<p>Content: '. $comment->comment_content .'</p>';
           
-        add_filter( 'wp_mail_content_type', create_function( '', 'return "text/html";' ) );
-        wp_mail( $email_recipient, 'New Comment from ' . $comment->comment_author, $message );
-    endif;
+    //     add_filter( 'wp_mail_content_type', create_function( '', 'return "text/html";' ) );
+    //     wp_mail( $email_recipient, 'New Comment from ' . $comment->comment_author, $message );
+    // endif;
+    return true;
 }
 add_filter('comment_post','save_comment_meta_data');
+
+add_filter( 'preprocess_comment', 'verify_comment_meta_data' );
+function verify_comment_meta_data( $commentdata ) {
+    $errors = [];
+    $key = get_recaptcha_api_keys();
+
+    if (empty($_POST['g-recaptcha-response'])) {
+        exit('Please set recaptcha variable');
+    }
+    // validate recaptcha
+    $response = $_POST['recaptcha'];
+    $post = http_build_query(
+        array (
+            'response' => $response,
+            'secret' => $key['secret_key'],
+            'remoteip' => $_SERVER['REMOTE_ADDR']
+        )
+    );
+    $opts = array('http' => 
+        array (
+            'method' => 'POST',
+            'header' => 'application/x-www-form-urlencoded',
+            'content' => $post
+        )
+    );
+    $context = stream_context_create($opts);
+    $serverResponse = @file_get_contents('https://www.google.com/recaptcha/api/siteverify', false, $context);
+    if (!$serverResponse) {
+        exit('Failed to validate Recaptcha');
+    }
+    $result = json_decode($serverResponse);
+    if (!$result ->success) {
+        exit('Invalid Recaptcha');
+    }
+}
+
+
+
+function get_recaptcha_api_keys() {
+    $key['site_key'] = '6Lf6MqYZAAAAAMad_rrxrHM6qaGOr2wS9sTy-TYu';
+    $key['secret_key'] = '6Lf6MqYZAAAAADTI1-nSSS4R0PcKvlxxqdvtIbsD';
+    return $key;
+}
+
 
 /*add_filter('wp_mail_from','qcity_wp_mail_from');
 function qcity_wp_mail_from( $content_type ) {
