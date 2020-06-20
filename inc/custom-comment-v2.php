@@ -3,7 +3,7 @@ $key = get_recaptcha_api_keys();
 $site_key = $key['site_key'];
 ?>
 <div class="comment-respond">
-  <form action="validate-recaptcha.php" method="post" id="commentform" class="comment-form" novalidate="">
+  <form action="<?php echo get_site_url(); ?>/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate="">
     <p class="comment-before">Editors will review your comment, which may be shared in our Morning Brew newsletter.</p>
 
     <p class="comment-form-author">
