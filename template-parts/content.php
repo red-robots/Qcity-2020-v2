@@ -71,8 +71,8 @@ if( !defined('HIDE_ADS') ){
 			<div class="comments-block">
 				<?php 
 					// If comments are open or we have at least one comment, load up the comment template.
-					//comments_template();		
-					get_template_part( 'inc/custom-comment-v2');		
+					comments_template();		
+					//get_template_part( 'inc/custom-comment-v2');		
 				?>
 			</div>			
 		</div>
