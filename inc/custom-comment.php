@@ -84,15 +84,18 @@ add_filter( 'preprocess_comment', 'verify_comment_meta_data' );
 function verify_comment_meta_data( $commentdata ) {
     $errors = [];
     $key = get_recaptcha_api_keys();
-    if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])){ 
-        $secretKey = $key['secret_key']; 
-        // Verify the reCAPTCHA response 
-        $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secretKey.'&response='.$_POST['g-recaptcha-response']); 
-        $responseData = json_decode($verifyResponse); 
-        if(!$responseData->success){ 
-            exit('Failed to validate Recaptcha. Please try again.');
-        }
+    if( empty($_POST['email']) ) {
+        exit('Email address is required!');
     }
+    // if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])){ 
+    //     $secretKey = $key['secret_key']; 
+    //     // Verify the reCAPTCHA response 
+    //     $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secretKey.'&response='.$_POST['g-recaptcha-response']); 
+    //     $responseData = json_decode($verifyResponse); 
+    //     if(!$responseData->success){ 
+    //         exit('Failed to validate Recaptcha. Please try again.');
+    //     }
+    // }
 
     // if (empty($_POST['g-recaptcha-response'])) {
     //     exit('Please set recaptcha variable');
