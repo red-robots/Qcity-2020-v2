@@ -585,7 +585,7 @@ jQuery(document).ready(function ($) {
         // $('.comments-block').show();
         // $(".comment-form-comment textarea#comment").focus();
         $('.comments-trigger').hide();
-        $("#comments .comment-respond").hide();
+        $("#comments .comment-respond").show();
     });
 
     // $(document).on("click","#commentBtn",function(e){

@@ -3706,11 +3706,14 @@ body.home #main {
     font-size: 20px;
     margin-bottom: 30px;
 }
+
 .comment-respond {
-    padding-bottom: 5%;
-    margin: 20px 1px 20px 1px;
-        border-left: none !important;
+	padding-bottom: 5%;
+	margin: 20px 1px 20px 1px;
+	border-left: none !important;
+	display: none;
 }
+
 .comment-header {
     color: #adaeb3;
     font-size: 14px;

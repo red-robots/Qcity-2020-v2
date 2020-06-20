@@ -581,9 +581,11 @@ jQuery(document).ready(function ($) {
     */
 
     $('.click_class').on('click', function(){
+        // $('.comments-trigger').hide();
+        // $('.comments-block').show();
+        // $(".comment-form-comment textarea#comment").focus();
         $('.comments-trigger').hide();
-        $('.comments-block').show();
-        $(".comment-form-comment textarea#comment").focus();
+        $("#comments .comment-respond").show();
     });
 
     // $(document).on("click","#commentBtn",function(e){
