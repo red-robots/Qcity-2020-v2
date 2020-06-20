@@ -85,6 +85,7 @@ function verify_comment_meta_data( $commentdata ) {
     $errors = [];
     $key = get_recaptcha_api_keys();
     if( empty($_POST['city']) ) {
+        print_r($_POST);
         exit('City is required!');
     }
     // if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response'])){ 
