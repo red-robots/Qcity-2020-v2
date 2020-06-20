@@ -66,13 +66,15 @@ window.googletag = window.googletag || {cmd: []};
 <script type="text/javascript"async src="https://launch.newsinc.com/js/embed.js" id="_nw2e-js"></script>
 -->
 
-<script src='https://www.google.com/recaptcha/api.js'></script>
+
 <?php wp_head(); ?>
 <style>
   .gform_wrapper ul li.gfield{
     clear: none !important;
   }
 </style>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 
 <body <?php body_class(); ?>>
