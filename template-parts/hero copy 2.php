@@ -73,7 +73,6 @@ if ($wp_query->have_posts()) : ?>
 				'post_type'			=>'post',
 				'posts_per_page' 	=> 3,
 				'post_status'  		=> 'publish',
-				'post__not_in' 		=> $postIDs,
 				'category__not_in' 	=> array( $catID ),
 				'orderby' 			=> 'date', 
 			    'order' 			=> 'DESC', 
@@ -88,22 +87,41 @@ if ($wp_query->have_posts()) : ?>
 							    )		
 			);
 
+			if($postIDs) {
+				$args['post__not_in'] = $postIDs;
+			}
+
 			$right_posts = new WP_Query( $args ); 
 
 			if ( $right_posts->post_count  < 3 ){
 
 				$remaining = 3 - $right_posts->post_count;
-				$postIDs[] = get_posts_ids($right_posts);
+				$r_post_ids = array();
+				if( $x = get_posts_ids($right_posts->posts) ) {
+					$r_post_ids[] = $x;
+				}
+
+				$exclude_ids = array();
+				if($postIDs && $r_post_ids) {
+					foreach($postIDs as $id) {
+						if(!in_array($id,$r_post_ids)) {
+							$exclude_ids[] = $id;
+						}
+					}
+				}
 								
 				$args2 = array(
 					'post_type'			=>'post',
 					'posts_per_page' 	=> $remaining,
 					'post_status'  		=> 'publish',
-					'post__not_in' 		=> $postIDs,
 					'category__not_in' 	=> array( $catID ),
 					'orderby' 			=> 'date', 
 				    'order' 			=> 'DESC',				    	
 				);
+
+				if($exclude_ids) {
+					$args2['post__not_in'] = $exclude_ids;
+				}
 
 				$remaining_posts = new WP_Query( $args2 ); 	
 			} 
@@ -116,11 +134,12 @@ if ($wp_query->have_posts()) : ?>
 				$recent_query->posts = $right_posts->posts;
 			}
 
-			$recent_query->post_count = count( $recent_query->posts );			
+			$recent_query->post_count = count( $recent_query->posts );	
+
+		
 			
 			if( $recent_query->have_posts() ):
 
-				//print_r( $recent_query->post_count );
 				$i = 0;
 				while ($recent_query->have_posts()) :  $recent_query->the_post();
 					$img 	= get_field('story_image');
@@ -131,7 +150,8 @@ if ($wp_query->have_posts()) : ?>
 						$embed = youtube_setup($video);
 					endif;
 
-					$postIDs[] 	= get_the_ID();
+					//$postIDs[] 	= get_the_ID();
+					$pid = get_the_ID();
 					$text 		= get_the_excerpt();
 					$excerpt 	= ( strlen($text) > 100 ) ? substr($text, 0, 100) . ' ...' : $text;
 
