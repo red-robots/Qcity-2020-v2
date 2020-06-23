@@ -80,6 +80,26 @@ $xl: 1200px;
 	-webkit-transform: translateX($value1) translateY($value2);
 	transform: translateX($value1) translateY($value2);
   }
+
+	@mixin flexgroup() {
+		@include flexbox();
+		@include flexbox-wrap(wrap);
+		@include flexbox-direction(row);
+	}
+
+	@mixin flexgroup-center() {
+		@include flexbox();
+		@include flexbox-wrap(wrap);
+		@include flexbox-direction(row);
+		@include flexbox-align-items(center);
+	}
+
+	@mixin animated($duration:1s) {
+		-webkit-animation-duration: $duration;
+		animation-duration: $duration;
+		-webkit-animation-fill-mode: both;
+		animation-fill-mode: both;
+	}
   
 @mixin shadow() {
 -webkit-box-shadow: 5px 8px 16px -7px rgba(0,0,0,0.43);
@@ -87,9 +107,17 @@ $xl: 1200px;
 box-shadow: 5px 8px 16px -7px rgba(0,0,0,0.43);
 }
 @mixin innershadow() {
-	box-shadow: -1px 7px 23px -14px rgba(0,0,0,0.48) inset;
+box-shadow: -1px 7px 23px -14px rgba(0,0,0,0.48) inset;
 -webkit-box-shadow: -1px 7px 23px -14px rgba(0,0,0,0.48) inset;
 -moz-box-shadow: -1px 7px 23px -14px rgba(0,0,0,0.48) inset;
+}
+
+@function tint($color, $percentage) {
+  @return mix(white, $color, $percentage);
+}
+
+@function shade($color, $percentage) {
+  @return mix(black, $color, $percentage);
 }
 
 @keyframes spin{

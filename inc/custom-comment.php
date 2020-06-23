@@ -124,14 +124,28 @@ function verify_comment_meta_data( $commentdata ) {
             if($responseKeys["success"]) {
                 return $commentdata;
             } else {
-                $error_message = 'ERROR: Failed to validate reCaptcha. <a href="javascript:history.back()">&laquo; Back</a>';
+                $msgTxt = 'Failed to validate reCaptcha. Please try again.';
+                ob_start();
+                get_template_part("template-parts/comment-error");
+                $error_message = ob_get_contents();
+                ob_end_clean();
+                $error_message = str_replace('{%ERROR_MESSAGE%}',$msgTxt,$error_message);
                 exit($error_message);
             }
         } else {
-            $error_message = 'ERROR: Please enter reCaptcha. <a href="javascript:history.back()">&laquo; Back</a>';
+            $msgTxt = 'Please enter reCaptcha.';
+            ob_start();
+            get_template_part("template-parts/comment-error");
+            $error_message = ob_get_contents();
+            ob_end_clean();
+            $error_message = str_replace('{%ERROR_MESSAGE%}',$msgTxt,$error_message);
             exit($error_message);
         }
     }
+}
+
+function comment_error_template($message) {
+
 }
 
 

@@ -123,6 +123,7 @@ p{
 		}
 	}
 }
+
 section.stickies {
 	width: 100%;
 	float: left;
@@ -240,6 +241,9 @@ article.big-post {
 	}
 	.by {
 		font-size: 12px;
+		span.sep {
+			padding: 0 2px;
+		}
 	}
 	.article-link {
 		width: 100%;
@@ -259,6 +263,277 @@ article.big-post {
 	}
 }
 
+section.stickies-new.stickyPostsTop {
+	@include flexgroup();
+	.stickLeft,
+	.stickRight {
+		width: 100%;
+		position: relative;
+		margin: 0 0;
+		padding: 0 0;
+		@include tab {
+			width: 50%;
+		}
+	}
+	.stickLeft {
+		margin: 0 0;
+		padding: 0 0;
+		@include tab {
+			padding: 15px 0;
+		}
+		.big-post {
+			width: 100%;
+			height: 100%;
+			background-color: #58595b;
+			position: relative;
+			.bigPhoto {
+				width: 100%;
+				float: left;
+			}
+			.info {
+				@include tab {
+					@include flexgroup-center();
+					// position: absolute;
+					// bottom: 0;
+					// left: 0;
+					width: 100%;
+					z-index: 5;
+				}
+				@include desk {
+					position: absolute;
+					bottom: 0;
+					left: 0;
+					z-index: 8;
+				}
+				.innerTxt {
+					width: 100%;
+				}
+			}
+			.article-link {
+				z-index: 10;
+			}
+		}
+		.inside {
+			width: 100%;
+			height: 100%;
+			position: relative;
+		}
+	}
+	.stickRight {
+		padding-left: 0;
+		@include tab {
+			padding-left: 1.1vw;
+		}
+		@include mid {
+			padding-left: 18px;
+		}
+	}
+
+	.story-block.stickRightBlock {
+		padding: 0 0;
+		margin: 0 0;
+		height: auto;
+		// @include tab {
+		// 	height: 33.33%;
+		// }
+		.inside {
+			width: 100%;
+			float: left;
+			padding:  15px;
+			transition: all ease .3s;
+			@include tab {
+				height: 100%;
+			}
+			// padding: 12px 0;
+		}
+		.textwrap {
+			width: 100%;
+			float: left;
+			position: relative;
+			transition: all ease .3s;
+			@include tab {
+				height: 100%;
+			}
+		}
+		.photo {
+			position: relative;
+			width: 45%;
+			float: left;
+			margin: 0 0;
+			@include tab {
+				height: 100%;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			img.placeholder {
+				width: 100%;
+				height: auto;
+				float: left;
+			}
+			.video-homepage,
+			.postThumb {
+				display: block;
+				width: 100%;
+				height: 100%;
+				// position: absolute;
+				// top: 0;
+				// left: 0;
+				position: relative;
+				z-index: 2;
+				@include tab {
+				}
+				img {
+					display: none;
+				}
+				.imagebox {
+					display: block;
+					width: 100%;
+					height: 100%;
+					background-size: cover;
+					background-position: center;
+					background-repeat: no-repeat;
+					background-color: #CCC;
+				}
+			}
+		}
+		.desc {
+			position: relative;
+			@include tab {
+				width: 55%;
+				float: right;
+				padding-left: 15px;
+				padding-right: 15px;
+				// margin-left: 45%;
+				// position: absolute;
+				// right: 0;
+				// top: 0;
+
+			}
+			.ptitle {
+				display: block;
+				font-size: 18px;
+				line-height: 1.2;
+			}
+			.inner {
+				width: 100%;
+				float: left;
+				padding-top: 10px;
+				padding-bottom: 10px;
+			}
+		}
+		&:hover {
+			box-shadow: none;
+			.textwrap {
+				box-shadow: 5px 8px 10px -5px rgba(0, 0, 0, 0.2);
+			}
+		}
+	}
+	@media screen and (max-width: 1020px) {
+		.story-block.stickRightBlock {
+			.photo {
+				.postThumb {
+					.imagebox {
+						height: 15vh;
+						margin-top: 10px;
+					}
+				}
+			}
+		}
+		.stickLeft {
+			article.big-post {
+				height: auto;
+				background-color: transparent;
+				img {
+					width: 100%;
+					height: auto;
+				}
+				.info {
+					position: relative;
+				}
+			}
+		}
+	}
+	@media screen and (max-width: 980px) {
+		.stickLeft,
+		.stickRight {
+			width: 100%;
+		}
+		.stickRight {
+			padding-left: 0;
+		}
+		.stickLeft {
+			article.big-post {
+				.info {
+					height: auto!important;
+				}
+			}
+		}
+		.story-block.stickRightBlock {
+			padding-left: 10px;
+			padding-right: 10px;
+			.photo {
+				position: relative;
+				.postThumb {
+					position: absolute;
+					top: 0;
+					left: 0;
+					z-index: 10;
+					.imagebox {
+						height: 100%;
+						margin-top: 0;
+						position: absolute;
+						top: 0;
+						left: 0;
+					}
+				}
+			}
+			.inside {
+				padding-left: 0;
+				padding-right: 0;
+				.desc {
+					width: 55%;
+					.inner {
+						padding-left: 20px;
+						padding-right: 20px;
+					}
+				}
+			}
+		}
+	}
+	@media screen and (max-width: 830px) {
+		.story-block.stickRightBlock {
+			padding: 0;
+			width: auto;
+			margin-left: -15px;
+			margin-right: -15px;
+			.story-home-right {
+				height: 280px;
+			}
+			.photo {
+				width: 100%;
+				.postThumb {
+					.imagebox {
+						position: relative;
+					}
+				}
+			}
+			.inside {
+				padding: 15px;
+				.textwrap {
+					// padding: 15px;
+				}
+				.desc {
+					width: 100%;
+					.inner {
+						padding-left: 0;
+						padding-right: 0;
+					}
+				}
+			}
+		}
+	}
+}
 
 section.home-sponsored {
 	width: 100%;
@@ -282,7 +557,7 @@ section.home-sponsored {
 		}
 
 		.sponsored_post_block{
-			overflow: none;			
+			overflow: hidden;			
 		    height: 250px;	    
 		    position: relative;
 		    background-size:     cover;                      
@@ -297,7 +572,7 @@ section.home-sponsored {
 		flex-basis: 18%;
 		text-align: center;
 		line-height: 0;
-		overflow: none;
+		overflow: hidden;
 		&:hover {
 			.info {
 				padding: 10px 10px 20px 10px;
@@ -847,7 +1122,8 @@ section.events {
 			background-repeat: no-repeat;
 			background-position: center center;
 			background-size: cover;
-			overflow: none;
+			background-color: #CCC;
+			overflow: hidden;
 			position: relative;
 		}
 
@@ -1412,6 +1688,15 @@ section.home-bottom {
 	width: unset;
 	margin:0 -30px;
 }
+body.home .subscribe-wrap .subscribe {
+	padding: 25px 10px 20px;
+	p:first-child {
+		margin-top: 0;
+	}
+	p:last-child {
+		margin-bottom: 0;
+	}
+}
 
 .subscribe_btn{
 	border-radius: 3px;
@@ -1914,7 +2199,8 @@ section.qcity-news-container{
 	    position: relative;
 	    line-height: 0;
 	    margin-bottom: 10px;
-	    overflow: none;
+	    background-color: #CCC;
+	    overflow: hidden;
 
 	    img{
 	    	height: 275px;
@@ -2232,19 +2518,31 @@ section.red-band {
 }
 
 .story-block{
+	display: block;
+
+	.story-home-right{
 		display: block;
+		/*overflow: none;*/
+		background: none;
+		height: unset;
+		/*height: none;
+		background-position: none;
+		background-size: none;
+		background-repeat: none;*/
 
-		.story-home-right{
-			display: block;
-			/*overflow: none;*/
-			background: none;
-			height: unset;
-			/*height: none;
-			background-position: none;
-			background-size: none;
-			background-repeat: none;*/
-
+	}
+	&.v2 {
+		.story-image {
+			width: 100%;
+			float: left;
 		}
+		.storyText {
+			width: 100%;
+			float: left;
+			padding: 10px;
+		}
+	}
+	
 
 }
 
@@ -2519,7 +2817,7 @@ body.author{
 
 	.story-block .photo {
 		position: relative;
-		height: 200px;
+		height: 280px;
 		background-repeat: no-repeat;
 		background-position: center center;
 		background-size: cover;
@@ -2591,7 +2889,7 @@ body.author{
 			height: 150px;
 			width: 100%;
 			position: relative;
-			overflow: none;
+			overflow: hidden;
 			background-repeat: no-repeat;
 			background-position: center center;
 			background-size: cover;
@@ -2606,7 +2904,7 @@ body.author{
 			height: 150px;
 			width: 100%;
 			position: relative;
-			overflow: none;
+			overflow: hidden;
 			background-repeat: no-repeat;
 			background-position: center center;
 			background-size: cover;
@@ -2779,10 +3077,9 @@ section.stickies-new{
 			.story-home-right{
 				display: inline-block;
 				width: 45%;
-				margin-right: 10px;
-				height: 182px;
-				margin-bottom: 0;
-
+				// margin-right: 10px;
+				// // height: 182px;
+				// margin-bottom: 0;
 				a{
 
 					color: #424141;
@@ -3895,7 +4192,8 @@ section.gravityform{
 @media screen and (max-width: $tab) {
 	.story-image {
 		width: auto;
-		margin: 1em -20px;
+		// margin: 1em -20px;
+		margin: 1em 0;
 		img {
 			width: 100%;
 			height: auto;
@@ -3913,8 +4211,50 @@ section.gravityform{
 		margin: 1em 20px;
 	}
 	.content-single-page [class*="wp-image"] {
-		transform: scale(1.1);
+		transform: scale(1.2);
 	}
+	.mobile-body {
+		padding-top: 60px;
+	}
+	body.home #content {
+		.wrapper {
+			padding-left: 20px;
+			padding-right: 20px;
+		}
+	}
+	section.home-bottom {
+		margin: 0 0;
+	}
+	#content section.stickies-new.stickyPostsTop {
+		.stickRight {
+			margin-top: 20px;
+		}
+		.story-block.stickRightBlock {
+			.desc .inner {
+				padding: 20px;
+			}
+		}
+	}
+	#content {
+		.story-block {
+			// h3 {
+			// 	width: 100%;
+			// 	float: left;
+			// 	margin-top: 20px;
+			// 	margin-bottom: 10px;
+			// }
+			// h3, .desc, .by {
+			// 	display: block;
+			// 	padding-left: 20px;
+			// 	padding-right: 20px;
+			// }
+		}
+		.story-image.s2 {
+			margin-left: -20px;
+			margin-right: -20px;
+		}
+	}
+
 }
 
 

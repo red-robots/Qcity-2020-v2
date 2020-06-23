@@ -654,3 +654,41 @@ return apply_filters( 'wpb_get_ip', $ip );
 add_shortcode('show_ip', 'get_the_user_ip');
 
 
+function get_the_post_author($authorID) {
+    $authorName = '';
+    if($authorID) {
+        $displayName = get_the_author_meta('display_name',$authorID);
+        $fname = get_the_author_meta('first_name',$authorID);
+        $lname = get_the_author_meta('last_name',$authorID);
+        $authorNameArrs = array($fname,$lname);
+        if(  $authorNameArrs && array_filter($authorNameArrs) ) {
+            $authorName = implode(" ", array_filter($authorNameArrs));
+        } else {
+            $authorName = ($displayName) ? ucwords($displayName) : '';
+        }
+    }
+    return $authorName;
+}
+
+function gettheids($postObj) {
+    if( empty($postObj) ) return '';
+    $ids = array();
+    foreach($postObj as $obj) {
+        $ids[] = $obj->ID;
+    }
+    return $ids;
+}
+
+function shortenText($string, $limit, $break=".", $pad="...") {
+  // return with no change if string is shorter than $limit
+  if(strlen($string) <= $limit) return $string;
+
+  // is $break present between $limit and the end of the string?
+  if(false !== ($breakpoint = strpos($string, $break, $limit))) {
+    if($breakpoint < strlen($string) - 1) {
+      $string = substr($string, 0, $breakpoint) . $pad;
+    }
+  }
+
+  return $string;
+}

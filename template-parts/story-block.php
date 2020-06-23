@@ -9,7 +9,7 @@
 	$guest_author =  get_field('author_name') ;
 ?>
 
-<article class="story-block">
+<article class="story-block v2">
 	<div class="photo story-image" style="background-image: url('<?php echo $image; ?>');" >		
 		<?php /*if( has_post_thumbnail() ) {
 				the_post_thumbnail('thirds');
@@ -23,12 +23,14 @@
 		</div>
 		
 	</div>
-	<h3><?php the_title(); ?></h3>	
-	<div class="desc" >
-		<span><?php echo get_the_excerpt(); ?></span>
-	</div>
-	<div class="by">
-		By <?php echo ( $guest_author ) ? $guest_author : get_the_author(); ?> | <?php echo get_the_date(); ?>
+	<div class="storyText">
+		<h3><?php the_title(); ?></h3>	
+		<div class="desc" >
+			<span><?php echo get_the_excerpt(); ?></span>
+		</div>
+		<div class="by">
+			By <?php echo ( $guest_author ) ? $guest_author : get_the_author(); ?> | <?php echo get_the_date(); ?>
+		</div>
 	</div>
 	<div class="article-link"><a href="<?php the_permalink(); ?>"></a></div>
 </article>

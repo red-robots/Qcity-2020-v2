@@ -619,6 +619,26 @@ jQuery(document).ready(function ($) {
 	new WOW().init();
 
     
+    /* Homepage Big Photo */
+    change_text_height_top_blog();
+    $(window).on("resize",function(){
+        change_text_height_top_blog();
+    });
+    function change_text_height_top_blog() {
+        var screenWidth = $(window).width();
+        if( $(".stickLeft .bigPhoto").length > 0 ) {
+            if( screenWidth > 1000 ) {
+                var bigPhotoHeight = $(".stickLeft .bigPhoto").height();
+                var stickLeftHeight = $(".stickLeft").height();
+                var textHeight = stickLeftHeight - bigPhotoHeight;
+                $(".stickLeft .info").css("height",textHeight+"px");
+            } else {
+                $(".stickLeft .info").css("height","auto");
+            }
+        }
+    }
+    
+    
 
 
 

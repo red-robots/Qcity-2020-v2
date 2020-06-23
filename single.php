@@ -37,11 +37,11 @@
 			
 
 			<?php if( $img ) { ?>
-				<div class="story-image">
+				<div class="story-image s2">
 					<img src="<?php echo $img['url']; ?>" alt="<?php echo $img['alt']; ?>">
 				</div>
 			<?php } /*elseif( has_post_thumbnail() ){ ?>
-				<div class="story-image">
+				<div class="story-image s2">
 					<?php the_post_thumbnail(); ?>
 				</div>
 			<?php } */ ?>
@@ -89,11 +89,11 @@
 						
 
 						<?php if( $img ) { ?>
-							<div class="story-image">
+							<div class="story-image s2">
 								<img src="<?php echo $img['url']; ?>" alt="<?php echo $img['alt']; ?>">
 							</div>
 						<?php } /*elseif( has_post_thumbnail() ){ ?>
-							<div class="story-image">
+							<div class="story-image s2">
 								<?php the_post_thumbnail(); ?>
 							</div>
 						<?php }*/  ?>
