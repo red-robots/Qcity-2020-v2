@@ -626,14 +626,16 @@ jQuery(document).ready(function ($) {
     });
     function change_text_height_top_blog() {
         var screenWidth = $(window).width();
-        if( $(".stickLeft .bigPhoto").length > 0 ) {
-            if( screenWidth > 1000 ) {
-                var bigPhotoHeight = $(".stickLeft .bigPhoto").height();
-                var stickLeftHeight = $(".stickLeft").height();
-                var textHeight = stickLeftHeight - bigPhotoHeight;
-                $(".stickLeft .info").css("height",textHeight+"px");
-            } else {
-                $(".stickLeft .info").css("height","auto");
+        if( $(".stickRight .story-block").length > 0 ) {
+            if( $(".stickLeft .bigPhoto").length > 0 ) {
+                if( screenWidth > 1000 ) {
+                    var bigPhotoHeight = $(".stickLeft .bigPhoto").height();
+                    var stickLeftHeight = $(".stickLeft").height();
+                    var textHeight = stickLeftHeight - bigPhotoHeight;
+                    $(".stickLeft .info").css("height",textHeight+"px");
+                } else {
+                    $(".stickLeft .info").css("height","auto");
+                }
             }
         }
     }
