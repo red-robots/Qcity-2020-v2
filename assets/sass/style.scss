@@ -45,21 +45,11 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 	## Captions
 	## Galleries
 --------------------------------------------------------------*/
-@font-face {
-	font-family: 'UniversLTPro-55Roman';
-	src: url('fonts/3A6B52_0_0.eot');
-	src: url('fonts/3A6B52_0_0.eot?#iefix') format('embedded-opentype'),url('fonts/3A6B52_0_0.woff2') format('woff2'),url('fonts/3A6B52_0_0.woff') format('woff'),url('fonts/3A6B52_0_0.ttf') format('truetype');
-}
-@font-face {
-	font-family: 'UniversLTPro-65Bold';
-	src: url('fonts/3A6B52_1_0.eot');
-	src: url('fonts/3A6B52_1_0.eot?#iefix') format('embedded-opentype'),url('fonts/3A6B52_1_0.woff2') format('woff2'),url('fonts/3A6B52_1_0.woff') format('woff'),url('fonts/3A6B52_1_0.ttf') format('truetype');
-}
-
 @import "variables-site/variables-site";
 @import "mixins/mixins-master";
 @import "bourbon/bourbon";
 @import "animate";
+@import "custom-fonts";
 @import "web-fonts-with-css/scss/fontawesome";
 /*--------------------------------------------------------------
 # Normalize

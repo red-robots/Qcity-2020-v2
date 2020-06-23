@@ -1,11 +1,7 @@
+b, strong {
+	font-family: $font-heading;
+}
 p{
-	strong {
-		font-weight: bolder;
-		-moz-osx-font-smoothing: grayscale;   /* Firefox */
-     	 -webkit-font-smoothing: subpixel-antialiased;
-     	/*text-shadow: #424141 0 1px 0;
-     	text-size-adjust: auto;*/
-	}
 	margin-top: 1em;
 	margin-bottom: 1em;
 }
