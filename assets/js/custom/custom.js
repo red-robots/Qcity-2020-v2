@@ -633,8 +633,10 @@ jQuery(document).ready(function ($) {
                     var stickLeftHeight = $(".stickLeft").height();
                     var textHeight = stickLeftHeight - bigPhotoHeight;
                     $(".stickLeft .info").css("height",textHeight+"px");
+                    $(".stickLeft .info").addClass('absolute');
                 } else {
                     $(".stickLeft .info").css("height","auto");
+                    $(".stickLeft .info").removeClass('absolute');
                 }
             }
         }
