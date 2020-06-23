@@ -131,7 +131,6 @@ if($stickyPosts) {
 		$rightPosts = get_posts($rightArgs);
 		$right_items = array();
 		if($rightPosts) {
-			//$theRightPosts = $rightPosts;
 			$rightPostsCount = count($rightPosts);
 			$stickToRightPosts = array();
 
@@ -156,7 +155,7 @@ if($stickyPosts) {
 						$right_items[$x] = $r;
 					}
 				}
-
+				
 				/* Overwrite arguments */
 				unset($rightArgs['meta_query']); /* Remove the meta query */
 				$rightArgs['showposts'] = $postsNum;
@@ -171,7 +170,15 @@ if($stickyPosts) {
 					}
 				}
 
+			} else {
+				if($rightPosts) {
+					foreach($rightPosts as $r) {
+						$x = $r->ID;
+						$right_items[$x] = $r;
+					}
+				}
 			}
+			
 		} else {
 			unset($rightArgs['meta_query']);
 			$rightArgs['showposts'] = $maxPosts; 
@@ -183,7 +190,8 @@ if($stickyPosts) {
 				}
 			}
 		}
-
+		
+		
 		if($right_items) { ?>
 			<?php foreach ($right_items as $e) { 
 				$right_id = $e->ID;
@@ -247,5 +255,3 @@ if($stickyPosts) {
 		<?php } ?>
 	</div>
 </section>
-
-
