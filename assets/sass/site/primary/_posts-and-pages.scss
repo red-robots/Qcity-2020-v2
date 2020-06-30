@@ -429,6 +429,14 @@ section.stickies-new.stickyPostsTop {
 				padding-bottom: 10px;
 			}
 		}
+		&.photoAbsolute {
+			.photo {
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: 100%;
+			}
+		}
 		&:hover {
 			box-shadow: none;
 			.textwrap {
@@ -439,6 +447,8 @@ section.stickies-new.stickyPostsTop {
 	@media screen and (max-width: 1020px) {
 		.story-block.stickRightBlock {
 			.photo {
+				position: relative!important;
+				height: auto!important;
 				.postThumb {
 					.imagebox {
 						height: 15vh;

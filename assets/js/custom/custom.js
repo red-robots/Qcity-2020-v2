@@ -20,6 +20,17 @@ jQuery(document).ready(function ($) {
        
 	});
 
+
+    /* Stick To Right Posts */
+    $(".stickRight .story-block").each(function(){
+        var target = $(this);
+        var photoHeight = $(this).find(".photo").height();
+        var descHeight = $(this).find(".desc").height();
+        if(descHeight>photoHeight) {
+            target.addClass("photoAbsolute");
+        }
+    });
+
 	
 
 	/*
