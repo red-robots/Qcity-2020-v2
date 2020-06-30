@@ -180,7 +180,7 @@ article.big-post {
 		}
 		@media screen and (min-width: $deskwidth) {
 			font-size: 26px;
-			min-height: 60px;
+			// min-height: 60px;
 		}
 	}
 	.info {
@@ -363,10 +363,10 @@ section.stickies-new.stickyPostsTop {
 			float: left;
 			margin: 0 0;
 			@include tab {
-				height: 100%;
-				position: absolute;
-				top: 0;
-				left: 0;
+				// height: 100%;
+				// position: absolute;
+				// top: 0;
+				// left: 0;
 			}
 			img.placeholder {
 				width: 100%;
@@ -397,6 +397,11 @@ section.stickies-new.stickyPostsTop {
 					background-repeat: no-repeat;
 					background-color: #CCC;
 				}
+			}
+			.postThumb {
+				position: absolute;
+				top: 0;
+				left: 0;
 			}
 		}
 		.desc {

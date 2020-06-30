@@ -466,15 +466,16 @@ if($is_post) { ?>
         // });
 
         $(document).on("click",function(){
-          $(".components-button.edit-post-sidebar__panel-tab").each(function(){
-            var target = $(this);
-            if( target.hasClass("is-active") ) {
-              var label = target.attr('data-label');
-              if(label=='Document') {
-                add_stick_to_right();
-              }
-            }
-          });
+          add_stick_to_right();
+          // $(".components-button.edit-post-sidebar__panel-tab").each(function(){
+          //   var target = $(this);
+          //   if( target.hasClass("is-active") ) {
+          //     var label = target.attr('data-label');
+          //     if(label=='Document') {
+          //       add_stick_to_right();
+          //     }
+          //   }
+          // });
         });
 
         $(document).on("click",'button.components-button.components-panel__body-toggle',function(){

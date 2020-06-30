@@ -2088,7 +2088,7 @@ section.stickies .right .story-block{margin-bottom:0}
 article.big-post img{width:100%;position:relative;height:420px}
 article.big-post h3{font-size:16px;z-index:1;line-height:1.1;margin-bottom:10px}
 @media screen and (max-width:768px){article.big-post h3{font-size:20px}
-}@media screen and (min-width:1250px){article.big-post h3{font-size:26px;min-height:60px}
+}@media screen and (min-width:1250px){article.big-post h3{font-size:26px}
 }article.big-post .info{width:100%;position:relative;background-color:#58595b;color:#fff;padding:20px;line-height:1.2;float:left}
 @media screen and (min-width:1250px){article.big-post .info .desc{margin-bottom:1.5em;height:38px}
 }article.big-post .photo{width:100%;float:left;position:relative;line-height:0}
@@ -2122,11 +2122,11 @@ section.stickies-new.stickyPostsTop .story-block.stickRightBlock .inside{width:1
 }section.stickies-new.stickyPostsTop .story-block.stickRightBlock .textwrap{width:100%;float:left;position:relative;-webkit-transition:all ease .3s;transition:all ease .3s}
 @media(min-width:820px){section.stickies-new.stickyPostsTop .story-block.stickRightBlock .textwrap{height:100%}
 }section.stickies-new.stickyPostsTop .story-block.stickRightBlock .photo{position:relative;width:45%;float:left;margin:0}
-@media(min-width:820px){section.stickies-new.stickyPostsTop .story-block.stickRightBlock .photo{height:100%;position:absolute;top:0;left:0}
-}section.stickies-new.stickyPostsTop .story-block.stickRightBlock .photo img.placeholder{width:100%;height:auto;float:left}
+section.stickies-new.stickyPostsTop .story-block.stickRightBlock .photo img.placeholder{width:100%;height:auto;float:left}
 section.stickies-new.stickyPostsTop .story-block.stickRightBlock .photo .video-homepage,section.stickies-new.stickyPostsTop .story-block.stickRightBlock .photo .postThumb{display:block;width:100%;height:100%;position:relative;z-index:2}
 section.stickies-new.stickyPostsTop .story-block.stickRightBlock .photo .video-homepage img,section.stickies-new.stickyPostsTop .story-block.stickRightBlock .photo .postThumb img{display:none}
 section.stickies-new.stickyPostsTop .story-block.stickRightBlock .photo .video-homepage .imagebox,section.stickies-new.stickyPostsTop .story-block.stickRightBlock .photo .postThumb .imagebox{display:block;width:100%;height:100%;background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#CCC}
+section.stickies-new.stickyPostsTop .story-block.stickRightBlock .photo .postThumb{position:absolute;top:0;left:0}
 section.stickies-new.stickyPostsTop .story-block.stickRightBlock .desc{position:relative}
 @media(min-width:820px){section.stickies-new.stickyPostsTop .story-block.stickRightBlock .desc{width:55%;float:right;padding-left:15px;padding-right:15px}
 }section.stickies-new.stickyPostsTop .story-block.stickRightBlock .desc .ptitle{display:block;font-size:18px;line-height:1.2}
