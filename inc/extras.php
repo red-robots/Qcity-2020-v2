@@ -486,7 +486,7 @@ if($is_post) { ?>
 
 
         function add_stick_to_right() {
-          
+
           $(".components-base-control__field").each(function(){
             var div = $(this);
             var str = $(this).text().replace(/\s+/g,"").trim().toLowerCase();
@@ -504,25 +504,30 @@ if($is_post) { ?>
             }
           });
 
-          $(document).on("click","input.stickToRightInput",function(){
-            var target = $(this);
-            if(this.checked) {
-              target.attr("checked",true);
-              $("input.cmeta_display_post").prop("checked",true);
-              $("input.cmeta_display_post").attr("checked",true);
-            } else {
-              target.removeAttr("checked");
-              $("input.cmeta_display_post").prop("checked",false);
-              $("input.cmeta_display_post").removeAttr("checked");
-            }
-          });
-
           if(selectedVal) {
-            //$("input.stickToRightInput").prop("checked",true);
             $("input.stickToRightInput").attr("checked",true);
           } 
 
         }
+
+
+
+        $(document).on("click","input.stickToRightInput",function(){
+          var target = $(this);
+          if(this.checked) {
+            target.prop("checked",true);
+            target.attr("checked",true);
+            $("input.cmeta_display_post").prop("checked",true);
+            $("input.cmeta_display_post").attr("checked",true);
+            $("input.cmeta_display_post").val("1");
+          } else {
+            target.prop("checked",false);
+            target.removeAttr("checked");
+            $("input.cmeta_display_post").val("");
+            $("input.cmeta_display_post").prop("checked",false);
+            $("input.cmeta_display_post").removeAttr("checked");
+          }
+        });
 
 
         
@@ -532,31 +537,6 @@ if($is_post) { ?>
     }
 }
 add_action( 'admin_print_scripts', 'jupload_scripts' );
-
-function get_stick_to_right_posts() {
-  global $wpdb;
-  $post_ids = array();
-  $query = "SELECT p.ID FROM ".$wpdb->prefix."posts p, ".$wpdb->prefix."postmeta m
-            WHERE p.ID=m.post_id AND m.meta_key='custom_meta_post_visibility' AND p.post_status='publish' AND p.post_type='post'
-            ORDER BY p.post_date DESC";
-  $result = $wpdb->get_results($query);
-  if($result) {
-    foreach($result as $row) {
-      $post_ids[] = $row->ID;
-    }
-  }
-}
-
-function get_stick_to_top_posts() {
-  global $wpdb;
-  $optionVal = array();
-  $query = "SELECT * FROM ".$wpdb->prefix."options WHERE option_name='sticky_posts'";
-  $result = $wpdb->get_row($query);
-  if($result) {
-    $optionVal = ($result->option_value) ? @unserialize($result->option_value) : '';
-  }
-  return $optionVal;
-}
   
 add_action( 'admin_head', 'post_visibility_head_scripts' );
 function post_visibility_head_scripts(){ ?>
@@ -733,3 +713,32 @@ function shortenText($string, $limit, $break=".", $pad="...") {
 
   return $string;
 }
+
+
+
+function get_stick_to_right_posts() {
+  global $wpdb;
+  $post_ids = array();
+  $query = "SELECT p.ID FROM ".$wpdb->prefix."posts p, ".$wpdb->prefix."postmeta m
+            WHERE p.ID=m.post_id AND m.meta_key='custom_meta_post_visibility' AND m.meta_value=1 AND p.post_status='publish' AND p.post_type='post'
+            ORDER BY p.post_date DESC";
+  $result = $wpdb->get_results($query);
+  if($result) {
+    foreach($result as $row) {
+      $post_ids[] = $row->ID;
+    }
+  }
+  return ($post_ids) ? $post_ids : '';
+}
+
+function get_stick_to_top_posts() {
+  global $wpdb;
+  $optionVal = array();
+  $query = "SELECT * FROM ".$wpdb->prefix."options WHERE option_name='sticky_posts'";
+  $result = $wpdb->get_row($query);
+  if($result) {
+    $optionVal = ($result->option_value) ? @unserialize($result->option_value) : '';
+  }
+  return $optionVal;
+}
+

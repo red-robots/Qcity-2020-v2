@@ -5,11 +5,13 @@ $excludeCat 	= get_category_by_slug($excludeTerm);
 $excludeCatID 	= ( isset($excludeCat->term_id) && $excludeCat->term_id ) ? $excludeCat->term_id : '';
 $stickyPosts = get_option('sticky_posts');
 $rightPostItems = get_stick_to_right_posts();
+//$sticktoTopPost = get_stick_to_top_posts();
+
 
 $featured_posts = array();
 $mainArgs = array(
     'post_type'    => 'post',
-    'showposts'    => 1,
+    'posts_per_page'    => 1,
     'post_status'  => 'publish',
     'orderby'	=> 'date', 
 	'order'		=> 'DESC',
@@ -30,6 +32,7 @@ if($excludeCatID) {
 	);
 }
 
+
 $bigPost = array();
 if($stickyPosts) {
 	$ids = '';
@@ -45,6 +48,9 @@ if($stickyPosts) {
 		$bigPost = $mainPost[0];
 	}
 }
+
+
+
 ?>
 <section class="stickies-new stickyPostsTop">
 
@@ -103,7 +109,7 @@ if($stickyPosts) {
 		$theRightPosts = array();
 		$rightArgs = array(
 		    'post_type'    => 'post',
-		    'showposts'    => $maxPosts,
+		    'posts_per_page'    => $maxPosts,
 		    'post_status'  => 'publish',
 			'orderby'	=> 'date', 
 			'order'		=> 'DESC', 
@@ -163,7 +169,7 @@ if($stickyPosts) {
 				
 				/* Overwrite arguments */
 				unset($rightArgs['meta_query']); /* Remove the meta query */
-				$rightArgs['showposts'] = $postsNum;
+				$rightArgs['posts_per_page'] = $postsNum;
 				if($excludeIDs) {
 					$rightArgs['post__not_in'] = $excludeIDs;
 				}
@@ -186,7 +192,7 @@ if($stickyPosts) {
 			
 		} else {
 			unset($rightArgs['meta_query']);
-			$rightArgs['showposts'] = $maxPosts; 
+			$rightArgs['posts_per_page'] = $maxPosts; 
 			$recentPosts = get_posts($rightArgs);
 			if($recentPosts) {
 				foreach($recentPosts as $recent) {
@@ -215,11 +221,12 @@ if($stickyPosts) {
 				$text = get_the_excerpt($right_id);
 				$excerpt  = shortenText($text,100,' ','...');
 
+				$rpostdate = get_the_date('F d, Y',$right_id);
 				$authorID = $e->post_author;
 				$guest_author 	=  get_field('author_name',$right_id); 
 				$author_default = get_the_post_author($authorID);
 				$post_author = ($guest_author) ? $guest_author : $author_default;
-				$postedByArr = array($post_author,$postdate);
+				$postedByArr = array($post_author,$rpostdate);
 				$postedBy = ($postedByArr && array_filter($postedByArr) ) ? implode(" <span class='sep'>|</span> ", array_filter($postedByArr) ) : '';
 				?>
 				<article class="story-block stickRightBlock">
