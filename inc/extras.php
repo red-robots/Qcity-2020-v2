@@ -356,48 +356,6 @@ function returnlimit( $limit ) {
     return "LIMIT 3";
 }
 
-/*
-function qcity_add_sticky_custom_box()
-{       
-        add_meta_box(
-            'qcity_sticky_box_id',           
-            'Stick On Right Side',  
-            'qcity_custom_box_html',  
-            'post',                  
-            'side', 'high'
-        );   
-}
-//add_action('add_meta_boxes', 'qcity_add_sticky_custom_box', 2);
-
-function qcity_custom_box_html( $post )
-{
-    $value = get_post_meta( $post->ID, '_qcity_meta_key', true );
-    if (get_post_type( $post->ID ) != 'post') {
-        return;
-    }
-    
-    ?>
-    <label for="qcity_custom_stick_right">
-    <input type="checkbox" id="qcity_custom_stick_right" name="qcity_custom_stick_right" value="1" <?php  echo (( $value == 1 ) ) ? ' checked ' : ''; ?>> Stick on right side
-    </label>    
-    <?php
-}
-
-function qcity_save_postdata($post_id)
-{
-    //if (array_key_exists('qcity_custom_stick_right', $_POST)) {        
-         update_post_meta(
-            $post_id,
-            '_qcity_meta_key',
-            $_POST['qcity_custom_stick_right']
-        );
-
-    //}
-
-}
-//add_action('save_post', 'qcity_save_postdata');
-*/
-
 
 function get_posts_ids($right_posts) {
     $ids = array();
@@ -425,7 +383,7 @@ function custom_meta_post_visibility_box($object) {
         <div class="components-base-control">
             <div class="components-base-control__field">
                 <label for="meta_display_post<?php echo $val; ?>" class="components-checkbox-control__input-container">
-                    <span class="inputlabel">Stick On Right Side</span>
+                    <span class="inputlabel">Stick on right side</span>
                     <input type="checkbox" id="meta_display_post1" name="custom_meta_post_visibility" class="components-checkbox-control__input cmeta_display_post meta_display_post1" value="1"<?php echo $is_selected?>>
                     <i class="chxboxstat"></i>
                 </label>
@@ -457,9 +415,31 @@ function save_custom_meta_post_visibility_box($post_id, $post, $update) {
     $post_visibility = "";
     if(isset($_POST["custom_meta_post_visibility"]))
     {
-        $post_visibility = $_POST["custom_meta_post_visibility"];
+      $post_visibility = $_POST["custom_meta_post_visibility"];
     }   
     update_post_meta($post_id, "custom_meta_post_visibility", $post_visibility);
+
+    if(isset($_POST['sticky'])) {
+      $stickToTop = $_POST['sticky'];
+      if($stickToTop) {
+        $sp[] = $post_id;
+        $optionVal = serialize($sp);
+        update_option('sticky_posts',$optionVal);
+      } else {
+        $existingStickies = get_stick_to_top_posts();
+        if($existingStickies) {
+          $newStickies = array();
+          foreach($existingStickies as $k=>$xid) {
+            if($xid==$post_id) {
+              unset($existingStickies[$k]);
+            }
+          }
+          $optionVal = serialize($existingStickies);
+          update_option('sticky_posts',$optionVal);
+        }
+      }
+    } 
+
 }
 add_action("save_post", "save_custom_meta_post_visibility_box", 10, 3);
 
@@ -473,46 +453,71 @@ if($is_post) { ?>
     jQuery(document).ready(function($){
         var selectedVal = ( typeof $("#display-post-meta-box input.cmeta_display_post:checked").val() !== 'undefined' ) ? $("#display-post-meta-box input.cmeta_display_post:checked").val() : '';
         var postmetaForm = $("#display-post-meta-box .components-base-control").clone();
-        $(".components-base-control__field").each(function(){
-            var str = $(this).text().replace(/\s/g,"").trim().toLowerCase();
-            if(str=='sticktothetopoftheblog') {
-                var parent = $(this).parents(".components-base-control");
-                parent.addClass("stickyOptionsDiv");
-                var newInputField = '<div id="stickToRightInputDiv" class="components-base-control__field" style="margin-bottom:5px"><span class="components-checkbox-control__input-container"><input id="inspector-checkbox-control-888" class="components-checkbox-control__input stickToRightInput" type="checkbox" value=""><i class="chxboxstat"></i></span><label class="components-checkbox-control__label" for="inspector-checkbox-control-888">Stick On Right Side</label></div>';
-                parent.prepend(newInputField);
+
+        var newInputField = '<div id="stickToRightInputDiv" class="components-base-control__field" style="margin-bottom:5px"><span class="components-checkbox-control__input-container"><input id="inspector-checkbox-control-888" class="components-checkbox-control__input stickToRightInput" type="checkbox" value=""><i class="chxboxstat"></i></span><label class="components-checkbox-control__label" for="inspector-checkbox-control-888">Stick on right side</label></div>';
+      
+        add_stick_to_right();
+
+        // $(document).on("click",'button.components-button',function(){
+        //   var label = $(this).attr('data-label');
+        //   if(label=='Document') {
+        //     add_stick_to_right();
+        //   } 
+        // });
+
+        $(document).on("click",function(){
+          $(".components-button.edit-post-sidebar__panel-tab").each(function(){
+            var target = $(this);
+            if( target.hasClass("is-active") ) {
+              var label = target.attr('data-label');
+              if(label=='Document') {
+                add_stick_to_right();
+              }
             }
+          });
         });
-        if(selectedVal) {
+
+        $(document).on("click",'button.components-button.components-panel__body-toggle',function(){
+          var label = $(this).text().replace(/\s+/g,"").trim().toLowerCase();
+          if(label=='status&visibility') {
+            add_stick_to_right();
+          }
+        });
+
+
+        function add_stick_to_right() {
+          $(".components-base-control__field").each(function(){
+            var div = $(this);
+            var str = $(this).text().replace(/\s+/g,"").trim().toLowerCase();
+            if(str=='sticktothetopoftheblog') {
+              div.addClass("sticktothetopoftheblogField");
+              div.css("margin-bottom","5px");
+              var parent = $(this).parents(".components-base-control");
+              parent.addClass("stickyOptionsDiv");
+              if( $("#stickToRightInputDiv").length==0 ) {
+                parent.prepend(newInputField);
+              }
+            } else if(str=='pendingreview') {
+              div.appendTo(".stickyOptionsDiv");
+              $(".edit-post-sidebar .editor-post-format").addClass("moved");
+            }
+          });
+          if(selectedVal) {
             $("input.stickToRightInput").prop("checked",true);
             $("input.stickToRightInput").attr("checked",true);
-        } 
+          } 
+        }
 
         $(document).on("click","input.stickToRightInput",function(){
             if(this.checked) {
-                $("input.cmeta_display_post").prop("checked",true);
-                $("input.cmeta_display_post").attr("checked",true);
+              $("input.cmeta_display_post").prop("checked",true);
+              $("input.cmeta_display_post").attr("checked",true);
             } else {
-                $("input.cmeta_display_post").prop("checked",false);
-                $("input.cmeta_display_post").removeAttr("checked",false);
+              $("input.cmeta_display_post").prop("checked",false);
+              $("input.cmeta_display_post").removeAttr("checked",false);
             }
         });
         
-
-        // $(postmetaForm).addClass('display-post-meta-box-control');
-        // $(postmetaForm).insertAfter(".edit-post-sidebar .edit-post-post-schedule");
-        // if(selectedVal) {
-        //     $(".display-post-meta-box-control input.cmeta_display_post").attr("checked",true);
-        // } else {
-        //     $(".display-post-meta-box-control input.cmeta_display_post").attr("checked",false);
-        // }
-        
-        // $(document).on("click",".display-post-meta-box-control input.cmeta_display_post",function(){
-        //     if(this.checked) {
-        //         $("input.cmeta_display_post").attr("checked",true);
-        //     } else {
-        //         $("input.cmeta_display_post").attr("checked",false);
-        //     }
-        // });
     });
     </script>
 <?php
@@ -520,6 +525,31 @@ if($is_post) { ?>
 }
 add_action( 'admin_print_scripts', 'jupload_scripts' );
 
+function get_stick_to_right_posts() {
+  global $wpdb;
+  $post_ids = array();
+  $query = "SELECT p.ID FROM ".$wpdb->prefix."posts p, ".$wpdb->prefix."postmeta m
+            WHERE p.ID=m.post_id AND m.meta_key='custom_meta_post_visibility' AND p.post_status='publish' AND p.post_type='post'
+            ORDER BY p.post_date DESC";
+  $result = $wpdb->get_results($query);
+  if($result) {
+    foreach($result as $row) {
+      $post_ids[] = $row->ID;
+    }
+  }
+}
+
+function get_stick_to_top_posts() {
+  global $wpdb;
+  $optionVal = array();
+  $query = "SELECT * FROM ".$wpdb->prefix."options WHERE option_name='sticky_posts'";
+  $result = $wpdb->get_row($query);
+  if($result) {
+    $optionVal = ($result->option_value) ? @unserialize($result->option_value) : '';
+  }
+  return $optionVal;
+}
+  
 add_action( 'admin_head', 'post_visibility_head_scripts' );
 function post_visibility_head_scripts(){ ?>
     <style>
@@ -529,7 +559,10 @@ function post_visibility_head_scripts(){ ?>
     }
     .edit-post-sidebar .editor-post-format {
         position: relative;
-        top: 60px;
+        top: 70px;
+    }
+    .edit-post-sidebar .editor-post-format.moved {
+      top: 110px;
     }
     .display-post-meta-box-control {
         margin-top: 15px;
