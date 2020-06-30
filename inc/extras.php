@@ -486,6 +486,7 @@ if($is_post) { ?>
 
 
         function add_stick_to_right() {
+          
           $(".components-base-control__field").each(function(){
             var div = $(this);
             var str = $(this).text().replace(/\s+/g,"").trim().toLowerCase();
@@ -502,21 +503,28 @@ if($is_post) { ?>
               $(".edit-post-sidebar .editor-post-format").addClass("moved");
             }
           });
-          if(selectedVal) {
-            $("input.stickToRightInput").prop("checked",true);
-            $("input.stickToRightInput").attr("checked",true);
-          } 
-        }
 
-        $(document).on("click","input.stickToRightInput",function(){
+          $(document).on("click","input.stickToRightInput",function(){
+            var target = $(this);
             if(this.checked) {
+              target.attr("checked",true);
               $("input.cmeta_display_post").prop("checked",true);
               $("input.cmeta_display_post").attr("checked",true);
             } else {
+              target.removeAttr("checked");
               $("input.cmeta_display_post").prop("checked",false);
-              $("input.cmeta_display_post").removeAttr("checked",false);
+              $("input.cmeta_display_post").removeAttr("checked");
             }
-        });
+          });
+
+          if(selectedVal) {
+            //$("input.stickToRightInput").prop("checked",true);
+            $("input.stickToRightInput").attr("checked",true);
+          } 
+
+        }
+
+
         
     });
     </script>
