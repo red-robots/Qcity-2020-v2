@@ -2567,7 +2567,7 @@ section.stickies-new .right .story-block .desc .excerpt{font-size:1rem;margin-to
 .application-email,.email-friend{font-size:1.1em}
 .job-details{background-color:white}
 .border-title{margin-bottom:30px}
-.ads_home_leaderboard{display:block;text-align:center;margin:5px auto 20px;padding-left:30px;padding-right:30px}
+.ads_home_leaderboard{display:block;text-align:center;margin:5px auto 20px;padding-left:30px;padding-right:30px;margin-top:50px}
 .ads_home_leaderboard span{display:block;width:100%}
 .ads_home_leaderboard span a{display:block;width:100%}
 @media screen and (max-width:820px){.ads_home_leaderboard span img{width:100%}
@@ -2753,7 +2753,10 @@ section.home-bottom{margin:0}
 #content section.stickies-new.stickyPostsTop .stickRight{margin-top:20px}
 #content section.stickies-new.stickyPostsTop .story-block.stickRightBlock .desc .inner{padding:20px}
 #content .story-image.s2{margin-left:-20px;margin-right:-20px}
-}.blog .format-aside .entry-title,.archive .format-aside .entry-title{display:none}
+}.mobile-version .mobile-bottom-ads{position:relative;top:-25px}
+.mobile-version .mobile-bottom-ads div,.mobile-version .mobile-bottom-ads span,.mobile-version .mobile-bottom-ads a{display:block;width:100%}
+.mobile-version .mobile-bottom-ads img{width:100%;height:auto}
+.blog .format-aside .entry-title,.archive .format-aside .entry-title{display:none}
 .comment-content a{word-wrap:break-word}
 .bypostauthor{display:block}
 .infinite-scroll .posts-navigation,.infinite-scroll.neverending .site-footer{display:none}

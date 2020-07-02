@@ -3203,6 +3203,7 @@ section.stickies-new{
 	margin: 5px auto 20px;
 	padding-left: 30px;
 	padding-right: 30px;
+	margin-top: 50px;
 }
 .ads_home_leaderboard span {
 	display: block;
@@ -4274,5 +4275,18 @@ section.gravityform{
 
 }
 
+
+.mobile-version .mobile-bottom-ads {
+	position: relative;
+    top: -25px;
+	div, span, a {
+		display: block;
+		width: 100%;
+	}
+	img {
+		width: 100%;
+		height: auto;
+	}
+}
 
 

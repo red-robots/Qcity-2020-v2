@@ -52,42 +52,17 @@
 	<!--- Advertisements -->
 	<div class="ad" style="display: inline-block; text-align: center;">
         <div class="desktop-version align-center"> <!-- Business Directory Home -->
-                <?php $ads_bottom = get_ads_script('business-directory-home'); 
-                    echo $ads_bottom['ad_script'];
-                ?>                
+            <?php $ads_bottom = get_ads_script('business-directory-home'); 
+                echo $ads_bottom['ad_script'];
+            ?>                
         </div> <!-- Business Directory Home -->
-		<?php  
-		 		/*$post_type = 'ad';
-                $args = array(
-                    'posts_per_page'   => 1,
-                    'orderby'          => 'rand',
-                    //'order'            => 'DESC',
-                    'post_type'        => $post_type,
-                    'post_status'      => 'publish',
-                    //'paged'            => $paged
-                );
-                $ad_posts = new WP_Query($args);
-
-                if ( $ad_posts->have_posts() ):
-                	while ( $ad_posts->have_posts() ) : $ad_posts->the_post();
-
-                		$header_script = get_field('header_script');
-                		if( $header_script ){
-                			echo $header_script;
-                		}
-
-                		$ad_script = get_field('ad_script');
-                		if($ad_script){
-                			echo $ad_script;
-                		}
-
-                	endwhile;
-                endif;
-                wp_reset_postdata();*/
-		 	?>
 	</div>
 
     <div class="mobile-version hearken">
+    	<?php if( $right_rail = get_ads_script('right-rail') ) {  ?>
+		<div class="mobile-bottom-ads"><?php echo $right_rail['ad_script']; ?></div>
+    	<?php } ?>
+
         <script async src="https://modules.wearehearken.com/qcitymetro/embed/4551.js"></script>
     </div>
 
