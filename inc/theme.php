@@ -219,11 +219,18 @@ add_action( 'loop_start', 'jptweak_remove_share' );
 ---------------------------------------*/
 function my_login_logo() { ?>
 <style type="text/css">
+  body.login {
+    background: #ececec;
+  }
   body.login div#login h1 a {
-    background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/images/logo.png);
-    background-size: 327px 67px;
-    width: 327px;
-    height: 67px;
+    background-image: url('<?php echo get_stylesheet_directory_uri(); ?>/images/logo.png');
+    background-size: contain;
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px;
+  }
+  .login #backtoblog, .login #nav {
+    text-align: center;
   }
 </style>
 <?php }
@@ -231,7 +238,7 @@ add_action( 'login_enqueue_scripts', 'my_login_logo' );
 
 // Change Link
 function loginpage_custom_link() {
-  return the_permalink();
+  return get_site_url();
 }
 add_filter('login_headerurl','loginpage_custom_link');
 
