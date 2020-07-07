@@ -23,10 +23,10 @@ get_header(); ?>
 		$subscribe_link         = get_field('subscribe_link');
     	$subscribe_button_name  = get_field('subscribe_button_name');
 
-		include( locate_template('template-parts/hero-v2.php') ); 
+		include( locate_template('template-parts/hero.php') ); 
 		//include( locate_template('template-parts/sponsored-posts-v2.php') );
 		include( locate_template('template-parts/subscribe-bar.php') ); 
-		include( locate_template('template-parts/non-sticky-news-v2.php') );
+		include( locate_template('template-parts/non-sticky-news.php') );
 		include( locate_template('template-parts/home-bottom.php') );
 		?>
 			

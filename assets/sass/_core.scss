@@ -6347,5 +6347,34 @@ object {
 	display: block;
 }
 
-
-
+section.c-sponsor-block.sponsor-paid-wrapper {
+	padding-top: 30px;
+	padding-bottom: 30px;
+	@include flexgroup();
+	.sponsor-col-paid {
+		width: 100%;
+		@include tab {
+			width: 50%;
+		}
+		&.sponsor-col-image {
+			@include tab {
+				padding-left: 18px;
+			}
+		}
+	}
+	.c-sponsor-image-link {
+		display: block;
+		width: 100%;
+		float: left;
+		background-size: cover;
+		background-position: top center;
+		background-repeat: no-repeat;
+		img {
+			width: 100%;
+			height: auto;
+		}
+		img.c-sponsor-block__image {
+			display: none;
+		}
+	}
+}

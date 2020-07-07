@@ -2,19 +2,38 @@
 /*
 	Non Sticky News.
 */  
-    $cat_id = get_category_by_slug( 'sponsored-post' );    
-	
-	$wp_query = new WP_Query( array(
-		'post_type'		        =>'post',
-		'post_status' 	        => 'publish',		
-		'post__not_in' 	        => $postIDs,
-        'category__not_in'      => array( $cat_id->term_id ),
+
+    $excludePosts = ( isset($featured_posts) && $featured_posts ) ? $featured_posts : '';
+    $cat_id = ( isset($excludeCatID) && $excludeCatID ) ? $excludeCatID : '';
+    //$cat_id = get_category_by_slug( 'sponsored-post' ); 
+
+    $args1 = array(
+        'post_type'             =>'post',
+        'post_status'           => 'publish',       
         'posts_per_page'        => 6,    
         'paged'                 => 1,    
-	));
+    );
+
+    if($cat_id) {
+        $args1['tax_query'] = array(
+            array(
+                'taxonomy' => 'category',
+                'field'    => 'id',
+                'terms'    => $cat_id,
+                'operator' => 'NOT IN'
+            )
+        );
+    }
+
+    if($excludePosts) {
+        $args1['post__not_in'] = $excludePosts;
+    }
+	
+	$wp_query = new WP_Query($args1);
+    
 	?>
 	
-	<section class="news-home">
+	<section class="news-home newsHomeV2">
 
         <div class="mobile-version" style="margin-bottom: 20px; text-align: center;"> <!-- Small Optional Ad Right -->
                 <?php $small_ad =  get_ads_script('small-ad-right'); echo $small_ad['ad_script']; ?>
@@ -50,7 +69,7 @@
 		 </section>
 		 <section class="ads-home">
 
-            <div class="desktop-version align-center" style="margin-bottom: 20px"> <!-- Right Rail Home -->
+            <div class="desktop-version align-center"> <!-- Right Rail Home -->
                 <?php $right_rail =  get_ads_script('right-rail'); 
                         echo $right_rail['ad_script'];
                 ?>
