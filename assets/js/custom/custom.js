@@ -3,6 +3,7 @@
  *	
  *	Developed by: Austin Crane	
  *	Designed by: Austin Crane
+ *  Modified by: Lisa DeBona
  */
 
 jQuery(document).ready(function ($) {
@@ -22,14 +23,23 @@ jQuery(document).ready(function ($) {
 
 
     /* Stick To Right Posts */
-    $(".stickRight .story-block").each(function(){
-        var target = $(this);
-        var photoHeight = $(this).find(".photo").height();
-        var descHeight = $(this).find(".desc").height();
-        if(descHeight>photoHeight) {
-            target.addClass("photoAbsolute");
-        }
+    adjust_right_side_post_images();
+    $(window).on("resize",function(){
+        adjust_right_side_post_images();
     });
+
+    function adjust_right_side_post_images() {
+        if( $(".stickRight .story-block").length > 0 ) {
+            $(".stickRight .story-block").each(function(){
+                var target = $(this);
+                var photoHeight = $(this).find(".photo").height();
+                var descHeight = $(this).find(".desc").height();
+                if(descHeight>photoHeight) {
+                    target.addClass("photoAbsolute");
+                }
+            });
+        }
+    }
 
 	
 
