@@ -14,11 +14,9 @@ jQuery(document).ready(function ($) {
 	*
 	------------------------------------*/
 	$("[href]").each(function() {
-        
-            if (this.href == window.location.href) {
-                $(this).addClass("active");
-            }
-       
+        if (this.href == window.location.href) {
+            $(this).addClass("active");
+        }
 	});
 
 
@@ -662,9 +660,21 @@ jQuery(document).ready(function ($) {
             }
         }
     }
-    
-    
 
+    /* To Delete Cookies */
+    //Cookies.remove('qcitysubcribeview');
+
+    /* Mobile Subscription */
+    $("#closeSubscribe, .signUpBtn").on("click",function(){
+        var d = new Date();
+        var mo = d.getMonth() + 1;
+        var month = (mo.toString().length < 2 ? "0"+mo.toString() : mo);
+        var day = (d.getDate().toString().length < 2 ? "0"+d.getDate().toString() :d.getDate());
+        var year = d.getFullYear();
+        var dateNow = year+month+day;
+        Cookies.set('qcitysubcribeview',dateNow);
+        $(".mobileSubscribe").remove();
+    });
 
 
 
