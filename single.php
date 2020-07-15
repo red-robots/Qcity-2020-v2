@@ -18,7 +18,7 @@
 	
 <?php if($sponsors): ?>
 <div class="wrapper cf wrap-mob sponsor-post-wrap">		
-	<div id="primary" class="content-area" style="<?php echo ($sponsors) ? '': ' margin: 0 auto; float:none; '; ?>">
+	<div id="primary" class="content-area full" style="<?php echo ($sponsors) ? '': ' margin: 0 auto; float:none; '; ?>">
 		
 		<div class="single-page">
 			<div class="sponsor-top">
@@ -56,7 +56,9 @@
 			</div>
 		</main><!-- #main -->
 	</div><!-- #primary -->
-	<?php ($sponsors) ? get_sidebar() : ''; ?>
+	<?php if ($sponsors) { ?>
+	<div class="fullSb"><?php get_sidebar(); ?></div>
+	<?php } ?>
 </div>
 
 	<?php  else: ?>
