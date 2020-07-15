@@ -708,6 +708,16 @@ jQuery(document).ready(function ($) {
     // }
     
 
+    /* Sponsored Content - Tool tip */
+    if( $(".whatIsThisTxt").length > 0 && $("#sponsorToolTip").length > 0 ) {
+        $("#sponsorToolTip").hover(
+            function(){
+                $(".whatIsThisTxt").addClass("show");
+            }, function(){
+                $(".whatIsThisTxt").removeClass("show");
+            }
+        );
+    }
 
 
 });// END #####################################    END
