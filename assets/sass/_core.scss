@@ -6499,6 +6499,9 @@ object {
 			margin: 10px 0;
 			padding-left: 20px;
 			padding-right: 20px;
+			.sponsored-by {
+				display: none;
+			}
 		}
 		.sponsor-top {
 			padding-left: 20px;
@@ -6507,6 +6510,9 @@ object {
 		.entry-meta .post-caption {
 			padding-left: 20px;
 			padding-right: 20px;
+		}
+		.sponsoredByDiv {
+			padding: 20px;
 		}
 	}
 }
