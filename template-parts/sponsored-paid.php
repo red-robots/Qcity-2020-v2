@@ -1,6 +1,6 @@
 <?php
 global $post;
-$currentId = ( isset($post->ID) && $post->ID ) ? $post->ID : 0;
+$currentId = ( isset($post->ID) && $post->ID ) ? $post->ID : '';
 
     $args = array(     
             'category_name'     => 'offers-invites+sponsored-post',        
@@ -9,6 +9,10 @@ $currentId = ( isset($post->ID) && $post->ID ) ? $post->ID : 0;
             'posts_per_page'    => 1,
             'orderby'           => 'rand',
         );
+
+    if($currentId) {
+        $args['post__not_in'] = array($currentId);
+    }
 
     $sponsored = new WP_Query($args);
 
@@ -28,7 +32,7 @@ $currentId = ( isset($post->ID) && $post->ID ) ? $post->ID : 0;
             $i_text = '';
             $i_display = '';
         }
-        if($sp_id!=$currentId) { ?>
+        ?>
 
         <section class="c-sponsor-block c-sponsor-block--filled sponsor-paid-wrapper">
             <div class="c-sponsor-block__text sponsor-col-paid">
@@ -60,8 +64,6 @@ $currentId = ( isset($post->ID) && $post->ID ) ? $post->ID : 0;
                 </a>
             </div>
         </section>
-        
-        <?php } ?>
 
 <?php
         endwhile;

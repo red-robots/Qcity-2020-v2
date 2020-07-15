@@ -677,36 +677,10 @@ jQuery(document).ready(function ($) {
     });
 
 
-    /* Sponsor Post - Move Sponsored By Box below `entry-content` */
-    $(".widget-area .sponsored-by").insertAfter(".sponsor-post-wrap .entry-content").wrap('<div class="sponsoredByDiv"></div>');
-    //sponsporAuthorBox();
-    // $(window).on("resize orientationchange",function(){
-    //     sponsporAuthorBox();
-    // });
-    // function sponsporAuthorBox() {
-    //     var windowWidth = $(window).width();
-    //     if(windowWidth<821) {
-    //         if( $(".sponsor-post-wrap").length > 0 && $(".widget-area .sponsored-by").length > 0 ) {
-    //             var spcontent = $(".widget-area .sponsored-by").clone().html();
-    //             var newDiv = '';
-
-    //             if( $(".sponsoredByDiv").length > 0 ) {
-    //                 newDiv = '<div class="sponsored-by">'+spcontent+'</div>';
-    //                 $(".sponsoredByDiv").html(newDiv);
-    //             } else {
-    //                 newDiv = '<div class="sponsoredByDiv"><div class="sponsored-by">'+spcontent+'</div></div>';
-    //                 $(newDiv).insertAfter(".sponsor-post-wrap .entry-content");
-    //             }
-                
-                
-    //         }
-    //     } else {
-    //         if( $(".sponsoredByDiv").length > 0 ) {
-    //             $(".sponsoredByDiv").remove();
-    //         }
-    //     }
-    // }
-    
+    /* Move `Sponsored By` Box on top of `Sponsored Content` box (bottom page) */
+    if( $(".sponsoredInfoBox").length>0 && $(".sponsored-by").length > 0 ) {
+        $(".sponsored-by").appendTo(".sponsoredInfoBox");
+    }
 
     /* Sponsored Content - Tool tip */
     if( $(".whatIsThisTxt").length > 0 && $("#sponsorToolTip").length > 0 ) {

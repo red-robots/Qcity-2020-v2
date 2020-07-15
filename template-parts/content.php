@@ -17,6 +17,16 @@ $single_post_comment_text = get_field('single_post_comment_text', 'option');
 
 $show_comment = ( isset($_GET['unapproved']) && isset($_GET['moderation-hash']) ) ? true : false;
 
+$categories = get_the_category($the_post_id);
+$is_sponsored_post = false;
+if($categories) {
+	foreach($categories as $c) {
+		$slug = $c->slug;
+		if($slug=='sponsored-post') {
+			$is_sponsored_post = true;
+		}
+	}
+}
 
 if( !defined('HIDE_ADS') ){
 	define('HIDE_ADS', $hide_ads);
@@ -99,38 +109,41 @@ if( !defined('HIDE_ADS') ){
 		
 		
 		<footer class="entry-footer">
-			
-			<?php if( $chooseAuthor ): ?>
-				<div class="author-block">
-					<?php 
-						$aName 			= get_the_author_meta('display_name');
-						$aDesc 			= get_the_author_meta('description');
-						$size         	= 'thumbnail';
-						$authorPhoto  	= null;							
-					?>
-					<a href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>">
-						<div class="left">						
-							<div class="photo">
-								<?php 
-								if ( $chooseAuthor != '' ):
-									$authorID   = $chooseAuthor['ID'];
-									$authorPhoto = get_field( 'custom_picture', 'user_' . $authorID );
-								else:
-									$authorPhoto = get_field('custom_picture','user_'.get_the_author_meta('ID'));
-								endif;
-								if ( $authorPhoto ):
-									echo wp_get_attachment_image( $authorPhoto, $size );
-								endif; //  if photo  ?>
+
+			<?php if ($is_sponsored_post) { ?>
+				<div class="sponsoredInfoBox"></div>
+			<?php } else { ?>
+				<?php if( $chooseAuthor ): ?>
+					<div class="author-block">
+						<?php 
+							$aName 			= get_the_author_meta('display_name');
+							$aDesc 			= get_the_author_meta('description');
+							$size         	= 'thumbnail';
+							$authorPhoto  	= null;							
+						?>
+						<a href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>">
+							<div class="left">						
+								<div class="photo">
+									<?php 
+									if ( $chooseAuthor != '' ):
+										$authorID   = $chooseAuthor['ID'];
+										$authorPhoto = get_field( 'custom_picture', 'user_' . $authorID );
+									else:
+										$authorPhoto = get_field('custom_picture','user_'.get_the_author_meta('ID'));
+									endif;
+									if ( $authorPhoto ):
+										echo wp_get_attachment_image( $authorPhoto, $size );
+									endif; //  if photo  ?>
+								</div>
 							</div>
-						</div>
-						<div class="info">
-							<h3><?php echo $aName; ?></h3>
-							<?php echo $aDesc; ?>
-						</div>
-					</a>
-				</div>
-			<?php endif; ?>
-			
+							<div class="info">
+								<h3><?php echo $aName; ?></h3>
+								<?php echo $aDesc; ?>
+							</div>
+						</a>
+					</div>
+				<?php endif; ?>
+			<?php } ?>
 
 			<?php if ( function_exists('rp4wp_children') ) { ?>
 				<?php rp4wp_children(); ?>
