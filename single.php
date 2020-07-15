@@ -22,12 +22,11 @@
 
 	
 <?php if($sponsors): ?>
-<div class="wrapper cf">		
+<div class="wrapper cf wrap-mob sponsor-post-wrap">		
 	<div id="primary" class="content-area" style="<?php echo ($sponsors) ? '': ' margin: 0 auto; float:none; '; ?>">
 		
 		<div class="single-page">
-			
-			<div  style="margin-bottom: 20px;">
+			<div class="sponsor-top">
 				<div class="category "><?php get_template_part('template-parts/primary-category'); ?></div>
 				<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 				<div class="single-page-excerpt">
@@ -51,20 +50,15 @@
 					<div class="post-caption"><?php echo $caption; ?></div>
 				</div>
 			<?php endif; ?>
-
 		</div>
 
 
 		<main id="main" class="site-main" role="main">
 			<div class="wrapper" >
-
 				<div class="single-page">
-
 					<?php get_template_part( 'template-parts/content', get_post_format() );	?>
-
 				</div>
 			</div>
-
 		</main><!-- #main -->
 	</div><!-- #primary -->
 	<?php ($sponsors) ? get_sidebar() : ''; ?>

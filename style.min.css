@@ -2472,7 +2472,8 @@ h1.entry-title{font-size:2rem;line-height:1.1;margin-bottom:10px}
 .single-page .category{margin-bottom:15px;margin-top:20px}
 .single-page .category a{border-bottom:2px solid #ffc000}
 .wrapper{padding-left:30px;padding-right:30px}
-#main .wrapper{padding-left:0;padding-right:0}
+@media screen and (max-width:820px){.wrapper.wrap-mob{padding-left:0;padding-right:0}
+}#main .wrapper{padding-left:0;padding-right:0}
 iframe.video-homepage{height:250px;width:auto}
 .qcity-sponsored-container{margin-bottom:20px}
 section.red-band{padding-right:30px}
@@ -2801,7 +2802,11 @@ embed,iframe,object{max-width:100%}
 .gallery-columns-8 .gallery-item{max-width:12.5%}
 .gallery-columns-9 .gallery-item{max-width:11.11%}
 .gallery-caption{display:block}
-section.c-sponsor-block.sponsor-paid-wrapper{padding-top:30px;padding-bottom:30px;display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-flex-direction:row;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row}
+.sponsor-post-wrap .sponsor-top{margin-bottom:20px}
+@media screen and (max-width:820px){.sponsor-post-wrap .content-area{width:100%}
+.sponsor-post-wrap .widget-area{width:100%;margin:10px 0;padding-left:20px;padding-right:20px}
+.sponsor-post-wrap .sponsor-top{padding-left:20px;padding-right:20px}
+}section.c-sponsor-block.sponsor-paid-wrapper{padding-top:30px;padding-bottom:30px;display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-flex-direction:row;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row}
 section.c-sponsor-block.sponsor-paid-wrapper .sponsor-col-paid{width:100%}
 @media(min-width:820px){section.c-sponsor-block.sponsor-paid-wrapper .sponsor-col-paid{width:50%}
 }@media(min-width:820px){section.c-sponsor-block.sponsor-paid-wrapper .sponsor-col-paid.sponsor-col-image{padding-left:18px}
