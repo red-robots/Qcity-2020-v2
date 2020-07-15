@@ -33,8 +33,8 @@ if( !defined('HIDE_ADS') ){
 			<?php
 			if ( 'post' === get_post_type() ) : ?>
 				<div class="entry-meta">				
-					<div>By <?php echo ( $guest_author ) ? $guest_author : get_the_author(); ?> </div>
-					<div><?php echo get_the_date(); ?></div>
+					<div class="authorName">By <?php echo ( $guest_author ) ? $guest_author : get_the_author(); ?> </div>
+					<div class="postDate"><?php echo get_the_date(); ?></div>
 				</div><!-- .entry-meta -->
 			<?php endif; ?>
 		</div>
