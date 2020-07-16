@@ -42,7 +42,16 @@ $currentId = ( isset($obj->ID) && $obj->ID ) ? $obj->ID : '';
         <section class="c-sponsor-block c-sponsor-block--filled sponsor-paid-wrapper">
             <div class="c-sponsor-block__text sponsor-col-paid">
                 <div class="c-sponsor-block__label t-uppercase t-lsp-b has-text-gray-dark t-size-xs has-xxs-btm-marg sponsored-title">
-                    <strong>Sponsored Content</strong>
+                    <?php if( !$is_home ) { ?>
+                        <?php if ($i_display && $i_title && $i_text) { ?>
+                            <strong class="sc">Sponsored Content</strong><span class="whatisThis"> - <a href="#" id="sponsorToolTip"><?php echo $i_title ?></a></span>
+                            <div class="whatIsThisTxt"><?php echo $i_text ?></div>
+                        <?php } else { ?>
+                            <strong>Sponsored Content</strong>
+                        <?php } ?>
+                    <?php } else { ?>
+                        <strong>Sponsored Content</strong>
+                    <?php } ?>
                 </div>
                 <div class="c-sponsor-block__main">
                     <p class="c-sponsor-block__sponsor has-text-sponsor t-uppercase t-lsp-m t-size-xs has-xxs-btm-marg"><strong><?php echo ($sponsors) ? $sponsors[0]->post_title: '' ?></strong></p>

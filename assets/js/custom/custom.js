@@ -684,11 +684,11 @@ jQuery(document).ready(function ($) {
 
     /* Sponsored Content - Tool tip */
     if( $(".whatIsThisTxt").length > 0 && $("#sponsorToolTip").length > 0 ) {
-        $("#sponsorToolTip").hover(
+        $(".whatisThis").hover(
             function(){
-                $(".whatIsThisTxt").addClass("show");
+                $(this).next(".whatIsThisTxt").addClass("show");
             }, function(){
-                $(".whatIsThisTxt").removeClass("show");
+                $(this).next(".whatIsThisTxt").removeClass("show");
             }
         );
     }
