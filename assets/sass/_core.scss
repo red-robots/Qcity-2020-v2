@@ -5560,10 +5560,16 @@ section.stickies-new{
 	.newsletter-link{
 		    display: block;
 		    position: absolute;
-		    left: 50%;
 		    top: 33px;
-		    width: 200px;
-		    margin-left: -100px;
+		    left: 0;
+		    width: 100%;
+		    margin: 0 0;
+		    padding-left: 94px;
+		    padding-right: 70px;
+		    // left: 50%;
+		    // 
+		    // width: 200px;
+		    // margin-left: -100px;
 		    text-align: center;
 		    .news-letter-btn{
 		    	background-color: #924020;
@@ -5573,6 +5579,9 @@ section.stickies-new{
 		    	line-height: 1;
 		    	padding: 9px 15px 6px;
 		    	text-transform: uppercase;
+		    	&.btn1 {
+		    		display: none;
+		    	}
 		    }
 
 		a{

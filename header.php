@@ -94,8 +94,13 @@ var params={};location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(s,k,v){
 			            </a>
 		            </div>
 
+                <?php $instagram = get_field("instagram_link_short","option"); ?>
                 <div class="newsletter-link" >
+                    <?php if ($instagram) { ?>
+                    <a href="<?php echo $instagram?>" target="_blank" class="news-letter-btn btn2">Instagram</a>
+                    <?php } else { ?>
                     <a href="<?php bloginfo('url'); ?>/email-signup/" class="news-letter-btn">Newsletter</a>
+                    <?php } ?>
                 </div>
 	        </div>
 

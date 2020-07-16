@@ -693,5 +693,23 @@ jQuery(document).ready(function ($) {
         );
     }
 
+    /* Mobile Header - Newsletter Button */
+    // adjust_newsLetter_button();
+    // $(window).on('resize orientationchange',function(){
+    //     adjust_newsLetter_button();
+    // });
+
+    // function adjust_newsLetter_button() {
+    //     var mobileWidth = $(window).width();
+    //     if(mobileWidth<481) {
+    //         var mw = mobileWidth - 112;
+    //         var logoWidth = $("#masthead .logo img").width();
+    //         var newsBtnWidth =  mw - logoWidth;
+    //         $(".newsletter-link").css("width",newsBtnWidth+"px");
+    //     } else {
+    //         $(".newsletter-link").css("width","");
+    //     }
+    // }
+    
 
 });// END #####################################    END

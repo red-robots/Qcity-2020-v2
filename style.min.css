@@ -2648,8 +2648,9 @@ section.signup .plan{max-width:767px;width:100%;margin:40px 0 0}
 .subscribe-wrap{padding:0 0 20px}
 article.big-post img{width:100%;height:auto}
 .burger{margin-top:-12px}
-.newsletter-link{display:block;position:absolute;left:50%;top:33px;width:200px;margin-left:-100px;text-align:center}
+.newsletter-link{display:block;position:absolute;top:33px;left:0;width:100%;margin:0;padding-left:94px;padding-right:70px;text-align:center}
 .newsletter-link .news-letter-btn{background-color:#924020;color:white;border-radius:16px;font-size:14px;line-height:1;padding:9px 15px 6px;text-transform:uppercase}
+.newsletter-link .news-letter-btn.btn1{display:none}
 .newsletter-link a{color:white;z-index:100;width:200px}
 .banner{float:none;display:block}
 .banner .banner-info .titles h1{font-size:20px}
