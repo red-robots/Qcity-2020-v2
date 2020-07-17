@@ -27,6 +27,7 @@ get_header(); ?>
 		include( locate_template('template-parts/sponsored-posts.php') );
 		include( locate_template('template-parts/subscribe-bar.php') ); 
 		include( locate_template('template-parts/non-sticky-news.php') );
+		include( locate_template('template-parts/instagram-feeds.php') );
 		include( locate_template('template-parts/home-bottom.php') );
 		?>
 			
