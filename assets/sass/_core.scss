@@ -1514,7 +1514,7 @@ section.red-band {
 .subscribe-wrap {
 	width: 100%;
 	clear: both;
-	padding: 60px 0;
+	padding: 60px 0 30px;
 
 }
 .subscribe {
@@ -2146,6 +2146,9 @@ article.big-post {
 		@media screen and (min-width: $deskwidth) {
 			font-size: 26px;
 			// min-height: 60px;
+		}
+		@media screen and (max-width:820px) {
+			font-size: 22px!important;
 		}
 	}
 	.info {
@@ -6663,6 +6666,12 @@ div.whatIsThisTxt {
 	.c-sponsor-block div.whatIsThisTxt {
 		padding-right: 30px;
 		margin-bottom: 0;
+	}
+	.home-instagram-feeds #sb_instagram #sbi_images .sbi_item {
+		display: none;
+	}
+	.home-instagram-feeds #sb_instagram #sbi_images .sbi_item:first-child {
+		display: block;
 	}
 }
 
