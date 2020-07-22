@@ -6619,7 +6619,7 @@ div.whatIsThisTxt {
 	width: 100%;
 	float: left;
 	padding-top: 20px;
-	padding-bottom: 80px;
+	padding-bottom: 60px;
 	.wrapper {
 		max-width: 1285px;
 		width: 100%;
@@ -6639,6 +6639,10 @@ div.whatIsThisTxt {
 			margin: 0 8px 0 0;
 			position: relative;
 			top: -1px;
+		}
+		&:hover {
+			background: #c5a92e;
+			box-shadow: none;
 		}
 	}
 }
