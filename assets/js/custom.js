@@ -7,6 +7,7 @@
  */
 
 jQuery(document).ready(function ($) {
+
 	
 	/*
 	*
@@ -661,20 +662,81 @@ jQuery(document).ready(function ($) {
         }
     }
 
-    /* To Delete Cookies */
-    //Cookies.remove('qcitysubcribeview');
+    function js_get_start_date() {
+      var d = new Date();
+      var mo = d.getMonth() + 1;
+      var month = (mo.toString().length < 2 ? "0"+mo.toString() : mo);
+      var day = (d.getDate().toString().length < 2 ? "0"+d.getDate().toString() :d.getDate());
+      var year = d.getFullYear();
+      var dateNow = year+month+day;
+      return dateNow;
+    }
 
-    /* Mobile Subscription */
-    $("#closeSubscribe, .signUpBtn").on("click",function(){
+    function js_get_date_range(numDays) {
         var d = new Date();
         var mo = d.getMonth() + 1;
         var month = (mo.toString().length < 2 ? "0"+mo.toString() : mo);
         var day = (d.getDate().toString().length < 2 ? "0"+d.getDate().toString() :d.getDate());
         var year = d.getFullYear();
-        var dateNow = year+month+day;
+        var sec = d.getSeconds();
+        var min = d.getMinutes();
+        var hour = d.getHours();
+        var time = hour+'-'+min;
+        var date_range = [];
+        for(i=0; i<=numDays ;i++) {
+            var nth = day + i;
+            var nthdate = year+month+nth;
+            date_range.push(nthdate);
+        }
+        var date_string = date_range.join();
+        return date_string;
+    }
+
+    /* Uncomment to Delete Cookies */
+    //Cookies.remove('qcitysubcribeview');
+    //Cookies.remove('qcitysubcribedaterange');
+    
+    /* Temporarily hide subscription pop-up on desktop when user close it. 
+     * Display it back after 2 days. 
+    */ 
+    var dateNow = js_get_start_date();
+    var dateRange = js_get_date_range(2);
+    var cookieDates = ( typeof Cookies.get('qcitysubcribedaterange')!="undefined" ) ? Cookies.get('qcitysubcribedaterange') : '';
+    if( $("#oakland-optin").length > 0 ) {
+        if(cookieDates) {
+            var arr_dates = cookieDates.split(",");
+            if($.inArray(dateNow, arr_dates) !== -1) {
+                document.querySelector(".oakland-lightbox").remove();
+            } else {
+                document.querySelector(".oakland-lightbox").style.display = "block";
+            }
+        } else {
+            document.querySelector(".oakland-lightbox").style.display = "block";
+        }
+    }
+
+
+    /* Mobile Subscription */
+    $("#closeSubscribe, .signUpBtn").on("click",function(){
         Cookies.set('qcitysubcribeview',dateNow);
         $(".mobileSubscribe").remove();
     });
+
+    $(document).on("click",".oakland-lightbox",function(e){
+        var container = $("#oakland-optin");
+        if (!container.is(e.target) && container.has(e.target).length === 0) {
+            set_cookies_subscription_popup();
+        }
+    });
+
+    $(document).on("click","#oakland-optin .oakland-close",function(e){
+        set_cookies_subscription_popup();
+    });
+
+    /* Set cookies when subscription is closed (DESKTOP) */
+    function set_cookies_subscription_popup() {
+        Cookies.set('qcitysubcribedaterange',dateRange);
+    }
 
 
     /* Move `Sponsored By` Box on top of `Sponsored Content` box (bottom page) */
