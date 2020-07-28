@@ -708,10 +708,20 @@ jQuery(document).ready(function ($) {
             if($.inArray(dateNow, arr_dates) !== -1) {
                 document.querySelector(".oakland-lightbox").remove();
             } else {
-                document.querySelector(".oakland-lightbox").style.display = "block";
+                /* Show only on News post */
+                if( $("body").hasClass("single-post") ) {
+                    document.querySelector(".oakland-lightbox").style.display = "block";
+                    document.querySelector(".oakland-lightbox").classList.add("show");
+                }
             }
         } else {
-            document.querySelector(".oakland-lightbox").style.display = "block";
+            /* Show only on News post */
+            if( $("body").hasClass("single-post") ) {
+                document.querySelector(".oakland-lightbox").style.display = "block";
+                document.querySelector(".oakland-lightbox").classList.add("show");
+            } else {
+                document.querySelector(".oakland-lightbox").style.display = "none";
+            }
         }
     }
 

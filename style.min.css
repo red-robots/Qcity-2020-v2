@@ -2848,6 +2848,11 @@ div.whatIsThisTxt{display:block;width:100%;float:left;padding:5px 0;box-shadow:n
 .home-instagram-feeds #sb_instagram #sbi_load .sbi_follow_btn{margin:0;display:block;width:100%}
 .home-instagram-feeds #sb_instagram #sbi_load .sbi_follow_btn a{display:block;width:100%;margin:0}
 .home-instagram-feeds #sb_instagram.sbi_width_resp{padding:8px;box-shadow:0 0 8px rgba(0,0,0,0.25);border-radius:5px}
+body.page-template-page-jobs .wrapper{padding-left:20px;padding-right:20px}
+body.page-template-page-jobs .listing-header{padding-left:0;padding-right:0}
+body.page-template-page-jobs .listing_initial .jobs-page{padding-left:0;padding-right:0}
+body.page-template-page-jobs .side-offer{margin-bottom:30px !important}
+body.page-template-page-jobs .jobs-page .job .info,body.page-template-page-jobs .jobs .job .info{text-align:left}
 }section.c-sponsor-block.sponsor-paid-wrapper{padding-top:30px;padding-bottom:30px;display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-flex-direction:row;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row}
 section.c-sponsor-block.sponsor-paid-wrapper .sponsor-col-paid{width:100%}
 @media(min-width:820px){section.c-sponsor-block.sponsor-paid-wrapper .sponsor-col-paid{width:50%}
@@ -2868,4 +2873,5 @@ section.c-sponsor-block.sponsor-paid-wrapper .c-sponsor-image-link img.c-sponsor
 }@media screen and (max-width:782px){body.logged-in.admin-bar{padding-top:85px}
 body.logged-in.admin-bar .site .site-header,body.logged-in.admin-bar .site .site-header .mobile-stick{top:46px !important}
 body.logged-in.admin-bar #wpadminbar{position:fixed !important;top:0;left:0;width:100%}
-}body .oakland-background{display:none}
+}body .oakland-lightbox{display:none !important}
+body.single-post .oakland-lightbox.show{display:block !important}

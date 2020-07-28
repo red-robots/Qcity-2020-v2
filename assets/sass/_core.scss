@@ -6710,7 +6710,29 @@ div.whatIsThisTxt {
 			border-radius: 5px;
 		}
 	}
-	
+	body.page-template-page-jobs {
+		.wrapper {
+			padding-left: 20px;
+			padding-right: 20px;
+		}
+		.listing-header {
+			padding-left: 0;
+			padding-right: 0;
+		}
+		.listing_initial {
+			.jobs-page {
+				padding-left: 0;
+				padding-right: 0;
+			}
+		}
+		.side-offer {
+			margin-bottom: 30px!important;
+		}
+		.jobs-page .job .info, 
+		.jobs .job .info {
+			text-align: left;
+		}
+	}
 }
 
 section.c-sponsor-block.sponsor-paid-wrapper {
@@ -6824,6 +6846,7 @@ section.c-sponsor-block.sponsor-paid-wrapper {
 	}
 }
 
-body .oakland-background {display:none;}
+body .oakland-lightbox {display:none !important;}
+body.single-post .oakland-lightbox.show {display:block !important;}
 
 

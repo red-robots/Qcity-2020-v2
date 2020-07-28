@@ -62,6 +62,7 @@ $twitter = get_field('twitter_link', 'option');
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 
+
 <?php
 get_template_part('template-parts/popups');
 get_template_part('template-parts/signup-mobile-version');
