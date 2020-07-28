@@ -6650,6 +6650,10 @@ div.whatIsThisTxt {
 		}
 	}
 }
+
+body .oakland-lightbox {display:none !important;}
+body.single-post .oakland-lightbox.show {display:block !important;}
+
 @media screen and (max-width:820px) {
 	span.whatisThis {
 		display: none;
@@ -6856,7 +6860,6 @@ section.c-sponsor-block.sponsor-paid-wrapper {
 	}
 }
 
-body .oakland-lightbox {display:none !important;}
-body.single-post .oakland-lightbox.show {display:block !important;}
+
 
 
