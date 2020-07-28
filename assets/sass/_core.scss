@@ -399,7 +399,7 @@ a {
 	}
 	.menu {
 		@include transition(all ease 1s);
-		/*overflow: none;*/
+		/*overflow: hidden;*/
 		display: block;
 	}
 	&.toggled .menu {
@@ -2033,6 +2033,7 @@ p{
 		position: relative;
 		line-height: 0;
 		margin-bottom: 10px;
+		background-color: #e6e6e6;
 		img {
 			width: 100%;
 			position: relative;
@@ -3497,7 +3498,7 @@ section.advertise-list	{
 			background-repeat: no-repeat;
 			background-position: center center;
 			background-size: cover;
-			overflow: none;
+			overflow: hidden;
 			position: relative;
 			margin-bottom: 20px;
 		}
@@ -4215,7 +4216,7 @@ body.home .subscribe-wrap .subscribe {
 /*.main-navigation .menu {
     -webkit-transition: all ease 1s;
     transition: all ease 1s;
-    overflow: none; 
+    overflow: hidden; 
     display: block;
 }*/
 
@@ -4300,7 +4301,7 @@ section.events {
 	    position: relative;
 	    line-height: 0;
 	    margin-bottom: 10px;
-	    overflow: none;
+	    overflow: hidden;
 
 	    img{
 	    	height: 275px;
@@ -4334,7 +4335,7 @@ section.qcity-news-container{
 	    position: relative;
 	    line-height: 0;
 	    margin-bottom: 10px;
-	    overflow: none;
+	    overflow: hidden;
 
 	    img{
 	    	height: 275px;
@@ -4453,7 +4454,7 @@ section.qcity-news-container{
 			height: 275px;
 			width: 100%;
 			position: relative;
-			overflow: none;
+			overflow: hidden;
 			background-repeat: no-repeat;
 			background-position: center center;
 			background-size: cover;
@@ -4469,7 +4470,7 @@ section.qcity-news-container{
 			height: 275px;
 			width: 100%;
 			position: relative;
-			overflow: none;
+			overflow: hidden;
 			background-repeat: no-repeat;
 			background-position: center center;
 			background-size: cover;
@@ -4486,7 +4487,7 @@ section.qcity-news-container{
 
 .event-photo{
 	position: relative;
-	overflow: none;
+	overflow: hidden;
 	height: 275px;
 	background-position: center center;
 	background-repeat: no-repeat;
@@ -4629,7 +4630,7 @@ section.red-band {
 
 	.story-home-right{
 		display: block;
-		/*overflow: none;*/
+		/*overflow: hidden;*/
 		background: none;
 		height: unset;
 		/*height: none;
@@ -5114,7 +5115,7 @@ body.author{
 
 		.story-home-right{
 			display: block;
-			/*overflow: none;*/
+			/*overflow: hidden;*/
 			background: none;
 			height: unset;
 			/*height: none;
@@ -6725,13 +6726,22 @@ div.whatIsThisTxt {
 				padding-right: 0;
 			}
 		}
-		.side-offer {
-			margin-bottom: 30px!important;
-		}
 		.jobs-page .job .info, 
 		.jobs .job .info {
 			text-align: left;
 		}
+	}
+	.side-offer {
+		margin-top: 30px !important;
+		margin-bottom: 30px !important;
+		width: 100%;
+		float: left;
+	}
+	.content-area {
+		min-height: 14em!important;
+	}
+	header.section-title h1, header.section-title h2 {
+		padding: 8px 15px 4px;
 	}
 }
 
