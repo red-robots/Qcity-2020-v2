@@ -638,6 +638,8 @@ jQuery(document).ready(function ($) {
                 // document.querySelector(".oakland-lightbox").style.display = "block";
                 // document.querySelector(".oakland-lightbox").classList.add("show");
                 $("body").addClass("show-signup-desktop");
+            } else {
+                $("body").addClass("hide-signup-desktop");
             }
         }
     } else {
@@ -651,6 +653,23 @@ jQuery(document).ready(function ($) {
             //document.querySelector(".oakland-lightbox").style.display = "none";
         }
     }
+
+    /* If signup box (desktop) is closed */
+    $(document).on("click",".oakland-lightbox",function(e){
+        var container = $("#oakland-optin");
+        if (!container.is(e.target) && container.has(e.target).length === 0) {
+            set_cookies_subscription_popup();
+            $("body").removeClass("show-signup-desktop");
+            $("body").addClass("hide-signup-desktop");
+        }
+    });
+
+    $(document).on("click","#oakland-optin .oakland-close",function(e){
+        set_cookies_subscription_popup();
+        $("body").removeClass("show-signup-desktop");
+        $("body").addClass("hide-signup-desktop");
+    });
+
 
     /* Uncomment to Delete Cookies */
     //Cookies.remove('qcitysubcribeview');
@@ -675,22 +694,13 @@ jQuery(document).ready(function ($) {
         }
     }
 
+
     $("#closeSubscribe, .signUpBtn").on("click",function(){
         //Cookies.set('qcitysubcribeview',dateNow);
         Cookies.set('qcitysubcribeview',dateRange);
         $(".mobileSubscribe").remove();
     });
 
-    $(document).on("click",".oakland-lightbox",function(e){
-        var container = $("#oakland-optin");
-        if (!container.is(e.target) && container.has(e.target).length === 0) {
-            set_cookies_subscription_popup();
-        }
-    });
-
-    $(document).on("click","#oakland-optin .oakland-close",function(e){
-        set_cookies_subscription_popup();
-    });
 
     /* Set cookies when subscription is closed (DESKTOP) */
     function set_cookies_subscription_popup() {
