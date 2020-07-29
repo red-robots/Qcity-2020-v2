@@ -6756,7 +6756,7 @@ section.c-sponsor-block.sponsor-paid-wrapper {
 	.sponsor-col-paid {
 		width: 100%;
 		@include tab {
-			width: 50%;
+			width: 48%;
 		}
 		&.sponsor-col-image {
 			@include tab {
@@ -6840,7 +6840,7 @@ section.c-sponsor-block.sponsor-paid-wrapper {
 			position: relative;
 		}
 	}
-	
+
 	@media screen and (min-width: 821px) {
 		display: none!important;
 	}

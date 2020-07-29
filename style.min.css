@@ -2859,7 +2859,7 @@ body.page-template-page-jobs .jobs-page .job .info,body.page-template-page-jobs 
 header.section-title h1,header.section-title h2{padding:8px 15px 4px}
 }section.c-sponsor-block.sponsor-paid-wrapper{padding-top:30px;padding-bottom:30px;display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-flex-direction:row;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row}
 section.c-sponsor-block.sponsor-paid-wrapper .sponsor-col-paid{width:100%}
-@media(min-width:820px){section.c-sponsor-block.sponsor-paid-wrapper .sponsor-col-paid{width:50%}
+@media(min-width:820px){section.c-sponsor-block.sponsor-paid-wrapper .sponsor-col-paid{width:48%}
 }@media(min-width:820px){section.c-sponsor-block.sponsor-paid-wrapper .sponsor-col-paid.sponsor-col-image{padding-left:18px}
 }section.c-sponsor-block.sponsor-paid-wrapper .c-sponsor-image-link{display:block;width:100%;float:left;background-size:cover;background-position:top center;background-repeat:no-repeat}
 section.c-sponsor-block.sponsor-paid-wrapper .c-sponsor-image-link img{width:100%;height:auto}
