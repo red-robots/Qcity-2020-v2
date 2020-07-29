@@ -4,6 +4,7 @@
  *	Developed by: Austin Crane	
  *	Designed by: Austin Crane
  *  Modified by: Lisa DeBona
+ *  Date Modified: 07.28.20
  */
 
 jQuery(document).ready(function ($) {
@@ -118,17 +119,6 @@ jQuery(document).ready(function ($) {
  		 });
 	});
 
-	/*
-	*
-	*	Smooth Scroll to Anchor
-	*
-	------------------------------------*/
-	 /*$('a').click(function(){
-	    $('html, body').animate({
-	        scrollTop: $('[name="' + $.attr(this, 'href').substr(1) + '"]').offset().top
-	    }, 500);
-	    return false;
-	});*/
 
     /*
     *   Slider
@@ -153,53 +143,10 @@ jQuery(document).ready(function ($) {
 
     
     var $img_width = $('section.c-sponsor-block').width();
-
     if( $img_width < 700) {
         $('.c-sponsor-block__image').css('height', '170px');
-        //console.log('Sponsor paid image is 160 px ...' + $img_width);
     }
     
-    
-	/*(function(){
-        $.post(
-            bellaajaxurl.url,
-            {
-                'action': 'bella_get_jobs_count',
-            },
-            function (response) {
-				var $response = $(response);
-				if ($response.find("response_data").length > 0) {
-                    $text = $response.find("response_data").eq(0).text();
-					$('.menu-item-58030').append('<span class="splat">'+$text+'</span>');
-                }
-            }
-        );
-	})();*/
-
-	/*
-	*
-	*	Navigation Events Count
-
-		local = 63042
-		site = 67367
-	*
-	------------------------------------*/
-
-	/*(function(){
-        $.post(
-            bellaajaxurl.url,
-            {
-                'action': 'bella_get_events_count',
-            },
-            function (response) {
-				var $response = $(response);
-				if ($response.find("response_data").length > 0) {
-                    $text = $response.find("response_data").eq(0).text();
-					$('.menu-item-67367').append('<span class="splat">'+$text+'</span>');
-                }
-            }
-        );
-	})(); */
 	/*
 	*
 	*	Video
@@ -368,8 +315,6 @@ jQuery(document).ready(function ($) {
         that.addClass('loading').find('.load-text').hide();        
         that.find('.load-icon').show();
 
-        //console.log('postID: ' + postID);
-
         $.ajax({
             url: ajaxURL,
             type: 'post',
@@ -381,8 +326,6 @@ jQuery(document).ready(function ($) {
                 perPage: perPage
             },
             success: function(response){
-
-                //console.log('Response: ' + response);
 
                 if( response == 0){
                     $('.qcity-news-container').append('<p>No more post to load!</p>');
@@ -403,8 +346,6 @@ jQuery(document).ready(function ($) {
                 
             }, 
             error: function(response){
-                // console.log('Error: ');
-                // console.log(response);
             }
         });
 
@@ -428,8 +369,6 @@ jQuery(document).ready(function ($) {
         that.addClass('loading').find('.load-text').hide();        
         that.find('.load-icon').show();
 
-        //console.log('Page: ' + newPage);
-
         $.ajax({
             url: ajaxURL,
             type: 'post',
@@ -440,8 +379,6 @@ jQuery(document).ready(function ($) {
                 postid: postid
             },
             success: function(response){
-
-                //console.log('Response: ' + response);
 
                 if( response == 0){
                     $('.sidebar-container').append('<p>No more post to load!</p>');
@@ -461,8 +398,6 @@ jQuery(document).ready(function ($) {
                 
             }, 
             error: function(response){
-                // console.log('Error: ');
-                // console.log(response);
             }
         });
 
@@ -484,8 +419,6 @@ jQuery(document).ready(function ($) {
         that.addClass('loading').find('.load-text').hide();        
         that.find('.load-icon').show();
 
-        //console.log('Page: ' + newPage);
-
         $.ajax({
             url: ajaxURL,
             type: 'post',
@@ -494,8 +427,6 @@ jQuery(document).ready(function ($) {
                 action: action
             },
             success: function(response){
-
-                //console.log('Response: ' + response);
 
                 if( response == 0){
                     $('.business-directory-table').append('<p>No more post to load!</p>');
@@ -515,8 +446,6 @@ jQuery(document).ready(function ($) {
                 
             }, 
             error: function(response){
-                // console.log('Error: ');
-                // console.log(response);
             }
         });
 
@@ -539,7 +468,6 @@ jQuery(document).ready(function ($) {
             var action  = 'qcity_church_search';
             var post_type = $('.post_type').val();
 
-            //console.log('Action: ' + action);
             $('.qcity-sponsored-container').hide();
             $('.listing_initial').hide();
             $('.listing_search').show();
@@ -570,7 +498,6 @@ jQuery(document).ready(function ($) {
                         $('.listing_search_result span.load-icon').hide();
                         message = '<h4>Oops! Something went wrong. Please try again later. </h4>';
                         $('.listing_search_result').html(message);
-                        //console.log( response );
                     }
                 });
             }
@@ -582,7 +509,6 @@ jQuery(document).ready(function ($) {
         
     $('.qcity_search_icon').on('click', function(){
         var search_word = $('#qcity_search').val();
-        //console.log('Search clicked! Looking for ' + search_word);
         if( search_word != '' ){
             window.location.href = '/?s=' + search_word + '&pg=1&perpage=20';
         }
@@ -693,7 +619,6 @@ jQuery(document).ready(function ($) {
     }
 
     /* Uncomment to Delete Cookies */
-    //Cookies.remove('qcitysubcribeview');
     //Cookies.remove('qcitysubcribedaterange');
     
     /* Temporarily hide subscription pop-up on desktop when user close it. 
@@ -705,7 +630,7 @@ jQuery(document).ready(function ($) {
     if( $("#oakland-optin").length > 0 ) {
         if(cookieDates) {
             var arr_dates = cookieDates.split(",");
-            if($.inArray(dateNow, arr_dates) !== -1) {
+            if($.inArray(dateNow, arr_dates) !== -1) { /* Do not show signup box */
                 document.querySelector(".oakland-lightbox").remove();
             } else {
                 /* Show only on News post */
@@ -725,10 +650,32 @@ jQuery(document).ready(function ($) {
         }
     }
 
+    /* Uncomment to Delete Cookies */
+    //Cookies.remove('qcitysubcribeview');
 
     /* Mobile Subscription */
+    var cookieMobileSubscribe = ( typeof Cookies.get('qcitysubcribeview')!="undefined" ) ? Cookies.get('qcitysubcribeview') : '';
+    if( $("#mobileSignUpBox").length > 0 ) {
+        if(cookieMobileSubscribe) {
+
+            var arr_dates_mob = cookieMobileSubscribe.split(",");
+            if($.inArray(dateNow, arr_dates_mob) !== -1) { /* Do not show signup box */
+                document.getElementById("mobileSignUpBox").style.display = "none";
+                $("#mobileSignUpBox").remove();
+            } else {
+                document.getElementById("mobileSignUpBox").style.display = "block";
+                $("#mobileSignUpBox").addClass("animated fadeIn");
+            }
+
+        } else {
+            document.getElementById("mobileSignUpBox").style.display = "block";
+            $("#mobileSignUpBox").addClass("animated fadeIn");
+        }
+    }
+
     $("#closeSubscribe, .signUpBtn").on("click",function(){
-        Cookies.set('qcitysubcribeview',dateNow);
+        //Cookies.set('qcitysubcribeview',dateNow);
+        Cookies.set('qcitysubcribeview',dateRange);
         $(".mobileSubscribe").remove();
     });
 
