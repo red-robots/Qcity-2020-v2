@@ -627,30 +627,28 @@ jQuery(document).ready(function ($) {
     var dateNow = js_get_start_date();
     var dateRange = js_get_date_range(2);
     var cookieDates = ( typeof Cookies.get('qcitysubcribedaterange')!="undefined" ) ? Cookies.get('qcitysubcribedaterange') : '';
-    if( $("#oakland-optin").length > 0 ) {
-        if(cookieDates) {
-            var arr_dates = cookieDates.split(",");
-            if($.inArray(dateNow, arr_dates) !== -1) { /* Do not show signup box */
-                //document.querySelector(".oakland-lightbox").remove();
-                $("body").addClass("hide-signup-desktop");
-            } else {
-                /* Show only on News post */
-                if( $("body").hasClass("single-post") ) {
-                    // document.querySelector(".oakland-lightbox").style.display = "block";
-                    // document.querySelector(".oakland-lightbox").classList.add("show");
-                    $("body").addClass("show-signup-desktop");
-                }
-            }
+    if(cookieDates) {
+        var arr_dates = cookieDates.split(",");
+        if($.inArray(dateNow, arr_dates) !== -1) { /* Do not show signup box */
+            //document.querySelector(".oakland-lightbox").remove();
+            $("body").addClass("hide-signup-desktop");
         } else {
             /* Show only on News post */
             if( $("body").hasClass("single-post") ) {
                 // document.querySelector(".oakland-lightbox").style.display = "block";
                 // document.querySelector(".oakland-lightbox").classList.add("show");
                 $("body").addClass("show-signup-desktop");
-            } else {
-                $("body").addClass("hide-signup-desktop");
-                //document.querySelector(".oakland-lightbox").style.display = "none";
             }
+        }
+    } else {
+        /* Show only on News post */
+        if( $("body").hasClass("single-post") ) {
+            // document.querySelector(".oakland-lightbox").style.display = "block";
+            // document.querySelector(".oakland-lightbox").classList.add("show");
+            $("body").addClass("show-signup-desktop");
+        } else {
+            $("body").addClass("hide-signup-desktop");
+            //document.querySelector(".oakland-lightbox").style.display = "none";
         }
     }
 
