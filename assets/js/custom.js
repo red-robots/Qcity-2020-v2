@@ -631,21 +631,25 @@ jQuery(document).ready(function ($) {
         if(cookieDates) {
             var arr_dates = cookieDates.split(",");
             if($.inArray(dateNow, arr_dates) !== -1) { /* Do not show signup box */
-                document.querySelector(".oakland-lightbox").remove();
+                //document.querySelector(".oakland-lightbox").remove();
+                $("body").addClass("hide-signup-desktop");
             } else {
                 /* Show only on News post */
                 if( $("body").hasClass("single-post") ) {
-                    document.querySelector(".oakland-lightbox").style.display = "block";
-                    document.querySelector(".oakland-lightbox").classList.add("show");
+                    // document.querySelector(".oakland-lightbox").style.display = "block";
+                    // document.querySelector(".oakland-lightbox").classList.add("show");
+                    $("body").addClass("show-signup-desktop");
                 }
             }
         } else {
             /* Show only on News post */
             if( $("body").hasClass("single-post") ) {
-                document.querySelector(".oakland-lightbox").style.display = "block";
-                document.querySelector(".oakland-lightbox").classList.add("show");
+                // document.querySelector(".oakland-lightbox").style.display = "block";
+                // document.querySelector(".oakland-lightbox").classList.add("show");
+                $("body").addClass("show-signup-desktop");
             } else {
-                document.querySelector(".oakland-lightbox").style.display = "none";
+                $("body").addClass("hide-signup-desktop");
+                //document.querySelector(".oakland-lightbox").style.display = "none";
             }
         }
     }

@@ -6651,10 +6651,20 @@ div.whatIsThisTxt {
 	}
 }
 
+body.hide-signup-desktop,
+body.single-post.hide-signup-desktop,
 body .oakland-lightbox {display:none !important;}
+
+body.single-post.show-signup-desktop,
 body.single-post .oakland-lightbox.show {display:block !important;}
 
+
 @media screen and (max-width:820px) {
+	/* Hide Signup PopUp (desktop version) */
+	html body .oakland-lightbox,
+	html body.single-post.show-signup-desktop,
+	html body.single-post .oakland-lightbox.show {display:none !important;}
+
 	span.whatisThis {
 		display: none;
 	}
