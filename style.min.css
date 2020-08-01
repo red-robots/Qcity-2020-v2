@@ -2858,6 +2858,7 @@ body.page-template-page-jobs .jobs-page .job .info,body.page-template-page-jobs 
 .side-offer{margin-top:30px !important;margin-bottom:30px !important;width:100%;float:left}
 .content-area{min-height:14em !important}
 header.section-title h1,header.section-title h2{padding:8px 15px 4px}
+.member_lists .members ul{margin:0;padding:0}
 }section.c-sponsor-block.sponsor-paid-wrapper{padding-top:30px;padding-bottom:30px;display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-flex-direction:row;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row}
 section.c-sponsor-block.sponsor-paid-wrapper .sponsor-col-paid{width:100%}
 @media(min-width:820px){section.c-sponsor-block.sponsor-paid-wrapper .sponsor-col-paid{width:48%}
@@ -2878,4 +2879,5 @@ section.c-sponsor-block.sponsor-paid-wrapper .c-sponsor-image-link img.c-sponsor
 }@media screen and (max-width:782px){body.logged-in.admin-bar{padding-top:85px}
 body.logged-in.admin-bar .site .site-header,body.logged-in.admin-bar .site .site-header .mobile-stick{top:46px !important}
 body.logged-in.admin-bar #wpadminbar{position:fixed !important;top:0;left:0;width:100%}
+.member_lists .members ul{-webkit-column-count:1;-moz-column-count:1;column-count:1}
 }

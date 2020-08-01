@@ -11,13 +11,11 @@ textarea {
 	@include font-size(1);
 	line-height: $font__line-height-body;
 }
-
 h1, h2, h3, h4, h5, h6 {
 	clear: both;
 	font-family: $font-heading;
 	line-height: 1.1;
 }
-
 .entry-content {
 	h3 {
 		color: $color-dark-gray;
@@ -6757,6 +6755,10 @@ body.single-post .oakland-lightbox.show {display:block !important;}
 	header.section-title h1, header.section-title h2 {
 		padding: 8px 15px 4px;
 	}
+	.member_lists .members ul {
+		margin: 0 0;
+		padding: 0 0;
+	}
 }
 
 section.c-sponsor-block.sponsor-paid-wrapper {
@@ -6871,6 +6873,9 @@ section.c-sponsor-block.sponsor-paid-wrapper {
 			left: 0;
 			width: 100%;
 		}
+	}
+	.member_lists .members ul {
+		column-count: 1;
 	}
 }
 
