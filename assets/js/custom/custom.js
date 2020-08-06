@@ -595,8 +595,10 @@ jQuery(document).ready(function ($) {
       var day = (d.getDate().toString().length < 2 ? "0"+d.getDate().toString() :d.getDate());
       var year = d.getFullYear();
       var dateNow = year+month+day;
+      //var dateNow = $("body").attr("data-today");
       return dateNow;
     }
+
 
     function js_get_date_range(numDays) {
         var d = new Date();
@@ -630,13 +632,10 @@ jQuery(document).ready(function ($) {
     if(cookieDates) {
         var arr_dates = cookieDates.split(",");
         if($.inArray(dateNow, arr_dates) !== -1) { /* Do not show signup box */
-            //document.querySelector(".oakland-lightbox").remove();
             $("body").addClass("hide-signup-desktop");
         } else {
             /* Show only on News post */
             if( $("body").hasClass("single-post") ) {
-                // document.querySelector(".oakland-lightbox").style.display = "block";
-                // document.querySelector(".oakland-lightbox").classList.add("show");
                 $("body").addClass("show-signup-desktop");
             } else {
                 $("body").addClass("hide-signup-desktop");
@@ -645,12 +644,9 @@ jQuery(document).ready(function ($) {
     } else {
         /* Show only on News post */
         if( $("body").hasClass("single-post") ) {
-            // document.querySelector(".oakland-lightbox").style.display = "block";
-            // document.querySelector(".oakland-lightbox").classList.add("show");
             $("body").addClass("show-signup-desktop");
         } else {
             $("body").addClass("hide-signup-desktop");
-            //document.querySelector(".oakland-lightbox").style.display = "none";
         }
     }
 
@@ -672,21 +668,28 @@ jQuery(document).ready(function ($) {
 
 
     /* Uncomment to Delete Cookies */
-    //Cookies.remove('qcitysubcribeview');
+    //Cookies.remove('qcitysubcribeview2');
 
     /* Mobile Subscription */
-    var cookieMobileSubscribe = ( typeof Cookies.get('qcitysubcribeview')!="undefined" ) ? Cookies.get('qcitysubcribeview') : '';
+    var cookieMobileSubscribe = ( typeof Cookies.get('qcitysubcribeview2')!="undefined" ) ? Cookies.get('qcitysubcribeview2') : '';
     if( $("#mobileSignUpBox").length > 0 ) {
         if(cookieMobileSubscribe) {
-
-            var arr_dates_mob = cookieMobileSubscribe.split(",");
-            if($.inArray(dateNow, arr_dates_mob) !== -1) { /* Do not show signup box */
+            
+            if(dateNow===cookieMobileSubscribe) {
                 document.getElementById("mobileSignUpBox").style.display = "none";
-                $("#mobileSignUpBox").remove();
             } else {
                 document.getElementById("mobileSignUpBox").style.display = "block";
                 $("#mobileSignUpBox").addClass("animated fadeIn");
             }
+
+            // var arr_dates_mob = cookieMobileSubscribe.split(",");
+            // if($.inArray(dateNow, arr_dates_mob) !== -1) { /* Do not show signup box */
+            //     document.getElementById("mobileSignUpBox").style.display = "none";
+            //     $("#mobileSignUpBox").remove();
+            // } else {
+            //     document.getElementById("mobileSignUpBox").style.display = "block";
+            //     $("#mobileSignUpBox").addClass("animated fadeIn");
+            // }
 
         } else {
             document.getElementById("mobileSignUpBox").style.display = "block";
@@ -695,10 +698,14 @@ jQuery(document).ready(function ($) {
     }
 
 
-    $("#closeSubscribe, .signUpBtn").on("click",function(){
+    $("#closeSubscribe, .signUpBtn").on("click",function(e){
+        e.preventDefault();
         //Cookies.set('qcitysubcribeview',dateNow);
-        Cookies.set('qcitysubcribeview',dateRange);
+        var res = Cookies.set('qcitysubcribeview2',dateNow);
         $(".mobileSubscribe").remove();
+        if( $(this).hasClass('signUpBtn') ) {
+            window.location.href = $(this).attr("href");
+        }
     });
 
 

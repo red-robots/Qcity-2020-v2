@@ -65,7 +65,7 @@ $twitter = get_field('twitter_link', 'option');
 
 <?php
 get_template_part('template-parts/popups');
-//get_template_part('template-parts/signup-mobile-version');
+get_template_part('template-parts/signup-mobile-version');
 wp_footer(); 
 ?>
 

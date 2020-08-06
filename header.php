@@ -79,8 +79,18 @@ var params={};location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(s,k,v){
 </script>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
-
-<body <?php body_class(); ?>>
+<?php
+$day = date('d') - 1;
+$dateToday = date('Ymd');
+$dateRange = '';
+for($i=0; $i<3; $i++) {
+  $d = $day + $i;
+  $days = str_pad($d,2, '0', STR_PAD_LEFT);
+  $comma = ($i>0) ? ',':'';
+  $dateRange .= $comma . date('Ym'). $days;
+}
+?>
+<body <?php body_class(); ?> data-today="<?php echo $dateToday ?>" data-range="<?php echo $dateRange ?>">
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'acstarter' ); ?></a>
 
