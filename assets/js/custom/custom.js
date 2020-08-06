@@ -595,7 +595,6 @@ jQuery(document).ready(function ($) {
       var day = (d.getDate().toString().length < 2 ? "0"+d.getDate().toString() :d.getDate());
       var year = d.getFullYear();
       var dateNow = year+month+day;
-      //var dateNow = $("body").attr("data-today");
       return dateNow;
     }
 
@@ -626,8 +625,9 @@ jQuery(document).ready(function ($) {
     /* Temporarily hide subscription pop-up on desktop when user close it. 
      * Display it back after 2 days. 
     */ 
-    var dateNow = js_get_start_date();
-    var dateRange = js_get_date_range(2);
+    //var dateNow = js_get_start_date();
+    var dateNow = $("body").attr("data-today");
+    var dateRange = $("body").attr("data-range");
     var cookieDates = ( typeof Cookies.get('qcitysubcribedaterange')!="undefined" ) ? Cookies.get('qcitysubcribedaterange') : '';
     if(cookieDates) {
         var arr_dates = cookieDates.split(",");
@@ -675,21 +675,14 @@ jQuery(document).ready(function ($) {
     if( $("#mobileSignUpBox").length > 0 ) {
         if(cookieMobileSubscribe) {
             
-            if(dateNow===cookieMobileSubscribe) {
+            var arr_dates_mob = cookieMobileSubscribe.split(",");
+            if($.inArray(dateNow, arr_dates_mob) !== -1) { /* Do not show signup box */
                 document.getElementById("mobileSignUpBox").style.display = "none";
+                $("#mobileSignUpBox").remove();
             } else {
                 document.getElementById("mobileSignUpBox").style.display = "block";
                 $("#mobileSignUpBox").addClass("animated fadeIn");
             }
-
-            // var arr_dates_mob = cookieMobileSubscribe.split(",");
-            // if($.inArray(dateNow, arr_dates_mob) !== -1) { /* Do not show signup box */
-            //     document.getElementById("mobileSignUpBox").style.display = "none";
-            //     $("#mobileSignUpBox").remove();
-            // } else {
-            //     document.getElementById("mobileSignUpBox").style.display = "block";
-            //     $("#mobileSignUpBox").addClass("animated fadeIn");
-            // }
 
         } else {
             document.getElementById("mobileSignUpBox").style.display = "block";

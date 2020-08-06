@@ -80,8 +80,10 @@ var params={};location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(s,k,v){
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <?php
-$day = date('d') - 1;
-$dateToday = date('Ymd');
+$dd = date('d') - 1;
+$day = str_pad($dd,2,'0',STR_PAD_LEFT);
+$nexday = str_pad($dd+1,2,'0',STR_PAD_LEFT);
+$dateToday = date('Ym') . $day;
 $dateRange = '';
 for($i=0; $i<3; $i++) {
   $d = $day + $i;
@@ -89,8 +91,9 @@ for($i=0; $i<3; $i++) {
   $comma = ($i>0) ? ',':'';
   $dateRange .= $comma . date('Ym'). $days;
 }
+$start_end = $dateToday . ',' . date('Ym') . $nexday;
 ?>
-<body <?php body_class(); ?> data-today="<?php echo $dateToday ?>" data-range="<?php echo $dateRange ?>">
+<body <?php body_class(); ?> data-today="<?php echo date('Ymd') ?>" data-dates="<?php echo $start_end ?>" data-range="<?php echo $dateRange ?>">
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'acstarter' ); ?></a>
 
