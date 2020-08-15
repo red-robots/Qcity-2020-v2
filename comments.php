@@ -30,8 +30,8 @@ $single_post_below_form = get_field('single_post_below_form', 'option');
 
 		<?php  $commentsNum = get_comments_number(); ?>
 
-		<h2 class="comments-title">
-			This article has <?php echo $commentsNum; ?> <?php echo ($commentsNum>1) ?  'comments' : 'comment'; ?>
+		<h2 class="comments-title" style="font-size:20px;margin-top:30px">
+			This article has <?php echo $commentsNum; ?> <?php echo ($commentsNum>1) ?  'comments' : 'comment'; ?>.
 		</h2>
 		
 		<?php
