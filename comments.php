@@ -27,16 +27,21 @@ $single_post_below_form = get_field('single_post_below_form', 'option');
 	<?php
 	// You can start editing here -- including this comment!
 	if ( have_comments() ) : ?>
-		<h2 class="comments-title">
-			<?php
-				printf( // WPCS: XSS OK.
-					esc_html( _nx( 'One thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', get_comments_number(), 'comments title', 'acstarter' ) ),
-					number_format_i18n( get_comments_number() ),
-					'<span>' . get_the_title() . '</span>'
-				);
-			?>
-		</h2>
 
+		<?php  $commentsNum = get_comments_number(); ?>
+
+		<h2 class="comments-title">
+			This article has <?php echo $commentsNum; ?> <?php echo ($commentsNum>1) ?  'comments' : 'comment'; ?>
+		</h2>
+		
+		<?php
+			// printf( // WPCS: XSS OK.
+			// 	esc_html( _nx( 'One thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', get_comments_number(), 'comments title', 'acstarter' ) ),
+			// 	number_format_i18n( get_comments_number() ),
+			// 	'<span>' . get_the_title() . '</span>'
+			// );
+		?>
+		
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // Are there comments to navigate through? ?>
 		<nav id="comment-nav-above" class="navigation comment-navigation" role="navigation">
 			<h2 class="screen-reader-text"><?php esc_html_e( 'Comment navigation', 'acstarter' ); ?></h2>
