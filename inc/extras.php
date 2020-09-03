@@ -524,30 +524,39 @@ if($is_post) { ?>
         });
 
 
-        function add_stick_to_right() {
+      function add_stick_to_right() {
 
-          $(".components-base-control__field").each(function(){
+         $(".components-base-control__field").each(function(){
             var div = $(this);
             var str = $(this).text().replace(/\s+/g,"").trim().toLowerCase();
             if(str=='sticktothetopoftheblog') {
-              div.addClass("sticktothetopoftheblogField");
-              div.css("margin-bottom","5px");
-              var parent = $(this).parents(".components-base-control");
-              parent.addClass("stickyOptionsDiv");
-              if( $("#stickToRightInputDiv").length==0 ) {
-                parent.prepend(newInputField);
-              }
-            } else if(str=='pendingreview') {
-              div.appendTo(".stickyOptionsDiv");
-              $(".edit-post-sidebar .editor-post-format").addClass("moved");
+            div.addClass("sticktothetopoftheblogField");
+            div.css("margin-bottom","5px");
+            var parent = $(this).parents(".components-base-control");
+            parent.addClass("stickyOptionsDiv");
+            if( $("#stickToRightInputDiv").length==0 ) {
+               parent.prepend(newInputField);
             }
-          });
+            } else if(str=='pendingreview') {
+            div.appendTo(".stickyOptionsDiv");
+               $(".edit-post-sidebar .editor-post-format").addClass("moved");
+            }
+         });
 
-          if(selectedVal) {
+         if(selectedVal) {
             $("input.stickToRightInput").attr("checked",true);
-          } 
+         }
 
-        }
+         if( $("#meta_sponsored_content_post").length>0 ) {
+            if( $("#meta_sponsored_content_post").is(":checked") ) {
+               var enable_sponsored = $("#meta_sponsored_content_post:checked").val();
+               $("#sponsoredContentInfo").addClass('checked');
+               $("#inspector-checkbox-control-sponsored").prop('checked',true);
+               $("#inspector-checkbox-control-sponsored").attr('checked',true);
+            }
+         } 
+
+      }
 
 
         $(document).on("click","input.stickToRightInput",function(){
@@ -596,14 +605,7 @@ if($is_post) { ?>
             }
         });
 
-        if( $("#meta_sponsored_content_post").length>0 ) {
-            if( $("#meta_sponsored_content_post").is(":checked") ) {
-                var enable_sponsored = $("#meta_sponsored_content_post:checked").val();
-                $("#sponsoredContentInfo").addClass('checked');
-                $("#inspector-checkbox-control-sponsored").prop('checked',true);
-                $("#inspector-checkbox-control-sponsored").attr('checked',true);
-            }
-        }
+        
 
         $(document).on("click",".editor-post-taxonomies__hierarchical-terms-choice input.components-checkbox-control__input",function(){
             var labelName = $(this).parents(".components-base-control__field").find("label.components-checkbox-control__label").text().replace(/\s+/g,'-').trim().toLowerCase();
