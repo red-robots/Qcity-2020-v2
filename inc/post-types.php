@@ -60,6 +60,13 @@ function js_custom_init() {
             'single'    => 'Job',
             'supports'  => array('title','editor')
         ),
+        array(
+            'post_type' => 'story',
+            'menu_name' => 'Stories',
+            'plural'    => 'Stories',
+            'single'    => 'Story',
+            'supports'  => array('title','editor')
+        ),
     );
     
     if($post_types) {
@@ -192,6 +199,14 @@ function ii_custom_taxonomies() {
                 'single'    => 'Level',
                 'taxonomy'  => 'level',
                 'slug'      => array('slug' => 'level', 'with_front' => false)
+            ),
+            array(
+                'post_type' => 'story',
+                'menu_name' => 'Story Categories',
+                'plural'    => 'Story Categories',
+                'single'    => 'Story Category',
+                'taxonomy'  => 'story-category',
+                'slug'      => array('slug' => 'story-category', 'with_front' => false)
             ),
         );
     
