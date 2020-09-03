@@ -11,6 +11,13 @@ $currentId = ( isset($obj->ID) && $obj->ID ) ? $obj->ID : '';
             'post_status'       => 'publish',
             'posts_per_page'    => 1,
             'orderby'           => 'rand',
+            'meta_query'        => array(
+                array(
+                    'key'       => 'sponsored_content_post',
+                    'compare'   => '=',
+                    'value'     => 1,
+                ),      
+            ),
         );
 
     if($is_single) {

@@ -373,18 +373,32 @@ function get_posts_ids($right_posts) {
 /* This custom field will show up under 'Status & Visibility' meta box */
 function custom_meta_post_visibility_box($object) {
     wp_nonce_field(basename(__FILE__), "custom_meta_post_visibility-nonce");
-    $display_post = get_post_meta($object->ID, "custom_meta_post_visibility", true);
+    wp_nonce_field(basename(__FILE__), "sponsored_content_post-nonce");
+    $display_post = (get_post_meta($object->ID, "custom_meta_post_visibility", true)) ? 1:'';
     $selected = ($display_post==1) ? 1 : 0;
     $screen = get_current_screen();
     $action = ( isset($screen->action) && $screen->action=='add' ) ? 'add':'edit';
     $is_selected = ($display_post==1) ? ' checked':'';
+    $sponsoredVal = ( get_post_meta($object->ID, "sponsored_content_post", true) ) ? 1:'';
+    $is_enabled = ($sponsoredVal) ? ' checked':'';
     ?>
     <div id="compStickToRight" class="components-panel__row">
         <div class="components-base-control">
             <div class="components-base-control__field">
-                <label for="meta_display_post<?php echo $val; ?>" class="components-checkbox-control__input-container">
+                <label for="meta_display_post1" class="components-checkbox-control__input-container">
                     <span class="inputlabel">Stick on right side</span>
                     <input type="checkbox" id="meta_display_post1" name="custom_meta_post_visibility" class="components-checkbox-control__input cmeta_display_post meta_display_post1" value="1"<?php echo $is_selected?>>
+                    <i class="chxboxstat"></i>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div id="customMetaSponsoredPost" class="components-panel__row">
+        <div class="components-base-control customMetaSponsoredPostInput">
+            <div class="components-base-control__field">
+                <label for="sponsored_content_post" class="components-checkbox-control__input-container">
+                    <span class="inputlabel">Enable Sponsored Content</span>
+                    <input type="checkbox" id="meta_sponsored_content_post" name="sponsored_content_post" class="components-checkbox-control__input sponsored_content_post" value="1"<?php echo $is_enabled?>>
                     <i class="chxboxstat"></i>
                 </label>
             </div>
@@ -402,6 +416,9 @@ function save_custom_meta_post_visibility_box($post_id, $post, $update) {
     if (!isset($_POST["custom_meta_post_visibility-nonce"]) || !wp_verify_nonce($_POST["custom_meta_post_visibility-nonce"], basename(__FILE__)))
         return $post_id;
 
+    if (!isset($_POST["sponsored_content_post-nonce"]) || !wp_verify_nonce($_POST["sponsored_content_post-nonce"], basename(__FILE__)))
+        return $post_id;
+
     if(!current_user_can("edit_post", $post_id))
         return $post_id;
 
@@ -412,12 +429,11 @@ function save_custom_meta_post_visibility_box($post_id, $post, $update) {
     if($slug != $post->post_type)
         return $post_id;
 
-    $post_visibility = "";
-    if(isset($_POST["custom_meta_post_visibility"]))
-    {
-      $post_visibility = $_POST["custom_meta_post_visibility"];
-    }   
+    $post_visibility = ( isset($_POST["custom_meta_post_visibility"]) && $_POST["custom_meta_post_visibility"] ) ? $_POST["custom_meta_post_visibility"]:''; 
     update_post_meta($post_id, "custom_meta_post_visibility", $post_visibility);
+
+    $enabled_sponsored = ( isset($_POST["sponsored_content_post"]) && $_POST["sponsored_content_post"] ) ? $_POST["sponsored_content_post"]:''; 
+    update_post_meta($post_id, "sponsored_content_post", $enabled_sponsored);
 
     if(isset($_POST['sticky'])) {
       $stickToTop = $_POST['sticky'];
@@ -446,15 +462,44 @@ add_action("save_post", "save_custom_meta_post_visibility_box", 10, 3);
 function jupload_scripts() { 
 $screen = get_current_screen();
 $is_post = ( isset($screen->base) && $screen->base=='post' ) ? true:false; 
+$postId = ( isset($_GET['post']) && $_GET['post'] ) ? $_GET['post'] : 0;
+$sponsoredVal = ( get_post_meta($postId, "sponsored_content_post", true) ) ? 1:'';
+$terms = ($postId) ? get_the_terms($postId,'category') : '';
+$post_categories = array();
+$post_is_sponsored = '';
+if($terms) {
+    foreach($terms as $t) {
+        $slug = $t->slug;
+        $post_categories[] = $slug;
+        if($slug=='sponsored-post') {
+            $post_is_sponsored = $slug;
+        }
+    }
+}
+
 if($is_post) { ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
     jQuery.noConflict();
     jQuery(document).ready(function($){
+        var is_sponsored_post = '<?php echo $post_is_sponsored;?>';
+        var post_categories = <?php echo json_encode($post_categories);?>;
         var selectedVal = ( typeof $("#display-post-meta-box input.cmeta_display_post:checked").val() !== 'undefined' ) ? $("#display-post-meta-box input.cmeta_display_post:checked").val() : '';
         var postmetaForm = $("#display-post-meta-box .components-base-control").clone();
+        var newInputField = '<div id="stickToRightInputDiv" class="components-base-control__field" style="margin-bottom:5px">';
+            newInputField += '<span class="components-checkbox-control__input-container"><input id="inspector-checkbox-control-888" class="components-checkbox-control__input stickToRightInput" type="checkbox" value=""><i class="chxboxstat"></i></span><label class="components-checkbox-control__label" for="inspector-checkbox-control-888">Stick on right side</label>';
+            
+            if(is_sponsored_post) {
+                newInputField += '<label id="sponsoredContentInfo" for="inspector-checkbox-control-sponsored"><input id="inspector-checkbox-control-sponsored" class="components-checkbox-control__input sponsoredContentCbox" type="checkbox"><span id="sponsoredInputBox"></span><span id="labelSponsoredContent">Enable Sponsored Content</span></label>';
+                
+            } else {
+                newInputField += '<label id="sponsoredContentInfo" for="inspector-checkbox-control-sponsored" style="display:none"><input id="inspector-checkbox-control-sponsored" class="components-checkbox-control__input sponsoredContentCbox" type="checkbox"><span id="sponsoredInputBox"></span><span id="labelSponsoredContent">Enable Sponsored Content</span></label>';
+                $("input#meta_sponsored_content_post").prop('checked',false);
+                $("input#meta_sponsored_content_post").removeAttr('checked',true);
+                //$("input#meta_sponsored_content_post").val("");
+            }
 
-        var newInputField = '<div id="stickToRightInputDiv" class="components-base-control__field" style="margin-bottom:5px"><span class="components-checkbox-control__input-container"><input id="inspector-checkbox-control-888" class="components-checkbox-control__input stickToRightInput" type="checkbox" value=""><i class="chxboxstat"></i></span><label class="components-checkbox-control__label" for="inspector-checkbox-control-888">Stick on right side</label></div>';
+            newInputField += '</div>';
       
         add_stick_to_right();
 
@@ -465,17 +510,10 @@ if($is_post) { ?>
         //   } 
         // });
 
+
+
         $(document).on("click",function(){
           add_stick_to_right();
-          // $(".components-button.edit-post-sidebar__panel-tab").each(function(){
-          //   var target = $(this);
-          //   if( target.hasClass("is-active") ) {
-          //     var label = target.attr('data-label');
-          //     if(label=='Document') {
-          //       add_stick_to_right();
-          //     }
-          //   }
-          // });
         });
 
         $(document).on("click",'button.components-button.components-panel__body-toggle',function(){
@@ -512,7 +550,6 @@ if($is_post) { ?>
         }
 
 
-
         $(document).on("click","input.stickToRightInput",function(){
           var target = $(this);
           if(this.checked) {
@@ -530,7 +567,56 @@ if($is_post) { ?>
           }
         });
 
+        if( $("input.cmeta_display_post").length>0 ) {
+            if( $("input.cmeta_display_post").is(":checked") ) {
+                $("input.stickToRightInput").prop('checked',true);
+                $("input.stickToRightInput").attr('checked',true);
+            } else {
+                $("input.stickToRightInput").prop('checked',false);
+                $("input.stickToRightInput").removeAttr('checked',true);
+            }
+        }
 
+        /* Enable Sponsored Post */
+        var enabledSponsoredInput = ( typeof $("#meta_sponsored_content_post:checked").val() !== 'undefined' ) ? $("#meta_sponsored_content_post:checked").val() : '';
+        $(document).on("click","input#inspector-checkbox-control-sponsored",function(){
+            if( this.checked ) {
+                $(this).prop('checked',true);
+                $(this).attr('checked',true);
+                $(this).parent().addClass("checked");
+                $("input#meta_sponsored_content_post").prop('checked',true);
+                $("input#meta_sponsored_content_post").attr('checked',true);
+            } else {
+                $(this).prop('checked',false);
+                $(this).removeAttr('checked');
+                $(this).parent().removeClass("checked");
+
+                $("input#meta_sponsored_content_post").prop('checked',false);
+                $("input#meta_sponsored_content_post").removeAttr('checked',true);
+            }
+        });
+
+        if( $("#meta_sponsored_content_post").length>0 ) {
+            if( $("#meta_sponsored_content_post").is(":checked") ) {
+                var enable_sponsored = $("#meta_sponsored_content_post:checked").val();
+                $("#sponsoredContentInfo").addClass('checked');
+                $("#inspector-checkbox-control-sponsored").prop('checked',true);
+                $("#inspector-checkbox-control-sponsored").attr('checked',true);
+            }
+        }
+
+        $(document).on("click",".editor-post-taxonomies__hierarchical-terms-choice input.components-checkbox-control__input",function(){
+            var labelName = $(this).parents(".components-base-control__field").find("label.components-checkbox-control__label").text().replace(/\s+/g,'-').trim().toLowerCase();
+            if( this.checked ) {
+                if(labelName=='sponsored-post') {
+                    $("#sponsoredContentInfo").show();
+                } 
+            } else {
+                if(labelName=='sponsored-post') {
+                    $("#sponsoredContentInfo").hide();
+                } 
+            }
+        });
         
     });
     </script>
@@ -548,7 +634,7 @@ function post_visibility_head_scripts(){ ?>
     }
     .edit-post-sidebar .editor-post-format {
         position: relative;
-        top: 70px;
+        top: 80px;
     }
     .edit-post-sidebar .editor-post-format.moved {
       top: 110px;
@@ -638,7 +724,7 @@ function post_visibility_head_scripts(){ ?>
         top: 0px;
         left: 2px;
         color: #FFF;
-        font-size: 10px;
+        font-size: 11px;
         line-height: 1;
     }
     #display-post-meta-box label.components-checkbox-control__input-container {
@@ -653,7 +739,52 @@ function post_visibility_head_scripts(){ ?>
         left: 0;
     }
     
-    .metabox-location-side #display-post-meta-box{display:none!important;} /* This is the actual meta box. This will do the trick. */
+    /* This is the actual meta box. This will do the trick. */
+    .metabox-location-side #display-post-meta-box{display:none!important;}
+    #sponsoredContentInfo {
+        display: block;
+        max-width: 230px;   
+        width: 230px;   
+        position: absolute;
+        top: 51px;
+        left: 0;
+    }
+    #labelSponsoredContent {
+        display: block;
+        width: 100%;   
+        padding-left: 28px;
+    }
+    #sponsoredInputBox {
+        display: block;
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        top: 1px;
+        left: 0;
+        z-index: 3;
+        border: 2px solid transparent;
+        border-radius: 2px;
+        transition: none;
+        font-style: normal;
+        background: #FFF;
+        border: 2px solid #6c7781;
+    }
+    #sponsoredContentInfo input {
+        z-index: 50;
+    }
+    #sponsoredContentInfo.checked #sponsoredInputBox {
+        background: #11a0d2;
+    }
+    #sponsoredContentInfo.checked #sponsoredInputBox:before {
+        content: "\2714";
+        display: inline-block;
+        position: absolute;
+        top: 0px;
+        left: 2px;
+        color: #FFF;
+        font-size: 11px;
+        line-height: 1;
+    }
     </style>
 <?php
 }
