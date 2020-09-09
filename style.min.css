@@ -2876,6 +2876,67 @@ section.c-sponsor-block.sponsor-paid-wrapper .c-sponsor-image-link img.c-sponsor
 .mobileSubscribe #closeSubscribe{cursor:pointer;position:absolute;top:12px;right:12px;z-index:5;color:#FFF;display:block;width:20px;height:20px;text-align:center;font-family:"UniversLTPro-55Roman",Arial,'sans-serif';font-size:24px;line-height:1}
 .mobileSubscribe #closeSubscribe span{display:inline-block;position:relative}
 @media screen and (min-width:821px){.mobileSubscribe{display:none !important}
+}#page.site{position:relative;overflow-x:hidden;overflow-y:auto}
+body.category.category-stories #content,body.single.single-story #content{margin-top:0;padding-top:104px}
+body.category.category-stories.logged-in.admin-bar #content,body.single.single-story.logged-in.admin-bar #content{padding-top:97px}
+body.category.category-stories .swp_floating_horizontal_wrapper.bottom,body.category.category-stories .ads_home_leaderboard,body.single.single-story .swp_floating_horizontal_wrapper.bottom,body.single.single-story .ads_home_leaderboard{display:none !important}
+.share-link{position:relative}
+.share-link .share{display:none;position:absolute;top:32px;right:0;background:#e6e6e6;padding:0 15px}
+.share-link .share:before{content:"";display:block;width:0;height:0;border-bottom:10px solid #e6e6e6;border-left:10px solid transparent;border-right:10px solid transparent;position:absolute;top:-9px;right:15px}
+.share-link .share a{color:#FFF !important}
+.new-page-fullwrap{width:100%;float:left;background:#d0d0c6}
+.new-page-fullwrap .top-page{width:100%;float:left;background:#f7f7f7;padding-top:20px;padding-bottom:18px;position:relative;z-index:20}
+.new-page-fullwrap .top-page .arrow-down{width:100%;position:absolute;bottom:-32px;left:0;text-align:center}
+.new-page-fullwrap .top-page .arrow-down span{width:0;height:0;border-top:15px solid #f7f7f7;border-left:15px solid transparent;border-right:15px solid transparent}
+.new-page-fullwrap .pageWrap{display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-flex-direction:row;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-justify-content:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;padding-left:6%;padding-right:6%;position:relative;z-index:25}
+.new-page-fullwrap .sponsor-info{width:50%;float:left}
+.new-page-fullwrap .sponsor-info a,.new-page-fullwrap .sponsor-info img{display:block;width:185px;height:auto;float:left}
+.new-page-fullwrap .poweredbytext{font-size:10px;font-weight:300;line-height:1.1;letter-spacing:1px;text-transform:uppercase;color:#9a9a9a;margin-bottom:3px}
+.new-page-fullwrap .share-link{width:50%;float:right;text-align:right}
+.new-page-fullwrap .share-link a{display:inline-block;text-decoration:none;color:#377da7;text-transform:uppercase;font-size:13px;line-height:1.2}
+.new-page-fullwrap .share-link a:hover{color:#8ab3cc}
+.new-page-fullwrap .new-page-content{width:100%;float:left;padding-top:75px;padding-bottom:70px}
+.new-page-fullwrap .new-page-wrapper{max-width:1010px;width:100%;margin:0 auto;padding-left:30px;padding-right:30px}
+.new-page-fullwrap .page-heading{text-align:center;position:relative}
+.new-page-fullwrap .page-heading:after{content:"";display:block;width:80px;height:2px;background:#924020;margin:30px auto 0;position:relative}
+.new-page-fullwrap .page-heading .main-title{margin:0 0 8px;font-family:"UniversLTPro-65Bold";font-size:18px;line-height:1.2;color:#924020;text-transform:uppercase}
+.new-page-fullwrap .page-heading .main-text{font-family:"UniversLTPro-55Roman";font-size:20px;line-height:1.2}
+.new-page-fullwrap .story-posts{margin-top:50px}
+.new-page-fullwrap .story-posts .flexwrap{display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-flex-direction:row;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-justify-content:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}
+.new-page-fullwrap .story-posts .story{width:50%;padding:15px}
+@media(min-width:820px){.new-page-fullwrap .story-posts .story{width:20%}
+}.new-page-fullwrap .story-posts .short-desc{font-size:12px;line-height:1.3;margin-top:10px;text-align:center}
+.new-page-fullwrap .story-posts .photo{position:relative;width:100%;float:left}
+.new-page-fullwrap .story-posts .imgdiv{display:block;text-decoration:none;position:relative;background-size:cover;background-position:top center;background-repeat:no-repeat}
+.new-page-fullwrap .story-posts .imgdiv img{width:100%;height:auto}
+.new-page-fullwrap .story-posts span.title{width:100%;height:100%;position:absolute;top:0;left:0;-webkit-transition:all ease .3s;transition:all ease .3s;background:rgba(0,0,0,0.75);color:#FFF;opacity:0;display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-flex-direction:row;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center}
+.new-page-fullwrap .story-posts span.title .txt{display:block;width:100%;text-align:center;padding:10px;font-family:"UniversLTPro-45Light";font-size:18px;line-height:1.2;-webkit-transform:translateY(20px);-ms-transform:translateY(20px);transform:translateY(20px);-webkit-transition:all ease .3s;transition:all ease .3s}
+.new-page-fullwrap .story-posts .link:hover span.title{opacity:1}
+.new-page-fullwrap .story-posts .link:hover span.title .txt{-webkit-transform:translateY(0);-ms-transform:translateY(0);transform:translateY(0)}
+.story-single-content .head{text-align:center;margin-bottom:30px}
+.story-single-content .page-title{font-family:"UniversLTPro-55Roman";font-size:30px;line-height:1.3;margin:0;display:block;width:100%}
+.story-single-content .post-info{width:100%;font-family:"UniversLTPro-55Roman";font-size:14px}
+.story-single-content .post-info span{display:inline-block;margin:2px 10px;font-size:13px;line-height:1;position:relative;top:-1px}
+.story-single-content .photo-wrap{width:100%;float:left;margin-bottom:30px}
+.story-single-content .spImages img{width:33.33%;float:left}
+.story-single-content .spImages.count1 img{width:100%;height:auto}
+.story-single-content .spImages.morepics{display:-ms-grid;display:grid;-ms-grid-columns:auto auto;grid-template-columns:auto auto;grid-gap:15px;margin-bottom:10px}
+.story-single-content .spImages.morepics .frame-photo img{width:100%;height:auto;-o-object-fit:cover;object-fit:cover;overflow:hidden}
+.story-single-content .photo-caption{font-family:"UniversLTPro-55Roman";font-size:13px;line-height:1.2;text-align:center;margin-top:10px;width:100%;float:left;color:#717171}
+.story-single-content .story-post-date{width:100%;float:left;text-align:center;margin-bottom:10px}
+.story-single-content .story-post-date span{text-transform:uppercase;font-size:15px;line-height:1.2;letter-spacing:2px;color:#924020}
+.story-single-content .sptitle{font-family:"UniversLTPro-55Roman";font-size:30px;line-height:1.3;text-align:center}
+.story-single-content .storypost.first{margin-bottom:30px}
+.story-single-content .storypost.more{margin-top:30px}
+.story-single-content .storypost.more .sptitle{margin-bottom:20px}
+.story-single-content .share-link a.back{margin-right:25px}
+.story-single-content .share-link a.back .fa-share{-webkit-transform:rotateY(180deg);transform:rotateY(180deg)}
+body.single-story #content{background:#d0d0c6}
+body.logged-in.admin-bar .mobile-stick{top:25px}
+body.logged-in.admin-bar #content{padding-top:97px}
+@media screen and (max-width:767px){body.category.category-stories #content,body.single.single-story #content{padding-top:86px}
+.new-page-fullwrap .sponsor-info a,.new-page-fullwrap .sponsor-info img{width:150px}
+.new-page-fullwrap .share-link a.back{margin-right:0}
 }@media screen and (max-width:782px){body.logged-in.admin-bar{padding-top:85px}
 body.logged-in.admin-bar .site .site-header,body.logged-in.admin-bar .site .site-header .mobile-stick{top:46px !important}
 body.logged-in.admin-bar #wpadminbar{position:fixed !important;top:0;left:0;width:100%}

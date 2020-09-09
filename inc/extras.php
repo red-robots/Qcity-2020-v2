@@ -83,6 +83,14 @@ function slug_tax_event_category( $template ) {
 
 }
 
+/* Options page under Story custom post type */
+if( function_exists('acf_add_options_page') ) {
+    acf_add_options_sub_page(array(
+        'page_title'     => 'Story Options',
+        'menu_title'    => 'Story Options',
+        'parent_slug'    => 'edit.php?post_type=story',
+    ));
+}
 
 /*
 *   Related Posts by category

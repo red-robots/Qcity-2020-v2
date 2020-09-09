@@ -741,6 +741,11 @@ jQuery(document).ready(function ($) {
     //         $(".newsletter-link").css("width","");
     //     }
     // }
+
+    $(".share-link #sharerLink").on("click",function(e){
+        e.preventDefault();
+        $(".share-link .share").slideToggle();
+    });
     
 
 });// END #####################################    END

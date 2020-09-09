@@ -8,70 +8,74 @@
  */
 
 get_header(); 
-get_template_part('template-parts/banner-category');
-?>
-<div class="wrapper">
-	<div class="archive_post_title">
-		<div class="content-area-title">
-			<header class="section-title ">
-				<h1 class="dark-gray"><?php the_archive_title(); ?></h1>
-			</header>
+$obj = get_queried_object();
+$current_term_id = ( isset($obj->term_id) && $obj->term_id ) ? $obj->term_id : '';
+$current_term_name = ( isset($obj->name) && $obj->name ) ? $obj->name : '';
+$current_term_slug = ( isset($obj->slug) && $obj->slug ) ? $obj->slug : '';
+if($current_term_slug=='stories') {
+
+	echo get_template_part('template-parts/content-category-stories');
+
+} else { ?>
+
+	<?php get_template_part('template-parts/banner-category'); ?>
+
+	<div class="wrapper">
+		<div class="archive_post_title">
+			<div class="content-area-title">
+				<header class="section-title ">
+					<h1 class="dark-gray"><?php the_archive_title(); ?></h1>
+				</header>
+			</div>
 		</div>
 	</div>
-</div>
-<div class="wrapper">
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+	<div class="wrapper">
+		<div id="primary" class="content-area">
+			<main id="main" class="site-main" role="main">
 
-			<div class="category-post">		
-			
-			
-				<?php if ( have_posts() ) : ?>
-					<!-- <header class="page-header">
+				<div class="category-post">		
+					<?php if ( have_posts() ) : ?>
 						<?php
-							//the_archive_title( '<h1 class="page-title">', '</h1>' );
-							//the_archive_description( '<div class="taxonomy-description">', '</div>' );
-						?>
-					</header>.page-header -->
-
-					<?php
-					$i=0;
-					/* Start the Loop */
-					while ( have_posts() ) : the_post(); 
-						if( !is_paged() ) : $i++;
-							if( $i == 1 ) {
-								get_template_part( 'template-parts/story-first-block' );
-								echo '<div class="second-row ">';
-								
-							} else {
+						$i=0;
+						/* Start the Loop */
+						while ( have_posts() ) : the_post(); 
+							if( !is_paged() ) : $i++;
+								if( $i == 1 ) {
+									get_template_part( 'template-parts/story-first-block' );
+									echo '<div class="second-row ">';
+									
+								} else {
+									get_template_part( 'template-parts/story-block-category' );
+								}
+							else : $i++;
+								if( $i == 1 ) {
+									echo '<div class="second-row ">';
+								}
 								get_template_part( 'template-parts/story-block-category' );
-							}
-						else : $i++;
-							if( $i == 1 ) {
-								echo '<div class="second-row ">';
-							}
-							get_template_part( 'template-parts/story-block-category' );
-						endif;
+							endif;
 
-						get_template_part( 'template-parts/separator');
+							get_template_part( 'template-parts/separator');
 
-					endwhile;
+						endwhile;
 
-					echo '</div>';
+						echo '</div>';
 
-					pagi_posts_nav();
+						pagi_posts_nav();
 
-				else :
+					else :
 
-					get_template_part( 'template-parts/content', 'none' );
+						get_template_part( 'template-parts/content', 'none' );
 
-				endif; ?>
+					endif; ?>
 
-			</div>
+				</div>
 
-		</main><!-- #main -->
-	</div><!-- #primary -->
+			</main><!-- #main -->
+		</div><!-- #primary -->
 
-	<?php get_sidebar(); ?>
-</div>
+		<?php get_sidebar(); ?>
+	</div>
+
+<?php } ?>
+
 <?php get_footer();
