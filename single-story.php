@@ -32,7 +32,9 @@ get_header(); ?>
 
 			<div class="share-link">
 				<?php if ($story_main_title) { ?>
+				<span style="display:none;">
 					<a href="<?php echo get_site_url() ?>/category/stories/" class="back"><i class="fas fa-share"></i> Back to <?php echo $story_main_title ?></a>
+				</span>
 				<?php } ?>
 				<?php if ( do_shortcode('[social_warfare]') ) { ?>
 				<a href="#" id="sharerLink"><i class="fas fa-share"></i> <span>Share</span></a>
@@ -46,6 +48,14 @@ get_header(); ?>
 	</div>
 
 	<div class="new-page-content">
+
+		<div class="story-view-all">
+			<div class="story-view">
+				<a href="<?php echo get_site_url() ?>/category/stories/" id="viewAllStoriesBtn" class="viewAll"><span>View Other Posts</span></a>
+			</div>
+		</div>
+		
+
 		<div class="new-page-wrapper">
 			<div class="head">
 				<h1 class="page-title"><?php the_title(); ?></h1>
@@ -86,30 +96,35 @@ get_header(); ?>
 						</div>
 						<?php } ?>
 
-						<?php if ($date) { ?>
-							<div class="story-post-date"><span><?php echo $date ?></span></div>	
-						<?php } ?>
+						<div class="story-wrapper">
+							<?php if ($date) { ?>
+								<div class="story-post-date"><span><?php echo $date ?></span></div>	
+							<?php } ?>
 
-						<?php if ($title) { ?>
-							<h2 class="sptitle"><?php echo $title ?></h2>	
-						<?php } ?>
-						
-						<?php if ($content) { ?>
-							<div class="spcontent"><?php echo $content ?></div>	
-						<?php } ?>	
+							<?php if ($title) { ?>
+								<h2 class="sptitle"><?php echo $title ?></h2>	
+							<?php } ?>
+							
+							<?php if ($content) { ?>
+								<div class="spcontent"><?php echo $content ?></div>	
+							<?php } ?>	
+						</div>
+
 					</article>
 					
 					<?php } else { ?>
 
 					<article class="storypost more">
 
-						<?php if ($date) { ?>
-							<div class="story-post-date"><span><?php echo $date ?></span></div>	
-						<?php } ?>
+						<div class="story-wrapper">
+							<?php if ($date) { ?>
+								<div class="story-post-date"><span><?php echo $date ?></span></div>	
+							<?php } ?>
 
-						<?php if ($title) { ?>
-							<h2 class="sptitle"><?php echo $title ?></h2>	
-						<?php } ?>
+							<?php if ($title) { ?>
+								<h2 class="sptitle"><?php echo $title ?></h2>	
+							<?php } ?>
+						</div>
 
 						<?php if ($photos) { 
 						$countImg = count($photos); 
@@ -128,9 +143,14 @@ get_header(); ?>
 						</div>
 						<?php } ?>
 
+						
 						<?php if ($content) { ?>
-							<div class="spcontent"><?php echo $content ?></div>	
+						<div class="story-wrapper">
+							<div class="spcontent"><?php echo $content ?></div>
+						</div>	
 						<?php } ?>	
+						
+
 					</article>
 
 					<?php } ?>
