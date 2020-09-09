@@ -78,6 +78,31 @@ var currentURL = '<?php echo get_permalink();?>';
 var params={};location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(s,k,v){params[k]=v});
 </script>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+<?php 
+$obj = get_queried_object();
+$current_term_id = ( isset($obj->term_id) && $obj->term_id ) ? $obj->term_id : '';
+$current_term_name = ( isset($obj->name) && $obj->name ) ? $obj->name : '';
+$current_term_slug = ( isset($obj->slug) && $obj->slug ) ? $obj->slug : '';
+if ( get_post_type()=='story')  { 
+$articles = get_field("story_article"); 
+if($articles) {
+  $story = $articles[0];
+  $images = $story['images'];
+  $text = ( isset($story['post_content']) && $story['post_content'] ) ? $story['post_content']:'';
+  $content = ($text) ? shortenText(strip_tags($text),200," ","...") : '';
+  $photos = ( isset($images['photos']) && $images['photos'] ) ? $images['photos']:"";
+  $mainPic = ($photos) ? $photos[0] : '';
+}
+?>
+<meta property="og:url"                content="<?php echo get_permalink(); ?>" />
+<meta property="og:type"               content="article" />
+<meta property="og:title"              content="<?php echo get_the_title(); ?>" />
+<meta property="og:description"        content="<?php echo $content ?>" />
+<?php if ($mainPic) { ?>
+<meta property="og:image"              content="<?php echo $mainPic['url'] ?>" />
+<?php } ?>
+<?php } ?>
 </head>
 <?php
 $dd = date('d') - 1;
