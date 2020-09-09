@@ -3,6 +3,7 @@ $story_powered_by_text = get_field("story_powered_by_text","option");
 $story_sponsor_logo = get_field("story_sponsor_logo","option");
 $story_sponsor_website = get_field("story_sponsor_website","option");
 $story_main_title = get_field("story_main_title","option");
+$single_post_comment_text = get_field('single_post_comment_text', 'option');
 get_header(); ?>
 
 <?php while ( have_posts() ) : the_post(); 
@@ -159,6 +160,29 @@ get_header(); ?>
 			</div>	
 			<?php } ?>
 		</div>
+
+		<?php if ( comments_open() || get_comments_number() ) : ?>
+		<div class="story-wrapper">
+			<div class="comments-section">
+				<div class="comments-trigger">
+					<div class="logo-holder">
+						<img src="<?php bloginfo('template_url'); ?>/images/qc-logo.png" alt="">
+					</div>
+					<div class="text-holder">
+						<p><?php echo $single_post_comment_text; ?>  <a id="commentBtn" class="click_class" >Click here</a></p>
+					</div>
+				</div>
+
+				<div class="comments-block" style="display:block;">
+					<?php 
+						// If comments are open or we have at least one comment, load up the comment template.
+						comments_template();			
+					?>
+				</div>			
+			</div>
+		</div>
+		<?php endif;  ?>
+
 	</div>
 </div>
 <?php endwhile; ?>
