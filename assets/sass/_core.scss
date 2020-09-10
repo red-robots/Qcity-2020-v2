@@ -7205,6 +7205,7 @@ body.single.single-story {
 
 
 body.single-story {
+	padding-bottom: 0!important;
 	#content {
 		background: #D0D0C6;
 	}
@@ -7233,8 +7234,8 @@ body.single-story {
 		}
 		a.viewAll {
 			display: inline-block;
-			width: 85px;
-			height: 85px;
+			width: 70px;
+			height: 70px;
 			border-radius: 100%;
 			background: $color-red;
 			color: #FFF;
@@ -7243,7 +7244,7 @@ body.single-story {
 			line-height: 1.2;
 			text-align: center;
 			position: absolute;
-			top: 0;
+			top: -30px;
 			right: 6%;
 			transition: all ease .3s;
 			box-shadow: 0 8px 15px rgba(0,0,0,0.3);
@@ -7256,6 +7257,11 @@ body.single-story {
 			&:hover {
 				transform: translateY(-5px);
 			}
+			@include tab {
+				width: 85px;
+				height: 85px;
+				top: 0;
+			}
 		}
 	}
 }
@@ -7267,6 +7273,159 @@ body.logged-in.admin-bar {
 	#content {
 		padding-top: 97px;
 	}
+}
+body.modal-open {
+	overflow-x: hidden;
+	overflow-y: hidden;
+}
+#otherPostPopUp {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background: rgba(0,0,0,.92);
+	z-index: 20000;
+	display: none;
+	&.fadeIn {
+		display: block;
+	}
+	#innerContent {
+		width: 100%;
+		height: 100%;
+		position: relative;
+		overflow-x: hidden;
+		overflow-y: auto;
+		@include flexgroup-center();
+	}
+	.new-page-wrapper {
+		max-width: 1000px;
+		width: 100%;
+		margin: 0 auto;
+		padding: 13vh 20px 20px;
+		color: #FFF;
+		text-align: center;
+		@include tab {
+			padding: 20px;
+		}
+	}
+	.main-title {
+		font-size: 20px;
+		text-transform: uppercase;
+		margin: 0 0 10px;
+	}
+	.main-text {
+		font-family: $font-light;
+		font-size: 20px;
+		line-height: 1.5;
+	}
+	.story-posts {
+		margin-top: 20px;
+		@include tab {
+			margin-top: 50px;
+		}
+		.flexwrap {
+			@include flexgroup();
+			@include flexbox-justify(center);
+		}
+		.story {
+			width: 50%;
+			padding: 15px;
+			@include tab {
+				width: 20%;
+			}
+		}
+		.short-desc {
+			font-family: $font-light;
+			font-size: 13px;
+			line-height: 1.4;
+			margin-top: 10px;
+			text-align: center;
+		}
+		.photo {
+			position: relative;
+			width: 100%;
+			float: left;
+		}
+		.imgdiv {
+			display: block;
+			text-decoration: none;
+			position: relative;
+			background-size: cover;
+			background-position: top center;
+			background-repeat: no-repeat;
+			img {
+				width: 100%;
+				height: auto;
+			}
+		}
+		span.title {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			transition: all ease .3s;
+			background: rgba(0,0,0,.75);
+			color: #FFF;
+			opacity: 0;
+			@include flexgroup-center();
+			.txt {
+				display: block;
+				width: 100%;
+				text-align: center;
+				padding: 10px;
+				font-family: $font-light;
+				font-size: 18px;
+				line-height: 1.2;
+				transform: translateY(20px);
+				transition: all ease .3s;
+			}
+		}
+		.link:hover {
+			span.title {
+				opacity: 1;
+				.txt {
+					transform: translateY(0);
+				}
+			}
+		}
+	}
+
+	#closeStoriesModal {
+		cursor: pointer;
+		display: block;
+		width: 35px;
+		height: 35px;
+		position: absolute;
+		top: 6%;
+		right: 3%;
+		color: #FFF;
+		span {
+			display: inline-block;
+			width: 0;
+			height: 0;
+			z-index: -999;
+			overflow: hidden;
+		}
+		&:before,&:after {
+			content:"";
+			display: block;
+			width: 100%;
+			height: 3px;
+			background: #FFF;
+			position: absolute;
+			top: 45%;
+			left: 0;
+		}
+		&:before {
+			transform: rotate(45deg);
+		}
+		&:after {
+			transform: rotate(-45deg);
+		}
+	}
+
 }
 
 /* Small Screen */

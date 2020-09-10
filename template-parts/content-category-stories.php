@@ -84,11 +84,6 @@ $story_sponsor_website = get_field("story_sponsor_website","option");
 			</div>
 			<?php } ?>
 
-
-			<div class="page-articles">
-				
-			</div>
-
 		</div>
 	</div>
 

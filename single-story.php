@@ -187,5 +187,25 @@ get_header(); ?>
 </div>
 <?php endwhile; ?>
 
+<div id="otherPostPopUp"><div id="innerContent"></div><a href="#" id="closeStoriesModal"><span>x</span></a></div>
+<script>
+jQuery(document).ready(function($){
+	var story_category_page = $("#viewAllStoriesBtn").attr("href");
+	$(document).on("click","#viewAllStoriesBtn",function(e){
+		e.preventDefault();
+		$("#otherPostPopUp").addClass("animated fadeIn");
+		$("#otherPostPopUp .new-page-wrapper").addClass("animated fadeInDown");
+		$("body").addClass("modal-open");
+	});
+	$("#otherPostPopUp #innerContent").load(story_category_page +" .new-page-wrapper",function(){
+		$("#closeStoriesModal").on("click",function(e){
+			e.preventDefault();
+			$("#otherPostPopUp").removeClass("animated fadeIn");
+			$("#otherPostPopUp .new-page-wrapper").removeClass("animated fadeInDown");
+			$("body").removeClass("modal-open");
+		});
+	});
+});
+</script>
 <?php 
 get_footer();
