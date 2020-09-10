@@ -1203,7 +1203,7 @@ section.red-band {
 	}
 	a {
 		display: inline-block;
-		padding: 3px;
+		padding: 6px 5px 2px;
 		color: #fff;
 		@include transition(all ease .2s);
 		text-decoration: none;
@@ -1211,6 +1211,9 @@ section.red-band {
 			background-color: #fff;
 			color: $color-red;
 		}
+	}
+	.wrapper {
+		line-height: 1.2;
 	}
 }
 .side-offer {

@@ -78,31 +78,6 @@ var currentURL = '<?php echo get_permalink();?>';
 var params={};location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(s,k,v){params[k]=v});
 </script>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
-<?php 
-$obj = get_queried_object();
-$current_term_id = ( isset($obj->term_id) && $obj->term_id ) ? $obj->term_id : '';
-$current_term_name = ( isset($obj->name) && $obj->name ) ? $obj->name : '';
-$current_term_slug = ( isset($obj->slug) && $obj->slug ) ? $obj->slug : '';
-if ( get_post_type()=='story')  { 
-$articles = get_field("story_article"); 
-if($articles) {
-  $story = $articles[0];
-  $images = $story['images'];
-  $text = ( isset($story['post_content']) && $story['post_content'] ) ? $story['post_content']:'';
-  $content = ($text) ? shortenText(strip_tags($text),200," ","...") : '';
-  $photos = ( isset($images['photos']) && $images['photos'] ) ? $images['photos']:"";
-  $mainPic = ($photos) ? $photos[0] : '';
-}
-?>
-<meta property="og:url"                content="<?php echo get_permalink(); ?>" />
-<meta property="og:type"               content="article" />
-<meta property="og:title"              content="<?php echo get_the_title(); ?>" />
-<meta property="og:description"        content="<?php echo $content ?>" />
-<?php if ($mainPic) { ?>
-<meta property="og:image"              content="<?php echo $mainPic['url'] ?>" />
-<?php } ?>
-<?php } ?>
 </head>
 <?php
 $dd = date('d') - 1;
@@ -142,24 +117,14 @@ $start_end = $dateToday . ',' . date('Ym') . $nexday;
                 </div>
 	        </div>
 
-          <?php  
-          $topSubscribe = get_field("topSubscribe","option");
-          $subscribeText = ( isset($topSubscribe['subscribe_text']) && $topSubscribe['subscribe_text'] ) ? $topSubscribe['subscribe_text']:'';
-          $subscribeButton = ( isset($topSubscribe['subscribe_button']) && $topSubscribe['subscribe_button'] ) ? $topSubscribe['subscribe_button']:'';
-          $subscribeName = ( isset($subscribeButton['title']) && $subscribeButton['title'] ) ? $subscribeButton['title']:'';
-          $subscribeURL = ( isset($subscribeButton['url']) && $subscribeButton['url'] ) ? $subscribeButton['url']:'';
-          $subscribeTarget = ( isset($subscribeButton['target']) && $subscribeButton['target'] ) ? $subscribeButton['target']:'_self';
-          ?>
-          <?php if ($subscribeText || $subscribeButton) { ?>
-          <section class="red-band">
-            <div class="wrapper">
-              <?php echo $subscribeText ?>
-              <?php if ($subscribeButton) { ?>
-                <a href="<?php echo $subscribeURL ?>" target="<?php echo $subscribeTarget ?>" class="topSubscribeBtn"><?php echo $subscribeName ?></a>
-              <?php } ?>
-            </div>
-          </section>
-          <?php } ?>
+	        <section class="red-band">
+	        	<div class="wrapper">
+	        		Join our community to receive email updates from QCityMetro > 
+	        		<a href="<?php bloginfo('url'); ?>/email-signup">Subscribe</a>
+	        	</div>
+	        </section>
+
+            
 
 	        <div class="mainnav-wrap">
 	        	<div class="wrapper-mnav">
