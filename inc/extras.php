@@ -538,16 +538,17 @@ if($is_post) { ?>
             var div = $(this);
             var str = $(this).text().replace(/\s+/g,"").trim().toLowerCase();
             if(str=='sticktothetopoftheblog') {
-            div.addClass("sticktothetopoftheblogField");
-            div.css("margin-bottom","5px");
-            var parent = $(this).parents(".components-base-control");
-            parent.addClass("stickyOptionsDiv");
-            if( $("#stickToRightInputDiv").length==0 ) {
-               parent.prepend(newInputField);
-            }
+                div.addClass("sticktothetopoftheblogField");
+                div.css("margin-bottom","5px");
+                var parent = $(this).parents(".components-base-control");
+                parent.addClass("stickyOptionsDiv");
+                if( $("#stickToRightInputDiv").length==0 ) {
+                   parent.prepend(newInputField);
+                }
             } else if(str=='pendingreview') {
-            div.appendTo(".stickyOptionsDiv");
-               $(".edit-post-sidebar .editor-post-format").addClass("moved");
+                div.appendTo(".stickyOptionsDiv");
+                $(".edit-post-sidebar .editor-post-format").addClass("moved");
+                $(".edit-post-sidebar").addClass("hasPendingOpt");
             }
          });
 
@@ -794,6 +795,9 @@ function post_visibility_head_scripts(){ ?>
         color: #FFF;
         font-size: 11px;
         line-height: 1;
+    }
+    .edit-post-sidebar.hasPendingOpt #sponsoredContentInfo {
+        top: 75px;
     }
     </style>
 <?php

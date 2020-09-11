@@ -1473,8 +1473,10 @@ section.red-band {
 		
 	}
 	h3 {
+		font-family: $font__main;
 		font-size: 15px;
 		font-weight: normal;
+		line-height: 1.2;
 		margin: 0 0 5px 0;
 		text-align: center;
 		display: inline-block;
@@ -1486,10 +1488,11 @@ section.red-band {
 	a.btn {
 		width: 100%;
 		display: block;
-		padding: 2px 0;
+		padding: 6px 0 2px;
 		text-align: center;
 		color: #fff;
 		background-color: rgba(#fff, .6);
+		line-height: 1.2;
 		&:hover {
 			background-color: rgba($color-yellow, 1);
 		}
@@ -7266,6 +7269,9 @@ body.single-story {
 				top: 0;
 			}
 		}
+	}
+	.comment-list li.comment {
+		background-color: transparent;
 	}
 }
 

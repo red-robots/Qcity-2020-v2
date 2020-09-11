@@ -45,12 +45,27 @@ $twitter = get_field('twitter_link', 'option');
 						<a href="<?php echo $twitter; ?>"><i class="fab fa-twitter-square fa-2x"></i></a>
 					<?php } ?>
 				</div>
+
+				<?php  
+          $topSubscribe = get_field("topSubscribe","option");
+          $subscribeText = ( isset($topSubscribe['subscribe_text_footer']) && $topSubscribe['subscribe_text_footer'] ) ? $topSubscribe['subscribe_text_footer']:'';
+          $subscribeText = ($subscribeText) ? str_replace('>','',$subscribeText):'';
+          $subscribeButton = ( isset($topSubscribe['subscribe_button']) && $topSubscribe['subscribe_button'] ) ? $topSubscribe['subscribe_button']:'';
+          $subscribeName = ( isset($subscribeButton['title']) && $subscribeButton['title'] ) ? $subscribeButton['title']:'';
+          $subscribeURL = ( isset($subscribeButton['url']) && $subscribeButton['url'] ) ? $subscribeButton['url']:'';
+          $subscribeTarget = ( isset($subscribeButton['target']) && $subscribeButton['target'] ) ? $subscribeButton['target']:'_self';
+        ?>
+
+        <?php if ($subscribeText || $subscribeButton) { ?>
 				<div class="footer-newsletter desktop-version">
-					<h3>Join our community to reveive email updates</h3>
-					<div class="">
-						<a class="btn" href="<?php bloginfo('url'); ?>/email-signup">Subscribe</a>
+					<h3><?php echo $subscribeText ?></h3>
+					<?php if ($subscribeButton) { ?>
+					<div class="footBtnDiv">
+						<a class="btn" href="<?php echo $subscribeURL ?>" target="<?php echo $subscribeTarget ?>"><?php echo $subscribeName ?></a>
 					</div>
+					<?php } ?>
 				</div>
+				<?php } ?>
 				
 			</section>
 
