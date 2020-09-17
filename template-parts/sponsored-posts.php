@@ -5,7 +5,7 @@
 	$i = 0;
 	$today = date('Ymd');
 	
-
+$box_rectangle = get_bloginfo("template_url") . "/images/boxr.png";
 $wp_query = new WP_Query();
 
 $wp_query->query(array(
@@ -38,7 +38,7 @@ $wp_query->query(array(
 		</header>
 
 		<div class="outerwrap">
-			<div class="flexwrap">
+			<div class="flexwrap2">
 				<?php while ($wp_query->have_posts()) : $wp_query->the_post(); 
 					$img 		= get_field('event_image');
 					$date 		= get_field("event_date", false, false);
@@ -51,18 +51,19 @@ $wp_query->query(array(
 				?>
 				<div class="block sponsored_post_block">
 					<a href="<?php the_permalink(); ?>" class="boxLink">
-						<span class="imageDiv" style="background-image:url('<?php echo $imgSRC?>')">
-							<img src="<?php echo $defaultImg ?>" alt="" aria-hidden="true" class="placeholder">
+						<span class="wrap" style="background-image:url('<?php echo $defaultImg?>')">
+							<span class="image" style="background-image:url('<?php echo $imgSRC?>')"></span>
+							<img src="<?php echo $box_rectangle ?>" alt="" aria-hidden="true" class="placeholder">
 						</span>
-						<span class="info">
-							<span class="date">
-								<?php echo $date->format('D | M j, Y'); ?>	
+						<span class="info js-blocks">
+							<span class="info-inner">
+								<span class="date">
+									<?php echo $date->format('D | M j, Y'); ?>	
+								</span>
+								<h3><?php the_title(); ?></h3>
 							</span>
-							<h3><?php the_title(); ?></h3>
 						</span>
-						<?php if ($img) { ?>
-						<span class="imgOverlay" style="background-image:url('<?php echo $img['url']?>')"></span>
-						<?php } ?>
+						
 					</a>
 				</div>
 				<?php endwhile; ?>
@@ -70,12 +71,10 @@ $wp_query->query(array(
 				<?php /* Last Box */ ?>
 				<div class="block last-block desktop-version">
 					<div class="inner" style="background-image: url('<?php bloginfo('stylesheet_directory'); ?>/images/city.jpg');">
-						<div class="overlayz">
-							<a href="<?php bloginfo('url'); ?>/events"></a>
-						</div>
-						<div class="more">
-							More Events
-						</div>
+						<a href="<?php bloginfo('url'); ?>/events">
+							<span class="more">More Events</span>
+							<img src="<?php echo $box_rectangle ?>" alt="" aria-hidden="true" class="placeholder">
+						</a>
 					</div>
 				</div>
 			</div>

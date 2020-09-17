@@ -2582,6 +2582,7 @@ section.home-sponsored {
 			margin-bottom: 10px;
 		}
 		h3 {
+			font-family: $font__main;
 			font-weight: normal;
 			font-size: 14px;
 		}
@@ -2635,27 +2636,41 @@ section.home-sponsored {
 section.home-sponsored.v2 {
 	margin-top: 35px;
 	.outerwrap {
-		margin-left: -15px;
-		margin-right: -15px;
+		margin-left: -8px;
+		margin-right: -8px;
 	}
-	.flexwrap {
-		@include flexgroup();
-		@include flexbox-justify(flex-start);
+	.flexwrap2 {
+		// @include flexgroup();
+		// @include flexbox-justify(flex-start);
+		@include flexbox();
 		.block {
 			display: block;
 			height: auto!important;
 			width: 100%;
-			padding: 15px;
-			overflow: hidden;
+			padding: 8px;
+			overflow: visible;
 			flex-basis: unset!important;
 			margin-bottom: 0;
 			transition: all ease .3s;
-			@include tab {
+			position: relative;
+			flex-basis: unset;
+			@include xs {
 				width: 33.33%;
-				flex-basis: unset;
 			}
+			@include tab {
+				width: 100%;
+			}
+			// @include desk {
+			// 	width: 16.666%;
+			// }
 			&.last-block {
-				padding: 15px;
+				a {
+					display: block;
+					width: 100%;
+					height: 100%;
+					position: relative;
+					z-index: 10;
+				}
 				.inner {
 					width: 100%;
 					height: 100%;
@@ -2667,6 +2682,22 @@ section.home-sponsored.v2 {
 					transition: all ease .3s;
 					&:hover {
 						box-shadow: 0 0 15px rgba(0,0,0,0.45);
+					}
+					a {
+						&:after {
+							content:"";
+							display: block;
+							width: 100%;
+							height: 100%;
+							position: absolute;
+							top: 0;
+							left: 0;
+							background-color: rgba(198,171,49,0.85);
+						}
+					}
+					.more {
+						z-index: 20;
+						margin: 0 0;
 					}
 				}
 			}
@@ -2687,18 +2718,45 @@ section.home-sponsored.v2 {
 				a.boxLink {
 					display: block;
 					width: 100%;
+					height: 100%;
 					float: left;
 					position: relative;
+					top: 0;
+					left: 0;
 					overflow: hidden;
 					z-index: 10;
 					cursor: pointer;
 					transition: all ease .3s;
-					img.placeholder {
-						visibility: hidden;
-						opacity: 0;
+					background-color: #000;
+					// img.placeholder {
+					// 	visibility: hidden;
+					// 	opacity: 0;
+					// 	width: 100%;
+					// 	height: auto;
+					// 	float: left;
+					// }
+					span.wrap {
+						display: block;
 						width: 100%;
-						height: auto;
-						float: left;
+						position: relative;
+				    top: 0;
+				    left: 0;
+				    float: left;
+				    background-size: contain;
+			    	background-repeat: no-repeat;
+			    	background-position: center;
+				    background-color: #C6AB31;
+				    .image {
+				    	display: block;
+				    	width: 100%;
+				    	height: 100%;
+				    	position: absolute;
+				    	top: 0;
+				    	left: 0;
+				    	background-size: cover;
+				    	background-repeat: no-repeat;
+				    	background-position: center;
+				    }
 					}
 					.info {
 						display: block;
@@ -2710,9 +2768,22 @@ section.home-sponsored.v2 {
 						background: #000;
 						color: #FFF;
 						transition: all ease .3s;
+						@include tab {
+							// position: absolute;
+							// bottom: 0;
+							// left: 0;
+							@include flexgroup-center();
+						}
 						.date {
 							display: block;
 							width: 100%;
+						}
+						.info-inner {
+							display: block;
+							width: 100%;
+							float: left;
+							position: relative;
+    					top: 2px;
 						}
 					}
 					&:hover {
@@ -2727,16 +2798,34 @@ section.home-sponsored.v2 {
 					display: block;
 					width: 100%;
 					float: left;
-					background-size: contain;
+					background-size: cover;
 					background-position: center;
 					background-repeat: no-repeat;
-					background-color: transparent;
+					background-color: #CCC;
 					position: relative;
 					z-index: 12;
 				}
 			}
+			img.placeholder {
+				width: 100%;
+				height: auto;
+				float: left;
+			}
 		}
-		
+		@media screen and (max-width: $tab - 1px) {
+			@include flexgroup();
+			.block {
+				width: 50%;
+			}
+		}
+		@media screen and (max-width: 480px) {
+			.block {
+				width: 100%;
+				img.placeholder {
+					width: 75%;
+				}
+			}
+		}
 	}
 	&.numItems2 {
 		.flexwrap .block {
@@ -2756,7 +2845,11 @@ section.home-sponsored.v2 {
 			display: none!important;
 		}
 		.mobile-version .more {
-			margin: 15px 0 30px;
+			margin-left: -8px;
+			margin-right: -8px;
+			width: auto;
+			display: block;
+			float: none;
 		}
 	}
 }
