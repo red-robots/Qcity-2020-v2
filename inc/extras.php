@@ -888,3 +888,9 @@ function get_stick_to_top_posts() {
   return $optionVal;
 }
 
+
+function add_query_vars_filter( $vars ) {
+  $vars[] = "pg";
+  return $vars;
+}
+add_filter( 'query_vars', 'add_query_vars_filter' );

@@ -2,8 +2,10 @@
 /*
 	Sponsored Row
 */
-	$i = 0;
-	$today = date('Ymd');
+$i = 0;
+$day = date('d');
+$day_plus = $day - 1;
+$today = date('Ym') . $day_plus;
 	
 $box_rectangle = get_bloginfo("template_url") . "/images/boxr.png";
 $wp_query = new WP_Query();

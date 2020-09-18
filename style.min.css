@@ -2002,7 +2002,7 @@ header.biz{width:100%;float:left;background-color:#924020;color:#fff;text-align:
 header.biz h1{font-size:18px}
 @media screen and (min-width:768px){header.biz h1{font-size:22px}
 }@media screen and (min-width:1250px){header.biz h1{font-size:28px}
-}.banner{width:100%;float:left;position:relative;margin-bottom:30px;line-height:0}
+}.banner{width:100%;float:left;position:relative;margin-bottom:30px;line-height:0;z-index:50 !important}
 .banner img{width:100%}
 .banner .banner-info{height:100%;width:100%;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;position:absolute;top:0;left:0;text-align:center;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;color:#fff;line-height:1.2}
 .banner .banner-info a{color:#fff}

@@ -351,6 +351,38 @@ jQuery(document).ready(function ($) {
 
     });
 
+    /* Load More Events */
+    $(document).on('click', '#load-more-action', function(e){
+        e.preventDefault();
+        var next_page = $(this).attr("data-next-page");
+        var next_page_next = parseInt(next_page) + 1;
+        var total_pages = $(this).attr("data-total-pages");
+        var permalink = $(this).attr("data-permalink");
+        var next_page_link = permalink + '?pg=' + next_page;
+        if(next_page<=total_pages) {
+            $("#more-posts-hidden").load(next_page_link + " .more-events-posts", function(){
+                
+                $("#more-posts-hidden .more-events-posts .story-block").each(function(){
+                    $(this).addClass("animated fadeIn").appendTo(".qcity-news-container .more-events-posts");
+                });
+
+            });
+            if(next_page==total_pages) {
+                $("#more-bottom-button").html('<div style="text-align:center;color:#969696;font-size:12px;">No more post to load!</div>');
+            } else {
+                $("#load-more-action .load-text").hide();
+                $("#load-more-action .load-icon").show();
+                setTimeout(function(){
+
+                    $("#load-more-action .load-text").removeAttr('style');
+                    $("#load-more-action .load-icon").removeAttr('style');
+
+                },600);
+            }
+        }
+        $(this).attr("data-next-page",next_page_next);
+    });
+
 
     /*
     *   Load MOre Sidebar
