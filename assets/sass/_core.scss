@@ -2828,12 +2828,25 @@ section.home-sponsored.v2 {
 			}
 		}
 	}
+	&.numItems1 {
+		.outerwrap .flexwrap2 {
+			@include flexbox();
+			.block {
+				width: 100%;
+				@include xs {
+					width: 25%;
+				}
+			}
+		}
+	}
 	&.numItems2 {
-		.flexwrap .block {
-			width: 100%;
-			@include tab {
-				width: 33.33%;
-				flex-basis: unset;
+		.outerwrap .flexwrap2 {
+			@include flexbox();
+			.block {
+				width: 100%;
+				@include xs {
+					width: 33.33%;
+				}
 			}
 		}
 	}
