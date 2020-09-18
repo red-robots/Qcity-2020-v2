@@ -36,7 +36,7 @@ $wp_query->query(array(
 	$totalpost = $wp_query->found_posts;  ?>
 	<section class="home-sponsored v2 numItems<?php echo $totalpost?>">
 		<header class="section-title ">
-			<h2 class="dark-gray">Sponsor Events</h2>
+			<h2 class="dark-gray">Sponsored Events</h2>
 		</header>
 
 		<div class="outerwrap">
