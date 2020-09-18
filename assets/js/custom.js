@@ -368,7 +368,11 @@ jQuery(document).ready(function ($) {
 
             });
             if(next_page==total_pages) {
-                $("#more-bottom-button").html('<div style="text-align:center;color:#969696;font-size:12px;">No more post to load!</div>');
+                $("#load-more-action .load-text").hide();
+                $("#load-more-action .load-icon").show();
+                setTimeout(function(){
+                    $("#more-bottom-button").html('<div style="text-align:center;color:#969696;font-size:12px;">No more post to load!</div>');
+                },600);
             } else {
                 $("#load-more-action .load-text").hide();
                 $("#load-more-action .load-icon").show();
