@@ -83,7 +83,7 @@ $currentURL = get_permalink();
 			'post_type'			=>'event',
 			'paged'			   => $paged,
 			'post_status'		=>'publish',
-			'posts_per_page' 	=> 6,
+			'posts_per_page' 	=> 27,
 			'order' 			=> 'ASC',
 			'meta_key' 		=> 'event_date',
 			'orderby'     => 'meta_value_num',
@@ -102,10 +102,13 @@ $currentURL = get_permalink();
 		$more_events = new WP_Query($more_args);
 		?>
 
+		<?php if ( $more_events->have_posts() )  { ?>
 		<header class="section-title qcity-more-happen">
 			<h1 class="dark-gray">More Happenings</h1>
 		</header>
-		<div id="primary" class="content-area-event">
+		<?php } ?>
+
+		<div id="primary" class="content-area-event" style="width:100%;float:left;padding-bottom:40px;">
 				<main id="main" class="site-main" role="main">
 					<div class="page-event-list">
 						<?php if ( $more_events->have_posts() )  { ?>
@@ -163,7 +166,7 @@ $currentURL = get_permalink();
 
 						</div>
 						<?php } else { ?>
-							<div>No Events available.</div>
+							<!-- <div>No events available.</div> -->
 						<?php } ?>
 					</div>
 
