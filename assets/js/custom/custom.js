@@ -545,8 +545,8 @@ jQuery(document).ready(function ($) {
             var keywordStr = $(this).find("input.searchfield").val().replace(/\s+/g,'').trim();
             var keyword = $(this).find("input.searchfield").val().replace(/\s+/g,' ').trim();
             var timeout = 500;
-
             if(keywordStr) {
+                $("#more-bottom-button").hide();
                 var form_data = $(this).serialize();
                     form_data += '&action=my_ajax_search_event';
                     $.ajax({
@@ -609,6 +609,7 @@ jQuery(document).ready(function ($) {
                 'base_url': button.attr("data-permalink"),
                 'more_button':1
             }
+            $("#more-bottom-button").hide();
             $.ajax({
                 type : "get",
                 dataType : "json",
