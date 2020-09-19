@@ -149,9 +149,21 @@ if( is_page('events') ) {
 	
 	<div class="side-offer">
 		<p><?php echo $text; ?></p>
-		<div class="btn">
-			<a class="white" href="<?php bloginfo('url'); ?>/email-signup">Subscribe</a>
+		<?php  
+      $topSubscribe = get_field("topSubscribe","option");
+      $subscribeText = ( isset($topSubscribe['subscribe_text_footer']) && $topSubscribe['subscribe_text_footer'] ) ? $topSubscribe['subscribe_text_footer']:'';
+      $subscribeText = ($subscribeText) ? str_replace('>','',$subscribeText):'';
+      $subscribeButton = ( isset($topSubscribe['subscribe_button']) && $topSubscribe['subscribe_button'] ) ? $topSubscribe['subscribe_button']:'';
+      $subscribeName = ( isset($subscribeButton['title']) && $subscribeButton['title'] ) ? $subscribeButton['title']:'';
+      $subscribeURL = ( isset($subscribeButton['url']) && $subscribeButton['url'] ) ? $subscribeButton['url']:'';
+      $subscribeTarget = ( isset($subscribeButton['target']) && $subscribeButton['target'] ) ? $subscribeButton['target']:'_self';
+    ?>
+    <?php if ($subscribeName && $subscribeURL) { ?>
+    <div class="btn">
+			<a class="white" href="<?php echo $subscribeURL ?>" target="<?php echo $subscribeTarget ?>"><?php echo $subscribeName ?></a>
 		</div>
+    <?php } ?>
+		
 	</div>
 
 		<?php
