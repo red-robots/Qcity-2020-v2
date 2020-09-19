@@ -14,9 +14,11 @@ get_template_part('template-parts/banner-events');
 $currentURL = get_permalink();
 ?>
 
-<div class="">
+<div class="single-page-event-wrapper fw-left">
 
-	<div class="single-page-event">
+	<div id="processing-data" class="fw-left"><span class="load-icon-2"><i class="fas fa-sync-alt spin"></i></span></div>
+
+	<div id="page-events-container" class="single-page-event">
 
 		<?php
 		/* SPONSORED EVENTS */
@@ -51,23 +53,25 @@ $currentURL = get_permalink();
 
 		$sponsored = new WP_Query($args);
 		if ($sponsored->have_posts()) { ?>
-		<div class="qcity-sponsored-container">
+		<div id="sponsored-events-section" class="qcity-sponsored-container">
 			<header class="section-title ">
 				<h1 class="dark-gray">Sponsored</h1>
 			</header>
-			<section class="events">
-				<?php while ($sponsored->have_posts()) : $sponsored->the_post(); 
-					$date 		= get_field("event_date", false, false);
-					$date 		= new DateTime($date);
-					$enddate 	= get_field("end_date", false, false);
-					$enddate 	= ( !empty($enddate) ) ? new DateTime($enddate) : $date;
+			<div class="eventListWrap">
+				<section class="events">
+					<?php while ($sponsored->have_posts()) : $sponsored->the_post(); 
+						$date 		= get_field("event_date", false, false);
+						$date 		= new DateTime($date);
+						$enddate 	= get_field("end_date", false, false);
+						$enddate 	= ( !empty($enddate) ) ? new DateTime($enddate) : $date;
 
-					$date_start 	= strtotime($date->format('Y-m-d'));
-					$date_stop 		= strtotime($enddate->format('Y-m-d')); 
-					$postID[] = get_the_ID();
-					include( locate_template('template-parts/sponsored-block.php') );
-				endwhile; ?>
-			</section>
+						$date_start 	= strtotime($date->format('Y-m-d'));
+						$date_stop 		= strtotime($enddate->format('Y-m-d')); 
+						$postID[] = get_the_ID();
+						include( locate_template('template-parts/sponsored-block.php') );
+					endwhile; ?>
+				</section>
+			</div>
 		</div>
 		<?php } ?>
 
@@ -102,33 +106,36 @@ $currentURL = get_permalink();
 		$more_events = new WP_Query($more_args);
 		?>
 
-		<?php if ( $more_events->have_posts() )  { ?>
-		<header class="section-title qcity-more-happen">
-			<h1 class="dark-gray">More Happenings</h1>
-		</header>
-		<?php } ?>
-
-		<div id="primary" class="content-area-event" style="width:100%;float:left;padding-bottom:40px;">
+		<div id="primary" class="content-area-event more-happenings-section fw-left">
 				<main id="main" class="site-main" role="main">
+
+					<?php if ( $more_events->have_posts() )  { ?>
+					<header class="section-title qcity-more-happen">
+						<h1 class="dark-gray">More Happenings</h1>
+					</header>
+					<?php } ?>
+
 					<div class="page-event-list">
 						<?php if ( $more_events->have_posts() )  { ?>
 						<div class="listing_initial more-events-section">
 							<div class="qcity-news-container">
-								<section class="events more-events-posts">
-									<?php while ($more_events->have_posts()) : $more_events->the_post(); 
-											$date 		= get_field("event_date", false, false);
-											$date 		= new DateTime($date);
-											$enddate 	= get_field("end_date", false, false);
-											$enddate 	= ( !empty($enddate) ) ? new DateTime($enddate) : $date;
+								<div class="eventListWrap">
+									<section class="events more-events-posts">
+										<?php while ($more_events->have_posts()) : $more_events->the_post(); 
+												$date 		= get_field("event_date", false, false);
+												$date 		= new DateTime($date);
+												$enddate 	= get_field("end_date", false, false);
+												$enddate 	= ( !empty($enddate) ) ? new DateTime($enddate) : $date;
 
-											$date_start 	= strtotime($date->format('Y-m-d'));
-											$date_stop 		= strtotime($enddate->format('Y-m-d'));
-											$now 			= strtotime(date('Y-m-d'));
-											include( locate_template('template-parts/sponsored-block.php') );
-										endwhile; ?>
-								</section>
+												$date_start 	= strtotime($date->format('Y-m-d'));
+												$date_stop 		= strtotime($enddate->format('Y-m-d'));
+												$now 			= strtotime(date('Y-m-d'));
+												include( locate_template('template-parts/sponsored-block.php') );
+											endwhile; ?>
+									</section>
+								</div>
 							</div>
-							<div id="more-posts-hidden" style="display:none;"><!-- DO NOT DELETE ME! --></div>
+							<div id="more-posts-hidden" style="display:none;"><?php /* DO NOT DELETE!! THIS WILL BE USED AS CONTAINER FOR NEXT SET OF ITEMS FROM LOAD MORE BUTTON */ ?></div>
 
 							<?php
                 $total_pages = $more_events->max_num_pages;
@@ -160,23 +167,19 @@ $currentURL = get_permalink();
                     <?php
             	} ?>
 
-            	
-
-
-
 						</div>
-						<?php } else { ?>
-							<!-- <div>No events available.</div> -->
 						<?php } ?>
 					</div>
 
-					<div class="listing_search" style="margin-bottom: 20px; padding: 0 0 40px;">
+					<div id="listing-search-result" class="listing_search" style="margin-bottom: 20px; padding: 0 0 40px;">
 						<div class="listing_search_result"></div>				
 					</div>
 				</main>
 		</div>
 
 	</div>
+
+	<div id="search-result-pagination"><?php /* DO NOT DELETE!! THIS WILL BE USED FOR AJAX PAGINATION */ ?></div>
 
 </div>
 

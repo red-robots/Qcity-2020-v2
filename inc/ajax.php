@@ -495,3 +495,136 @@ function qcity_get_terms($postID, $term){
     return $output;
 
 }
+
+/*==============================
+ * Search Events via Ajax
+ * Created by: Lisa - 09.19.2020
+ *============================== */
+add_action('wp_ajax_nopriv_my_ajax_search_event', 'my_ajax_search_event');
+add_action('wp_ajax_my_ajax_search_event', 'my_ajax_search_event');
+function my_ajax_search_event() {
+    $keyword  = ( isset($_REQUEST['srch']) && $_REQUEST['srch'] ) ? sanitize_text_field($_REQUEST['srch']) : '';
+    $posttype  = ( isset($_REQUEST['type']) && $_REQUEST['type'] ) ? sanitize_text_field($_REQUEST['type']) : '';
+    $paged  = ( isset($_REQUEST['current_page']) && $_REQUEST['current_page'] ) ? $_REQUEST['current_page'] : 1;
+    $base_url  = ( isset($_REQUEST['base_url']) && $_REQUEST['base_url'] ) ? $_REQUEST['base_url'] : 1;
+    $more_button  = ( isset($_REQUEST['more_button']) && $_REQUEST['more_button'] ) ? $_REQUEST['more_button'] : '';
+    $response['result'] = '';
+    if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+        $vars = array(
+            'keyword'=>$keyword,
+            'post_type'=>$posttype,
+            'paged'=>$paged,
+            'base_url'=>$base_url,
+            'more_button'=>$more_button
+        );
+        $output = get_search_result_event($vars);
+        $response['result'] = $output;
+        echo json_encode($response);
+    }
+    else {
+      header("Location: ".$_SERVER["HTTP_REFERER"]);
+    }
+    die();
+}
+
+
+function get_search_result_event($var) {
+
+    $keyword = ( isset($var['keyword']) && $var['keyword'] ) ? $var['keyword'] : '';
+    $posttype = ( isset($var['post_type']) && $var['post_type'] ) ? $var['post_type'] : '';
+    $paged = ( isset($var['paged']) && $var['paged'] ) ? $var['paged'] : '';
+    $base_url = ( isset($var['base_url']) && $var['base_url'] ) ? $var['base_url'] : '';
+    $more_button = ( isset($var['more_button']) && $var['more_button'] ) ? $var['more_button'] : '';
+
+    $day = date('d');
+    $day_plus = $day - 1;
+    $today = date('Ym') . $day_plus;
+    $per_page = 27;
+    $articles = '';
+    $total_pages = '';
+    $total_result = '';
+    $next_page = $paged + 1;
+    $paginate = '';
+
+    if($keyword && $posttype) {
+
+        $args = array(
+            'post_type'         =>$posttype,
+            's'                 =>$keyword,
+            'posts_per_page'    => $per_page,
+            'paged'             => $paged,
+            'post_status'       =>'publish',
+            'order'             => 'ASC',
+            'orderby'           => 'post_title',
+        );
+
+        /* Uncommenting the `meta_query` will list the current and future event posts */
+        // $args['meta_query'] = array(
+        //         array(
+        //             'key'       => 'event_date',
+        //             'compare'   => '>=',
+        //             'value'     => $today,
+        //         )
+        //     );
+        // $args['meta_key'] = 'event_date';
+        // $args['orderby'] = 'meta_value_num';
+
+        $result = new WP_Query($args);
+        if ( $result->have_posts() )  { 
+            $total_pages = $result->max_num_pages;
+            $total_result = $result->found_posts;
+
+            ob_start();
+
+            while ($result->have_posts()) : $result->the_post(); 
+                $date       = get_field("event_date", false, false);
+                $date       = new DateTime($date);
+                $enddate    = get_field("end_date", false, false);
+                $enddate    = ( !empty($enddate) ) ? new DateTime($enddate) : $date;
+
+                $date_start     = strtotime($date->format('Y-m-d'));
+                $date_stop      = strtotime($enddate->format('Y-m-d'));
+                $now            = strtotime(date('Y-m-d'));
+                $more_result_class = ( isset($more_button) && $more_button ) ? $more_button : '';
+                include( locate_template('template-parts/sponsored-block.php') );
+            endwhile;
+            $articles = ob_get_contents();
+            ob_end_clean();
+
+            
+            ob_start();
+            if ($total_pages > 1){
+                if($paged==$total_pages) {  ?>
+                    <div id="load-more-result" class="fw-left more">
+                        <div class="sectionWrap">
+                            <div class="end-post-text">No more post to load!</div>
+                        </div>
+                    </div>
+                <?php } else { ?>
+                    <div id="load-more-result" class="fw-left more">
+                        <div class="sectionWrap">
+                            <a href="#" id="load-more-result-btn" class="red" data-permalink="<?php echo $base_url; ?>" data-type="<?php echo $posttype ?>" data-keyword="<?php echo $keyword?>" data-next-page="<?php echo $next_page?>" data-total-pages="<?php echo $total_pages; ?>">        
+                                <span class="load-text">Load More</span>
+                                <span class="load-icon"><i class="fas fa-sync-alt spin"></i></span>
+                            </a>
+                        </div>
+                    </div>
+                <?php } 
+            }
+            $paginate = ob_get_contents();
+            ob_end_clean();
+        }
+
+    }
+
+    $response['posts'] = $articles;
+    $response['count'] = $total_result;
+    $response['total_pages'] = $total_pages;
+    $response['next_page'] = $next_page;
+    $response['paginate'] = $paginate;
+    $response['base_url'] = $base_url;
+
+    return $response;
+}
+
+

@@ -513,7 +513,7 @@ jQuery(document).ready(function ($) {
             if (value.length >= minlength ) {
                 if (searchRequest != null) 
                     searchRequest.abort();
-                searchRequest = $.ajax({
+                    searchRequest = $.ajax({
                     type: "GET",
                     url: ajaxURL,
                     data: {
@@ -537,6 +537,106 @@ jQuery(document).ready(function ($) {
                     }
                 });
             }
+        });
+
+        /* New Search Functionality (Adde by Lisa) */
+        $("#form_search_event").submit(function(e) {
+            e.preventDefault();
+            var keywordStr = $(this).find("input.searchfield").val().replace(/\s+/g,'').trim();
+            var keyword = $(this).find("input.searchfield").val().replace(/\s+/g,' ').trim();
+            var timeout = 500;
+
+            if(keywordStr) {
+                var form_data = $(this).serialize();
+                    form_data += '&action=my_ajax_search_event';
+                    $.ajax({
+                        type : "get",
+                        dataType : "json",
+                        url : ajaxURL,
+                        data : form_data,
+                        beforeSend:function(){
+                            $("#processing-data").show();
+                            $("#sponsored-events-section").remove();
+                            $(".more-happenings-section").hide();
+                            $("body").addClass("events-search-result");
+                            $("#search-result-pagination").hide();
+                        },
+                        success: function(obj) {
+                            setTimeout(function(){
+
+                                var res = obj.result;
+                                var baseURL = '';
+                                if(res.posts) {
+                                    //$("input#current_page_field").val(res.next_page);
+                                    $(".more-happenings-section h1.dark-gray").html('Search Result For: <em style="color:#f1d14b">'+keyword+'</em>');
+                                    $(".events.more-events-posts").html(res.posts);
+                                    $("#search-result-pagination").html(res.paginate);
+
+                                    $("#sponsored-events-section").remove();
+                                    $(".more-happenings-section").show().addClass("animated fadeIn");
+                                    $("#search-result-pagination").show().addClass("animated fadeIn");
+                                } else {
+                                    //var message = '<h4 style="margin:30px 0 50px;font-size:25px;">Unfortunately, there are no results for your query. <a href="'+currentURL+'">&larr;Go back</a></h4>';
+                                    var message = '<h4 style="margin:30px 0 50px;font-size:25px;">Unfortunately, there are no results for your query.</h4>';
+                                    $("#page-events-container").html(message);
+                                }
+
+                            },timeout);
+                        },
+                        complete: function(){
+                            setTimeout(function(){
+                                $("#processing-data").hide();
+                            },timeout);
+                        }
+                    });
+            } else {
+                if( typeof currentURL!='undefined' ) {
+                    window.location.href = currentURL;
+                }
+            }
+        });
+
+        /* Load More Button from Search Result */
+        $(document).on("click","#load-more-result-btn",function(e){
+            e.preventDefault();
+            var button = $(this);
+            var timeout = 500;
+            var form_data = {
+                'action':'my_ajax_search_event',
+                'srch': button.attr("data-keyword"),
+                'type': button.attr("data-type"),
+                'current_page': button.attr("data-next-page"),
+                'base_url': button.attr("data-permalink"),
+                'more_button':1
+            }
+            $.ajax({
+                type : "get",
+                dataType : "json",
+                url : ajaxURL,
+                data : form_data,
+                beforeSend:function(){
+                    $("#more-posts-hidden").html("");
+                    button.addClass("loading");
+                },
+                success: function(obj) {
+                    setTimeout(function(){
+                        var res = obj.result;
+                        var baseURL = '';
+                        if(res.posts) {
+                            $("#search-result-pagination").html(res.paginate);
+                            $("#more-posts-hidden").html(res.posts);
+                            $("#more-posts-hidden").find(".story-block").each(function(){
+                                $(this).appendTo(".events.more-events-posts").addClass("animated fadeIn");
+                            });
+                        } 
+                    },timeout);
+                },
+                complete: function(){
+                    setTimeout(function(){
+                        button.removeClass("loading");
+                    },timeout);
+                }
+            });
         });
     });
 
