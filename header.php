@@ -155,7 +155,7 @@ if( is_single() ) {
   }
 }
 
-$authorName = ($authorName) ? '['.$authorName.']':'""';
+$authorName = ($authorName) ? '["'.$authorName.'"]':'""';
 $tags = ($tags) ? '['.$tags.']':'""';
 ?>
 <script type="application/ld+json">
