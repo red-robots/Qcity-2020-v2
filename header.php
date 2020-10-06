@@ -174,13 +174,29 @@ $tags = ($tags) ? '['.$tags.']':'""';
     }
   <?php } else if( is_page() ) { ?>
     {
-      "@context": "http://schema.org",
+      "@context": "https://schema.org",
       "@type": "<?php echo $type?>",
       "headline": "<?php echo $pagetitle?>",
       "url": "<?php echo $pageLink?>"
     }
   <?php } ?>
 </script>
+<?php } ?>
+
+<?php if (is_archive()) { 
+$ob = get_queried_object();
+$archiveTitle = ( isset($ob->name) && $ob->name ) ? $ob->name : '';
+if($archiveTitle) { 
+$termLink = get_term_link($ob); ?>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "headline": "<?php echo $archiveTitle?>",
+  "url": "<?php echo $termLink?>"
+}
+</script>
+<?php } ?>
 <?php } ?>
 
 
