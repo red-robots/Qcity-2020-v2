@@ -165,7 +165,7 @@ $tags = ($tags) ? '['.$tags.']':'""';
       "@type": "<?php echo $type?>",
       "headline": "<?php echo $pagetitle?>",
       "url": "<?php echo $pageLink?>",
-      "thumbnailUrl": "<?php echo $pageLink?>",
+      "thumbnailUrl": "<?php echo $thumbURL?>",
       "datePublished": "<?php echo $date?>",
       "articleSection": "<?php echo $categories?>",
       "creator": <?php echo $authorName?>,
