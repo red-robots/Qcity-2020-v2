@@ -21,8 +21,8 @@ get_header(); ?>
 
 		$subscribe_text         = get_field('subscribe_text');
 		$subscribe_link         = get_field('subscribe_link');
-    	$subscribe_button_name  = get_field('subscribe_button_name');
-    	$show_instagram_feeds  = get_field('show_instagram_feeds','option');
+		$subscribe_button_name  = get_field('subscribe_button_name');
+		$show_instagram_feeds  = get_field('show_instagram_feeds','option');
 
 		include( locate_template('template-parts/hero.php') ); 
 		include( locate_template('template-parts/sponsored-posts.php') );
