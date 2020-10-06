@@ -131,7 +131,7 @@ if($post_categories){
   if($cat_count>1) {
     $catsArr = array();
     foreach($post_categories as $c) {
-      $catsArr[] = $c->name;
+      $catsArr[] = '"'.$c->name.'"';
     }
     $tags = ($catsArr) ? implode(",",$catsArr) : '';
   } 
@@ -139,7 +139,7 @@ if($post_categories){
   if($tag_list) {
     $tagsArr = array();
     foreach($tag_list as $t) {
-      $tagsArr[] = $t->name;
+      $tagsArr[] = '"'.$t->name.'"';
     }
     $tags = ($tagsArr) ? implode(",",$tagsArr) : '';
   }
