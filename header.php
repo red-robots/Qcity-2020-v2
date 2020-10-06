@@ -161,7 +161,7 @@ $tags = ($tags) ? '['.$tags.']':'""';
 <script type="application/ld+json">
   <?php if( is_single() ) { ?>
     {
-      "@context": "http://schema.org",
+      "@context": "https://schema.org",
       "@type": "<?php echo $type?>",
       "headline": "<?php echo $pagetitle?>",
       "url": "<?php echo $pageLink?>",
