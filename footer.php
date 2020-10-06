@@ -146,7 +146,6 @@ wp_footer();
 	    
 	});
 </script>
-
 <script id="parsely-cfg" src="https://cdn.parsely.com/keys/qcitymetro.com/p.js"></script>
 
 </body>

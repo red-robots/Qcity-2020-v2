@@ -896,4 +896,72 @@ function add_query_vars_filter( $vars ) {
 add_filter( 'query_vars', 'add_query_vars_filter' );
 
 
+function get_total_events_by_date() {
+  $postID = array();
+
+  /* SPONSORED EVENTS */
+  $day = date('d');
+  $day2 = $day - 1;
+  $day_plus = sprintf('%02s', $day2);
+  $today = date('Ym') . $day_plus;
+  $args1 = array(
+    'post_type'         =>'event',
+    'post_status'       =>'publish',
+    'posts_per_page'    => -1,
+    'order'             => 'ASC',
+    'meta_key'      => 'event_date',
+    'orderby'     => 'meta_value_num',
+    'meta_query'        => array(
+        array(
+            'key'       => 'event_date',
+            'compare'   => '>=',
+            'value'     => $today,
+        ),      
+    ),
+    'tax_query' => array(
+        array(
+            'taxonomy'  => 'event_category', 
+            'field'     => 'slug',
+            'terms'     => array( 'premium' ) 
+        )
+    )
+  );
+
+  $sponsored = get_posts($args1);
+  $total1 = ($sponsored) ? count($sponsored):0;
+  if($sponsored) {
+    foreach($sponsored as $s) {
+      $postID[] = $s->ID;
+    }
+  }
+
+  /* MORE EVENTS */
+  $args2 = array(
+      'post_type'         =>'event',
+      'post_status'       =>'publish',
+      'posts_per_page'    => -1,
+      'order'             => 'ASC',
+      'meta_key'          => 'event_date',
+      'orderby'           => 'meta_value_num',
+      'meta_query'        => array(
+          array(
+              'key'       => 'event_date',
+              'compare'   => '>=',
+              'value'     => $today,
+          ),      
+      )
+  );
+
+  if($postID) {
+    $args2['post__not_in'] = $postID;
+  }
+
+  $more = get_posts($args2);
+  $total2 = ($more) ? count($more):0;
+  $final_total = $total1 + $total2;
+  
+  return $final_total;
+}
+
+
 

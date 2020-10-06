@@ -103,6 +103,87 @@ if($articles) {
 <meta property="og:image"              content="<?php echo $mainPic['url'] ?>" />
 <?php } ?>
 <?php } ?>
+
+
+<?php 
+/* 
+* PARSE.LY METADATA
+* Visit: https://www.parse.ly/help/integration/jsonld 
+*/
+if ( is_singular() ) { 
+$img = get_field('story_image'); 
+$thumbURL = ($img) ? $img['url'] : '';
+$pagetitle = get_the_title();
+$pageLink = get_permalink();
+$guest_author =  get_field('author_name');
+$authorName = ( $guest_author ) ? $guest_author : get_the_author();
+$date = get_the_date('Y-m-d');
+$post_id = get_the_ID();
+$post_categories = get_the_category( $post_id );
+$categories = '';
+$tags = '';
+$tag_list = get_the_tags($post_id);
+$cat_count = ($post_categories) ? count($post_categories) : 0;
+if($post_categories){
+  
+  $categories = $post_categories[0]->name;
+
+  if($cat_count>1) {
+    $catsArr = array();
+    foreach($post_categories as $c) {
+      $catsArr[] = $c->name;
+    }
+    $tags = ($catsArr) ? implode(",",$catsArr) : '';
+  } 
+
+  if($tag_list) {
+    $tagsArr = array();
+    foreach($tag_list as $t) {
+      $tagsArr[] = $t->name;
+    }
+    $tags = ($tagsArr) ? implode(",",$tagsArr) : '';
+  }
+}
+
+$type = 'WebPage';
+if( is_single() ) {
+  $type = 'Article';
+  if( is_singular('post') ) {
+    $type = 'NewsArticle';
+  } else if( is_singular('event') ) {
+    $type = 'Article';
+  }
+}
+
+$authorName = ($authorName) ? '['.$authorName.']':'""';
+$tags = ($tags) ? '['.$tags.']':'""';
+?>
+<script type="application/ld+json">
+  <?php if( is_single() ) { ?>
+    {
+      "@context": "http://schema.org",
+      "@type": "<?php echo $type?>",
+      "headline": "<?php echo $pagetitle?>",
+      "url": "<?php echo $pageLink?>",
+      "thumbnailUrl": "<?php echo $pageLink?>",
+      "datePublished": "<?php echo $date?>",
+      "articleSection": "<?php echo $categories?>",
+      "creator": <?php echo $authorName?>,
+      "author": <?php echo $authorName?>,
+      "keywords": <?php echo $tags?>
+    }
+  <?php } else if( is_page() ) { ?>
+    {
+      "@context": "http://schema.org",
+      "@type": "<?php echo $type?>",
+      "headline": "<?php echo $pagetitle?>",
+      "url": "<?php echo $pageLink?>"
+    }
+  <?php } ?>
+</script>
+<?php } ?>
+
+
 </head>
 <?php
 $dd = date('d') - 1;
@@ -189,9 +270,15 @@ $start_end = $dateToday . ',' . date('Ym') . $nexday;
               return $(this).text() === "Jobs";
           }).append('<span class="menu-counter menu-badge">'+ <?php echo get_category_counter('job'); ?> +'</span>');
           
+          // $('a').filter(function(){
+          //     return $(this).text() === "Events";
+          // }).append('<span class="menu-counter menu-badge">'+ <?php //echo get_category_counter('event'); ?> +'</span>');
+
+
           $('a').filter(function(){
               return $(this).text() === "Events";
-          }).append('<span class="menu-counter menu-badge">'+ <?php echo get_category_counter('event'); ?> +'</span>');
+          }).append('<span class="menu-counter menu-badge">'+ <?php echo get_total_events_by_date(); ?> +'</span>');
+
         });    
         </script>
 

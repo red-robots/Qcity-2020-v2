@@ -22,12 +22,13 @@ $currentURL = get_permalink();
 
 		<?php
 		/* SPONSORED EVENTS */
+		$postID = array();
 		$i = 0;
 		$day = date('d');
-		$day_plus = $day - 1;
+		$day2 = $day - 1;
+		$day_plus = sprintf('%02s', $day2);
 		$today = date('Ym') . $day_plus;
-
-		$postID = array();
+		
 		$args = array(
 			'post_type'			=>'event',
 			'post_status'		=>'publish',
@@ -74,9 +75,6 @@ $currentURL = get_permalink();
 			</div>
 		</div>
 		<?php } ?>
-
-			
-
 
 		<?php 
 		/* MORE EVENTS */
