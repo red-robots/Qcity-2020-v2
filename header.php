@@ -110,6 +110,7 @@ if($articles) {
 * PARSE.LY METADATA
 * Visit: https://www.parse.ly/help/integration/jsonld 
 */
+
 if ( is_singular() ) { 
 $img = get_field('story_image'); 
 $thumbURL = ($img) ? $img['url'] : '';
@@ -126,12 +127,14 @@ $tag_list = get_the_tags($post_id);
 $cat_count = ($post_categories) ? count($post_categories) : 0;
 if($post_categories){
   
-  $categories = $post_categories[0]->name;
+  $catName1 = htmlspecialchars_decode($post_categories[0]->name);
+  $categories = $catName1;
 
   if($cat_count>1) {
     $catsArr = array();
     foreach($post_categories as $c) {
-      $catsArr[] = '"'.$c->name.'"';
+      $catName = htmlspecialchars_decode($c->name);
+      $catsArr[] = '"'.$catName.'"';
     }
     $tags = ($catsArr) ? implode(",",$catsArr) : '';
   } 
@@ -139,7 +142,8 @@ if($post_categories){
   if($tag_list) {
     $tagsArr = array();
     foreach($tag_list as $t) {
-      $tagsArr[] = '"'.$t->name.'"';
+      $tagStr = htmlspecialchars_decode($t->name);
+      $tagsArr[] = '"'.$tagStr.'"';
     }
     $tags = ($tagsArr) ? implode(",",$tagsArr) : '';
   }
@@ -172,7 +176,11 @@ $tags = ($tags) ? '['.$tags.']':'""';
       "author": <?php echo $authorName?>,
       "keywords": <?php echo $tags?>
     }
-  <?php } else if( is_page() ) { ?>
+  <?php } else if( is_page() ) { 
+    if (is_home() || is_front_page()) { 
+      $pagetitle = get_bloginfo('name') . " - " . $pagetitle;
+    }
+    ?>
     {
       "@context": "https://schema.org",
       "@type": "<?php echo $type?>",
@@ -198,8 +206,6 @@ $termLink = get_term_link($ob); ?>
 </script>
 <?php } ?>
 <?php } ?>
-
-
 </head>
 <?php
 $dd = date('d') - 1;
