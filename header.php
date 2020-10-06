@@ -112,12 +112,18 @@ if($articles) {
 */
 
 if ( is_singular() ) { 
+$ob = get_queried_object();
+$defaultAuthId = ( isset($ob->post_author) && $ob->post_author ) ? $ob->post_author:'';
+$defaultAuthorName = '';
+if($defaultAuthId) {
+  $defaultAuthorName = get_the_author_meta('display_name',$defaultAuthId);
+}
 $img = get_field('story_image'); 
 $thumbURL = ($img) ? $img['url'] : '';
 $pagetitle = get_the_title();
 $pageLink = get_permalink();
 $guest_author =  get_field('author_name');
-$authorName = ( $guest_author ) ? $guest_author : get_the_author();
+$authorName = ( $guest_author ) ? $guest_author : $defaultAuthorName;
 $date = get_the_date('Y-m-d');
 $post_id = get_the_ID();
 $post_categories = get_the_category( $post_id );
@@ -134,6 +140,8 @@ if($post_categories){
     $catsArr = array();
     foreach($post_categories as $c) {
       $catName = htmlspecialchars_decode($c->name);
+      $catName = str_replace("'"," ",$catName);
+      $catName = str_replace('"','',$catName);
       $catsArr[] = '"'.$catName.'"';
     }
     $tags = ($catsArr) ? implode(",",$catsArr) : '';
@@ -143,6 +151,8 @@ if($post_categories){
     $tagsArr = array();
     foreach($tag_list as $t) {
       $tagStr = htmlspecialchars_decode($t->name);
+      $tagStr = str_replace("'"," ",$tagStr);
+      $tagStr = str_replace('"','',$tagStr);
       $tagsArr[] = '"'.$tagStr.'"';
     }
     $tags = ($tagsArr) ? implode(",",$tagsArr) : '';
@@ -161,6 +171,12 @@ if( is_single() ) {
 
 $authorName = ($authorName) ? '["'.$authorName.'"]':'""';
 $tags = ($tags) ? '['.$tags.']':'""';
+if($pagetitle) {
+$pagetitle = htmlspecialchars_decode($pagetitle);
+$pagetitle = str_replace("'"," ",$pagetitle);
+$pagetitle = str_replace('"','',$pagetitle);
+}
+
 ?>
 <script type="application/ld+json">
   <?php if( is_single() ) { ?>
