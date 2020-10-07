@@ -206,7 +206,7 @@ if($excludePosts) {
   $args1['post__not_in'] = $excludePosts;
 }
 $items = new WP_Query($args1);
-if ( $items->have_posts() ) { ?>
+if ( $items->have_posts() || $first->have_posts() ) { ?>
 <div id="section2" class="fw-left cf category-elections">
 	<div class="wrapper">
 		<div class="category-post fw-left">	
@@ -220,22 +220,26 @@ if ( $items->have_posts() ) { ?>
 					<div class="second-row">
 
 						<?php /* Fullwidth Photo */ ?>
-						<?php if ($paged2==1) { ?>
-							<?php while ( $first->have_posts() ) : $first->the_post(); ?>
-							<div class="entry fullwidth">
-								<?php get_template_part( 'template-parts/story-block-category' ); ?>
-							</div>
-							<?php endwhile; wp_reset_postdata(); ?>
+						<?php if ( $first->have_posts() ) { ?>
+							<?php if ($paged2==1) { ?>
+								<?php while ( $first->have_posts() ) : $first->the_post(); ?>
+								<div class="entry fullwidth">
+									<?php get_template_part( 'template-parts/story-block-category' ); ?>
+								</div>
+								<?php endwhile; wp_reset_postdata(); ?>
+							<?php } ?>
 						<?php } ?>
 
-						<?php while ( $items->have_posts() ) : $items->the_post(); ?>
+						<?php if ( $items->have_posts() ) { ?>
+							<?php while ( $items->have_posts() ) : $items->the_post(); ?>
 
-							<div class="mobile-separator"></div>
-							<div class="entry">
-								<?php get_template_part( 'template-parts/story-block-category' ); ?>
-							</div>
+								<div class="mobile-separator"></div>
+								<div class="entry">
+									<?php get_template_part( 'template-parts/story-block-category' ); ?>
+								</div>
 
-						<?php endwhile; wp_reset_postdata(); ?>
+							<?php endwhile; wp_reset_postdata(); ?>
+						<?php } ?>
 					</div>
 
 					<?php
