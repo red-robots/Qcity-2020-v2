@@ -13,6 +13,10 @@
  * @param array $classes Classes for the body element.
  * @return array
  */
+
+define('THEMEURI',get_template_directory_uri() . '/');
+
+
 function acstarter_body_classes( $classes ) {
 	// Adds a class of group-blog to blogs with more than 1 published author.
 	if ( is_multi_author() ) {
@@ -89,6 +93,12 @@ if( function_exists('acf_add_options_page') ) {
         'page_title'     => 'Story Options',
         'menu_title'    => 'Story Options',
         'parent_slug'    => 'edit.php?post_type=story',
+    ));
+
+    acf_add_options_sub_page(array(
+        'page_title'     => 'Elections Options',
+        'menu_title'    => 'Elections Options',
+        'parent_slug'    => 'edit.php',
     ));
 }
 
@@ -959,7 +969,7 @@ function get_total_events_by_date() {
   $more = get_posts($args2);
   $total2 = ($more) ? count($more):0;
   $final_total = $total1 + $total2;
-  
+
   return $final_total;
 }
 

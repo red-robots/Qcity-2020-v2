@@ -92,7 +92,7 @@
 
 
          <div class="more"> 
-            <a class="red qcity-load-more" data-page="1" data-action="qcity_load_more" data-basepoint="10" data-except="<?php echo implode(',', $postID); ?>" data-perpage="6">        
+            <a class="red qcity-load-more" data-page="1" data-action="qcity_load_more" data-basepoint="10" data-except="<?php echo ($excludePosts) ? implode(',', $excludePosts):''; ?>" data-perpage="6">        
                 <span class="load-text">Load More</span>
                 <span class="load-icon"><i class="fas fa-sync-alt spin"></i></span>
             </a>

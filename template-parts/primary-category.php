@@ -1,4 +1,12 @@
 <?php
+$queried = get_queried_object();
+$current_term_id = ( isset($queried->term_id) && $queried->term_id ) ? $queried->term_id : '';
+$current_term_name = ( isset($queried->name) && $queried->name ) ? $queried->name : '';
+$current_term_slug = ( isset($queried->slug) && $queried->slug ) ? $queried->slug : '';
+$current_term_link = get_term_link($queried);
+
+$yourTaxonomy = 'category';
+
 //Fill in your custom taxonomy here
 $yourTaxonomy = 'category';
 // $yourTaxonomy = 'event_cat';
@@ -66,9 +74,15 @@ if ($category){
 		}
 
 	    if ( $useCatLink == true && !empty($category_link) ){
-		// echo '<span class="post-category">';
-			echo '<a href="'.$category_link.'" class="catname">'.$category_display.'</a>';
-		// echo '</span>';
+
+	   //  	if( is_archive() ) {
+				// 	echo '<a href="'.$current_term_link.'" class="catname">'.$current_term_name.'</a>';
+				// } else {
+				// 	echo '<a href="'.$category_link.'" class="catname">'.$category_display.'</a>';
+				// }
+
+				echo '<a href="'.$category_link.'" class="catname">'.$category_display.'</a>';
+
 	    } else {
 			echo $category_display;
 	    }

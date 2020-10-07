@@ -1606,7 +1606,8 @@ header.section-title {
 		display: inline-block;
 		background-color: $color-dark-gray;
 		color: #fff;
-		padding: 5px 30px 5px 15px;
+		// padding: 5px 30px 5px 15px;
+		padding: 7px 30px 4px 15px;
 		border-radius: 5px 5px 0 0;
 		font-weight: normal;
 		font-size: 14px;
@@ -7615,6 +7616,268 @@ body.modal-open {
 		}
 	}
 }
+
+/* Elections */
+.cf:before, .cf:after {content: " ";display: table;}
+.cf:after { clear: both; }
+.cf {*zoom: 1;}
+.elect-videos-wrapper {
+	width: 100%;
+	float: left;
+}
+.category-elections {
+	&#section1 {
+		padding-bottom: 50px;
+		@include tab {
+			padding-bottom: 30px;
+		}
+	}
+	&#section2 {
+		padding-top: 50px;
+		padding-bottom: 30px;
+	}
+	.page-top-area {
+		width: 100%;
+		float: left;
+	}
+	.e-banner-image {
+		text-align: center;
+		a {
+			display: block;
+		}
+		img {
+			max-width: 650px;
+			width: 100%;
+			height: auto;
+		}
+	}
+	.e-description {
+		max-width: 800px;
+    width: 100%;
+    margin: 15px auto 50px;
+	}
+	.videos-inner {
+		width: 100%;
+		float: left;
+		margin-top: -20px;
+	}
+	.videos-group {
+		@include flexgroup();
+		margin-left: -20px;
+		margin-right: -20px;
+	}
+	.video-iframe {
+		position: relative;
+		width: 100%;
+		float: left;
+		background: #000;
+		margin-bottom: 15px;
+		.embed-container, iframe {
+			width: 100%!important;
+			height: 100%!important;
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 5;
+			padding: 0 0;
+			border: none!important;
+		}
+		img.video-helper {
+			width: 100%;
+			height: auto;
+			float: left;
+		}
+	}
+	.entry {
+		width: 100%;
+		position: relative;
+		padding: 20px;
+		@include tab {
+			width: 50%;
+		}
+	}
+	.video-info {
+		width: 100%;
+		float: left;
+		.title {
+			font-size: 20px;
+			font-weight: bold;
+			line-height: 1.1;
+			margin: 0 0 5px;
+		}
+		.postdate {
+			margin: 0 0;
+			font-size: 12px;
+		}
+	}
+	#more-video-btn {
+		span.nomore {
+			font-size: 13px;
+			color: #868686;
+		}
+	}
+}
+
+#section2.category-elections {
+	padding-top: 60px;
+	padding-bottom: 20px;
+	.content-left {
+		width: 100%;
+		float: left;
+		@include tab {
+			width: 660px;
+		}
+	}
+	.widget-area {
+		width: 100%;
+		float: left;
+		margin-right: 0;
+		@include tab {
+			width: 260px;
+			float: right;
+		}
+	}
+	.second-row {
+		margin-top: -20px;
+		margin-left: -20px;
+		margin-right: -20px;
+		@include flexgroup();
+		.story-block {
+			flex-basis: unset;
+			width: 100%;
+			.photo {
+				margin: 0 0 10px;
+			}
+		}
+	}
+	
+	.entry.fullwidth {
+		width: 100%;
+		.story-block {
+			.photo {
+				position: relative;
+				height: 450px!important;
+				background-repeat: no-repeat;
+				background-position: center center;
+				background-size: cover;
+				@media screen and (max-width: $tabwidth - 1px) {
+					height: 200px!important;
+				}
+			}
+		}
+	}
+}
+
+.fullwidthBar {
+	width: 100%;
+	float: left;
+	background: $color-red;
+	color: #FFF;
+	font-size: 20px;
+  line-height: 1.3;
+  padding: 25px 10px 20px;
+  text-align: center;
+  p {
+  	margin: 0 0 15px;
+  }
+  p:last-child {
+  	margin-bottom: 0;
+  }
+  a {
+  	color: $color-yellow;
+  	&:hover {
+  		color: #FFF;
+  	}
+  }
+}
+
+/* Quick Links */
+.category-elections.has-sidebar {
+	.main-content-wrap {
+		width: 100%;
+		@include tab {
+			width: 660px;
+			float: left;
+		}
+	}
+	.quick-links {
+		width: 100%;
+		float: left;
+		background: $color-yellow;
+		@include tab {
+			width: 260px;
+			float: right;
+		}
+		.inside {
+			padding: 20px 15px;
+			text-align: center;
+		}
+		.q-title {
+			font-size: 25px;
+			font-weight: 500;
+			line-height: 1.2;
+			color: #FFF;
+			margin: 0 0 10px;
+		}
+		.qlinks {
+			text-align: left;
+			margin: 0 0;
+			padding: 0 0;
+			list-style: none;
+			li {
+				margin: 5px 0;
+				a {
+					display: block;
+					text-decoration: none;
+					font-size: 15px;
+					line-height: 1.2;
+					padding: 8px 10px;
+					background: #FFF;
+					transition: all ease .2s;
+				}
+				&:hover {
+					a {
+						opacity: 1;
+						color: #FFF;
+						background: $color-red;
+					}
+				}
+			}
+			
+		}
+	}
+}
+
+.navigation.navigation2 {
+	li {
+		span.current {
+			display: inline-block;
+			background-color: $color-yellow;
+			color: #FFF;
+			padding: 0.5rem 0.75rem;
+			border-radius: 3px;
+		}
+	}
+}
+
+.stickRight .story-home-right {
+	.embed-container {
+		padding: 0 0;
+		width: 100%;
+		height: 100%;
+		// background: #000;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 20;
+		iframe {
+			width: 100%!important;
+			height: 100%!important;
+			border: none!important;
+		}
+	}
+}
+
 
 /* Small Screen */
 @media screen and (max-width: 767px) {
