@@ -106,9 +106,6 @@ if($articles) {
 <?php } ?>
 
 
-<!-- CODE FOR PARSE.LY -->
-<?php get_template_part( 'inc/parsely' ); ?>
-
 </head>
 <?php
 $dd = date('d') - 1;
