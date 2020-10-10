@@ -12,13 +12,15 @@ $obj = get_queried_object();
 $current_term_id = ( isset($obj->term_id) && $obj->term_id ) ? $obj->term_id : '';
 $current_term_name = ( isset($obj->name) && $obj->name ) ? $obj->name : '';
 $current_term_slug = ( isset($obj->slug) && $obj->slug ) ? $obj->slug : '';
+$whichCatId = get_field("elect_which_category","option");
+
 if($current_term_slug=='stories') {
 
 	get_template_part('template-parts/content-category-stories');
 
 } else { ?>
 
-	<?php if($current_term_slug=='elections') { ?>
+	<?php if($whichCatId==$current_term_id) { ?>
 
 		<?php get_template_part('template-parts/content-category-elections'); ?>
 

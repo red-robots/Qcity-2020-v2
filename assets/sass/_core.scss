@@ -529,10 +529,10 @@ a {
 		color: #fff;
 		@include transition(all ease .4s);
 		@media screen and (min-width: $tabwidth) {
-			padding: 0% 16px;
+			padding: 0 16px;
 		}
 		@media screen and (min-width: $deskwidth) {
-			padding: 0% 30px;
+			padding: 0 20px;
 		}
 		&:hover, &.active {
 			background-color: rgba($color-yellow, 1);
@@ -7709,6 +7709,9 @@ body.modal-open {
 			margin: 0 0;
 			font-size: 12px;
 		}
+		.excerpt {
+			margin: 0 0;
+		}
 	}
 	#more-video-btn {
 		span.nomore {
@@ -7764,6 +7767,18 @@ body.modal-open {
 					height: 200px!important;
 				}
 			}
+		}
+	}
+}
+
+@media screen and (max-width:768px) {
+	.category-elections {
+		// .entry#entryNum3,
+		// .entry#entryNum4 {
+		// 	display: none;
+		// }
+		.entry.hide-item {
+			display: none;
 		}
 	}
 }
