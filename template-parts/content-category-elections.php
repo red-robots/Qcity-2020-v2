@@ -313,7 +313,9 @@ jQuery(document).ready(function($){
 		var parts = link.split("?page=");
 		var pageNum = parts[1];
 		var nextPageURL = baseURL + "?page=" + pageNum;
-		$("#catContentLeft").load(nextPageURL + " #posts-inner",function(){});
+		$("#catContentLeft").load(nextPageURL + " #posts-inner",function(){
+			history.pushState('',document.title,nextPageURL);
+		});
 	});
 
 	var baseURL = '<?php echo $current_term_link ?>';
@@ -356,8 +358,6 @@ jQuery(document).ready(function($){
 		if(screenWidth<769) {
 			nextPageURL += '&perpage=' + perpageMobile;
 		}
-		
-		console.log(nextPageURL);
 
 		$("#hiddenItems").load(nextPageURL + " .videos-group",function(){
 			if( $(this).find(".videos-group").length > 0 ) {
