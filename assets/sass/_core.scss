@@ -7639,6 +7639,10 @@ body.modal-open {
 	.page-top-area {
 		width: 100%;
 		float: left;
+		padding-top: 60px;
+		@include tab {
+			padding-top: 0;
+		}
 	}
 	.e-banner-image {
 		text-align: center;
@@ -7934,10 +7938,17 @@ body.modal-open {
 			left: 0;
 			width: 100%;
 		}
+		.category-elections .page-top-area {
+			padding-top: 0;
+		}
+		&.category-election-2020 #content {
+			padding-top: 0;
+		}
 	}
 	.member_lists .members ul {
 		column-count: 1;
 	}
+
 }
 
 
