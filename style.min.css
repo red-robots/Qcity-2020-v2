@@ -3047,14 +3047,20 @@ body.modal-open{overflow-x:hidden;overflow-y:hidden}
 .fullwidthBar a:hover{color:#FFF}
 .category-elections.has-sidebar .main-content-wrap{width:100%}
 @media(min-width:820px){.category-elections.has-sidebar .main-content-wrap{width:660px;float:left}
-}.category-elections.has-sidebar .quick-links{width:100%;float:left;background:#c4a92f}
-@media(min-width:820px){.category-elections.has-sidebar .quick-links{width:260px;float:right}
-}.category-elections.has-sidebar .quick-links .inside{padding:20px 15px;text-align:center}
-.category-elections.has-sidebar .quick-links .q-title{font-size:25px;font-weight:500;line-height:1.2;color:#FFF;margin:0 0 10px}
-.category-elections.has-sidebar .quick-links .qlinks{text-align:left;margin:0;padding:0;list-style:none}
-.category-elections.has-sidebar .quick-links .qlinks li{margin:5px 0}
-.category-elections.has-sidebar .quick-links .qlinks li a{display:block;text-decoration:none;font-size:15px;line-height:1.2;padding:8px 10px;background:#FFF;-webkit-transition:all ease .2s;transition:all ease .2s}
-.category-elections.has-sidebar .quick-links .qlinks li:hover a{opacity:1;color:#FFF;background:#924020}
+}#e-quick-links{width:100%;float:left;background:#c4a92f}
+@media(min-width:820px){#e-quick-links{width:260px;float:right}
+}#e-quick-links .inside{padding:20px 15px;text-align:center}
+#e-quick-links .q-title{font-size:25px;font-weight:500;line-height:1.2;color:#FFF;margin:0 0 10px}
+#e-quick-links .qlinks{text-align:left;margin:0;padding:0;list-style:none}
+#e-quick-links .qlinks li{margin:5px 0}
+#e-quick-links .qlinks li a{display:block;text-decoration:none;font-size:15px;line-height:1.2;padding:8px 10px;background:#FFF;-webkit-transition:all ease .2s;transition:all ease .2s}
+#e-quick-links .qlinks li:hover a{opacity:1;color:#FFF;background:#924020}
+.category-elections#section1 #e-quick-links{margin-top:30px}
+@media(min-width:820px){.category-elections#section1 #e-quick-links{margin-top:23px}
+}.e-widget-wrap{width:100%;float:left;margin-top:30px}
+@media(min-width:820px){.e-widget-wrap{width:260px;float:right;margin-top:23px}
+}.e-widget-wrap #e-quick-links{margin-bottom:30px}
+.e-widget-wrap .widget-area.category-post{width:100%;float:left}
 .navigation.navigation2 li span.current{display:inline-block;background-color:#c4a92f;color:#FFF;padding:.5rem .75rem;border-radius:3px}
 .navigation.navigation-jobs{max-width:1084px;width:100%;margin:0 auto 0;float:none;padding-top:20px}
 .stickRight .story-home-right .embed-container{padding:0;width:100%;height:100%;position:absolute;top:0;left:0;z-index:20}
