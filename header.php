@@ -84,6 +84,8 @@ $ob = get_queried_object();
 $current_term_id = ( isset($ob->term_id) && $ob->term_id ) ? $ob->term_id : '';
 $current_term_name = ( isset($ob->name) && $ob->name ) ? $ob->name : '';
 $current_term_slug = ( isset($ob->slug) && $ob->slug ) ? $ob->slug : '';
+$electionCatId = get_field("elect_which_category","option");
+$electionCatId = ($electionCatId) ? $electionCatId : '-1';
 
 if ( get_post_type()=='story')  { 
 $articles = get_field("story_article"); 
@@ -211,7 +213,7 @@ $start_end = $dateToday . ',' . date('Ym') . $nexday;
 	<div id="content" class="site-content mobile-body" >
 
   
-<?php if($current_term_slug!='elections') { ?>
+<?php if($electionCatId!=$current_term_id) { ?>
   <div class="ads_home_leaderboard">
     <?php 
         $ads_header = get_ads_script('leaderboard-ad-home');
