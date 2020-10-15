@@ -1,4 +1,4 @@
-/*!
+@charset "UTF-8";/*!
 Theme Name: Qcity 2020 v2.0
 Theme URI: http://austincrane.me/
 Author: Austin Crane
@@ -1736,6 +1736,47 @@ html[xmlns] .flexslider .slides{display:block}
 .flex-direction-nav .flex-next{opacity:1;right:10px}
 }.infinite-scroll .posts-navigation,.infinite-scroll.neverending .site-footer{display:none}
 .infinity-end.neverending .site-footer{display:block}
+.slick-slider{position:relative;display:block;box-sizing:border-box;-webkit-touch-callout:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-ms-touch-action:pan-y;touch-action:pan-y;-webkit-tap-highlight-color:transparent}
+.slick-list{position:relative;overflow:hidden;display:block;margin:0;padding:0}
+.slick-list:focus{outline:0}
+.slick-list.dragging{cursor:pointer;cursor:hand}
+.slick-slider .slick-track,.slick-slider .slick-list{-webkit-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}
+.slick-track{position:relative;left:0;top:0;display:block;margin-left:auto;margin-right:auto}
+.slick-track:before,.slick-track:after{content:"";display:table}
+.slick-track:after{clear:both}
+.slick-loading .slick-track{visibility:hidden}
+.slick-slide{float:left;height:100%;min-height:1px;display:none}
+[dir="rtl"] .slick-slide{float:right}
+.slick-slide img{display:block}
+.slick-slide.slick-loading img{display:none}
+.slick-slide.dragging img{pointer-events:none}
+.slick-initialized .slick-slide{display:block}
+.slick-loading .slick-slide{visibility:hidden}
+.slick-vertical .slick-slide{display:block;height:auto;border:1px solid transparent}
+.slick-arrow.slick-hidden{display:none}
+.slick-loading .slick-list{background:#fff url("./ajax-loader.gif") center center no-repeat}
+@font-face{font-family:"slick";src:url("./fonts/slick.eot");src:url("./fonts/slick.eot?#iefix") format("embedded-opentype"),url("./fonts/slick.woff") format("woff"),url("./fonts/slick.ttf") format("truetype"),url("./fonts/slick.svg#slick") format("svg");font-weight:normal;font-style:normal}
+.slick-prev,.slick-next{position:absolute;display:block;height:20px;width:20px;line-height:0;font-size:0;cursor:pointer;background:transparent;color:transparent;top:50%;-webkit-transform:translate(0,-50%);-ms-transform:translate(0,-50%);transform:translate(0,-50%);padding:0;border:0;outline:0}
+.slick-prev:hover,.slick-prev:focus,.slick-next:hover,.slick-next:focus{outline:0;background:transparent;color:transparent}
+.slick-prev:hover:before,.slick-prev:focus:before,.slick-next:hover:before,.slick-next:focus:before{opacity:1}
+.slick-prev.slick-disabled:before,.slick-next.slick-disabled:before{opacity:.25}
+.slick-prev:before,.slick-next:before{font-family:"slick";font-size:20px;line-height:1;color:white;opacity:.75;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.slick-prev{left:-25px}
+[dir="rtl"] .slick-prev{left:auto;right:-25px}
+.slick-prev:before{content:"←"}
+[dir="rtl"] .slick-prev:before{content:"→"}
+.slick-next{right:-25px}
+[dir="rtl"] .slick-next{left:-25px;right:auto}
+.slick-next:before{content:"→"}
+[dir="rtl"] .slick-next:before{content:"←"}
+.slick-dotted.slick-slider{margin-bottom:30px}
+.slick-dots{position:absolute;bottom:-25px;list-style:none;display:block;text-align:center;padding:0;margin:0;width:100%}
+.slick-dots li{position:relative;display:inline-block;height:20px;width:20px;margin:0 5px;padding:0;cursor:pointer}
+.slick-dots li button{border:0;background:transparent;display:block;height:20px;width:20px;outline:0;line-height:0;font-size:0;color:transparent;padding:5px;cursor:pointer}
+.slick-dots li button:hover,.slick-dots li button:focus{outline:0}
+.slick-dots li button:hover:before,.slick-dots li button:focus:before{opacity:1}
+.slick-dots li button:before{position:absolute;top:0;left:0;content:"•";width:20px;height:20px;font-family:"slick";font-size:6px;line-height:20px;text-align:center;color:black;opacity:.25;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.slick-dots li.slick-active button:before{color:black;opacity:.75}
 body,button,input,select,textarea{color:#424141;font-family:"UniversLTPro-55Roman";font-size:16px;font-size:1rem;line-height:1.5}
 h1,h2,h3,h4,h5,h6{clear:both;font-family:"UniversLTPro-65Bold";line-height:1.1}
 .entry-content h3{color:#58595b}
@@ -3065,6 +3106,38 @@ body.modal-open{overflow-x:hidden;overflow-y:hidden}
 .navigation.navigation-jobs{max-width:1084px;width:100%;margin:0 auto 0;float:none;padding-top:20px}
 .stickRight .story-home-right .embed-container{padding:0;width:100%;height:100%;position:absolute;top:0;left:0;z-index:20}
 .stickRight .story-home-right .embed-container iframe{width:100% !important;height:100% !important;border:none !important}
+.mobile-carousel-posts{display:none}
+.carousel-posts-wrap,.mobile-carousel-posts{width:100%;float:left}
+.carousel-posts{width:100%;float:left;overflow:hidden}
+.carousel-posts .entry{width:33.33%}
+.carousel-posts .slick-track{width:100% !important}
+.carousel-posts .slick-slide img{width:100%;height:auto}
+.carousel-posts .inside,.carousel-posts .video-iframe,.carousel-posts .embed-container{width:100%;float:left}
+.carousel-posts .inside iframe,.carousel-posts .video-iframe iframe,.carousel-posts .embed-container iframe{width:100% !important;height:100% !important}
+.carousel-posts .inside .video-helper,.carousel-posts .video-iframe .video-helper,.carousel-posts .embed-container .video-helper{width:100%;height:auto;float:left}
+.carousel-posts .video-iframe{background:#000}
+.carouselWrapper{margin-left:-30px;margin-right:-30px;position:relative;overflow:hidden}
+.carouselWrapper .slick-dotted.slick-slider{margin-bottom:50px}
+.carouselWrapper .slick-dots{display:none !important}
+.carouselWrapper .slick-prev,.carouselWrapper .slick-next{top:108%;z-index:200;border-radius:0;width:35px;height:30px;background:#924020;box-shadow:none;color:#FFF}
+.carouselWrapper .slick-prev.slick-disabled,.carouselWrapper .slick-next.slick-disabled{opacity:.3}
+.carouselWrapper .slick-prev:before,.carouselWrapper .slick-next:before{content:"";position:absolute;top:2px;font-size:18px;line-height:1;color:#FFF;opacity:1}
+.carouselWrapper .slick-prev{left:38vw}
+.carouselWrapper .slick-prev:before{content:"<";left:12px}
+.carouselWrapper .slick-next{right:38vw}
+.carouselWrapper .slick-next:before{content:">";right:11px}
+.post-carousel-slider{width:100%;float:left;padding-left:15px}
+.post-carousel-slider .slick-track{display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-flex-direction:row;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row}
+.c-slide-item{visibility:hidden;opacity:0;-webkit-transition:all ease .3s;transition:all ease .3s;outline:0}
+.c-slide-item.slick-slide{visibility:visible;opacity:1;outline:0}
+.c-slide-item .frame{width:100%;float:left;position:relative;background-color:#000}
+.c-slide-item .frame img.placeholder{width:100%;height:auto;float:left}
+.c-slide-item .frame .embed-container,.c-slide-item .frame iframe{width:100% !important;height:100% !important;position:absolute;top:0;left:0;border:0}
+.c-slide-item .info{width:100%;float:left;padding:15px;background:#f1f1f1}
+.c-slide-item .c-entry{width:300px;float:left;padding:15px}
+.c-slide-item .c-entry .wrap{background:#fafafa;padding:0}
+.c-slide-item .c-entry h3.title{font-size:20px;font-weight:bold;line-height:1.1;margin:0 0 5px}
+.c-slide-item .c-entry p{margin:0}
 @media screen and (max-width:767px){body.category.category-stories #content,body.single.single-story #content{padding-top:86px}
 .new-page-fullwrap .sponsor-info a,.new-page-fullwrap .sponsor-info img{width:150px}
 .new-page-fullwrap .share-link a.back{margin-right:0}
@@ -3074,4 +3147,6 @@ body.logged-in.admin-bar #wpadminbar{position:fixed !important;top:0;left:0;widt
 body.logged-in.admin-bar .category-elections .page-top-area{padding-top:0}
 body.logged-in.admin-bar.category-election-2020 #content{padding-top:0}
 .member_lists .members ul{-webkit-column-count:1;-moz-column-count:1;column-count:1}
+}@media screen and (max-width:820px){.mobile-carousel-posts{display:block}
+.hideOnMobile{display:none !important}
 }

@@ -26,6 +26,13 @@ function acstarter_scripts() {
 		);
 
 	wp_enqueue_script( 
+			'acstarter-slider', 
+			get_template_directory_uri() . '/assets/js/vendors/slick.min.js', 
+			array(), '1.8', 
+			true 
+		);
+
+	wp_enqueue_script( 
 			'acstarter-custom', 
 			get_template_directory_uri() . '/assets/js/custom.js', 
 			array(), '1.2', 

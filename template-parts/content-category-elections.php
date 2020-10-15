@@ -45,6 +45,8 @@ if($whichCatId==$current_term_id) {
 			</div>	
 			<?php } ?>
 
+
+
 			<?php  
 				/* SHOW POSTS WITH VIDEOS */
 				$video_perpage_desktop = get_field("elect_video_perpage_desktop","option");
@@ -95,8 +97,18 @@ if($whichCatId==$current_term_id) {
 				$count = $videos->found_posts; 
 				$has_videos = true;
 				?>
+
+				<div class="mobile-carousel-posts">
+					<?php if ($video_section_title) { ?>
+						<header class="section-title ">
+							<h1 class="dark-gray"><?php echo $video_section_title ?></h1>
+						</header>
+						<?php } ?>
+					<?php get_template_part('template-parts/elections-videos'); ?>
+				</div>
+
 				<div class="main-content-wrap">
-					<div class="elect-videos-wrapper" data-perpage-desktop="<?php echo $perpage_desktop ?>" data-perpage-mobile="<?php echo $perpage_mobile ?>">
+					<div class="elect-videos-wrapper hideOnMobile" data-perpage-desktop="<?php echo $perpage_desktop ?>" data-perpage-mobile="<?php echo $perpage_mobile ?>">
 						<?php if ($video_section_title) { ?>
 						<header class="section-title ">
 							<h1 class="dark-gray"><?php echo $video_section_title ?></h1>
@@ -140,8 +152,6 @@ if($whichCatId==$current_term_id) {
 								</div>
 							</div>
 
-							<div id="hiddenItems" style="display:none;"><!-- DO NOT DELETE --></div>
-
 							<?php
 				        $total_pages = $videos->max_num_pages;
 				        if ($total_pages > 1){ ?>
@@ -153,6 +163,9 @@ if($whichCatId==$current_term_id) {
 							            </a>
 							        </div>
 				            </div>	
+
+				            <span id="mobileLoadMore" class="red" data-totalpages="<?php echo $total_pages ?>" data-baseurl="<?php echo $current_term_link; ?>" data-page="2"></span>
+
 				            <?php
 				        } ?>
 						</div>
@@ -311,6 +324,10 @@ $items = new WP_Query($args1);
 </div>
 <?php } ?>
 
+<div id="hiddenItems" style="display:none;"><!-- DO NOT DELETE --></div>
+<div id="hiddenItemsMobile" style="display:none;"><!-- DO NOT DELETE --></div>
+
+
 <script type="text/javascript">
 jQuery(document).ready(function($){
 
@@ -330,25 +347,25 @@ jQuery(document).ready(function($){
 	var baseURL = '<?php echo $current_term_link ?>';
 	var perpageMobile = '<?php echo $perpage_mobile; ?>';
 	
-	change_perpage_other_device();
-	$(window).on('resize orientationchange',function(){
-		change_perpage_other_device();
-	});
+	// change_perpage_other_device();
+	// $(window).on('resize orientationchange',function(){
+	// 	change_perpage_other_device();
+	// });
 	
-	function change_perpage_other_device() {
-		var screenWidth = $(window).width();
-		var hasPerpageVar = (typeof params.perpage!='undefined' && params.perpage!=null) ? true : false;
-		if(screenWidth<769) {
-			var newBaseURL = baseURL + "?perpage=" + perpageMobile;
-			if(hasPerpageVar==false) {
-				window.location.href = newBaseURL;
-			} 
-		} else {
-			if(hasPerpageVar) {
-				window.location.href = baseURL;
-			}
-		}
-	}
+	// function change_perpage_other_device() {
+	// 	var screenWidth = $(window).width();
+	// 	var hasPerpageVar = (typeof params.perpage!='undefined' && params.perpage!=null) ? true : false;
+	// 	if(screenWidth<769) {
+	// 		var newBaseURL = baseURL + "?perpage=" + perpageMobile;
+	// 		if(hasPerpageVar==false) {
+	// 			window.location.href = newBaseURL;
+	// 		} 
+	// 	} else {
+	// 		if(hasPerpageVar) {
+	// 			window.location.href = baseURL;
+	// 		}
+	// 	}
+	// }
 
 	$(document).on("click","#more-elections-videos",function(e){
 		e.preventDefault();
@@ -394,5 +411,52 @@ jQuery(document).ready(function($){
 			}
 		});
 	});
+
+
+	/* Carousel */
+	$(".carouselWrapper .post-carousel-slider").on('init', function(event, slick, direction){
+	  $('.ctxt').matchHeight();
+	});
+
+	$(".carouselWrapper .post-carousel-slider").slick({
+    dots: true,
+    infinite: false,
+    variableWidth: true,
+  });
+
+	$(".carouselWrapper .post-carousel-slider").on('afterChange', function(event, slick, currentSlide){
+	  var currentSlideIndex = currentSlide;
+	  var count = ( $(".carouselWrapper .c-slide-item").length > 0 ) ? parseInt($(".carouselWrapper .c-slide-item").length) - 1 : 0;
+	  		count = count-1;
+	  if(currentSlideIndex==count) {
+	  	loadNextSets();
+	  }
+	});
+
+	function loadNextSets() {
+		var moreButton = $("#mobileLoadMore");
+		if( moreButton.length>0 ) {
+			var currentPage = moreButton.attr("data-page");
+			var totalpages = moreButton.attr("data-totalpages");
+			var page = moreButton.attr("data-page");
+			var next = parseInt(page) + 1;
+			var currentURL = moreButton.attr("data-baseurl");
+			var nextPageURL = currentURL + '?cg=' + page;
+			moreButton.attr("data-page",next);
+
+			$("#hiddenItemsMobile").load(nextPageURL + " .post-carousel-slider",function(){
+				if( $("#hiddenItemsMobile .c-slide-item").length>0 ) {
+					var items = $("#hiddenItemsMobile .post-carousel-slider").html();
+					$("#hiddenItemsMobile .c-slide-item").each(function(){
+						var content = $(this).html();
+						$(".carouselWrapper .post-carousel-slider").slick('slickAdd','<div class="c-slide-item animated fadeIn">'+content+'</div>');
+					});
+					$('.ctxt').matchHeight();
+				}
+			});
+		}
+	}
+
+
 });
 </script>

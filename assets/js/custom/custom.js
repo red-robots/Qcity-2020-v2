@@ -883,6 +883,5 @@ jQuery(document).ready(function ($) {
         e.preventDefault();
         $(".share-link .share").slideToggle();
     });
-    
 
 });// END #####################################    END
