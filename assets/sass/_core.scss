@@ -8010,16 +8010,49 @@ body.modal-open {
 	}
 	.slick-prev {
 		left: 38vw;
-		&:before {
-    	content:"<";
+		&:before, &:after {
+			content:"";
+    	position: absolute;
+    	top: 0;
+    	width: 10px;
+    	height: 2px;
+    	background: #FFF;
+    	position: absolute;
     	left: 12px;
+		}
+		&:before {
+			top: 17px;
+    	transform: rotate(45deg);
     }
+    &:after {
+			top: 11px;
+    	transform: rotate(-45deg);
+    }
+
 	}
 	.slick-next {
 		right: 38vw;
-		&:before {
-    	content:">";
+		// &:before {
+  //   	content:">";
+  //   	right: 11px;
+  //   }
+ 	 	&:before, &:after {
+			content:"";
+    	position: absolute;
+    	top: 0;
+    	width: 10px;
+    	height: 2px;
+    	background: #FFF;
+    	position: absolute;
     	right: 11px;
+		}
+		&:before {
+			top: 17px;
+    	transform: rotate(-45deg);
+    }
+    &:after {
+			top: 11px;
+    	transform: rotate(45deg);
     }
 	}
 }
@@ -8092,7 +8125,9 @@ body.modal-open {
 	overflow: hidden;
 }
 .sponsoredEventsDiv {
+	position: relative;
 	margin-left: -15px;
+	margin-bottom: 90px;
 	#sponsoredPosts {
 		height: 380px;
 		overflow: hidden;
@@ -8208,9 +8243,74 @@ body.modal-open {
 			}
 		}
 	}
-	.slick-dots,
-	.slick-arrow {
+	.slick-dots {
 		display: none!important;
+	}
+	.slick-prev,
+	.slick-next {
+		top: 108%;
+		z-index: 200;
+    border-radius: 0;
+    width: 35px;
+    height: 30px;
+    background: #924020;
+    box-shadow: none;
+    color: #FFF;
+    &.slick-disabled {
+    	opacity: 0.3;
+    }
+    &:before {
+    	content:"";
+    	position: absolute;
+    	top: 2px;
+    	font-size: 18px;
+    	line-height: 1;
+    	color: #FFF;
+    	opacity: 1;
+    }
+	}
+	.slick-prev {
+		left: 34vw;
+		&:before, &:after {
+			content:"";
+    	position: absolute;
+    	top: 0;
+    	width: 10px;
+    	height: 2px;
+    	background: #FFF;
+    	position: absolute;
+    	left: 12px;
+		}
+		&:before {
+			top: 17px;
+    	transform: rotate(45deg);
+    }
+    &:after {
+			top: 11px;
+    	transform: rotate(-45deg);
+    }
+
+	}
+	.slick-next {
+		right: 34vw;
+ 	 	&:before, &:after {
+			content:"";
+    	position: absolute;
+    	top: 0;
+    	width: 10px;
+    	height: 2px;
+    	background: #FFF;
+    	position: absolute;
+    	right: 11px;
+		}
+		&:before {
+			top: 17px;
+    	transform: rotate(-45deg);
+    }
+    &:after {
+			top: 11px;
+    	transform: rotate(45deg);
+    }
 	}
 }
 
