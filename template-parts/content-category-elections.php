@@ -347,25 +347,6 @@ jQuery(document).ready(function($){
 	var baseURL = '<?php echo $current_term_link ?>';
 	var perpageMobile = '<?php echo $perpage_mobile; ?>';
 	
-	// change_perpage_other_device();
-	// $(window).on('resize orientationchange',function(){
-	// 	change_perpage_other_device();
-	// });
-	
-	// function change_perpage_other_device() {
-	// 	var screenWidth = $(window).width();
-	// 	var hasPerpageVar = (typeof params.perpage!='undefined' && params.perpage!=null) ? true : false;
-	// 	if(screenWidth<769) {
-	// 		var newBaseURL = baseURL + "?perpage=" + perpageMobile;
-	// 		if(hasPerpageVar==false) {
-	// 			window.location.href = newBaseURL;
-	// 		} 
-	// 	} else {
-	// 		if(hasPerpageVar) {
-	// 			window.location.href = baseURL;
-	// 		}
-	// 	}
-	// }
 
 	$(document).on("click","#more-elections-videos",function(e){
 		e.preventDefault();

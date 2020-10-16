@@ -7,10 +7,12 @@ $day = date('d');
 $day2 = $day - 1;
 $day_plus = sprintf('%02s', $day2);
 $today = date('Ym') . $day_plus;
-	
-$box_rectangle = get_bloginfo("template_url") . "/images/boxr.png";
-$wp_query = new WP_Query();
 
+$box_rectangle = get_bloginfo("template_url") . "/images/boxr.png";
+$event_placeholder = get_bloginfo("template_url") . "/images/event-placeholder.png";
+$moreBlockImg  = get_bloginfo("template_url") . "/images/city.jpg";
+
+$wp_query = new WP_Query();
 $wp_query->query(array(
 	'post_type'			=>'event',
 	'post_status'		=>'publish',
@@ -35,12 +37,55 @@ $wp_query->query(array(
 ));
 	if ($wp_query->have_posts()) : 
 	$totalpost = $wp_query->found_posts;  ?>
-	<section class="home-sponsored v2 numItems<?php echo $totalpost?>">
+	<section class="home-sponsored v2 carousel-type-wrap numItems<?php echo $totalpost?>">
 		<header class="section-title ">
 			<h2 class="dark-gray">Sponsored Events</h2>
 		</header>
 
-		<div class="outerwrap">
+		<?php /* SHOW ON MOBILE */ ?>
+		<div class="sponsoredEventsDiv showOnMobile">
+			<div id="sponsoredPosts" class="flexwrap2">
+				<?php while ($wp_query->have_posts()) : $wp_query->the_post(); 
+					$img 		= get_field('event_image');
+					$date 		= get_field("event_date", false, false);
+					$date 		= new DateTime($date);
+					$enddate 	= get_field("end_date", false, false);
+					$enddate 	= new DateTime($enddate);
+					$imgSRC = ($img) ? $img['url'] : $event_placeholder;
+				?>
+					<div class="carousel-block animated">
+						<a href="<?php the_permalink(); ?>" class="boxLink">
+							<span class="wrap" style="background-image:url('<?php echo $event_placeholder?>')">
+								<span class="image" style="background-image:url('<?php echo $imgSRC?>')"></span>
+								<img src="<?php echo $box_rectangle ?>" alt="" aria-hidden="true" class="placeholder">
+							</span>
+							<span class="info carouselText">
+								<span class="info-inner">
+									<span class="date">
+										<?php echo $date->format('D | M j, Y'); ?>	
+									</span>
+									<h3><?php the_title(); ?></h3>
+								</span>
+							</span>
+						</a>
+					</div>
+				<?php endwhile; ?>
+				
+				<?php /* VIEW MORE */ ?>
+				<div class="carousel-block animated moreEventsBox">
+					<a href="<?php bloginfo('url'); ?>/events" class="boxLink">
+						<span class="wrap" style="background-image:url('<?php echo $moreBlockImg;?>')">
+							<img src="<?php echo $box_rectangle ?>" alt="" aria-hidden="true" class="placeholder">
+							<span class="info carouselText"><span class="moreTxt">More Events</span></span>
+						</span>
+					</a>
+				</div>
+
+			</div>
+		</div>
+
+		<?php /* SHOW ON DESKTOP */ ?>
+		<div class="outerwrap hideOnMobile">
 			<div class="flexwrap2">
 				<?php while ($wp_query->have_posts()) : $wp_query->the_post(); 
 					$img 		= get_field('event_image');
@@ -48,7 +93,7 @@ $wp_query->query(array(
 					$date 		= new DateTime($date);
 					$enddate 	= get_field("end_date", false, false);
 					$enddate 	= new DateTime($enddate);
-					$defaultImg = get_bloginfo("template_url") . "/images/event-placeholder.png";
+					$defaultImg = $event_placeholder;
 					$imgSRC = ($img) ? $img['url'] : $defaultImg;
 				
 				?>
@@ -66,14 +111,13 @@ $wp_query->query(array(
 								<h3><?php the_title(); ?></h3>
 							</span>
 						</span>
-						
 					</a>
 				</div>
 				<?php endwhile; ?>
 				
 				<?php /* Last Box */ ?>
 				<div class="block last-block desktop-version">
-					<div class="inner" style="background-image: url('<?php bloginfo('stylesheet_directory'); ?>/images/city.jpg');">
+					<div class="inner" style="background-image: url('<?php echo $moreBlockImg;?>');">
 						<a href="<?php bloginfo('url'); ?>/events">
 							<span class="more">More Events</span>
 							<img src="<?php echo $box_rectangle ?>" alt="" aria-hidden="true" class="placeholder">

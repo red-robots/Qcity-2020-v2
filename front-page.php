@@ -37,5 +37,18 @@ get_header(); ?>
 		</main><!-- #main -->
 	</div><!-- #primary -->
 </div>
+
+<script type="text/javascript">
+jQuery(document).ready(function($){
+	$("#sponsoredPosts").on('init', function(event, slick, direction){
+	  $('.carouselText').matchHeight();
+	});
+	$("#sponsoredPosts").slick({
+    dots: true,
+    infinite: false,
+    variableWidth: true,
+  });
+});
+</script>
 <?php
 get_footer();
