@@ -122,6 +122,7 @@ if($whichCatId==$current_term_id) {
 										$v=1; while ( $videos->have_posts() ) : $videos->the_post(); ?>
 										<?php 
 											$title = get_the_title();
+											$title = strip_tags($title);
 											$post_date = get_the_date();
 											$excludePosts[] = get_the_ID();
 											$videoLink = get_field("video_single_post"); 

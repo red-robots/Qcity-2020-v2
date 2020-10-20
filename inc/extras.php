@@ -973,5 +973,34 @@ function get_total_events_by_date() {
   return $final_total;
 }
 
+function get_news_posts_with_videos() {
+    global $wpdb;
+    $whichCatId = get_field("elect_which_category","option");
+    $posts_with_videos = array();
+    $query = "SELECT p.ID, p.post_date FROM ".$wpdb->prefix."posts p, ".$wpdb->prefix."postmeta m WHERE p.ID=m.post_id AND p.post_status='publish' AND p.post_type='post' AND m.meta_key='video_single_post' AND m.meta_value!='' ORDER BY p.post_date DESC LIMIT 100";
+    //$query = "SELECT m.post_id as ID FROM ".$wpdb->prefix."postmeta m WHERE m.meta_key='video_single_post' AND (m.meta_value!='' OR m.meta_value NOT NULL)";
+    $items = array();
+    $result = $wpdb->get_results($query);
+    if($result) {
+        foreach($result as $row) {
+            $id = $row->ID;
+            $terms = get_the_terms($id,'category');
+            $include = array();
+            if($whichCatId) {
+                if($terms) {
+                    foreach($terms as $t) {
+                        $term_id = $t->term_id;
+                        if($term_id==$whichCatId) {
+                            $items[$id] = $row;
+                            $posts_with_videos[$id] = $id;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    return ($posts_with_videos) ? array_values($posts_with_videos) : '';
+}
 
 

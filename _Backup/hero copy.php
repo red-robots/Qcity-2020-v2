@@ -6,22 +6,29 @@ $excludeCatID 	= ( isset($excludeCat->term_id) && $excludeCat->term_id ) ? $excl
 $stickyPosts = get_option('sticky_posts');
 $rightPostItems = get_stick_to_right_posts();
 $postWithVideos = get_news_posts_with_videos();
+$excludePostItems = $rightPostItems;
 
-if($postWithVideos) {
-	$rightPostItems = array_merge($rightPostItems,$postWithVideos);
+if($rightPostItems) {
+	if($postWithVideos) {
+		$excludePostItems = array_merge($rightPostItems,$postWithVideos);
+	}
+} else {
+	if($postWithVideos) {
+		$excludePostItems = $postWithVideos;
+	}
 }
 
 $featured_posts = array();
 $mainArgs = array(
-	'post_type'    => 'post',
-	'posts_per_page'    => 1,
-	'post_status'  => 'publish',
-	'orderby'	=> 'date', 
-	'order'		=> 'DESC',
+    'post_type'    		=> 'post',
+    'posts_per_page'	=> 1,
+    'post_status'  		=> 'publish',
+    'orderby'					=> 'date', 
+		'order'						=> 'DESC',
 );
 
-if($rightPostItems) {
-	$mainArgs['post__not_in'] = $rightPostItems;
+if($excludePostItems) {
+	$mainArgs['post__not_in'] = $excludePostItems;
 }
 
 if($excludeCatID) {
@@ -111,11 +118,11 @@ if($stickyPosts) {
 		$maxPosts = 3;
 		$theRightPosts = array();
 		$rightArgs = array(
-			'post_type'    => 'post',
-			'posts_per_page'    => $maxPosts,
-			'post_status'  => 'publish',
-			'orderby'	=> 'date', 
-			'order'		=> 'DESC',
+		    'post_type'    => 'post',
+		    'posts_per_page'    => $maxPosts,
+		    'post_status'  => 'publish',
+				'orderby'	=> 'date', 
+				'order'		=> 'DESC', 
 		);
 
 		if($excludeCatID) {
@@ -129,21 +136,17 @@ if($stickyPosts) {
 			);
 		}
 
-		$excludeItems = array();
+		$right_posts_exclude = $excludePostItems;
 		if($featured_posts) {
-			if($postWithVideos) {
-				$excludeItems = array_merge($featured_posts,$postWithVideos);
-			} else {
-				$excludeItems = $featured_posts;
+			//$rightArgs['post__not_in'] = $featured_posts;
+			if($excludePostItems) {
+				$right_posts_exclude = array_merge($featured_posts,$excludePostItems);
 			}
-		} else {
-			$excludeItems = $postWithVideos;
 		} 
 
-		if($excludeItems) {
-			$rightArgs['post__not_in'] = $excludeItems;
+		if($right_posts_exclude) {
+			$rightArgs['post__not_in'] = $right_posts_exclude;
 		}
-		
 
 		/* Get post that is set `Stick on Right Side` */
 		$rightArgs['meta_query'] = array(
@@ -173,12 +176,7 @@ if($stickyPosts) {
 				} else {
 					$excludeIDs = $featured_posts;
 				}
-
-				if($excludeIDs) {
-					if($postWithVideos) {
-						$excludeIDs = array_unique(array_merge($excludeIDs,$postWithVideos));
-					}
-				}
+				
 
 				if($rightPosts) {
 					foreach($rightPosts as $r) {
