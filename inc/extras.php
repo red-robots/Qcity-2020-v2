@@ -173,11 +173,20 @@ function qcity_related_posts() {
 */
 
 function youtube_setup( $src ){
-    
-    parse_str( parse_url( $src, PHP_URL_QUERY), $query);
-    $id = $query['v'];
-    $url = "https://www.youtube.com/embed/" . $id;
-    
+    $url = '';
+    if (strpos($src,'youtu.be') !== false) {
+        $parts = explode('youtu.be/',$src);
+        if($parts && count($parts)>1) {
+            $id = $parts[1];
+            $url = "https://www.youtube.com/embed/" . $id;
+        }
+    } else {
+        if( strpos($src,'youtube.com/watch') ) {
+            parse_str( parse_url( $src, PHP_URL_QUERY), $query);
+            $id = $query['v'];
+            $url = "https://www.youtube.com/embed/" . $id;
+        }
+    }
     return $url;
 }
 
