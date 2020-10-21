@@ -6,7 +6,7 @@
     $excludePosts = ( isset($featured_posts) && $featured_posts ) ? $featured_posts : '';
     $cat_id = ( isset($excludeCatID) && $excludeCatID ) ? $excludeCatID : '';
     //$cat_id = get_category_by_slug( 'sponsored-post' ); 
-    $postWithVideos = get_news_posts_with_videos(true);
+    $postWithVideos = get_news_posts_with_videos(200);
 
     $args1 = array(
         'post_type'             =>'post',

@@ -982,12 +982,12 @@ function get_total_events_by_date() {
   return $final_total;
 }
 
-function get_news_posts_with_videos($noLimit=null) {
+function get_news_posts_with_videos($limitNum=null) {
     global $wpdb;
     $whichCatId = get_field("elect_which_category","option");
     $posts_with_videos = array();
-    if($noLimit) {
-        $query = "SELECT p.ID, p.post_date FROM ".$wpdb->prefix."posts p, ".$wpdb->prefix."postmeta m WHERE p.ID=m.post_id AND p.post_status='publish' AND p.post_type='post' AND m.meta_key='video_single_post' AND m.meta_value!='' ORDER BY p.post_date DESC";
+    if($limitNum) {
+        $query = "SELECT p.ID, p.post_date FROM ".$wpdb->prefix."posts p, ".$wpdb->prefix."postmeta m WHERE p.ID=m.post_id AND p.post_status='publish' AND p.post_type='post' AND m.meta_key='video_single_post' AND m.meta_value!='' ORDER BY p.post_date DESC LIMIT ".$limitNum;
     } else {
         $query = "SELECT p.ID, p.post_date FROM ".$wpdb->prefix."posts p, ".$wpdb->prefix."postmeta m WHERE p.ID=m.post_id AND p.post_status='publish' AND p.post_type='post' AND m.meta_key='video_single_post' AND m.meta_value!='' ORDER BY p.post_date DESC LIMIT 100";
     }
