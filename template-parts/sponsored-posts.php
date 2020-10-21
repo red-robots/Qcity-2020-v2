@@ -42,7 +42,6 @@ $wp_query->query(array(
 			<h2 class="dark-gray">Sponsored Events</h2>
 		</header>
 
-	<div style="display:none">
 		<?php /* SHOW ON MOBILE */ ?>
 		<div class="sponsoredEventsDiv showOnMobile">
 			<div id="sponsoredPosts" class="flexwrap2">
@@ -84,8 +83,6 @@ $wp_query->query(array(
 
 			</div>
 		</div>
-
-	</div><!-- display: none -->
 
 		<?php /* SHOW ON DESKTOP */ ?>
 		<?php /* add class hideOnMobile to hide on mobile view */ ?>
