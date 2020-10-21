@@ -299,21 +299,20 @@ jQuery(document).ready(function ($) {
     *   Category Counter Jobs
     */
 
-    
-
     $(document).on('click', '.qcity-load-more:not(.loading)', function(){
 
         var that    = $(this);
-        var page    = $(this).data('page');
-        var perPage = $(this).data('perpage');
-        var newPage = page + 1;
-        var action  = $(this).data('action');
-        var basepoint = $(this).data('basepoint');
+        var page    = $(this).attr('data-page');
+        var perPage = $(this).attr('data-perpage');
+        var newPage = parseInt(page) + 1;
+        var action  = $(this).attr('data-action');
+        var basepoint = $(this).attr('data-basepoint');
         var newBasepoint = basepoint + perPage;
-        var postID = $(this).data('except')        
+        var postID = $(this).attr('data-except')        
 
         that.addClass('loading').find('.load-text').hide();        
         that.find('.load-icon').show();
+        that.attr('data-page', newPage);
 
         $.ajax({
             url: ajaxURL,
@@ -326,13 +325,12 @@ jQuery(document).ready(function ($) {
                 perPage: perPage
             },
             success: function(response){
-
+                
                 if( response == 0){
                     $('.qcity-news-container').append('<p>No more post to load!</p>');
                     that.hide();
                 } else {
-
-                    that.data('page', newPage);
+    
                     that.data('basepoint', newBasepoint);
                     $('.qcity-news-container').slideDown(2000).append(response);
 

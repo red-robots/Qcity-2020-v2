@@ -18,7 +18,6 @@ get_header(); ?>
 		<main id="main" class="site-main" role="main">
 
 		<?php 
-
 		$subscribe_text         = get_field('subscribe_text');
 		$subscribe_link         = get_field('subscribe_link');
 		$subscribe_button_name  = get_field('subscribe_button_name');

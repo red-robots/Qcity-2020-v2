@@ -7,6 +7,7 @@
     $cat_id = ( isset($excludeCatID) && $excludeCatID ) ? $excludeCatID : '';
     //$cat_id = get_category_by_slug( 'sponsored-post' ); 
     $postWithVideos = get_news_posts_with_videos(200);
+    $excludePostIds = array();
 
     $args1 = array(
         'post_type'             =>'post',
@@ -29,14 +30,21 @@
     if($excludePosts) {
         if($postWithVideos) {
             $ex_ids = array_unique(array_merge($excludePosts,$postWithVideos));
-            $args1['post__not_in'] = $ex_ids;
+            $excludePostIds = $ex_ids;
+            //$args1['post__not_in'] = $ex_ids;
         } else {
-            $args1['post__not_in'] = $excludePosts;
+            //$args1['post__not_in'] = $excludePosts;
+            $excludePostIds = $excludePosts;
         }
     } else {
         if($postWithVideos) {
-            $args1['post__not_in'] = $postWithVideos;
+            //$args1['post__not_in'] = $postWithVideos;
+            $excludePostIds = $postWithVideos;
         }
+    }
+
+    if($excludePostIds) {
+        $args1['post__not_in'] = $excludePostIds;
     }
 	
 	$wp_query = new WP_Query($args1);
@@ -102,7 +110,7 @@
 
 
          <div class="more"> 
-            <a class="red qcity-load-more" data-page="1" data-action="qcity_load_more" data-basepoint="10" data-except="<?php echo ($excludePosts) ? implode(',', $excludePosts):''; ?>" data-perpage="6">        
+            <a class="red qcity-load-more" data-page="1" data-action="qcity_load_more" data-basepoint="10" data-except="<?php echo ($excludePostIds) ? implode(',', $excludePostIds):''; ?>" data-perpage="6">        
                 <span class="load-text">Load More</span>
                 <span class="load-icon"><i class="fas fa-sync-alt spin"></i></span>
             </a>

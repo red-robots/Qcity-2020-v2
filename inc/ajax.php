@@ -10,22 +10,38 @@ add_action('wp_ajax_qcity_load_more', 'qcity_load_more');
 function qcity_load_more(){
 
     $base_post = $_POST['basepoint'];
-
+    $excludeIds = ( isset($_POST['postID']) && $_POST['postID'] ) ? explode(",",$_POST['postID']) : '';
     $paged      = $_POST['page'] + 1;
     $perpage    = 6;
     $cat_id     = get_category_by_slug( 'sponsored-post' );
-
     $offset     =  $base_post;    
+    $getdate    = getdate();
+
+    /* Query by today year and last year */
+    $date_query = array(
+        'relation' => 'OR',
+        array(
+            'year' => $getdate["year"]-1,
+        ),
+        array(
+            'year' => $getdate["year"],
+        )
+    );
 
     $args = array(
             'post_type'             => 'post',
             'post_status'           => 'publish',
             'paged'                 => $paged,
-            'post__not_in'          => $postIDs,
-            'category__not_in'      => array( $cat_id->term_id ),
             'posts_per_page'        => $perpage,
-            'offset'                => $offset ,
+            'date_query'            => $date_query
         );
+
+    if($cat_id) {
+        $args['category__not_in'] = $cat_id;
+    }
+    if($excludeIds){
+        $args['post__not_in'] = $excludeIds;
+    }
 
     $query = new WP_Query( $args );    
    
