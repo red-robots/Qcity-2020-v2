@@ -6,6 +6,7 @@
     $excludePosts = ( isset($featured_posts) && $featured_posts ) ? $featured_posts : '';
     $cat_id = ( isset($excludeCatID) && $excludeCatID ) ? $excludeCatID : '';
     //$cat_id = get_category_by_slug( 'sponsored-post' ); 
+    $postWithVideos = get_news_posts_with_videos(true);
 
     $args1 = array(
         'post_type'             =>'post',
@@ -26,7 +27,16 @@
     }
 
     if($excludePosts) {
-        $args1['post__not_in'] = $excludePosts;
+        if($postWithVideos) {
+            $ex_ids = array_unique(array_merge($excludePosts,$postWithVideos));
+            $args1['post__not_in'] = $ex_ids;
+        } else {
+            $args1['post__not_in'] = $excludePosts;
+        }
+    } else {
+        if($postWithVideos) {
+            $args1['post__not_in'] = $postWithVideos;
+        }
     }
 	
 	$wp_query = new WP_Query($args1);

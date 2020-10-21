@@ -982,12 +982,15 @@ function get_total_events_by_date() {
   return $final_total;
 }
 
-function get_news_posts_with_videos() {
+function get_news_posts_with_videos($noLimit=null) {
     global $wpdb;
     $whichCatId = get_field("elect_which_category","option");
     $posts_with_videos = array();
-    $query = "SELECT p.ID, p.post_date FROM ".$wpdb->prefix."posts p, ".$wpdb->prefix."postmeta m WHERE p.ID=m.post_id AND p.post_status='publish' AND p.post_type='post' AND m.meta_key='video_single_post' AND m.meta_value!='' ORDER BY p.post_date DESC LIMIT 100";
-    //$query = "SELECT m.post_id as ID FROM ".$wpdb->prefix."postmeta m WHERE m.meta_key='video_single_post' AND (m.meta_value!='' OR m.meta_value NOT NULL)";
+    if($noLimit) {
+        $query = "SELECT p.ID, p.post_date FROM ".$wpdb->prefix."posts p, ".$wpdb->prefix."postmeta m WHERE p.ID=m.post_id AND p.post_status='publish' AND p.post_type='post' AND m.meta_key='video_single_post' AND m.meta_value!='' ORDER BY p.post_date DESC";
+    } else {
+        $query = "SELECT p.ID, p.post_date FROM ".$wpdb->prefix."posts p, ".$wpdb->prefix."postmeta m WHERE p.ID=m.post_id AND p.post_status='publish' AND p.post_type='post' AND m.meta_key='video_single_post' AND m.meta_value!='' ORDER BY p.post_date DESC LIMIT 100";
+    }
     $items = array();
     $result = $wpdb->get_results($query);
     if($result) {
