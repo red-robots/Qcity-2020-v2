@@ -2824,7 +2824,7 @@ section.home-sponsored.v2 {
 			.block {
 				width: 100%;
 				img.placeholder {
-					width: 75%;
+					width: 100%;
 				}
 			}
 		}
@@ -8143,13 +8143,13 @@ body.modal-open {
 		}
 	}
 	.carousel-block {
-		width: 275px;
+		width: 300px;
 	}
 	.boxLink {
 		display: block;
 		width: 100%;
 		float: left;
-		padding: 15px 12px;
+		padding: 15px 10px;
 		text-decoration: none;
 		position: relative;
 		span.wrap {
@@ -8315,6 +8315,14 @@ body.modal-open {
 }
 
 .showOnMobile {display:none;}
+.button-more-div .more {
+	text-align: center;
+	a {
+		display: inline-block;
+		max-width: 273px;
+		width: 100%;
+	}
+}
 
 /* Small Screen */
 @media screen and (max-width: 767px) {

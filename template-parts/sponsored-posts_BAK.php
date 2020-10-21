@@ -116,9 +116,18 @@ $wp_query->query(array(
 					</a>
 				</div>
 				<?php endwhile; ?>
-			
+				
+				<?php /* Last Box */ ?>
+				<div class="block last-block desktop-version">
+					<div class="inner" style="background-image: url('<?php echo $moreBlockImg;?>');">
+						<a href="<?php bloginfo('url'); ?>/events">
+							<span class="more">More Events</span>
+							<img src="<?php echo $landscape ?>" alt="" aria-hidden="true" class="placeholder">
+						</a>
+					</div>
+				</div>
 			</div>
-			<div class="button-more-div">
+			<div class="mobile-version">
 				<div class="more">
 					<a class="red" href="<?php bloginfo('url'); ?>/events">More Events</a>
 				</div>
