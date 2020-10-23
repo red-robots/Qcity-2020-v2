@@ -17,7 +17,7 @@ $wp_query = new WP_Query();
 $wp_query->query(array(
 	'post_type'			=>'event',
 	'post_status'		=>'publish',
-	'posts_per_page' 	=> 5,
+	'posts_per_page' 	=> 4,
 	'order' 			=> 'ASC',
 	'meta_key' 			=> 'event_date',
 	'orderby' 			=> 'event_date',

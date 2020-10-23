@@ -2023,6 +2023,7 @@ section.red-band .wrapper{line-height:1.2}
 }.social a{display:inline-block;margin:0 5px 0 5px}
 @media screen and (min-width:768px){.social a{margin:0 10px 0 0}
 }.subscribe-wrap{width:100%;clear:both;padding:60px 0 30px}
+.home .subscribe-wrap{padding:20px 0 30px}
 .subscribe{width:100%;clear:both;margin:0;padding:10px;background-color:#924020;color:#fff;text-align:center}
 .subscribe a{padding:3px 5px;background-color:none;color:#fff;display:inline-block;text-decoration:none}
 section.news-home{width:100%;float:left;margin:0 0 40px 0}
