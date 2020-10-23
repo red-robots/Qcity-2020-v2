@@ -397,7 +397,10 @@ jQuery(document).ready(function($){
 
 	/* Carousel */
 	$(".carouselWrapper .post-carousel-slider").on('init', function(event, slick, direction){
-	  $('.ctxt').matchHeight();
+	  carouselInit2();
+	  $(window).on('resize',function(){
+	  	carouselInit2();
+	  });
 	});
 
 	$(".carouselWrapper .post-carousel-slider").slick({
@@ -414,6 +417,17 @@ jQuery(document).ready(function($){
 	  	loadNextSets();
 	  }
 	});
+
+	function carouselInit2() {
+		$('.ctxt').matchHeight();
+		/* This will make the buttons fixed position. */
+	  var carouselWidth = $(".mobile-carousel-posts").width();
+	  var bw = $(".slick-arrow").width();
+	  var wh = carouselWidth / 2;
+	  var sb = wh-20;
+	  $(".slick-prev").css("left",sb+"px");
+	  $(".slick-next").css("right",sb+"px");
+  }
 
 	function loadNextSets() {
 		var moreButton = $("#mobileLoadMore");

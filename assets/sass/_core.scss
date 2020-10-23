@@ -1233,12 +1233,17 @@ section.red-band {
 }
 .sponsored-by {
 	width: 100%;
-	text-align: lft;
+	text-align: center;
 	padding: 20px;
 	background-color: $color-gray;
 	margin-bottom: 40px;
 	border-bottom: 8px solid $color-light-gray;
 	color: $color-black;
+	@include tab {
+		.description {
+			text-align: left;
+		}
+	}
 	h2 {
 		font-size: 18px;
 		margin-bottom: 15px;
@@ -2644,7 +2649,9 @@ section.home-sponsored.v2 {
 	.flexwrap2 {
 		// @include flexgroup();
 		// @include flexbox-justify(flex-start);
-		@include flexbox();
+		@include tab {
+			@include flexbox();
+		}
 		.block {
 			display: block;
 			height: auto!important;
@@ -6748,18 +6755,29 @@ div.whatIsThisTxt {
 		padding-left: 20px;
 		padding-right: 20px;
 	}
+	#sb_instagram #sbi_load .sbi_follow_btn {
+		margin-left: 0!important;
+	}
 	#sb_instagram .sbi_follow_btn a {
+		display: inline-block;
 		background: #924020;
 		color: #FFF;
 		border-radius: 0px;
-		padding: 12px 25px 8px;
-		font-size: 18px;
-		line-height: 1.2;
+		padding: 12px 25px 10px;
+    font-size: 16px;
+    line-height: 1.2;
+    margin: 0 0;
+    width: 100%;
+    @include tab {
+    	width: 273px;
+    }
 		svg {
 			display: inline-block;
 			margin: 0 8px 0 0;
 			position: relative;
-			top: -1px;
+			top: 0;
+			font-size: 16px;
+			line-height: 1;
 		}
 		&:hover {
 			background: #c5a92e;
@@ -8140,6 +8158,11 @@ body.modal-open {
 				-webkit-animation-name: fadeIn;
     		animation-name: fadeIn;
 			}
+			img.placeholder {
+				width: 100%;
+				height: auto;
+				float: left;
+			}
 		}
 	}
 	.carousel-block {
@@ -8321,6 +8344,7 @@ body.modal-open {
 		display: inline-block;
 		max-width: 273px;
 		width: 100%;
+		padding: 10px 0 8px;
 	}
 }
 
@@ -8370,7 +8394,7 @@ body.modal-open {
 }
 
 
-@media screen and (max-width: 820px) {
+@media screen and (max-width: 860px) {
 	.mobile-carousel-posts, .showOnMobile {
 		display: block;
 	}

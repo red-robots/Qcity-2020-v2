@@ -40,14 +40,31 @@ get_header(); ?>
 <script type="text/javascript">
 jQuery(document).ready(function($){
 	if( $("#sponsoredPosts").length>0 ) {
+
 		$("#sponsoredPosts").on('init', function(event, slick, direction){
-		  $('.carouselText').matchHeight();
+			carouselInit();
+		  $(window).on('resize',function(){
+		  	carouselInit();
+		  });
 		});
+
+		
 		$("#sponsoredPosts").slick({
 	    dots: true,
 	    infinite: false,
 	    variableWidth: true,
 	  });
+	  
+	  function carouselInit() {
+	  	$('.carouselText').matchHeight();
+		  var carouselWidth = $(".home-sponsored").width();
+		  var bw = $(".slick-arrow").width();
+		  var bbw = bw+10;
+		  var wh = carouselWidth / 2;
+		  var sb = wh-bbw;
+		  $(".slick-prev").css("left",sb+"px");
+		  $(".slick-next").css("right",sb+"px");
+	  }
 	}
 });
 </script>
