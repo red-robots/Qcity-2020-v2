@@ -2894,10 +2894,12 @@ div.whatIsThisTxt.show{display:block}
 .home-instagram-feeds{width:100%;float:left;padding-top:20px;padding-bottom:60px}
 .home-instagram-feeds .wrapper{max-width:1285px;width:100%;margin:0 auto;padding-left:20px;padding-right:20px}
 .home-instagram-feeds #sb_instagram #sbi_load .sbi_follow_btn{margin-left:0 !important}
-.home-instagram-feeds #sb_instagram .sbi_follow_btn a{display:inline-block;background:#924020;color:#FFF;border-radius:0;padding:12px 25px 10px;font-size:16px;line-height:1.2;margin:0;width:100%}
+@media(min-width:820px){.home-instagram-feeds #sb_instagram #sbi_load .sbi_follow_btn{margin-top:10px}
+}.home-instagram-feeds #sb_instagram .sbi_follow_btn a{display:inline-block;background:#924020;color:#FFF;border-radius:0;padding:12px 25px 10px;font-size:16px;line-height:1.2;margin:0;width:100%}
 @media(min-width:820px){.home-instagram-feeds #sb_instagram .sbi_follow_btn a{width:273px}
 }.home-instagram-feeds #sb_instagram .sbi_follow_btn a svg{display:inline-block;margin:0 8px 0 0;position:relative;top:0;font-size:16px;line-height:1}
 .home-instagram-feeds #sb_instagram .sbi_follow_btn a:hover{background:#c5a92e;box-shadow:none}
+.home-instagram-feeds #sb_instagram .sbi_follow_btn a:active{background:#924020}
 body.hide-signup-desktop .oakland-lightbox,body.single-post.hide-signup-desktop .oakland-lightbox,body .oakland-lightbox{display:none !important}
 body.single-post.show-signup-desktop .oakland-lightbox,body.single-post .oakland-lightbox.show{display:block !important}
 @media screen and (max-width:820px){html body .oakland-lightbox,html body.single-post.show-signup-desktop .oakland-lightbox,html body.single-post .oakland-lightbox.show{display:none !important}

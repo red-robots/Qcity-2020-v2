@@ -6757,6 +6757,9 @@ div.whatIsThisTxt {
 	}
 	#sb_instagram #sbi_load .sbi_follow_btn {
 		margin-left: 0!important;
+		@include tab {
+			margin-top: 10px;
+		}
 	}
 	#sb_instagram .sbi_follow_btn a {
 		display: inline-block;
@@ -6782,6 +6785,9 @@ div.whatIsThisTxt {
 		&:hover {
 			background: #c5a92e;
 			box-shadow: none;
+		}
+		&:active {
+			background: #924020;
 		}
 	}
 }
