@@ -60,7 +60,8 @@ window.googletag = window.googletag || {cmd: []};
   });
 </script>
 <script>
-    var ajaxURL = "<?php echo admin_url('admin-ajax.php'); ?>";
+var ajaxURL = "<?php echo admin_url('admin-ajax.php'); ?>";
+var assetsDIR = "<?php echo get_bloginfo("template_url") ?>/images/";
 </script>
 <!--
 <script type="text/javascript"async src="https://launch.newsinc.com/js/embed.js" id="_nw2e-js"></script>

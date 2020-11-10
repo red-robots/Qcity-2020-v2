@@ -2736,20 +2736,24 @@ section.stickies-new .right .story-block .story-home-right a img{height:200px}
 }#cboxOverlay{z-index:99998}
 .rp4wp-related-posts{margin-top:30px}
 .rp4wp-related-posts h3{margin-bottom:20px}
-.home-job-info{text-align:left}
+.rp4wp-posts-list .rp4wp_component_image img.wp-post-image{display:none !important}
+.rp4wp-posts-list .rp4wp_component_image img.prplaceholder{width:100%;height:auto;float:left}
+.rp4wp-posts-list .rp4wp_component_image a{display:block;background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#CCC;overflow:hidden}
+@media(min-width:820px){.rp4wp-posts-list .rp4wp_component_image a{min-height:150px}
+}.home-job-info{text-align:left}
 .home-job-info h3{font-size:16px;padding:2px 0}
 .home-job-info h4{font-weight:normal;font-size:14px;padding:2px 0}
 .home-job-info .date{font-size:12px}
 .qcity-more-happen{padding-top:20px}
 .post-caption{font-style:italic}
-@media screen and (min-width:768px){#content ul.rp4wp-posts-list li.rp4wp-col{width:100%;float:left;height:auto !important;padding-left:0 !important;display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-flex-direction:row;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row}
+@media screen and (min-width:768px){#content ul.rp4wp-posts-list li.rp4wp-col{width:100%;float:left;height:auto !important;min-height:150px;padding-left:0 !important;display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-flex-direction:row;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row}
 #content ul.rp4wp-posts-list li.rp4wp-col .rp4wp_component_wrapper{margin:0;padding:0;overflow:hidden}
 #content ul.rp4wp-posts-list li.rp4wp-col .rp4wp_component_wrapper.rp4wp_component_wrapper_left{padding-right:0 !important}
 #content ul.rp4wp-posts-list li.rp4wp-col .rp4wp_component_wrapper.rp4wp_component_0{width:32% !important;height:auto !important}
 #content ul.rp4wp-posts-list li.rp4wp-col .rp4wp_component_wrapper.rp4wp_component_1{width:68% !important;height:auto !important;padding-left:30px !important}
 #content ul.rp4wp-posts-list li.rp4wp-col .rp4wp_component_wrapper.rp4wp_component_1.rp4wp_component_wrapper_right{display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-flex-direction:row;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center}
 #content ul.rp4wp-posts-list li.rp4wp-col .rp4wp_component_wrapper.rp4wp_component_1 .rp4wp_component_3{height:auto !important}
-#content ul.rp4wp-posts-list li.rp4wp-col .rp4wp_component_image{width:100% !important;height:150px !important;overflow:hidden}
+#content ul.rp4wp-posts-list li.rp4wp-col .rp4wp_component_image{width:100% !important;height:auto !important;float:left;overflow:hidden}
 #content ul.rp4wp-posts-list li.rp4wp-col .rp4wp_component_image a,#content ul.rp4wp-posts-list li.rp4wp-col .rp4wp_component_image img{display:block;width:100%;float:left}
 #content ul.rp4wp-posts-list li.rp4wp-col .rp4wp_component_image a{height:100%}
 #content ul.rp4wp-posts-list .rp4wp_component_title{width:100% !important;font-size:20px;font-weight:bold;font-family:"UniversLTPro-65Bold";line-height:1.2}

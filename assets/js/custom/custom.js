@@ -882,4 +882,15 @@ jQuery(document).ready(function ($) {
         $(".share-link .share").slideToggle();
     });
 
+    /* Related Posts */
+    if( $(".rp4wp-posts-list li.rp4wp-col").length>0 ) {
+        $(".rp4wp-posts-list li.rp4wp-col").each(function(){
+            var placeholder = assetsDIR + "video-helper.png";
+            var imgSrc = $(this).find(".rp4wp_component_image img.wp-post-image").attr("src");
+            var newImage = '<img src="'+placeholder+'" alt="" aria-hidden="true" class="prplaceholder" />';
+            $(this).find(".rp4wp_component_image a").attr("style","background-image:url('"+imgSrc+"')")
+            $(this).find(".rp4wp_component_image a").append(newImage);
+        });
+    }
+
 });// END #####################################    END

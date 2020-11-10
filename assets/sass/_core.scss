@@ -5860,6 +5860,30 @@ body.home #main {
 		margin-bottom: 20px;
 	}
 }
+.rp4wp-posts-list {
+	.rp4wp_component_image {
+		img.wp-post-image {
+			display: none!important;
+		}
+		img.prplaceholder {
+			width: 100%;
+			height: auto;
+			float: left;
+		}
+		a {
+			display: block;
+			background-size: cover;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-color: #CCC;
+			overflow: hidden;
+			@include tab {
+				min-height: 150px;
+			}
+		}
+	} 
+}
+
 
 
 .home-job-info{
@@ -5897,8 +5921,8 @@ body.home #main {
 			width: 100%;
 			float: left;
 			height: auto!important;
+			min-height: 150px;
 			padding-left: 0 !important;
-				// margin-bottom: 10px !important;
 			
 			@include flexgroup();
 			.rp4wp_component_wrapper {
@@ -5928,7 +5952,8 @@ body.home #main {
 			}
 			.rp4wp_component_image {
 				width: 100%!important;
-				height: 150px!important;
+				height: auto !important;
+				float: left;
 				overflow: hidden;
 				a, img {
 					display: block;
