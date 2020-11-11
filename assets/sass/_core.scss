@@ -8485,6 +8485,18 @@ body.modal-open {
 	.hideOnMobile {
 		display: none!important;
 	}
+	section.stickies-new.stickyPostsTop .story-block.stickRightBlock .textwrap {
+		border-bottom: 1px solid #ccc;
+		padding-bottom: 15px;
+    margin-bottom: 5px;
+	}
+	section.home-sponsored.v2 {
+		margin-top: 15px;
+	}
+	// section.stickies-new .right .story-block:last-child .textwrap {
+	// 	border-bottom: none;
+	// 	padding-bottom: 10px;
+	// }
 }
 
 

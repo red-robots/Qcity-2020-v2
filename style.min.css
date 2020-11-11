@@ -3207,4 +3207,6 @@ body.logged-in.admin-bar.category-election-2020 #content{padding-top:0}
 .member_lists .members ul{-webkit-column-count:1;-moz-column-count:1;column-count:1}
 }@media screen and (max-width:860px){.mobile-carousel-posts,.showOnMobile{display:block}
 .hideOnMobile{display:none !important}
+section.stickies-new.stickyPostsTop .story-block.stickRightBlock .textwrap{border-bottom:1px solid #ccc;padding-bottom:15px;margin-bottom:5px}
+section.home-sponsored.v2{margin-top:15px}
 }
