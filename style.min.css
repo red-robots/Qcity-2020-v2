@@ -3209,4 +3209,7 @@ body.logged-in.admin-bar.category-election-2020 #content{padding-top:0}
 .hideOnMobile{display:none !important}
 section.stickies-new.stickyPostsTop .story-block.stickRightBlock .textwrap{border-bottom:1px solid #ccc;padding-bottom:15px;margin-bottom:5px}
 section.home-sponsored.v2{margin-top:15px}
+body.home .newsHomeV2 .mobile-separator{display:none}
+body.home .newsHomeV2 .story-block{border-bottom:1px solid #CCC;padding-bottom:20px}
+body.home .newsHomeV2 .c-sponsor-block{margin-top:33px !important}
 }

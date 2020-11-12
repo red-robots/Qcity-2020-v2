@@ -8497,6 +8497,16 @@ body.modal-open {
 	// 	border-bottom: none;
 	// 	padding-bottom: 10px;
 	// }
+	body.home .newsHomeV2 .mobile-separator {
+		display: none;
+	}
+	body.home .newsHomeV2 .story-block {
+		border-bottom: 1px solid #CCC;
+		padding-bottom: 20px;
+	}
+	body.home .newsHomeV2 .c-sponsor-block {
+		margin-top: 33px!important;
+	}
 }
 
 
