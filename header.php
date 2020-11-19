@@ -138,14 +138,15 @@ $start_end = $dateToday . ',' . date('Ym') . $nexday;
 			            </a>
 		            </div>
 
-                <?php $instagram = get_field("instagram_link_short","option"); ?>
+                <?php
+                $instagram = get_field("instagram_link_short","option"); 
+                $headerBtnLink = get_field("header_button_mobile_view","option");
+                $headerBtnTarget = ( isset($headerBtnLink['target']) && $headerBtnLink['target'] ) ? $headerBtnLink['target'] : '_self';
+                if($headerBtnLink) { ?>
                 <div class="newsletter-link" >
-                    <?php if ($instagram) { ?>
-                    <a href="<?php echo $instagram?>" target="_blank" class="news-letter-btn btn2">Instagram</a>
-                    <?php } else { ?>
-                    <a href="<?php bloginfo('url'); ?>/email-signup/" class="news-letter-btn">Newsletter</a>
-                    <?php } ?>
+                    <a href="<?php echo $headerBtnLink['url']?>" target="<?php echo $headerBtnTarget ?>" class="news-letter-btn btn2"><?php echo $headerBtnLink['title']?></a>
                 </div>
+                <?php } ?>
 	        </div>
 
           <?php  
