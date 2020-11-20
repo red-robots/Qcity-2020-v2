@@ -17,8 +17,8 @@
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap" rel="stylesheet">
-<!-- <link rel="preload" as="font" type="font/woff2"  crossorigin="anonymous" href="<?php bloginfo('template_url'); ?>/fonts/univers/UniversLTPro-65Bold.woff2?ao_noptimize=1ps">
-<link rel="preload" as="font" type="font/woff2"  crossorigin="anonymous" href="<?php bloginfo('template_url'); ?>/fonts/univers/UniversLTPro-55Roman.woff2?ao_noptimize=1"> -->
+<link rel="preload" as="font" type="font/woff2"  crossorigin="anonymous" href="<?php bloginfo('template_url'); ?>/fonts/univers/UniversLTPro-65Bold.woff2?ao_noptimize=1ps">
+<link rel="preload" as="font" type="font/woff2"  crossorigin="anonymous" href="<?php bloginfo('template_url'); ?>/fonts/univers/UniversLTPro-55Roman.woff2?ao_noptimize=1">
 
 <script defer src="<?php bloginfo( 'template_url' ); ?>/assets/svg-with-js/js/fontawesome-all.js"></script>
 
