@@ -7431,11 +7431,13 @@ body.single-story {
 		background: #D0D0C6;
 	}
 	.story-wrapper {
-		max-width: 1010px;
+		max-width: 760px;
 		width: 100%;
 		margin: 0 auto;
 		padding-left: 30px;
 		padding-right: 30px;
+		font-size: 1.2rem;
+    line-height: 1.6;
 	}
 	.new-page-fullwrap  {
 		.new-page-wrapper {
@@ -7487,6 +7489,45 @@ body.single-story {
 	}
 	.comment-list li.comment {
 		background-color: transparent;
+	}
+	.storySponsoredBy {
+		width: 100%;
+		float: left;
+		position: relative;
+    top: -20px;
+    .wrapInner {
+    	max-width: 700px;
+			width: 100%;
+			margin: 0 auto;
+	    text-align: center;
+	    padding: 20px;
+	    background-color: #eaeae7;
+	    margin-bottom: 40px;
+	    color: #000;
+	    font-size: 16px;
+	    line-height:1.4;
+	    border-bottom: 8px solid #b3b3b3;
+    }
+    .ssbtitle {
+    	margin: 0 0 30px;
+    	font-size: 18px;
+    	font-weight: 500;
+    }
+    .ssblogo {
+    	max-width: 500px;
+    	width: 100%;
+    	margin: 35px auto 30px;
+    	a, img {
+    		display: block;
+    		width: 100%;
+    		height: auto;
+    	}
+    }
+    .ssbtext {
+    	p:last-child {
+    		margin-bottom: 0;
+    	}
+    }
 	}
 }
 

@@ -1016,3 +1016,16 @@ function get_news_posts_with_videos($limitNum=null) {
 }
 
 
+function get_count_stories() {
+    global $wpdb;
+    $query = "SELECT count(*) as total FROM ".$wpdb->prefix."posts p WHERE p.post_type='story' AND post_status='publish'";
+    $result = $wpdb->get_row($query);
+    // $args = array(
+    //   'post_type'       =>'story',
+    //   'post_status'     =>'publish',
+    //   'posts_per_page'  => -1
+    // );
+    // $post = get_posts($args);
+    return ($result) ? $result->total : 0;
+}
+

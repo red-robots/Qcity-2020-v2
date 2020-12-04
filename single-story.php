@@ -1,4 +1,7 @@
 <?php
+$totalPost = get_count_stories();
+$cat = get_field("story_main_page_url","option");
+$storyPageLink = ($cat) ? get_term_link($cat) : '';
 $story_powered_by_text = get_field("story_powered_by_text","option");
 $story_sponsor_logo = get_field("story_sponsor_logo","option");
 $story_sponsor_website = get_field("story_sponsor_website","option");
@@ -50,11 +53,13 @@ get_header(); ?>
 
 	<div class="new-page-content">
 
+		<?php if ($totalPost>1 && $storyPageLink) { ?>
 		<div class="story-view-all">
 			<div class="story-view">
-				<a href="<?php echo get_site_url() ?>/category/stories/" id="viewAllStoriesBtn" class="viewAll"><span>View Other Posts</span></a>
+				<a href="<?php echo $storyPageLink ?>" id="viewAllStoriesBtn" class="viewAll"><span>View Other Posts</span></a>
 			</div>
 		</div>
+		<?php } ?>
 		
 
 		<div class="new-page-wrapper">
@@ -186,6 +191,36 @@ get_header(); ?>
 	</div>
 </div>
 <?php endwhile; ?>
+
+<?php /* Sponsor Info */ 
+$sponsorSite = get_field("story_sponsor_website","option");
+$sponsor = get_field("sponsor_text_bottom_page","option");
+$s_title = ( isset($sponsor['title']) && $sponsor['title'] ) ? $sponsor['title'] : '';
+$s_description = ( isset($sponsor['description']) && $sponsor['description'] ) ? $sponsor['description'] : '';
+$s_logo = ( isset($sponsor['logo']) && $sponsor['logo'] ) ? $sponsor['logo'] : '';
+if($s_description || $s_logo) { ?>
+<div class="storySponsoredBy">
+	<div class="wrapInner">
+		<?php if ($s_title) { ?>
+		<h2 class="ssbtitle"><?php echo $s_title ?></h2>	
+		<?php } ?>
+		
+		<?php if ($s_logo) { ?>
+		<div class="ssblogo">
+			<?php if ($sponsorSite) { ?>
+				<a href="<?php echo $sponsorSite ?>" target="_blank"><img src="<?php echo $s_logo['url'] ?>" alt="<?php echo $s_logo['title'] ?>"></a>
+			<?php } else { ?>
+				<img src="<?php echo $s_logo['url'] ?>" alt="<?php echo $s_logo['title'] ?>">
+			<?php } ?>
+		</div>	
+		<?php } ?>
+
+		<?php if ($s_description) { ?>
+		<div class="ssbtext"><?php echo $s_description ?></div>	
+		<?php } ?>
+	</div>
+</div>
+<?php } ?>
 
 <div id="otherPostPopUp"><div id="innerContent"></div><a href="#" id="closeStoriesModal"><span>x</span></a></div>
 <script>
