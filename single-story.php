@@ -241,27 +241,14 @@ jQuery(document).ready(function($){
 		});
 	});
 
-	// var stickyTop = $('.mobile-stick').offset().top;
- //  $(window).scroll(function() {
- //    var windowTop = $(window).scrollTop();
- //    if (stickyTop < windowTop && $(".blue").height() + $(".blue").offset().top - $(".sticky").height() > windowTop) {
- //      $('.sticky').css('position', 'fixed');
- //    } else {
- //      $('.sticky').css('position', 'relative');
- //    }
- //  });
-
  	$(window).scroll(function(){ 
   	var height = $(window).scrollTop();  //getting the scrolling height of window
 		if(height  > 100) {
-			//$("#masthead .mobile-stick").css({"position": "fixed"});
 			$("body").addClass('sticky-sponsor');
 		} else{
 			$("body").removeClass('sticky-sponsor');
-			//$(".header").css({"position": "relative"});
 		}
 	});
-
 
 });
 </script>
