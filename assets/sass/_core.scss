@@ -1513,6 +1513,70 @@ section.red-band {
 	}
 }
 
+
+body.sticky-sponsor.single-story {
+	.new-page-fullwrap .sponsor-info img {
+		width: 150px;
+	}
+	.new-page-fullwrap .top-page {
+		padding-top: 18px;
+		padding-bottom: 13px;
+	}
+	.story-single-content {
+		.top-page {
+			position: fixed;
+			top: 85px;
+			left: 0;
+			width: 100%;
+			z-index: 100;
+			-webkit-animation-duration: 1.2s;
+			animation-duration: 1.2s;
+			-webkit-animation-fill-mode: both;
+			animation-fill-mode: both;
+			-webkit-animation-name: fadeIn;
+			animation-name: fadeIn;
+			@include tab {
+				top: 100px;
+			}
+		}
+	}
+	.story-view-all {
+		position: fixed;
+		top: 130px;
+		left: 0;
+		width: 100%;
+		z-index: 100;
+		-webkit-animation-duration: 1.2s;
+		animation-duration: 1.2s;
+		-webkit-animation-fill-mode: both;
+		animation-fill-mode: both;
+		-webkit-animation-name: fadeIn;
+		animation-name: fadeIn;
+		@include tab {
+			top: 120px;
+		}
+	}
+	.new-page-fullwrap .share-link {
+		padding-right: 95px;
+		position: relative;
+		top: 8px;
+		@include tab {
+			top: 0;
+			padding-right: 120px;
+		}
+	}
+	.share-link .share {
+		top: 34px;
+		right: 90px;
+		width: 240px;
+		@include tab {
+			top: 42px;
+			right: 120px;
+		}
+	}
+	
+}
+
 .site-footer {
 	width: 100%;
 	clear: both;
@@ -7277,6 +7341,7 @@ body.single.single-story {
     padding-bottom: 18px;
     position: relative;
     z-index: 20;
+    transition: all ease .3s;
     .arrow-down {
     	width: 100%;
     	position: absolute;
