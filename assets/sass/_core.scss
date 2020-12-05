@@ -1575,6 +1575,22 @@ body.sticky-sponsor.single-story {
 		}
 	}
 	
+	&.logged-in.admin-bar {
+		.story-single-content {
+			.top-page {
+				top: 130px;
+				@include tab {
+					top: 125px;
+				}
+			}
+		}
+		.story-view-all {
+			top: 180px;
+			@include tab {
+				top: 140px;
+			}
+		}
+	}	
 }
 
 .site-footer {

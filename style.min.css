@@ -2031,6 +2031,10 @@ body.sticky-sponsor.single-story .story-single-content .top-page{position:fixed;
 @media(min-width:820px){body.sticky-sponsor.single-story .new-page-fullwrap .share-link{top:0;padding-right:120px}
 }body.sticky-sponsor.single-story .share-link .share{top:34px;right:90px;width:240px}
 @media(min-width:820px){body.sticky-sponsor.single-story .share-link .share{top:42px;right:120px}
+}body.sticky-sponsor.single-story.logged-in.admin-bar .story-single-content .top-page{top:130px}
+@media(min-width:820px){body.sticky-sponsor.single-story.logged-in.admin-bar .story-single-content .top-page{top:125px}
+}body.sticky-sponsor.single-story.logged-in.admin-bar .story-view-all{top:180px}
+@media(min-width:820px){body.sticky-sponsor.single-story.logged-in.admin-bar .story-view-all{top:140px}
 }.site-footer{width:100%;clear:both;background-color:#262425;color:rgba(255,255,255,0.5);padding:20px 0;overflow:hidden}
 .site-footer a{text-decoration:none;color:rgba(255,255,255,0.5)}
 .site-footer a:hover{color:#c4a92f}
