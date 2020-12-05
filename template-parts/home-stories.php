@@ -1,6 +1,6 @@
 <?php
 $show_stories = get_field("show_stories_to_homepage","option");
-$is_show_stories = ( isset($show_stories[0]) && $show_stories[0]=='yes' ) ? true : false;
+$is_show_stories = ($show_stories=='on' ) ? true : false;
 
 $cat = get_field("story_main_page_url","option");
 $storyPageLink = ($cat) ? get_term_link($cat) : '';
