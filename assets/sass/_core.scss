@@ -1441,6 +1441,7 @@ section.red-band {
 		margin-left: -20px;
 		margin-right: -20px;
 		@include flexgroup();
+		@include flexbox-justify(center);
 	}
 	.story {
 		width: 100%;
