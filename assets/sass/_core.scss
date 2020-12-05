@@ -4653,11 +4653,16 @@ section.qcity-news-container{
 	    margin-bottom: 10px;
 	    background-color: #CCC;
 	    overflow: hidden;
-
-	    img{
-	    	height: 275px;
+	    height: auto;
+	    .image-helper {
 	    	width: 100%;
+	    	height: auto;
+	    	float: left;	
 	    }
+	    // img{
+	    // 	height: 275px;
+	    // 	width: 100%;
+	    // }
 	}
 }
 
@@ -4930,11 +4935,22 @@ section.red-band {
 
 .story-block .photo {
 	position: relative;
-	height: 250px;
+	height: auto!important;
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-size: cover;
-
+	img.image-helper {
+		width: 100%;
+		height: auto;
+		float: left;
+	}
+	.category {
+		width: 100%;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		z-index: 5;
+	}
 }
 
 .story-block-category{

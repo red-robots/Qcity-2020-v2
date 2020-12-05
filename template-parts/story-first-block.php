@@ -6,22 +6,16 @@
 		$image = get_template_directory_uri() . '/images/default.png';
 	}
 
-	$guest_author =  get_field('author_name') ;
+	$guest_author =  get_field('author_name');
+	$placeholder = get_template_directory_uri() . '/images/right-image-placeholder.png';
 ?>
 
 <article class="story-block">
 	<div class="photo story-image story-first-block" style="background-image: url('<?php echo $image; ?>');" >		
-		<?php /*if( has_post_thumbnail() ) {
-				the_post_thumbnail('thirds');
-			} else { 
-				$image = get_template_directory_uri() . '/images/default.png';
-				?>
-				<img src="<?php echo $image; ?>">
-			<?php }  */ ?>
+		<img src="<?php echo $placeholder ?>" alt="" aria-hidden="true" class="image-helper">
 		<div class="category">
 			<?php include( locate_template('template-parts/primary-category.php', false, false) ); ?>
 		</div>
-		
 	</div>
 	<h3><?php the_title(); ?></h3>	
 	<div class="desc">

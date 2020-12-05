@@ -2531,8 +2531,8 @@ header.biz{width:100%;float:left;background-color:#924020;color:#fff;text-align:
 .church-list .church .info{text-align:left}
 section.events .story-block .photo{width:100%;float:left;position:relative;line-height:0;margin-bottom:10px;overflow:hidden}
 section.events .story-block .photo img{height:275px;width:100%}
-section.qcity-news-container .story-block .photo{width:100%;float:left;position:relative;line-height:0;margin-bottom:10px;background-color:#CCC;overflow:hidden}
-section.qcity-news-container .story-block .photo img{height:275px;width:100%}
+section.qcity-news-container .story-block .photo{width:100%;float:left;position:relative;line-height:0;margin-bottom:10px;background-color:#CCC;overflow:hidden;height:auto}
+section.qcity-news-container .story-block .photo .image-helper{width:100%;height:auto;float:left}
 .second-row .story-block .photo{width:100%;float:left;position:relative;line-height:0;margin-bottom:10px;overflow:hidden}
 .second-row .story-block .photo img{height:275px;width:100%}
 @media screen and (min-width:768px){.c-sponsor-block__image{height:200px}
@@ -2578,7 +2578,9 @@ iframe.video-homepage{height:250px;width:auto}
 .qcity-sponsored-container{margin-bottom:20px}
 section.red-band{padding-right:30px}
 .qcity-more-happen{margin-top:20px}
-.story-block .photo{position:relative;height:250px;background-repeat:no-repeat;background-position:center center;background-size:cover}
+.story-block .photo{position:relative;height:auto !important;background-repeat:no-repeat;background-position:center center;background-size:cover}
+.story-block .photo img.image-helper{width:100%;height:auto;float:left}
+.story-block .photo .category{width:100%;position:absolute;bottom:0;left:0;z-index:5}
 .story-block-category .photo{position:relative;height:200px;background-repeat:no-repeat;background-position:center center;background-size:cover}
 .story-block .story-first-block{position:relative;height:450px;background-repeat:no-repeat;background-position:center center;background-size:cover}
 .story-block{display:block}
