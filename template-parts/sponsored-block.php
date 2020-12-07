@@ -18,10 +18,12 @@ if( $img ){
 	$image = get_template_directory_uri() . '/images/default.png';
 }
 
-//var_dump($venue);
+$placeholder = get_template_directory_uri() . '/images/right-image-placeholder.png';
+
 ?>
 <article class="story-block">
-	<div class="photo event-photo" style="background-image: url(<?php echo $image; ?>);">		
+	<div class="photo event-photo" style="background-image: url(<?php echo $image; ?>);">
+		<img src="<?php echo $placeholder ?>" alt="" aria-hidden="true" class="image-helper">
 		<div class="category">			
 			<?php echo qcity_get_terms(get_the_ID(), 'event_cat'); ?>
 		</div>

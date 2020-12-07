@@ -4637,9 +4637,14 @@ section.events {
 	    margin-bottom: 10px;
 	    overflow: hidden;
 
-	    img{
-	    	height: 275px;
+	    // img{
+	    // 	height: 275px;
+	    // 	width: 100%;
+	    // }
+	    .image-helper {
 	    	width: 100%;
+	    	height: auto;
+	    	float: left;
 	    }
 	}
 }

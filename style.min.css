@@ -2530,7 +2530,7 @@ header.biz{width:100%;float:left;background-color:#924020;color:#fff;text-align:
 .listing_search span.load-icon{color:#924020;display:block}
 .church-list .church .info{text-align:left}
 section.events .story-block .photo{width:100%;float:left;position:relative;line-height:0;margin-bottom:10px;overflow:hidden}
-section.events .story-block .photo img{height:275px;width:100%}
+section.events .story-block .photo .image-helper{width:100%;height:auto;float:left}
 section.qcity-news-container .story-block .photo{width:100%;float:left;position:relative;line-height:0;margin-bottom:10px;background-color:#CCC;overflow:hidden;height:auto}
 section.qcity-news-container .story-block .photo .image-helper{width:100%;height:auto;float:left}
 .second-row .story-block .photo{width:100%;float:left;position:relative;line-height:0;margin-bottom:10px;overflow:hidden}
