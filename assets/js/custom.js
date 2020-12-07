@@ -9,6 +9,23 @@
 
 jQuery(document).ready(function ($) {
 
+    $("#site-navigation a").each(function(){
+        var target = $(this);
+        var txt = $(this).text().replace(/\s+/g, " ").trim();
+        if(txt=='Jobs') {
+            if(typeof jobsCount!="undefined" && jobsCount!=null) {
+                var countTxt = '<span class="menu-counter menu-badge">'+jobsCount+'</span>';
+                target.append(countTxt);
+            }
+            
+        }
+        if(txt=='Events') {
+            if(typeof eventsCount!="undefined" && eventsCount!=null) {
+                var countTxt = '<span class="menu-counter menu-badge">'+eventsCount+'</span>';
+                target.append(countTxt);
+            }
+        }
+    });
 	
 	/*
 	*

@@ -63,6 +63,10 @@ window.googletag = window.googletag || {cmd: []};
 <script>
 var ajaxURL = "<?php echo admin_url('admin-ajax.php'); ?>";
 var assetsDIR = "<?php echo get_bloginfo("template_url") ?>/images/";
+var currentURL = '<?php echo get_permalink();?>';
+var params={};location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(s,k,v){params[k]=v});
+var jobsCount = '<?php echo get_category_counter('job'); ?>';
+var eventsCount = '<?php echo get_total_events_by_date(); ?>';
 </script>
 <!--
 <script type="text/javascript"async src="https://launch.newsinc.com/js/embed.js" id="_nw2e-js"></script>
@@ -71,14 +75,8 @@ var assetsDIR = "<?php echo get_bloginfo("template_url") ?>/images/";
 
 <?php wp_head(); ?>
 <style>
-  .gform_wrapper ul li.gfield{
-    clear: none !important;
-  }
+.gform_wrapper ul li.gfield{clear: none !important;}
 </style>
-<script>
-var currentURL = '<?php echo get_permalink();?>';
-var params={};location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(s,k,v){params[k]=v});
-</script>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 <?php 
@@ -131,24 +129,24 @@ $start_end = $dateToday . ',' . date('Ym') . $nexday;
 
 	<header id="masthead" class="site-header " role="banner" >
 
-        <div class="mobile-stick" id="fixed" >
-			<div class="wrapper-header ">
-		            <div class="logo">
-		            	<a href="<?php bloginfo('url'); ?>" style="background: transparent;">
-			            	<img src="<?php bloginfo('template_url'); ?>/images/qc-logo.png" alt="<?php bloginfo('name'); ?>">
-			            </a>
-		            </div>
+    <div class="mobile-stick" id="fixed" >
+      <div class="wrapper-header ">
+        <div class="logo">
+        	<a href="<?php bloginfo('url'); ?>" style="background: transparent;">
+          	<img src="<?php bloginfo('template_url'); ?>/images/qc-logo.png" alt="<?php bloginfo('name'); ?>">
+          </a>
+        </div>
 
-                <?php
-                $instagram = get_field("instagram_link_short","option"); 
-                $headerBtnLink = get_field("header_button_mobile_view","option");
-                $headerBtnTarget = ( isset($headerBtnLink['target']) && $headerBtnLink['target'] ) ? $headerBtnLink['target'] : '_self';
-                if($headerBtnLink) { ?>
-                <div class="newsletter-link" >
-                    <a href="<?php echo $headerBtnLink['url']?>" target="<?php echo $headerBtnTarget ?>" class="news-letter-btn btn2"><?php echo $headerBtnLink['title']?></a>
-                </div>
-                <?php } ?>
-	        </div>
+        <?php
+        $instagram = get_field("instagram_link_short","option"); 
+        $headerBtnLink = get_field("header_button_mobile_view","option");
+        $headerBtnTarget = ( isset($headerBtnLink['target']) && $headerBtnLink['target'] ) ? $headerBtnLink['target'] : '_self';
+        if($headerBtnLink) { ?>
+        <div class="newsletter-link" >
+            <a href="<?php echo $headerBtnLink['url']?>" target="<?php echo $headerBtnTarget ?>" class="news-letter-btn btn2"><?php echo $headerBtnLink['title']?></a>
+        </div>
+        <?php } ?>
+    </div>
 
           <?php  
           $topSubscribe = get_field("topSubscribe","option");
@@ -191,25 +189,7 @@ $start_end = $dateToday . ',' . date('Ym') . $nexday;
 				<?php wp_nav_menu(array('theme_location'=>'burger','menu_class'=>'main','container'=>'ul')); ?>
 			</nav>
 
-        <script>
-        jQuery(document).ready(function($){
-          $('a').filter(function(){
-              return $(this).text() === "Jobs";
-          }).append('<span class="menu-counter menu-badge">'+ <?php echo get_category_counter('job'); ?> +'</span>');
-          
-          // $('a').filter(function(){
-          //     return $(this).text() === "Events";
-          // }).append('<span class="menu-counter menu-badge">'+ <?php //echo get_category_counter('event'); ?> +'</span>');
-
-
-          $('a').filter(function(){
-              return $(this).text() === "Events";
-          }).append('<span class="menu-counter menu-badge">'+ <?php echo get_total_events_by_date(); ?> +'</span>');
-
-        });    
-        </script>
-
-        </div>        
+    </div>        
 	
 	</header><!-- #masthead -->
 
