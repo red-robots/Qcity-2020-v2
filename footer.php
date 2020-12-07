@@ -114,37 +114,31 @@ wp_footer();
 
 
 <script>
-	$(document).ready(function($){
+jQuery(document).ready(function($){
+  $('.broadstreet-zone-container').addClass('align-center');  
+	if ($(window).width() < 767) {
 
-        $('.broadstreet-zone-container').addClass('align-center');
+      // When the user scrolls the page, execute myFunction
+      //window.onscroll = function() {myFunction()};
 
-        
-		if ($(window).width() < 767) {
+      // Get the header
+      var header = document.getElementById("fixed");
+       header.classList.add("sticky");
 
-	        // When the user scrolls the page, execute myFunction
-	        //window.onscroll = function() {myFunction()};
+      // Get the offset position of the navbar
+      var sticky = 0;
 
-	        // Get the header
-	        var header = document.getElementById("fixed");
-	         header.classList.add("sticky");
+      // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+      function myFunction() {
+        if (window.pageYOffset > sticky) {
+          header.classList.add("sticky");
+        } else {
+          header.classList.remove("sticky");
+        }
+      }
 
-	        // Get the offset position of the navbar
-	        var sticky = 0;
-
-	        // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
-	        function myFunction() {
-	          if (window.pageYOffset > sticky) {
-	            header.classList.add("sticky");
-	          } else {
-	            header.classList.remove("sticky");
-	          }
-	        }
-
-	    }
-
-	    
-	    
-	});
+  }
+});
 </script>
 
 </body>
