@@ -111,9 +111,8 @@ wp_footer();
   src="https://www.facebook.com/tr?id=186461841925459&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Facebook Pixel Code -->
-
-
-<script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
 jQuery(document).ready(function($){
   $('.broadstreet-zone-container').addClass('align-center');  
 	if ($(window).width() < 767) {
