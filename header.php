@@ -76,7 +76,6 @@ var eventsCount = '<?php echo get_total_events_by_date(); ?>';
 <?php wp_head(); ?>
 <style>
 .gform_wrapper ul li.gfield{clear: none !important;}
-body.page-id-48786 #gform_wrapper_38 {display:block!important;}
 </style>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
