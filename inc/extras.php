@@ -1029,8 +1029,10 @@ function get_count_stories() {
     return ($result) ? $result->total : 0;
 }
 
-add_filter("gform_init_scripts_footer", "init_scripts");
-function init_scripts() {
-    return true;
-}
+// add_filter("gform_init_scripts_footer", "init_scripts");
+// function init_scripts() {
+//     return true;
+// }
+add_filter( 'gform_init_scripts_footer', '__return_true' );
+
 
