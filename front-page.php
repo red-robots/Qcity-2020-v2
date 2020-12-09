@@ -79,15 +79,17 @@ jQuery(document).ready(function($){
 	});
 	function convertStoriesToCarousel() {
 		var viewportWidth = $(window).width();
-    if (viewportWidth < 830 ) {
-      $("#homeStories").slick({
-		    dots: true,
-		    infinite: false,
-		    variableWidth: true,
-		  });
-    } else {
-    	$("#homeStories").slick('unslick');
-    }
+		if( $("#homeStories").length>0 ) {
+	    if (viewportWidth < 830 ) {
+	      $("#homeStories").slick({
+			    dots: true,
+			    infinite: false,
+			    variableWidth: true,
+			  });
+	    } else {
+	    	$("#homeStories").slick('unslick');
+	    }
+	  }
 	}
 
   	
