@@ -7,7 +7,7 @@ function acstarter_scripts() {
 
 	wp_deregister_script('jquery');
 		//wp_register_script('jquery', get_template_directory_uri() .'/js/jquery-3.4.1.min.js', array(), '3.4.1', false);
-		wp_register_script('jquery', get_template_directory_uri() .'/js/jquery.min.js', array(), '3.5.1', true);
+		wp_register_script('jquery', get_template_directory_uri() .'/js/jquery.min.js', array(), '3.5.1', false);
 		wp_enqueue_script('jquery');
 
 	
