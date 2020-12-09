@@ -46,7 +46,7 @@ if($is_show_stories) { ?>
         <?php
         $placeholder = get_bloginfo("template_url") . "/images/square.png";
         $args = array(
-            'posts_per_page'    => 3,
+            'posts_per_page'    => 4,
             'post_type'         => 'story',
             'post_status'       => 'publish',
             'orderby'           => 'ID',
@@ -55,7 +55,7 @@ if($is_show_stories) { ?>
         $posts = new WP_Query($args);
         if ( $posts->have_posts() ) { ?>
         <div class="story-posts">
-            <div class="flexwrap">
+            <div id="homeStories" class="flexwrap">
                 <?php while ( $posts->have_posts() ) : $posts->the_post(); 
                     $thumbnail_photo = get_field("thumbnail_photo");
                     $story_description = get_field("story_description");

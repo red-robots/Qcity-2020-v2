@@ -1394,7 +1394,7 @@ section.red-band {
 		max-width: 1300px;
 		width: 100%;
 		padding-top: 30px;
-    padding-bottom: 50px;
+    padding-bottom: 30px;
 		padding-left: 20px;
 		padding-right: 20px;
 		margin: 0 auto;
@@ -1423,7 +1423,10 @@ section.red-band {
 		text-align: center;
 		max-width: 900px;
 		width: 100%;
-		margin: 40px auto 30px;
+		margin: 35px auto 10px;
+		@include tab {
+			margin: 10px auto 10px;
+		}
 		h1 {
 			font-size: 25px;
 			font-weight: normal;
@@ -1434,20 +1437,25 @@ section.red-band {
 		}
 	}
 	.description {
-		font-size: 18px;
-		line-height: 1.5;
+		font-size: 16px;
+		line-height: 1.3;
+		padding-left: 30px;
+		padding-right: 30px;
 	}
 	.flexwrap {
-		margin-left: -20px;
-		margin-right: -20px;
+		margin-left: -10px;
+		margin-right: -10px;
 		@include flexgroup();
 		@include flexbox-justify(center);
 	}
 	.story {
 		width: 100%;
-		padding: 20px;
+		padding: 10px;
 		@include xs {
-			width: 33.33%;
+			width: 50%;
+		}
+		@include tab {
+			width: 25%;
 		}
 		.link {
 			display: block;
@@ -1500,8 +1508,11 @@ section.red-band {
 	}
 	.buttondiv {
 		text-align: center;
-		margin-top: 40px;
+		margin-top: 30px;
 		margin-bottom: 10px;
+		@include tab {
+			margin-top: 40px;
+		}
 	}
 	.moreBtn {
 		background: $color-red;
@@ -1513,14 +1524,86 @@ section.red-band {
 	}
 }
 
+/* Home Stories - Carousel */
+#homeStories {
+	position: relative;
+	display: none;
+	@include tab {
+		@include flexgroup();
+	}
+	&.slick-initialized {
+		@include flexgroup();
+	}
+	.slick-slide {
+		width: 300px;
+	}
+	.slick-dots {
+		display: none!important;
+	}
+	.slick-prev, .slick-next {
+		top: 108%;
+    z-index: 200;
+    border-radius: 0;
+    width: 35px;
+    height: 30px;
+    background: #924020;
+    box-shadow: none;
+    color: #FFF;
+    display: none!important;
+    &.slick-disabled {
+    	opacity: 0.25;
+    }
+    &:before, &:after {
+			content: "";
+	    position: absolute;
+	    width: 10px;
+	    height: 2px;
+	    background: #FFF;
+    }
+	}
+	.slick-prev {
+		left: 33vw;
+		&:before, &:after {
+	    top: 0;
+	    left: 12px;
+		}
+		&:before {
+			top: 17px;
+			transform: rotate(45deg);
+		}
+		&:after {
+			top: 11px;
+			transform: rotate(-45deg);
+		}
+	}
+	.slick-next {
+		right: 33vw;
+		&:before, &:after {
+			top: 0;
+			right: 11px;
+		}
+		&:before {
+			top: 17px;
+			transform: rotate(-45deg);
+		}
+		&:after {
+			top: 11px;
+    	transform: rotate(45deg);
+		}
+	}
+}
 
 body.sticky-sponsor.single-story {
 	.new-page-fullwrap .sponsor-info img {
 		width: 150px;
 	}
 	.new-page-fullwrap .top-page {
-		padding-top: 18px;
-		padding-bottom: 13px;
+		padding-top: 25px;
+    padding-bottom: 20px;
+		@include tab {
+			padding-top: 18px;
+			padding-bottom: 13px;
+		}
 	}
 	.story-single-content {
 		.top-page {
@@ -1542,7 +1625,7 @@ body.sticky-sponsor.single-story {
 	}
 	.story-view-all {
 		position: fixed;
-		top: 130px;
+		top: 120px;
 		left: 0;
 		width: 100%;
 		z-index: 100;
@@ -1552,9 +1635,6 @@ body.sticky-sponsor.single-story {
 		animation-fill-mode: both;
 		-webkit-animation-name: fadeIn;
 		animation-name: fadeIn;
-		@include tab {
-			top: 120px;
-		}
 	}
 	.new-page-fullwrap .share-link {
 		padding-right: 95px;
@@ -7341,6 +7421,10 @@ body.single.single-story {
 
 .share-link {
 	position: relative;
+	visibility: hidden;
+	@include tab {
+		visibility: visible;
+	}
 	.share {
 		display: none;
 		position: absolute;
@@ -7374,11 +7458,15 @@ body.single.single-story {
 		width: 100%;
 		float: left;
 		background: #f7f7f7;
-		padding-top: 20px;
-    padding-bottom: 18px;
+		padding-top: 25px;
+    padding-bottom: 20px;
     position: relative;
     z-index: 20;
     transition: all ease .3s;
+    @include tab {
+    	padding-top: 20px;
+    	padding-bottom: 18px;
+    }
     .arrow-down {
     	width: 100%;
     	position: absolute;
@@ -7406,12 +7494,16 @@ body.single.single-story {
 	.sponsor-info {
 		width: 50%;
 		float: left;
+		@include tab {
+			position: relative;
+		}
 		a,img {
 			display: block;
 			width: 185px;
 			height: auto;
 			float: left;
 		}
+		
 	}
 	.poweredbytext {
 		font-size: 10px;
@@ -7681,9 +7773,13 @@ body.single-story {
 	}
 	.story-view-all {
 		position: absolute;
-		top: 40px;
+		top: -45px;
 		right: 0;
 		width: 100%;
+		z-index: 20;
+		@include tab {
+			top: 40px;
+		}
 		.story-view {
 			text-align: right;
 			position: relative;

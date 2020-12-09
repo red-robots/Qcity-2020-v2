@@ -71,6 +71,28 @@ jQuery(document).ready(function($){
 		  $(".slick-next").css("right",sb+"px");
 	  }
 	}
+
+	
+	convertStoriesToCarousel();
+	$(window).on('resize', function() {
+    convertStoriesToCarousel();
+	});
+	function convertStoriesToCarousel() {
+		var viewportWidth = $(window).width();
+    if (viewportWidth < 830 ) {
+      $("#homeStories").slick({
+		    dots: true,
+		    infinite: false,
+		    variableWidth: true,
+		  });
+    } else {
+    	$("#homeStories").slick('unslick');
+    }
+	}
+
+  	
+
+
 });
 </script>
 <?php
