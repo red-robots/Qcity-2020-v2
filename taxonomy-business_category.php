@@ -9,6 +9,7 @@
 
 get_header(); 
 get_template_part('template-parts/banner-biz');
+$placeholder = get_template_directory_uri() . '/images/right-image-placeholder.png';
 
 
 //$add_business = get_field('add_your_business');
@@ -36,7 +37,7 @@ get_template_part('template-parts/banner-biz');
 			<h2 class="dark-gray">Paid Posts</h2>
 			<!--
 			<div class="biz-submit">
-				<a href="<?php echo bloginfo( 'url' ); ?>/business-directory/business-directory-sign-up/">Submit your business</a>
+				<a href="<?php //echo bloginfo( 'url' ); ?>/business-directory/business-directory-sign-up/">Submit your business</a>
 			</div>
 			-->
 		</header>
