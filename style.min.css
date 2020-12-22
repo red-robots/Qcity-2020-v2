@@ -3090,6 +3090,7 @@ body.single-story .storySponsoredBy .ssbtitle{margin:0 0 30px;font-size:18px;fon
 body.single-story .storySponsoredBy .ssblogo{max-width:500px;width:100%;margin:35px auto 30px}
 body.single-story .storySponsoredBy .ssblogo a,body.single-story .storySponsoredBy .ssblogo img{display:block;width:100%;height:auto}
 body.single-story .storySponsoredBy .ssbtext p:last-child{margin-bottom:0}
+body.single-story .spImages.count1 .frame-photo{max-width:1200px;width:100%;margin:0 auto}
 body.logged-in.admin-bar .mobile-stick{top:25px}
 body.logged-in.admin-bar #content{padding-top:97px}
 body.modal-open{overflow-x:hidden;overflow-y:hidden}
