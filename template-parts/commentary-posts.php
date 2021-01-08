@@ -50,9 +50,11 @@ if ( $commentaries->have_posts() )  { ?>
 				<a href="<?php echo get_permalink(); ?>" class="inner">
 					<span class="titlediv">
 						<h4 class="ptitle"><?php the_title(); ?></h4>
+						<?php if ($authorName) { ?>
 						<span class="by">
-							<span>Written by: <?php echo $authorName ?></span>
+							<span>Written by: <?php echo ucwords($authorName); ?></span>
 						</span>
+						<?php } ?>
 					</span>
 					<span class="photodiv">
 						<span class="pic"<?php echo $picBg ?>>
