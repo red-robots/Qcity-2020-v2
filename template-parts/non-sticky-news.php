@@ -68,6 +68,7 @@
 	
 	$wp_query = new WP_Query($args1);
     
+    $existingIDS = array();
 	?>
 	
 	<section class="news-home newsHomeV2">
@@ -84,7 +85,7 @@
                 if ( $wp_query->have_posts() ) : 	
                     $total = $wp_query->found_posts;	
     				 while ( $wp_query->have_posts() ) :  $wp_query->the_post();
-
+                        $existingIDS[] = get_the_ID();
                         if($i == 2){
                             get_template_part( 'template-parts/sponsored-paid');
                         }
@@ -131,6 +132,26 @@
             
 		 </section>
 
+
+         <?php 
+         if ($excludePostIds) {
+            $n = count($excludePostIds);
+            if($existingIDS) {
+                foreach($existingIDS as $x) {
+                    $excludePostIds[$n] = $x;
+                    $n++;
+                }
+            }
+         } else {
+            if($existingIDS) {
+                $n=0; foreach($existingIDS as $x) {
+                    $excludePostIds[$n] = $x;
+                    $n++;
+                }
+            }
+         }
+         ?>
+             
 
          <div class="more"> 
             <a class="red qcity-load-more" data-page="1" data-action="qcity_load_more" data-basepoint="10" data-excludecat="<?php echo ($excludeCategories) ? implode(",",$excludeCategories):'' ?>" data-except="<?php echo ($excludePostIds) ? implode(',', $excludePostIds):''; ?>" data-perpage="6">        
