@@ -37,7 +37,11 @@ if ( $commentaries->have_posts() )  { ?>
 					$fname = get_the_author_meta( 'first_name' , $authorID ); 
 					$lname = get_the_author_meta( 'last_name' , $authorID ); 
 					$arrs = array($fname,$lname);
-					$authorName = implode(' ',array_filter($arrs));
+					if($arrs && array_filter($arrs)) {
+						$authorName = implode(' ',array_filter($arrs));
+					} else {
+						$authorName = get_the_author_meta( 'display_name' , $authorID );
+					}
 					$avatarURL = get_avatar_url($authorID);
 				}
 				$picBg = ($avatarURL) ? ' style="background-image:url('.$avatarURL.')"':'';
