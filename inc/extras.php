@@ -1036,3 +1036,11 @@ function get_count_stories() {
 add_filter( 'gform_init_scripts_footer', '__return_true' );
 
 
+
+function getTermId($slug) {
+    global $wpdb;
+    $query = "SELECT term_id FROM ".$wpdb->prefix."terms WHERE slug='".$slug."'";
+    $res = $wpdb->get_row($query);
+    $exclude_term_id = ($res) ? $res->term_id : '';
+    return $exclude_term_id;
+}

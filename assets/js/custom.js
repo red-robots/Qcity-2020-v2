@@ -325,7 +325,9 @@ jQuery(document).ready(function ($) {
         var action  = $(this).attr('data-action');
         var basepoint = $(this).attr('data-basepoint');
         var newBasepoint = basepoint + perPage;
-        var postID = $(this).attr('data-except')        
+        var postID = $(this).attr('data-except');
+        var excludeCat = ( typeof $(this).attr('data-excludecat')!='undefined' || $(this).attr('data-excludecat')!=null ) ? $(this).attr('data-excludecat'):'';
+        console.log(excludeCat);  
 
         that.addClass('loading').find('.load-text').hide();        
         that.find('.load-icon').show();

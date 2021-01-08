@@ -13,9 +13,12 @@ function qcity_load_more(){
     $excludeIds = ( isset($_POST['postID']) && $_POST['postID'] ) ? explode(",",$_POST['postID']) : '';
     $paged      = $_POST['page'] + 1;
     $perpage    = 6;
-    $cat_id     = get_category_by_slug( 'sponsored-post' );
+    //$cat_id     = get_category_by_slug( 'sponsored-post' );
+    $cat_id     = getTermId('sponsored-post');
     $offset     =  $base_post;    
     $getdate    = getdate();
+    $exclude_cat = ( isset($_POST['exclude_cat']) && $_POST['exclude_cat'] ) ? explode(",",$_POST['exclude_cat']):'';
+    $excludeCategories = array();
 
     /* Query by today year and last year */
     $date_query = array(
@@ -36,9 +39,24 @@ function qcity_load_more(){
             'date_query'            => $date_query
         );
 
-    if($cat_id) {
-        $args['category__not_in'] = $cat_id;
+    // if($cat_id) {
+    //     $args['category__not_in'] = $cat_id;
+    // }
+
+    if($exclude_cat) {
+        foreach($exclude_cat as $catid) {
+            $excludeCategories[] = $catid;
+        }
     }
+    if($cat_id) {
+        $index = ($excludeCategories) ? count($excludeCategories) : 0;
+        $excludeCategories[$index] = $cat_id;
+    }
+
+    if($excludeCategories && array_filter($excludeCategories)) {
+        $args['category__not_in'] = array_filter($excludeCategories);
+    }
+
     if($excludeIds){
         $args['post__not_in'] = $excludeIds;
     }

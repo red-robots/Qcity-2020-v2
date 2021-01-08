@@ -3,29 +3,48 @@
 	Non Sticky News.
 */  
 
+    $exclude_term_id = getTermId('commentaries');
+
     $excludePosts = ( isset($featured_posts) && $featured_posts ) ? $featured_posts : '';
     $cat_id = ( isset($excludeCatID) && $excludeCatID ) ? $excludeCatID : '';
     //$cat_id = get_category_by_slug( 'sponsored-post' ); 
     $postWithVideos = get_news_posts_with_videos(200);
     $excludePostIds = array();
+    $excludeCategories = array();
 
     $args1 = array(
         'post_type'             =>'post',
         'post_status'           => 'publish',       
         'posts_per_page'        => 6,    
-        'paged'                 => 1,    
+        'paged'                 => 1
     );
 
-    if($cat_id) {
-        $args1['tax_query'] = array(
-            array(
-                'taxonomy' => 'category',
-                'field'    => 'id',
-                'terms'    => $cat_id,
-                'operator' => 'NOT IN'
-            )
-        );
+    // if($exclude_term_id) {
+    //     $args1['category__not_in'] = $exclude_term_id;
+    // }
+
+    // if($cat_id) {
+    //     $args1['tax_query'] = array(
+    //         array(
+    //             'taxonomy' => 'category',
+    //             'field'    => 'id',
+    //             'terms'    => $cat_id,
+    //             'operator' => 'NOT IN'
+    //         )
+    //     );
+    // }
+
+    if($exclude_term_id) {
+        $excludeCategories[] = $exclude_term_id;
     }
+    if($cat_id) {
+        $excludeCategories[] = $cat_id;
+    }
+
+    if($excludeCategories) {
+        $args1['category__not_in'] = $excludeCategories;
+    }
+
 
     if($excludePosts) {
         if($postWithVideos) {
@@ -114,7 +133,7 @@
 
 
          <div class="more"> 
-            <a class="red qcity-load-more" data-page="1" data-action="qcity_load_more" data-basepoint="10" data-except="<?php echo ($excludePostIds) ? implode(',', $excludePostIds):''; ?>" data-perpage="6">        
+            <a class="red qcity-load-more" data-page="1" data-action="qcity_load_more" data-basepoint="10" data-excludecat="<?php echo ($excludeCategories) ? implode(",",$excludeCategories):'' ?>" data-except="<?php echo ($excludePostIds) ? implode(',', $excludePostIds):''; ?>" data-perpage="6">        
                 <span class="load-text">Load More</span>
                 <span class="load-icon"><i class="fas fa-sync-alt spin"></i></span>
             </a>
