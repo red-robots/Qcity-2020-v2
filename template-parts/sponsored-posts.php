@@ -124,6 +124,7 @@ $wp_query->query(array(
 				</div>
 			</div>	
 		</div>
+		
 	</section>
 <?php 
 endif;

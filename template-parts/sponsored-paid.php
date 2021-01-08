@@ -29,7 +29,7 @@ $currentId = ( isset($obj->ID) && $obj->ID ) ? $obj->ID : '';
     $sponsored = new WP_Query($args);
 
 
-    if( $sponsored->have_posts() ):
+    if( $sponsored->have_posts() ) {
         $img = "";
         while( $sponsored->have_posts() ):   $sponsored->the_post();
         $sp_id = get_the_ID();
@@ -63,18 +63,25 @@ $currentId = ( isset($obj->ID) && $obj->ID ) ? $obj->ID : '';
             $bgImg = ($featImage) ? $featImage[0] : $default;
             ?>
             <div class="sponsor-col-paid sponsor-col-image">
-                <a target="_parent" href="<?php echo get_the_permalink();  ?>" class="c-sponsor-image-link" style="background-image:url('<?php echo $bgImg?>');">
+                <a target="_parent" href="<?php echo get_the_permalink();  ?>" class="c-sponsor-image-link" style="background-image:url('<?php echo $bgImg?>');background-color:#e2e2e2;">
                     <img src="<?php echo get_template_directory_uri() . '/images/right-image-placeholder.png'; ?>" alt="" aria-hidden="true">
                     <?php if ($featImage) { ?>
                     <?php the_post_thumbnail('thirds', array('class' => 'l-width-full c-sponsor-block__image')); ?>
                     <?php } ?>
                 </a>
             </div>
+
+            <?php get_template_part( 'template-parts/headlines-blocks'); ?>
+
         </section>
 
 <?php
         endwhile;
 
-    endif;
-    wp_reset_postdata();
+    } else { ?>
+        <div class="moreNewsWrap">
+            <?php get_template_part( 'template-parts/headlines-blocks'); ?>
+        </div>
+    <?php }
 
+    wp_reset_postdata();

@@ -70,6 +70,10 @@
                             get_template_part( 'template-parts/sponsored-paid');
                         }
 
+                        else if($i == 4){
+                            get_template_part( 'template-parts/commentary-posts');
+                        }
+
     		    		//include( locate_template('template-parts/story-block.php', false, false) );
     		    		get_template_part( 'template-parts/story-block');
                         $i++;

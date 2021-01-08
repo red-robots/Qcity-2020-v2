@@ -1,31 +1,7 @@
-/**
- * Gulpfile.
- *
- * A simple implementation of Gulp.
- *
- * Implements:
- * 			1. Live reloads browser with BrowserSync
- * 			2. CSS: Sass to CSS conversion, Autoprixing, Sourcemaps, CSS minification.
- * 			3. JS: Concatenates & uglifies Vendor and Custom JS files.
- * 			4. Images: Minifies PNG, JPEG, GIF and SVG images.
- * 			5. Watches files for changes in CSS or JS
- *
- * @since 1.0.0
- * @author Ahmad Awais (@mrahmadawais)
- */
-
- /**
-  * Configuration.
-  *
-  * Project Configuration for gulp tasks.
-  *
-  * In paths you can add <<glob or array of globs>>
-  *
-  * Edit the variables as per your project requirements.
-  */
+/* Gulpfile 4.0 */
 
 var project             = 'QcityMetro'; // Project Name.
-var projecturl          = 'http://bellaworks/qcitymetro/'; // Project URL. Could be something like localhost:8888.
+var projecturl          = 'http://qcitymetro.test/'; // Project URL. Could be something like localhost:8888.
 
 
 var styleSRC            = './assets/sass/style.scss'; // Path to main .scss file.
@@ -45,8 +21,8 @@ var jsCustomFile        = 'custom'; // Compiled JS custom file name.
 									// Default set to custom i.e. custom.js.
 
 
-var imagesSRC			= './assets/img/raw/**/*.{png,jpg,gif,svg}'; // Source folder of images which should be optimized.
-var imagesDestination	= './assets/img/'; // Destination folder of optimized images. Must be different from the imagesSRC folder.
+var imagesSRC			= './images-raw/*.{png,jpg,gif,svg}'; // Source folder of images which should be optimized.
+var imagesDestination	= './images/'; // Destination folder of optimized images. Must be different from the imagesSRC folder.var imagesDestination	= './assets/img/'; // Destination folder of optimized images. Must be different from the imagesSRC folder.
 
 
 // Watch files paths.
@@ -98,19 +74,25 @@ var notify       = require('gulp-notify'); // Sends message notification to you
 var browserSync  = require('browser-sync').create(); // Reloads browser and injects CSS. Time-saving synchronised browser testing.
 var reload       = browserSync.reload; // For manual browser reload.
 
+const through2  = require( 'through2' );
+const touch = () => through2.obj( function( file, enc, cb ) {
+  if ( file.stat ) {
+    file.stat.atime = file.stat.mtime = file.stat.ctime = new Date();
+  }
+  cb( null, file );
+});
+
+function reload(done) {
+	browserSync.reload();
+	done();
+}
+
 
 /**
  * Task: `browser-sync`.
- *
- * Live Reloads, CSS injections, Localhost tunneling.
- *
- * This task does the following:
- * 		1. Sets the project URL
- * 		2. Sets inject CSS
- * 		3. You may define a custom port
- * 		4. You may want to stop the browser from openning automatically
  */
- gulp.task( 'browser-sync', async function() {
+
+ gulp.task( 'browser-sync', function() {
  	browserSync.init( {
 
  		// For more options
@@ -123,7 +105,7 @@ var reload       = browserSync.reload; // For manual browser reload.
  		open: false,
 
  		// Inject CSS changes.
- 		// Commnet it to reload browser for every CSS change.
+ 		// Comment it to reload browser for every CSS change.
  		// injectChanges: true,
 
  		// Use a specific port (instead of the one auto-detected by Browsersync).
@@ -147,25 +129,17 @@ var reload       = browserSync.reload; // For manual browser reload.
  * 		6. Minifies the CSS file and generates style.min.css
  * 		7. Injects CSS or reloads the browser via browserSync
  */
-gulp.task('styles', async function () {
+gulp.task('styles', function () {
  	gulp.src( styleSRC )
 		.pipe( sourcemaps.init() )
-		// .pipe( sass( {
-		// 	errLogToConsole: true,
-		// 	outputStyle: 'compact',
-		// 	//outputStyle: 'compressed',
-		// 	// outputStyle: 'nested',
-		// 	// outputStyle: 'expanded',
-		// 	precision: 10
-		// } ) )
 		.pipe(sass().on('error', sass.logError))
 		.pipe( sourcemaps.write( { includeContent: false } ) )
 		.pipe( sourcemaps.init( { loadMaps: true } ) )
 		.pipe( autoprefixer( AUTOPREFIXER_BROWSERS ) )
 
 		.pipe( sourcemaps.write ( styleDestination ) )
+		.pipe( touch() )
 		.pipe( gulp.dest( styleDestination ) )
-
 
 		.pipe( rename( { suffix: '.min' } ) )
 		.pipe( minifycss( {
@@ -173,6 +147,7 @@ gulp.task('styles', async function () {
 		}))
 		.pipe( gulp.dest( styleDestination ) )
 		.pipe( browserSync.stream() )
+		//.pipe(browserSync.reload({stream: true}))
 		.pipe( notify( { message: 'TASK: "styles" Completed!', onLast: true } ) )
 });
 
@@ -188,7 +163,7 @@ gulp.task('styles', async function () {
  * 		3. Renames the JS file with suffix .min.js
  * 		4. Uglifes/Minifies the JS file and generates vendors.min.js
  */
-gulp.task( 'vendorsJs', async function() {
+gulp.task( 'vendorsJs', function() {
 	//gulp.src( jsVendorSRC )
 	gulp.src( [
 		'./assets/js/vendors/flexslider.js',
@@ -222,7 +197,7 @@ gulp.task( 'vendorsJs', async function() {
  * 		3. Renames the JS file with suffix .min.js
  * 		4. Uglifes/Minifies the JS file and generates custom.min.js
  */
-gulp.task( 'customJS', async function() {
+gulp.task( 'customJS', function() {
  	gulp.src( jsCustomSRC )
 		.pipe( concat( jsCustomFile + '.js' ) )
 		.pipe( gulp.dest( jsCustomDestination ) )
@@ -249,7 +224,7 @@ gulp.task( 'customJS', async function() {
  * This task will run only once, if you want to run it
  * again, do it with the command `gulp images`.
  */
-gulp.task( 'images', async function() {
+gulp.task( 'images', function() {
 	gulp.src( imagesSRC )
 		.pipe( imagemin( {
 					progressive: true,
@@ -262,17 +237,15 @@ gulp.task( 'images', async function() {
 });
 
 
+//Do everything once!
+function watch() {
+	gulp.watch( styleWatchFiles, gulp.series('styles') );
+	gulp.watch( customJSWatchFiles, gulp.series('customJS',reload) );
+	gulp.watch( vendorJSWatchFiles, gulp.series('vendorsJs',reload) );
+	//gulp.watch( styleWatchFiles, gulp.series('images') );
+}
 
- /**
-  * Watch Tasks.
-  *
-  * Watches for file changes and runs specific tasks.
-  */
-gulp.task( 'default', ['styles', 'vendorsJs', 'customJS', 'images', 'browser-sync'], function () {
- 	gulp.watch( styleWatchFiles, [ 'styles' ] );
- 	gulp.watch( vendorJSWatchFiles, [ 'vendorsJs', reload ]  );
- 	gulp.watch( customJSWatchFiles, [ 'customJS', reload ]  );
-});
-
-
+var build = gulp.parallel('styles', 'vendorsJs', 'customJS', 'browser-sync', watch);
+gulp.task(build);
+gulp.task('default', build);
 

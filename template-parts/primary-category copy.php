@@ -3,7 +3,8 @@ $queried = get_queried_object();
 $current_term_id = ( isset($queried->term_id) && $queried->term_id ) ? $queried->term_id : '';
 $current_term_name = ( isset($queried->name) && $queried->name ) ? $queried->name : '';
 $current_term_slug = ( isset($queried->slug) && $queried->slug ) ? $queried->slug : '';
-//$current_term_link = get_term_link($queried);
+$current_term_link = get_term_link($queried);
+
 $yourTaxonomy = 'category';
 
 //Fill in your custom taxonomy here
