@@ -25,7 +25,7 @@ if($entries) { ?>
 								$termName = $term->name;
 								$termLink = get_term_link($term);
 								?>
-								<?php echo $comma ?><a href="<?php echo $termLink ?>"><?php echo $termName ?></a>
+								<span><?php echo $comma ?><a href="<?php echo $termLink ?>"><?php echo $termName ?></a></span>
 							<?php $i++; } ?>
 						</div>	
 						<?php } ?>

@@ -1802,9 +1802,15 @@ a {
 		}
 	}
 	.terms {
+		width: 100%;
+		float: left;
 		position: relative;
     top: -3px;
 		color: #7b7b7b;
+		span {
+			display: inline-block;
+			float: left;
+		}
 		a {
 			display: inline-block;
 			color: #7b7b7b;
