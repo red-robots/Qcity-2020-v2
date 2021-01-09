@@ -1964,9 +1964,11 @@ section.red-band{width:100%;float:left;position:relative;margin:20px 0 4px 0;bac
 }section.red-band a{display:inline-block;padding:6px 5px 2px;color:#fff;-webkit-transition:all ease .2s;transition:all ease .2s;text-decoration:none}
 section.red-band a:hover{background-color:#fff;color:#924020}
 section.red-band .wrapper{line-height:1.2}
-.side-offer{width:100%;text-align:center;padding:20px;background-color:#924020;margin-bottom:40px;color:#fff}
+.side-offer{width:100%;text-align:center;padding:30px 20px;background-color:#924020;margin-bottom:40px;color:#fff}
 .side-offer h3{font-size:18px;margin-bottom:15px}
 .side-offer form#category-select{margin-bottom:20px}
+.side-offer p{line-height:1.2}
+.side-offer p:first-child{margin-top:0}
 .sponsored-by{width:100%;text-align:center;padding:20px;background-color:#eee;margin-bottom:40px;border-bottom:8px solid #cecece;color:#262425}
 @media(min-width:820px){.sponsored-by .description{text-align:left}
 }.sponsored-by h2{font-size:18px;margin-bottom:15px;font-weight:normal;margin-bottom:15px}
@@ -1977,7 +1979,7 @@ section.red-band .wrapper{line-height:1.2}
 .next-stories{width:100%;float:left;margin-bottom:30px}
 .next-stories h3{margin-bottom:20px}
 .btn{width:auto;display:inline-block;text-transform:uppercase}
-.btn a{display:block;padding:5px 25px;text-decoration:none;-webkit-transition:all ease .2s;transition:all ease .2s}
+.btn a{display:block;padding:10px 25px 5px;line-height:1.2;text-decoration:none;-webkit-transition:all ease .2s;transition:all ease .2s}
 .btn a.white{background-color:#fff;color:#924020}
 .btn a.white:hover{background-color:#c4a92f;color:#fff}
 .btn a.red{background-color:#924020;color:#fff}
@@ -3318,4 +3320,6 @@ body.home .newsHomeV2 .c-sponsor-block{margin-top:33px !important}
 body.home .home-bottom broadstreet-zone-container{margin-bottom:15px}
 .story-block .photo .category a{padding:4px 5px}
 .wrapper{padding-left:20px;padding-right:20px}
-}
+}body.single .post-subscription-form{width:100%;float:left}
+body.single .post-subscription-form .wrapper{max-width:580px;width:100%;padding-left:20px;padding-right:20px;margin:0 auto}
+body.single .post-subscription-form iframe{width:100% !important;height:800px}

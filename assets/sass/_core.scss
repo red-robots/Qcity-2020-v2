@@ -1219,7 +1219,7 @@ section.red-band {
 .side-offer {
 	width: 100%;
 	text-align: center;
-	padding: 20px;
+	padding: 30px 20px;
 	background-color: $color-red;
 	margin-bottom: 40px;
 	color: #fff;
@@ -1230,6 +1230,8 @@ section.red-band {
 	form#category-select {
 		margin-bottom: 20px;
 	}
+	p {line-height:1.2}
+	p:first-child {margin-top:0;}
 }
 .sponsored-by {
 	width: 100%;
@@ -1280,7 +1282,8 @@ section.red-band {
 	text-transform: uppercase;
 	a {
 		display: block;
-		padding: 5px 25px;
+		padding: 10px 25px 5px;
+		line-height: 1.2;
 		text-decoration: none;
 		@include transition(all ease .2s);
 		&.white {
@@ -9059,5 +9062,20 @@ body.modal-open {
 	}
 }
 
+body.single .post-subscription-form {
+	width: 100%;
+	float: left;
+	.wrapper {
+		max-width: 580px;
+		width: 100%;
+		padding-left: 20px;
+    padding-right: 20px;
+    margin: 0 auto;
+	}
+	iframe {
+		width: 100%!important;
+		height: 800px;
+	}
+}
 
 

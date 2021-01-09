@@ -120,17 +120,7 @@
 
 			</main>
 		</div>
-
 	<?php endif; ?>
-
-	<?php
-				/*$tags = get_the_tags( $post->ID );
-				foreach ($tags as $tag) {
-					echo "ID: " . $tag->term_id . ", Name: " . $tag->name . " | ";
-				}*/
-
-				
-			?>
 
 	<div class="items-before-footer">
 		<div class="content-area-full">			

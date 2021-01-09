@@ -7,7 +7,7 @@
  * @package ACStarter
  */
 //$storyImage = get_field( 'story_image' );
-
+$post_type = get_post_type();
 $mod = the_modified_date('M j, Y', '', '', false);
 $the_post_id = get_the_ID();
 $guest_author 	= get_field('author_name') ;

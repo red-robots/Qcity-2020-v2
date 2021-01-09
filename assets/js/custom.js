@@ -327,7 +327,6 @@ jQuery(document).ready(function ($) {
         var newBasepoint = basepoint + perPage;
         var postID = $(this).attr('data-except');
         var excludeCat = ( typeof $(this).attr('data-excludecat')!='undefined' || $(this).attr('data-excludecat')!=null ) ? $(this).attr('data-excludecat'):'';
-        console.log(excludeCat);  
 
         that.addClass('loading').find('.load-text').hide();        
         that.find('.load-icon').show();
@@ -341,7 +340,8 @@ jQuery(document).ready(function ($) {
                 action: action,
                 basepoint: basepoint,
                 postID: postID,
-                perPage: perPage
+                perPage: perPage,
+                exclude_cat:excludeCat
             },
             success: function(response){
                 
