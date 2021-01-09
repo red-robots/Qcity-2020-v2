@@ -145,11 +145,45 @@ if( !defined('HIDE_ADS') ){
 				<?php endif; ?>
 			<?php } ?>
 
+			<?php 
+			$postid = get_the_ID();
+			$postTerms = get_the_terms($postid,'category');
+			$is_sponsored = array();
+			if($postTerms) {
+				foreach($postTerms as $p) {
+					$slug = $p->slug;
+					if($slug=='sponsored-post') {
+						$is_sponsored[] = $p;
+					}
+				}
+			}
+
+			if($is_sponsored) {
+				$info = get_field("spcontentInfo","option");
+        if($info) {
+            $i_title = $info['title'];
+            $i_text = $info['text'];
+            $i_display = ($info['display'] && $info['display']=='on') ?  true : false;
+        } else {
+            $i_title = '';
+            $i_text = '';
+            $i_display = '';
+        } ?>	
+			
+				<?php if ($i_display && $i_text) { ?>
+	       <div class="sponsoredInfoWrap">
+	       		<div class="sponsoredInfo"><?php echo $i_text ?></div>
+	       </div>
+	      <?php } ?>
+      <?php } ?>
+	      
+
 			<?php if ( function_exists('rp4wp_children') ) { ?>
 				<?php rp4wp_children(); ?>
 			<?php } ?>
 
 			<?php get_template_part( 'template-parts/sponsored-paid'); ?>
+
 
 			<?php /* ?>
 			<section class="comments">

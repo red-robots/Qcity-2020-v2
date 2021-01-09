@@ -26,19 +26,19 @@
 					<?php get_template_part('template-parts/primary-category'); ?>
 					<?php 
 					$info = get_field("spcontentInfo","option");
-			        if($info) {
-			            $i_title = $info['title'];
-			            $i_text = $info['text'];
-			            $i_display = ($info['display'] && $info['display']=='on') ?  true : false;
-			        } else {
-			            $i_title = '';
-			            $i_text = '';
-			            $i_display = '';
-			        } ?>	
-			        <?php if ($i_display && $i_title && $i_text) { ?>
-                        <span class="whatisThis" style="padding-left:4px"> - <a href="#" id="sponsorToolTip"><?php echo $i_title ?></a></span>
-                        <div class="whatIsThisTxt"><?php echo $i_text ?></div>
-                    <?php } ?>
+	        if($info) {
+	            $i_title = $info['title'];
+	            $i_text = $info['text'];
+	            $i_display = ($info['display'] && $info['display']=='on') ?  true : false;
+	        } else {
+	            $i_title = '';
+	            $i_text = '';
+	            $i_display = '';
+	        } ?>	
+  				<?php if ($i_display && $i_title && $i_text) { ?>
+            <span class="whatisThis" style="padding-left:4px"> - <a href="#" id="sponsorToolTip"><?php echo $i_title ?></a></span>
+            <div class="whatIsThisTxt"><?php echo $i_text ?></div>
+        	<?php } ?>
 				</div>
 				<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 				<div class="single-page-excerpt">
