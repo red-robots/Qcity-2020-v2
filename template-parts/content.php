@@ -69,7 +69,7 @@ if( !defined('HIDE_ADS') ){
 
 	
 
-	<div class="content-single-page fullFleft">
+	<div class="content-single-page">
 
 		<?php if ( comments_open() || get_comments_number() ) : ?>
 
