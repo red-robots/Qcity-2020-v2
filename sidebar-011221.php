@@ -147,11 +147,44 @@ if( is_page('events') ) {
 
 	<?php  if( ( (get_post_type() != 'post') ||  is_category() )  && ! $sponsors ): ?>
 	
+	<?php
+	$obj = get_queried_object();
+	$currentTermId = ( isset($obj->term_id) && $obj->term_id ) ? $obj->term_id : '';
+	$subscribeOpts = get_field('post_category_subscription','option');
+	$subscriptionText = array();
+	$subscription_info = '';
+	if($subscribeOpts && $currentTermId) {
+		foreach($subscribeOpts as $s) {
+			$subtext = $s['subscription_text'];
+			$termIds = $s['categories'];
+			if( $termIds && in_array($currentTermId,$termIds) ) {
+				$subscriptionText[$currentTermId] = $subtext;
+			}
+		}
+		$subscription_info = ($subscriptionText) ? $subscriptionText[$currentTermId] : '';
+	}
+	$subscriptionBoxText = ($subscription_info) ? $subscription_info : $text;
+	?>
 	<div class="side-offer">
-		<p><?php echo $text; ?></p>
-		<div class="btn">
-			<a class="white" href="<?php bloginfo('url'); ?>/email-signup">Subscribe</a>
+		<?php if ($subscriptionBoxText) { ?>
+		<p><?php echo $subscriptionBoxText; ?></p>
+		<?php } ?>
+		<?php  
+      $topSubscribe = get_field("topSubscribe","option");
+      $subscribeText = ( isset($topSubscribe['subscribe_text_footer']) && $topSubscribe['subscribe_text_footer'] ) ? $topSubscribe['subscribe_text_footer']:'';
+
+
+      $subscribeText = ($subscribeText) ? str_replace('>','',$subscribeText):'';
+      $subscribeButton = ( isset($topSubscribe['subscribe_button']) && $topSubscribe['subscribe_button'] ) ? $topSubscribe['subscribe_button']:'';
+      $subscribeName = ( isset($subscribeButton['title']) && $subscribeButton['title'] ) ? $subscribeButton['title']:'';
+      $subscribeURL = ( isset($subscribeButton['url']) && $subscribeButton['url'] ) ? $subscribeButton['url']:'';
+      $subscribeTarget = ( isset($subscribeButton['target']) && $subscribeButton['target'] ) ? $subscribeButton['target']:'_self';
+    ?>
+    <?php if ($subscribeName && $subscribeURL) { ?>
+    <div class="btn">
+			<a class="white" href="<?php echo $subscribeURL ?>" target="<?php echo $subscribeTarget ?>"><?php echo $subscribeName ?></a>
 		</div>
+    <?php } ?>
 	</div>
 
 		<?php

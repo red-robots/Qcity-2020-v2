@@ -118,34 +118,10 @@ if( is_page('events') ) {
 	
 	$link = get_field("sponsorship_policy_link",39809);
 	$link_text = get_field("sponsorship_policy_text",39809);
-
-	if( $sponsors ): ?>
-		<div class="sponsored-by">
-			<div class="sponsor-sidebar-wrapper">
-			<h2>Sponsored By:</h2>
-			<?php if($logo):?>
-				<?php if($logo_link):?>
-					<a href="<?php echo $logo_link;?>">
-				<?php endif;?>
-					<img src="<?php echo $logo['url'];?>" alt="<?php echo $logo['alt'];?>">
-				<?php if($logo_link):?>
-					</a>
-				<?php endif;
-			endif;
-			if($description):?>
-				<div class="description">
-					<?php echo $description;?>
-				</div><!--.description-->
-			<?php endif;
-			if($link && $link_text):?>
-				<a href="<?php echo $link;?>" target="_blank"><?php echo $link_text;?></a>
-			<?php endif;?>
-			</div><!--.sponsor-sidebar-wrapper-->
-		</div><!--sponsored-by-->
-	<?php endif; ?>
+	?>
 
 
-	<?php  if( ( (get_post_type() != 'post') ||  is_category() )  && ! $sponsors ): ?>
+	<?php  if( ( (get_post_type() != 'post') ||  is_category() )  ): ?>
 	
 	<?php
 	$obj = get_queried_object();
