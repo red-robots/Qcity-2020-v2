@@ -63,11 +63,8 @@ if( !defined('HIDE_ADS') ){
 	</div><!-- .entry-content -->
 
 	<?php if( $subscribeCode = get_field("singleSubscriptionCode","option") ) { ?>
-		<div class="ctctSubscribeForm"><div class="wrapper"><?php echo $subscribeCode ?></div></div>
+		<div class="ctctSubscribeForm"><div class="formWrap"><?php echo $subscribeCode ?></div></div>
 	<?php } ?>
-
-
-	
 
 	<div class="content-single-page">
 
@@ -186,38 +183,9 @@ if( !defined('HIDE_ADS') ){
 			<?php } ?>
 
 			<?php get_template_part( 'template-parts/sponsored-paid'); ?>
-
-
-			<?php /* ?>
-			<section class="comments">
-				<?php //echo do_shortcode( '[Fancy_Facebook_Comments]' ); ?>
-				<div id="disqus_thread"></div>
-				<script>
-				    
-				     // RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-				    //  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
-				     
-				    
-				    var disqus_config = function () {
-				        this.page.url = '<?php echo get_permalink(); ?>';  // Replace PAGE_URL with your page's canonical URL variable
-				        this.page.identifier = '<?php echo get_permalink(); ?>'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-				    };
-				    
-				    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
-				        var d = document, s = d.createElement('script');
-				        
-				        s.src = 'https://EXAMPLE.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
-				        
-				        s.setAttribute('data-timestamp', +new Date());
-				        (d.head || d.body).appendChild(s);
-				    })();
-				</script>
-				<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-			</section>
-			<?php  */ ?>
 		</footer><!-- .entry-footer -->
-
 	</div>
+
 </article><!-- #post-## -->
 
 
