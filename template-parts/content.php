@@ -63,7 +63,7 @@ if( !defined('HIDE_ADS') ){
 	</div><!-- .entry-content -->
 
 	<?php if( $subscribeCode = get_field("singleSubscriptionCode","option") ) { ?>
-		<div class="ctctSubscribeForm"><?php echo $subscribeCode ?></div>
+		<div class="ctctSubscribeForm"><div class="wrapper"><?php echo $subscribeCode ?></div></div>
 	<?php } ?>
 
 
