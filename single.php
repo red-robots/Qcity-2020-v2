@@ -15,7 +15,7 @@
 	//$caption 	= get_the_post_thumbnail_caption();
 	
 ?>
-	
+
 <?php if($sponsors): ?>
 <div class="wrapper cf wrap-mob sponsor-post-wrap">		
 	<div id="primary" class="content-area full" style="<?php echo ($sponsors) ? '': ' margin: 0 auto; float:none; '; ?>">

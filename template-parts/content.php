@@ -53,20 +53,23 @@ if( !defined('HIDE_ADS') ){
 	<div class="entry-content">
 		<div class="content-single-page">
 		<?php
-
 			the_content( sprintf(
 						 //translators: %s: Name of current post.
 						 wp_kses( __( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'acstarter' ), array( 'span' => array( 'class' => array() ) ) ),
 						the_title( '<span class="screen-reader-text">"', '"</span>', false )
 					) );
-
-
-			
 		?>
 		</div>
 	</div><!-- .entry-content -->
 
-	<div class="content-single-page">
+	<?php if( $subscribeCode = get_field("singleSubscriptionCode","option") ) { ?>
+		<div class="ctctSubscribeForm"><?php echo $subscribeCode ?></div>
+	<?php } ?>
+
+
+	
+
+	<div class="content-single-page fullFleft">
 
 		<?php if ( comments_open() || get_comments_number() ) : ?>
 
@@ -176,7 +179,7 @@ if( !defined('HIDE_ADS') ){
 	       </div>
 	      <?php } ?>
       <?php } ?>
-	      
+
 
 			<?php if ( function_exists('rp4wp_children') ) { ?>
 				<?php rp4wp_children(); ?>
@@ -216,3 +219,7 @@ if( !defined('HIDE_ADS') ){
 
 	</div>
 </article><!-- #post-## -->
+
+
+
+

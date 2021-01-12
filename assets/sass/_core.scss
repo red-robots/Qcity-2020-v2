@@ -4649,7 +4649,10 @@ body.home .subscribe-wrap .subscribe {
 .full{
 	width: 100%;
 }
-
+.fullFleft {
+	width: 100%;
+	float: left;
+}
 
 
 @media (max-width: 768px){
@@ -9095,6 +9098,63 @@ body.single .post-subscription-form {
 		top: -18px;
 		color: #676666;
 	}
+}
+
+.ctctSubscribeForm {
+	width: 100%;
+	float: left;
+	border: 1px solid #CCC;
+	margin-bottom: 30px;
+
+	div.ctct-form-embed {
+		form.ctct-form-custom input.ctct-form-element {
+			height: 32px;
+			padding: 5px 10px;
+			border-radius: 0;
+			outline: none;
+			transition: all ease .3s;
+			&:focus {
+				outline: none;
+				border-color: #80bdff;
+				outline: 0;
+				box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+			}
+		}
+		form.ctct-form-custom label.ctct-form-label {
+			font-size: 13px;
+			line-height: 1.2;
+		}
+		form.ctct-form-custom .ctct-form-required:before {
+			left: -9px;
+		}
+		div.ctct-form-defaults {
+			background-color: #f9f9f9;
+			border-radius: 0;
+			padding: 15px 15px 0;
+		}
+		div.ctct-form-defaults h2.ctct-form-header {
+			font-size: 25px;
+	    line-height: 1.2;
+			margin: 0 0 5px;
+		}
+		form.ctct-form-custom button.ctct-form-button {
+			background-color: $color-red;
+			border: none!important;
+			border-radius: 0px;
+			text-shadow: none;
+			font-weight: 700;
+			transition: all ease .3s;
+			color: #FFF;
+			padding: 15px 10px 12px;
+			&:hover {
+				background-color: $color-yellow;
+				color: #FFF;
+				border: none!important;
+			}
+		}
+		.ctct-form-footer span[data-qe-id="form-branding"] {display:none;}
+	}
+
 }
 
 

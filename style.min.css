@@ -2555,6 +2555,7 @@ article.big-post h3{font-size:20px;z-index:1;line-height:1.1;margin-bottom:10px}
 }.c-sponsor-block__desc{margin-top:10px}
 .event_website{margin-top:10px;width:280px;text-align:center}
 .full{width:100%}
+.fullFleft{width:100%;float:left}
 @media(max-width:768px){.site-footer{position:relative}
 .site-footer-overlay{background-image:url("images/logo-footer.png");background-repeat:no-repeat;background-position:center;opacity:.057;height:175px;margin-top:88px}
 .footer-main-nav ul li a{color:white}
@@ -3326,3 +3327,13 @@ body.single .post-subscription-form iframe{width:100% !important;height:800px}
 .sponsoredInfoWrap{width:100%;float:left;display:none}
 @media screen and (max-width:820px){.sponsoredInfoWrap{display:block}
 }.sponsoredInfoWrap .sponsoredInfo{max-width:700px;width:100%;margin:0 auto 10px;font-size:14px;line-height:1.4;position:relative;top:-18px;color:#676666}
+.ctctSubscribeForm{width:100%;float:left;border:1px solid #CCC;margin-bottom:30px}
+.ctctSubscribeForm div.ctct-form-embed form.ctct-form-custom input.ctct-form-element{height:32px;padding:5px 10px;border-radius:0;outline:0;-webkit-transition:all ease .3s;transition:all ease .3s}
+.ctctSubscribeForm div.ctct-form-embed form.ctct-form-custom input.ctct-form-element:focus{outline:0;border-color:#80bdff;outline:0;box-shadow:0 0 0 .2rem rgba(0,123,255,0.25)}
+.ctctSubscribeForm div.ctct-form-embed form.ctct-form-custom label.ctct-form-label{font-size:13px;line-height:1.2}
+.ctctSubscribeForm div.ctct-form-embed form.ctct-form-custom .ctct-form-required:before{left:-9px}
+.ctctSubscribeForm div.ctct-form-embed div.ctct-form-defaults{background-color:#f9f9f9;border-radius:0;padding:15px 15px 0}
+.ctctSubscribeForm div.ctct-form-embed div.ctct-form-defaults h2.ctct-form-header{font-size:25px;line-height:1.2;margin:0 0 5px}
+.ctctSubscribeForm div.ctct-form-embed form.ctct-form-custom button.ctct-form-button{background-color:#924020;border:none !important;border-radius:0;text-shadow:none;font-weight:700;-webkit-transition:all ease .3s;transition:all ease .3s;color:#FFF;padding:15px 10px 12px}
+.ctctSubscribeForm div.ctct-form-embed form.ctct-form-custom button.ctct-form-button:hover{background-color:#c4a92f;color:#FFF;border:none !important}
+.ctctSubscribeForm div.ctct-form-embed .ctct-form-footer span[data-qe-id="form-branding"]{display:none}
