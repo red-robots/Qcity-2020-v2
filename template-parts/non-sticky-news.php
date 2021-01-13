@@ -87,14 +87,22 @@
     				 while ( $wp_query->have_posts() ) :  $wp_query->the_post();
                         $existingIDS[] = get_the_ID();
                         if($i == 2){
-                            get_template_part( 'template-parts/sponsored-paid');
+                            
+                            //get_template_part( 'template-parts/sponsored-paid');
+
+                            echo '<div class="moreNewsWrap">';
+                            get_template_part( 'template-parts/headlines-blocks');
+                            echo '</div>';
                         }
 
                         else if($i == 4){
                             get_template_part( 'template-parts/commentary-posts');
                         }
 
+
+
     		    		//include( locate_template('template-parts/story-block.php', false, false) );
+
     		    		get_template_part( 'template-parts/story-block');
                         $i++;
 
@@ -109,29 +117,8 @@
     			wp_reset_postdata();
     		?>	 	
 		 </section>
-		 <section class="ads-home">
-
-            <div class="desktop-version align-center"> <!-- Right Rail Home -->
-                <?php $right_rail =  get_ads_script('right-rail'); 
-                        echo $right_rail['ad_script'];
-                ?>
-            </div> <!-- Right Rail Home -->
-            
-            <!--
-            <script async src="https://modules.wearehearken.com/wndr/embed/868.js"></script>
-            -->
-            <div class="desktop-version" style="margin-bottom: 20px">
-                <script async src="https://modules.wearehearken.com/qcitymetro/embed/4551.js"></script>
-            </div>
-
-            <div class="desktop-version align-center"> <!-- Small Optional Ad Right -->
-                <?php $ad_right = get_ads_script('small-ad-right'); 
-                        echo $ad_right['ad_script'];
-                ?>
-            </div> <!-- Small Optional Ad Right -->
-            
-		 </section>
-
+		 
+         <?php get_sidebar('home'); ?>
 
          <?php 
          if ($excludePostIds) {

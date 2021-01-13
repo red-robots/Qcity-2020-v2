@@ -156,15 +156,11 @@ if( is_page('events') ) {
       $subscribeURL = ( isset($subscribeButton['url']) && $subscribeButton['url'] ) ? $subscribeButton['url']:'';
       $subscribeTarget = ( isset($subscribeButton['target']) && $subscribeButton['target'] ) ? $subscribeButton['target']:'_self';
     ?>
-    <?php if( $subscribeCode = get_field("singleSubscriptionCode","option") ) { ?>
-    <div class="sidebarSubscribe">
-			<div class="ctctSubscribeForm"><div class="formWrap"><?php echo $subscribeCode ?></div></div>
-		</div>	
-		<?php } else { ?>
-		<div class="btn">
+    <?php if ($subscribeName && $subscribeURL) { ?>
+    <div class="btn">
 			<a class="white" href="<?php echo $subscribeURL ?>" target="<?php echo $subscribeTarget ?>"><?php echo $subscribeName ?></a>
 		</div>
-		<?php } ?>
+    <?php } ?>
 	</div>
 
 		<?php

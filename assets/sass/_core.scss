@@ -1722,7 +1722,8 @@ a {
 		}
 		.inner {
 			text-decoration: none;
-			@include flexgroup-center();
+			@include flexgroup();
+			// @include flexgroup-center();
 		}
 		.titlediv,
 		.photodiv {
@@ -1798,7 +1799,7 @@ a {
 		.posttitle {
 			display: inline-block;
 			text-decoration: none;
-			color: $color-red;
+			color: $color__text-main;
 			&:hover {
 				color: $color-yellow;
 			}
@@ -1827,14 +1828,18 @@ a {
 }
 
 .moreNewsWrap {
-	background-color: #f3f3f3;
-	border-top: 2px solid #36c;
-	border-bottom: 2px solid #36c;
-	padding: 20px;
+	// background-color: #f3f3f3;
+	// border-top: 2px solid #36c;
+	// border-bottom: 2px solid #36c;
+	border: 1px solid #e6e6e6;
+	background: #f9f9f9;
+	padding: 20px 20px 5px;
 	margin-bottom: 30px;
 	.moreNewsSection {
 		padding: 0 0;
 		margin: 0 0;
+		position: relative;
+		top: 0;
 		.innerwrap {
 			padding: 0 0;
 			border-top: none;
@@ -9159,5 +9164,109 @@ body.single .post-subscription-form {
 	}
 
 }
+.sidebarSubscribe {
+	.ctctSubscribeForm {
+		margin-bottom: 0!important;
+	}
+	.ctct-form-header, .ctct-form-text {
+		display: none;
+	}
+	.ctctSubscribeForm div.ctct-form-embed div.ctct-form-defaults {
+		background-color: transparent;
+		border: none;
+		padding: 0 0;
+	}
+	.ctctSubscribeForm .formWrap {
+		border: none;
+		color: #FFF;
+	}
+	.ctctSubscribeForm div.ctct-form-embed form.ctct-form-custom label.ctct-form-label,
+	div.ctct-form-embed div.ctct-form-defaults p.ctct-gdpr-text {
+		color: #FFF!important;
+	}
+	#gdpr_text a {
+		color: #FFF;
+		&:hover {
+			color: $color-yellow;
+		}
+	}
+	.ctctSubscribeForm div.ctct-form-embed form.ctct-form-custom button.ctct-form-button {
+		background-color: #FFF;
+		color: $color-red;
+		text-transform: uppercase;
+		&:hover {
+			background-color: $color-yellow;
+			color: #FFF;
+		}
+	}
+	div.ctct-form-embed div.ctct-form-defaults p.ctct-form-footer {display:none!important;}
+	.ctctSubscribeForm div.ctct-form-embed form.ctct-form-custom input.ctct-form-element {
+		background-color: #FFF;
+		border: none!important;
+	}
+}
 
+.sidebar-sponsored-posts {
+	article, .inside {
+		width: 100%;
+		float: left;
+	}
+	article {
+		margin-bottom: 30px;
+	}
+	.sbTitle {
+		color: #36c;
+		font-family: $font-heading;
+		font-size: .85rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		margin-bottom: 8px;
+	}
+	.thumb {
+		display: block;
+		width: 100%;
+		float: left;
+		position: relative;
+		background-color: #CCC;
+		margin-bottom: 10px;
+		img {
+			width: 100%;
+			height: auto;
+			float: left;
+		}
+		.featImage {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			background-size: cover;
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+	}
+	.titlediv {
+		display: block;
+		width: 100%;
+		float: left;
+		color: $color__text-main;
+		span {
+			display: block;
+			width: 100%;
+		}
+		.t1 {
+			font-size: 15px;
+			line-height: 1.2;
+			margin-bottom: 5px;
+			color: #636363;
+		}
+		.t2 {
+			font-family: $font-heading;
+			font-size: 20px;
+			font-weight: 500;
+			line-height: 1.2;
+			color: $color-red;
+		}
+	}
+}
 
