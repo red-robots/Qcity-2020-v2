@@ -9267,6 +9267,11 @@ body.single .post-subscription-form {
 			line-height: 1.2;
 			color: $color-red;
 		}
+		&:hover {
+			.t2 {
+				color: $color-yellow;
+			}
+		}
 	}
 }
 

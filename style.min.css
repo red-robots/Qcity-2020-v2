@@ -3359,3 +3359,4 @@ body.single .post-subscription-form iframe{width:100% !important;height:800px}
 .sidebar-sponsored-posts .titlediv span{display:block;width:100%}
 .sidebar-sponsored-posts .titlediv .t1{font-size:15px;line-height:1.2;margin-bottom:5px;color:#636363}
 .sidebar-sponsored-posts .titlediv .t2{font-family:"UniversLTPro-65Bold";font-size:20px;font-weight:500;line-height:1.2;color:#924020}
+.sidebar-sponsored-posts .titlediv:hover .t2{color:#c4a92f}

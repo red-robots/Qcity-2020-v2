@@ -62,13 +62,43 @@
         }
     }
 
+    $sp_args = array(     
+        'category_name'     => 'offers-invites+sponsored-post',        
+        'post_type'         => 'post',        
+        'post_status'       => 'publish',
+        'posts_per_page'    => -1,
+        'orderby'           => 'rand',
+        'meta_query'        => array(
+            array(
+                'key'       => 'sponsored_content_post',
+                'compare'   => '=',
+                'value'     => 1,
+            ),      
+        ),
+    );
+    $sp_posts = get_posts($sp_args);
+    $sp_post_ids = array();
+    if($sp_posts) {
+        foreach($sp_posts as $sp) {
+            $sp_post_ids[] = $sp->ID;
+        }
+    }
     if($excludePostIds) {
+        if($sp_post_ids) {
+            $catLists = array_unique( array_merge($excludePostIds,$sp_post_ids) );
+        } else {
+            $catLists = $excludePostIds;
+        }
         $args1['post__not_in'] = $excludePostIds;
+    } else {
+        if($sp_post_ids) {
+            $args1['post__not_in'] = $sp_post_ids;
+        }
     }
 	
 	$wp_query = new WP_Query($args1);
-    
     $existingIDS = array();
+
 	?>
 	
 	<section class="news-home newsHomeV2">
