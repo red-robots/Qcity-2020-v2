@@ -15,17 +15,22 @@ $post_id = get_the_ID();
 $sidebar_event_text 	= get_field('sidebar_event_text', 'option');
 $sidebar_business_text 	= get_field('sidebar_business_text', 'option');
 $sidebar_post_text 		= get_field('sidebar_post_text', 'option');
+$trendingBlock = array();
 
 if ( ! is_active_sidebar( 'sidebar-1' ) ) {
 	return;
 }
 if( (get_post_type() == 'post') && !(is_page('events')) ) {
 	$title = 'Trending';
+	$trendingBlock[] = true;
 	$qp = 'post';
 	$args = array(
 			'post_type'			=> $qp,
-			'posts_per_page' 	=> 6,
-			'post_status'       => 'publish',	
+			'posts_per_page'=> 6,
+			'post_status'		=> 'publish',	
+			'meta_key' 			=> 'views',
+			'orderby' 			=> 'post_date meta_value_num',
+			'order'					=> 'DESC'
 	);
 } elseif( is_page('qcity-biz') ) {
 	$title = 'Latest Business Articles';
@@ -56,12 +61,16 @@ if( (get_post_type() == 'post') && !(is_page('events')) ) {
 	);
 } elseif( (get_post_type() == 'page') && ( is_page('media-gallery') )  ) {
 	$title = 'Trending';
+	$trendingBlock[] = true;
 	$qp = 'post';
 	$args = array(
 			'post_type'			=> $qp,
 			'posts_per_page' 	=> 6,
 			'post_status' 	  	=> 'publish',
-			'paged'             => 1
+			'paged'             => 1,
+			'meta_key' 			=> 'views',
+			'orderby' 			=> 'post_date meta_value_num',
+			'order'					=> 'DESC'
 	);
 } elseif( is_page('events') ) {
 	$title = 'Entertainment';
@@ -168,15 +177,10 @@ if( is_page('events') ) {
 	</div>
 
 		<?php
-
-		//var_dump( $args );
-
-		$wp_query = new WP_Query( $args );
-		
-		// might do an if / then for offers and invites category here..		
-
+		$isTrending = ($trendingBlock) ? ' sb-trending-posts':'';
+		$wp_query = new WP_Query( $args );		
 		if ($wp_query->have_posts()) : ?>
-			<div class="next-stories">
+			<div class="next-stories<?php echo $isTrending; ?>">
 				<h3><?php echo $title; ?></h3>
 				<div class="sidebar-container">
 					<?php while ($wp_query->have_posts()) : $wp_query->the_post();
@@ -187,13 +191,10 @@ if( is_page('events') ) {
 							get_template_part( 'template-parts/sidebar-block');
 						}
 						
-
-						
-						
 					endwhile; wp_reset_postdata();  ?>
 				</div>
 				<div class="more">
-					<a class="gray qcity-sidebar-load-more" data-page="1" data-action="qcity_sidebar_load_more" data-qp="<?php echo $qp; ?>" data-postid="<?php echo $post_id; ?>">
+					<a class="gray qcity-sidebar-load-more" data-trending="<?php echo ($trendingBlock) ? '1':'' ?>" data-page="1" data-action="qcity_sidebar_load_more" data-qp="<?php echo $qp; ?>" data-postid="<?php echo $post_id; ?>">
 						<span class="load-text">Load More</span>
 						<span class="load-icon"><i class="fas fa-sync-alt spin"></i></span>
 					</a>
@@ -201,7 +202,7 @@ if( is_page('events') ) {
 			<?php endif; ?>
 			</div>
 
-	<?php //dynamic_sidebar( 'sidebar-1' ); ?>
+
 
 	<?php endif;  //if( (get_post_type() != 'post') ||  is_category() && ! $sponsors )  ?>
 

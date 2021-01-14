@@ -409,6 +409,20 @@ jQuery(document).ready(function ($) {
     *   Load MOre Sidebar
     */
 
+    sort_trending_posts();
+    function sort_trending_posts() {
+        if( $(".sb-trending-posts").length>0 ) {
+            $('.sb-trending-posts article').sort(function(a, b) {
+              return parseInt(a.id) - parseInt(b.id);
+            }).each(function() {
+              var elem = $(this);
+              elem.remove();
+              $(elem).prependTo(".sb-trending-posts .sidebar-container");
+            });
+        }
+    }
+    
+
     $(document).on('click', '.qcity-sidebar-load-more:not(.loading)', function(){
 
         var that    = $(this);
@@ -417,6 +431,7 @@ jQuery(document).ready(function ($) {
         var action  = $(this).data('action');
         var qp      = $(this).data('qp');
         var postid  = $(this).data('postid');
+        var is_trending = ( typeof $(this).attr('data-trending')!='undefined' && $(this).attr('data-trending') ) ? true : false;
         //var ajaxUrl = that.data('url');
 
         that.addClass('loading').find('.load-text').hide();        
@@ -429,7 +444,8 @@ jQuery(document).ready(function ($) {
                 page: page,
                 action: action,
                 qp: qp,
-                postid: postid
+                postid: postid,
+                trending: is_trending
             },
             success: function(response){
 
@@ -437,7 +453,6 @@ jQuery(document).ready(function ($) {
                     $('.sidebar-container').append('<p>No more post to load!</p>');
                     that.hide();
                 } else {
-
                     that.data('page', newPage);
                     $('.sidebar-container').slideDown(2000).append(response);
 
@@ -450,6 +465,18 @@ jQuery(document).ready(function ($) {
                 }
                 
             }, 
+            complete: function(){
+                var prevGroup = 'page'+page;
+                var prev = '.sb-trending-posts [data-group="'+prevGroup+'"]';
+                var prevLast = $(prev).last();
+                $('.sb-trending-posts [data-group="page'+newPage+'"]').sort(function(a, b) {
+                  return parseInt(a.id) - parseInt(b.id);
+                }).each(function() {
+                  var elem = $(this);
+                  elem.remove();
+                  $(elem).insertAfter(prevLast);
+                });
+            },
             error: function(response){
             }
         });

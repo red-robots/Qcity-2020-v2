@@ -1044,3 +1044,12 @@ function getTermId($slug) {
     $exclude_term_id = ($res) ? $res->term_id : '';
     return $exclude_term_id;
 }
+
+// getTrendingPosts(0,6);
+// function getTrendingPosts($offset=0,$limit=6) {
+//     global $wpdb;
+//     $query = "SELECT p.ID,p.post_title,p.post_date,meta.meta_value AS post_views_count FROM ".$wpdb->prefix."posts p, ".$wpdb->prefix."postmeta meta
+//               WHERE p.ID=meta.post_id AND p.post_type='post' AND p.post_status='publish' AND meta.meta_key='views' AND meta.meta_value>0 ORDER BY meta.meta_value,p.post_date DESC LIMIT ".$offset.", ".$limit;
+//     $result = $wpdb->get_results($query);
+//     print_r($result);
+// }

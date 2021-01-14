@@ -256,6 +256,7 @@ function qcity_sidebar_load_more()
     $paged      = $_POST['page'] + 1;
     $qp         = $_POST['qp'];
     $post_id    = $_POST['postid'];
+    $is_trending = ( isset($_POST['trending']) && $_POST['trending'] ) ? $_POST['trending'] : '';
 
     if( $qp == 'entertainment' ){
         $args = array(     
@@ -286,19 +287,46 @@ function qcity_sidebar_load_more()
         );
     }
 
+    if($is_trending) {
+        $args['meta_key'] = 'views';
+        $args['orderby'] = 'post_date meta_value_num';
+        $args['order'] = 'DESC';
+    }
+
     $query = new WP_Query( $args );
 
     if( $query->have_posts() ):
 
         while( $query->have_posts() ): $query->the_post();
+            $img  = get_field('event_image');
+            if( $img ){
+                $image = $img['url'];
+            } elseif ( has_post_thumbnail() ) {
+                $image = get_the_post_thumbnail_url();    
+            } else {
+                $image = get_template_directory_uri() . '/images/default.png';
+            }
+            $viewsCount = get_post_meta( get_the_ID(), 'views', true );
+            $postDate = get_the_date('d/m/Y');
 
             if( $qp == 'black-business' ){
                 get_template_part( 'template-parts/sidebar-black-biz-block');
-            } else {
-                get_template_part( 'template-parts/sidebar-block');
-            }
+            } else { ?>
+
+                <?php //get_template_part( 'template-parts/sidebar-block'); ?>
+
+                <article data-group="page<?php echo $paged?>" data-postdate="<?php echo $postDate ?>" data-views="<?php echo $viewsCount ?>" id="<?php echo $viewsCount ?>" class="small">
+                    <a href="<?php the_permalink(); ?>">
+                        <div class="img">
+                            <img src="<?php echo $image; ?>" alt="">
+                        </div>
+                        <div class="xtitle"><?php the_title(); ?></div>
+                    </a>
+                </article>
 
             
+            <?php
+            }
 
         endwhile;
 
