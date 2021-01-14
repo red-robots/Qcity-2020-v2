@@ -912,4 +912,11 @@ jQuery(document).ready(function ($) {
         });
     }
 
+    /* inline subscription form */
+
+    $(document).on("click",".ctct-form-custom .ctct-form-field",function(){
+        $(this).addClass('input-focus');
+        $(this).find("input").focus();
+    });
+
 });// END #####################################    END

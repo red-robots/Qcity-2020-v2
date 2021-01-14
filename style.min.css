@@ -3334,7 +3334,7 @@ body.single .post-subscription-form iframe{width:100% !important;height:800px}
 .ctctSubscribeForm div.ctct-form-embed form.ctct-form-custom label.ctct-form-label{font-size:13px;line-height:1.2}
 .ctctSubscribeForm div.ctct-form-embed form.ctct-form-custom .ctct-form-required:before{left:-9px}
 .ctctSubscribeForm div.ctct-form-embed div.ctct-form-defaults{background-color:#f9f9f9;border-radius:0;padding:15px 15px 0}
-.ctctSubscribeForm div.ctct-form-embed div.ctct-form-defaults h2.ctct-form-header{font-size:25px;line-height:1.2;margin:0 0 5px}
+.ctctSubscribeForm div.ctct-form-embed div.ctct-form-defaults h2.ctct-form-header{font-size:20px;line-height:1.2;margin:0 0 5px}
 .ctctSubscribeForm div.ctct-form-embed form.ctct-form-custom button.ctct-form-button{background-color:#924020;border:none !important;border-radius:0;text-shadow:none;font-weight:700;-webkit-transition:all ease .3s;transition:all ease .3s;color:#FFF;padding:15px 10px 12px}
 .ctctSubscribeForm div.ctct-form-embed form.ctct-form-custom button.ctct-form-button:hover{background-color:#c4a92f;color:#FFF;border:none !important}
 .ctctSubscribeForm div.ctct-form-embed .ctct-form-footer span[data-qe-id="form-branding"]{display:none}
@@ -3342,13 +3342,17 @@ body.single .post-subscription-form iframe{width:100% !important;height:800px}
 .sidebarSubscribe .ctct-form-header,.sidebarSubscribe .ctct-form-text{display:none}
 .sidebarSubscribe .ctctSubscribeForm div.ctct-form-embed div.ctct-form-defaults{background-color:transparent;border:0;padding:0}
 .sidebarSubscribe .ctctSubscribeForm .formWrap{border:0;color:#FFF}
-.sidebarSubscribe .ctctSubscribeForm div.ctct-form-embed form.ctct-form-custom label.ctct-form-label,.sidebarSubscribe div.ctct-form-embed div.ctct-form-defaults p.ctct-gdpr-text{color:#FFF !important}
+.sidebarSubscribe div.ctct-form-embed form.ctct-form-custom div.ctct-form-field label,.sidebarSubscribe div.ctct-form-embed div.ctct-form-defaults p.ctct-gdpr-text{color:#FFF !important}
+.sidebarSubscribe #gdpr_text p.ctct-gdpr-text{font-size:9px !important;line-height:1.3}
 .sidebarSubscribe #gdpr_text a{color:#FFF}
 .sidebarSubscribe #gdpr_text a:hover{color:#c4a92f}
 .sidebarSubscribe .ctctSubscribeForm div.ctct-form-embed form.ctct-form-custom button.ctct-form-button{background-color:#FFF;color:#924020;text-transform:uppercase}
 .sidebarSubscribe .ctctSubscribeForm div.ctct-form-embed form.ctct-form-custom button.ctct-form-button:hover{background-color:#c4a92f;color:#FFF}
 .sidebarSubscribe div.ctct-form-embed div.ctct-form-defaults p.ctct-form-footer{display:none !important}
 .sidebarSubscribe .ctctSubscribeForm div.ctct-form-embed form.ctct-form-custom input.ctct-form-element{background-color:#FFF;border:none !important}
+.ctct-inline-form div.ctct-form-embed form.ctct-form-custom div.ctct-form-field{margin:0 0 10px}
+.ctct-inline-form #gdpr_text p.ctct-gdpr-text{font-size:10px;line-height:1.3}
+div.ctct-form-embed div.ctct-form-defaults p.ctct-form-text{font-size:15px !important;margin:0 0 15px !important}
 .sidebar-sponsored-posts article,.sidebar-sponsored-posts .inside{width:100%;float:left}
 .sidebar-sponsored-posts article{margin-bottom:30px}
 .sidebar-sponsored-posts .sbTitle{color:#36c;font-family:"UniversLTPro-65Bold";font-size:.85rem;font-weight:700;text-transform:uppercase;margin-bottom:8px}
