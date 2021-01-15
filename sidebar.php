@@ -25,12 +25,12 @@ if( (get_post_type() == 'post') && !(is_page('events')) ) {
 	$trendingBlock[] = true;
 	$qp = 'post';
 	$args = array(
-			'post_type'			=> $qp,
-			'posts_per_page'=> 6,
-			'post_status'		=> 'publish',	
-			'meta_key' 			=> 'views',
-			'orderby' 			=> 'post_date meta_value_num',
-			'order'					=> 'DESC'
+		'post_type'			=> $qp,
+		'posts_per_page'=> 6,
+		'post_status'		=> 'publish',	
+		'meta_key' 			=> 'views',
+		'orderby' 			=> 'post_date meta_value_num',
+		'order'					=> 'DESC'
 	);
 } elseif( is_page('qcity-biz') ) {
 	$title = 'Latest Business Articles';
@@ -178,28 +178,83 @@ if( is_page('events') ) {
 
 		<?php
 		$isTrending = ($trendingBlock) ? ' sb-trending-posts':'';
-		$wp_query = new WP_Query( $args );		
-		if ($wp_query->have_posts()) : ?>
-			<div class="next-stories<?php echo $isTrending; ?>">
-				<h3><?php echo $title; ?></h3>
-				<div class="sidebar-container">
-					<?php while ($wp_query->have_posts()) : $wp_query->the_post();
+		if($trendingBlock) { 
+			$trendingEntries = get_posts($args);
+			$listOrders = array();
+			if($trendingEntries) {
+				foreach($trendingEntries as $e) {
+					$id = $e->ID;
+					$views = get_post_meta($id,'views',true);
+					$listOrders[$id] = $views;
+				} 
+				arsort($listOrders);
+				?>
 
-						if( is_tax() ){
-							get_template_part( 'template-parts/sidebar-black-biz-block');
-						} else {
-							get_template_part( 'template-parts/sidebar-block');
-						}
-						
-					endwhile; wp_reset_postdata();  ?>
+				<div id="sb-trending-posts" class="next-stories">
+					<h3><?php echo $title; ?></h3>
+					<div class="sidebar-container">
+					<?php $i=1; foreach($listOrders as $pid=>$v) {
+						$img  = get_field('event_image',$pid);
+						$image = get_template_directory_uri() . '/images/default.png';
+						$altImg = '';
+						if( $img ){
+						  $image = $img['url'];
+						  $altImg = ( isset($img['title']) && $img['title'] ) ? $img['title']:'';
+						} elseif ( has_post_thumbnail($pid) ) {
+							$thumbid = get_post_thumbnail_id($pid);
+						  $image = get_the_post_thumbnail_url($pid);
+						  $altImg = get_the_title($thumbid);
+						} 
+						$viewsCount = get_post_meta($pid,'views',true);
+						$postDate = get_the_date('d/m/Y');
+						$pagelink = get_permalink($pid);
+						$posttitle = get_the_title($pid); ?>
+						<article data-postdate="<?php echo $postDate ?>" data-views="<?php echo $viewsCount ?>" class="small">
+                <a href="<?php echo $pagelink; ?>">
+									<div class="img">
+									  <img src="<?php echo $image; ?>" alt="<?php echo $altImg; ?>">
+									</div>
+									<div class="xtitle"><?php echo $posttitle; ?></div>
+                </a>
+            </article>
+					<?php $i++; } wp_reset_postdata(); ?>
+					</div>
 				</div>
 				<div class="more">
-					<a class="gray qcity-sidebar-load-more" data-trending="<?php echo ($trendingBlock) ? '1':'' ?>" data-page="1" data-action="qcity_sidebar_load_more" data-qp="<?php echo $qp; ?>" data-postid="<?php echo $post_id; ?>">
+					<a class="gray qcity-sidebar-load-more" data-trending="1" data-page="1" data-action="qcity_sidebar_load_more" data-qp="<?php echo $qp; ?>" data-postid="<?php echo $post_id; ?>">
 						<span class="load-text">Load More</span>
 						<span class="load-icon"><i class="fas fa-sync-alt spin"></i></span>
 					</a>
 				</div>	
-			<?php endif; ?>
+				<?php
+			}
+		?>
+
+		<?php } else { 
+			$wp_query = new WP_Query( $args );		
+			if ($wp_query->have_posts()) : ?>
+				<div class="next-stories<?php echo $isTrending; ?>">
+					<h3><?php echo $title; ?></h3>
+					<div class="sidebar-container">
+						<?php while ($wp_query->have_posts()) : $wp_query->the_post();
+
+							if( is_tax() ){
+								get_template_part( 'template-parts/sidebar-black-biz-block');
+							} else {
+								get_template_part( 'template-parts/sidebar-block');
+							}
+							
+						endwhile; wp_reset_postdata();  ?>
+					</div>
+					<div class="more">
+						<a class="gray qcity-sidebar-load-more" data-trending="<?php echo ($trendingBlock) ? '1':'' ?>" data-page="1" data-action="qcity_sidebar_load_more" data-qp="<?php echo $qp; ?>" data-postid="<?php echo $post_id; ?>">
+							<span class="load-text">Load More</span>
+							<span class="load-icon"><i class="fas fa-sync-alt spin"></i></span>
+						</a>
+					</div>	
+				<?php endif; ?>
+			<?php } ?>
+
 			</div>
 
 

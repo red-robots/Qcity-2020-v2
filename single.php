@@ -12,6 +12,7 @@
 	$video 		= get_field('video_single_post');
 	$sponsors 	= get_field('sponsors');	
 	$caption 	= ( $img ) ? $img['caption'] : '';
+	$postType = get_post_type();
 	//$caption 	= get_the_post_thumbnail_caption();
 	
 ?>
@@ -87,7 +88,7 @@
 
 					<div class="content-single-page">
 			
-						<div  style="margin-bottom: 20px;">
+						<div  class="content-inner-wrap">
 							<div class="category "><?php get_template_part('template-parts/primary-category'); ?></div>
 							<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 							<div class="single-page-excerpt">
@@ -117,6 +118,8 @@
 					<?php get_template_part( 'template-parts/content', get_post_format() );	?>
 
 				</div>
+
+				<?php get_sidebar('single-post'); ?>
 
 			</main>
 		</div>

@@ -1,5 +1,5 @@
 <?php
-$img        = get_field('event_image');
+$img  = get_field('event_image');
 if( $img ){
     $image = $img['url'];
 } elseif ( has_post_thumbnail() ) {

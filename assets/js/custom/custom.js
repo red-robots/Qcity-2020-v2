@@ -409,18 +409,18 @@ jQuery(document).ready(function ($) {
     *   Load MOre Sidebar
     */
 
-    sort_trending_posts();
-    function sort_trending_posts() {
-        if( $(".sb-trending-posts").length>0 ) {
-            $('.sb-trending-posts article').sort(function(a, b) {
-              return parseInt(a.id) - parseInt(b.id);
-            }).each(function() {
-              var elem = $(this);
-              elem.remove();
-              $(elem).prependTo(".sb-trending-posts .sidebar-container");
-            });
-        }
-    }
+    // sort_trending_posts();
+    // function sort_trending_posts() {
+    //     if( $(".sb-trending-posts").length>0 ) {
+    //         $('.sb-trending-posts article').sort(function(a, b) {
+    //           return parseInt(a.id) - parseInt(b.id);
+    //         }).each(function() {
+    //           var elem = $(this);
+    //           elem.remove();
+    //           $(elem).prependTo(".sb-trending-posts .sidebar-container");
+    //         });
+    //     }
+    // }
     
 
     $(document).on('click', '.qcity-sidebar-load-more:not(.loading)', function(){
@@ -466,16 +466,16 @@ jQuery(document).ready(function ($) {
                 
             }, 
             complete: function(){
-                var prevGroup = 'page'+page;
-                var prev = '.sb-trending-posts [data-group="'+prevGroup+'"]';
-                var prevLast = $(prev).last();
-                $('.sb-trending-posts [data-group="page'+newPage+'"]').sort(function(a, b) {
-                  return parseInt(a.id) - parseInt(b.id);
-                }).each(function() {
-                  var elem = $(this);
-                  elem.remove();
-                  $(elem).insertAfter(prevLast);
-                });
+                // var prevGroup = 'page'+page;
+                // var prev = '.sb-trending-posts [data-group="'+prevGroup+'"]';
+                // var prevLast = $(prev).last();
+                // $('.sb-trending-posts [data-group="page'+newPage+'"]').sort(function(a, b) {
+                //   return parseInt(a.id) - parseInt(b.id);
+                // }).each(function() {
+                //   var elem = $(this);
+                //   elem.remove();
+                //   $(elem).insertAfter(prevLast);
+                // });
             },
             error: function(response){
             }
