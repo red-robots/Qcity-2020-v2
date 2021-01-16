@@ -147,7 +147,8 @@ function jsVendorTask(){
         './assets/js/vendors/isotope.js',
         './assets/js/vendors/images-loaded.js',
         './assets/js/vendors/navigation.js',
-        './assets/js/vendors/wow.js'
+        './assets/js/vendors/wow.js',
+        './assets/js/vendors/jquery.sticky-sidebar.min.js'
         ])
         .pipe( concat( jsVendorFile + '.js' ) )
         .pipe( gulp.dest( jsVendorDestination ) )

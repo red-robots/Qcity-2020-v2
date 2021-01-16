@@ -1853,6 +1853,8 @@ a {
 	background-color: rgba($color-black, 1);
 	color: rgba(#fff, .5);
 	padding: 20px 0;
+	position: relative;
+	z-index: 20;
 	overflow: hidden;
 	a {
 		text-decoration: none;
@@ -9341,6 +9343,13 @@ body.single-post {
 				width: 65%;
 			}
 		}
+		.singleSidebar {
+			width: 100%;
+			@include tab {
+				width: 28%;
+				float: right;
+			}
+		}
 		.content-single-page {
 			max-width: 100%;
 		}
@@ -9357,9 +9366,7 @@ body.single-post {
 		float: right;
 		border: 1px solid #dedede;
 		padding: 15px;
-		@include tab {
-			width: 28%;
-		}
+		margin-top: 10px;
 		.sbTitle {
 			margin: 0 0 10px;
 		}
@@ -9427,5 +9434,41 @@ body.single-post {
 	.ads_home_leaderboard {
 		max-width: 918px;
 	}
+}
+.stickySidebar {
+	background-color: #FFF;
+	position: relative;
+	@include tab {
+		right: 0;
+		&.fixed {
+			overflow-x: hidden;
+			overflow-y: auto;
+		}
+		&.overflow {
+			height: 75vh
+		}
+	}
+}
+
+.sideBarAds {
+	width: 100%;
+	float: left;
+	.adBox {
+		width: 100%;
+		float: left;
+		margin-bottom: 8px;
+	}
+	a, img {
+		display: block;
+		width: 100%;
+		height: auto;
+		float: left;
+	}
+}
+
+@media screen and (max-width:820px) {
+	body.single-post #main .singleSidebar {margin-top:0!important;}		
+	.singleSidebar {padding-left: 20px;padding-right: 20px;}
+	body.single-post #sidebar-single-post {margin:10px 0 40px;}
 }
 

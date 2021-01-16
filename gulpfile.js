@@ -172,7 +172,8 @@ gulp.task( 'vendorsJs', function() {
 		'./assets/js/vendors/isotope.js',
 		'./assets/js/vendors/images-loaded.js',
 		'./assets/js/vendors/navigation.js',
-		'./assets/js/vendors/wow.js'
+		'./assets/js/vendors/wow.js',
+		'./assets/js/vendors/stickySidebar.js'
 		] )
 		.pipe( concat( jsVendorFile + '.js' ) )
 		.pipe( gulp.dest( jsVendorDestination ) )
