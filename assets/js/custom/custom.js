@@ -948,20 +948,61 @@ jQuery(document).ready(function ($) {
 
     var stickySidebarEl = $(".stickySidebar");
     var offset = stickySidebarEl.offset();
-    var topPadding = 130;
-    $(window).scroll(function() {        
-        if ($(window).scrollTop() > offset.top) {
-            $(".stickySidebar").css({
-                'margin-top':$(window).scrollTop() - offset.top + topPadding + "px"
-            });
-            $(".stickySidebar").addClass('fixed');
-        } else {
-            $(".stickySidebar").css({
-                'margin-top':"0"
-            });
-            $(".stickySidebar").removeClass('fixed');
-        };
+
+    var sidebarFloat = document.querySelector('#sidebar-single-post');
+    var footer = document.querySelector('#beforeFooter');
+
+    function checkOffset() {
+      function getRectTop(el){
+        var rect = el.getBoundingClientRect();
+        return rect.top;
+      }
+      
+
+      if((getRectTop(sidebarFloat) + document.body.scrollTop) + sidebarFloat.offsetHeight >= (getRectTop(footer) + document.body.scrollTop) - 10)
+        sidebarFloat.style.position = 'absolute';
+      if(document.body.scrollTop + window.innerHeight < (getRectTop(footer) + document.body.scrollTop))
+        sidebarFloat.style.position = 'fixed'; // restore when you scroll up      
+      //sidebarFloat.innerHTML = document.body.scrollTop + window.innerHeight;
+      //var offset = document.body.scrollTop + window.innerHeight;
+      getSidebarHelperSize();    
+    }
+
+    getSidebarHelperSize();  
+
+    document.addEventListener("scroll", function(){
+      checkOffset();
+      if ($(window).scrollTop() > offset.top) {
+        $('#sidebar-single-post').addClass('fixed');
+      } else {
+        $('#sidebar-single-post').removeClass('fixed');
+      }
     });
+
+    if ($(window).scrollTop() > offset.top) {
+        checkOffset();
+        $('#sidebar-single-post').addClass('fixed');
+    } else {
+        $('#sidebar-single-post').removeClass('fixed');
+    }
+
+      
+    $(window).resize(function() {  
+        getSidebarHelperSize();    
+    });
+
+    function getSidebarHelperSize() {
+        var helperWidth = $(".stickySidebar .helper").width();
+        $("#sidebar-single-post").css('width',helperWidth+"px");
+        var sbHeight = $("#sidebar-single-post").height();
+        //var sb = Math.round(sbHeight/3);
+        //var totalHeight = sbHeight + sb;
+        var windowHeight = $(window).height();
+        if(sbHeight>windowHeight) {
+            $("#singleSidebar").addClass("not-fixed");
+        } 
+    }
+
 
     stickySidebar(stickySidebarEl);
     $(window).on("resize",function() {  

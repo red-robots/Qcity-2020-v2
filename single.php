@@ -125,7 +125,7 @@
 		</div>
 	<?php endif; ?>
 
-	<div class="items-before-footer">
+	<div id="beforeFooter" class="items-before-footer">
 		<div class="content-area-full">			
 			<?php get_template_part( 'template-parts/single-footer-bottom');	?>
 		</div>

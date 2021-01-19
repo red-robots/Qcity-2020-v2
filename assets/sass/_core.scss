@@ -9005,6 +9005,11 @@ body.modal-open {
 		}
 	}
 }
+.site-header  {
+	position: relative;
+	z-index: 9999999;
+}
+#wpadminbar {z-index: 9999999;}
 @media screen and (max-width: 782px) {
 	body.logged-in.admin-bar {
 		padding-top: 85px;
@@ -9110,7 +9115,9 @@ body.single .post-subscription-form {
 
 .ctctSubscribeForm {
 	width: 100%;
-	margin-bottom: 30px;
+	margin-bottom: 10px;
+	position: relative;
+	z-index: 999999;
 	.formWrap {
 		border: 1px solid #CCC;
 		max-width: 700px;
@@ -9364,13 +9371,16 @@ body.single-post {
 	#sidebar-single-post {
 		width: 100%;
 		float: right;
-		border: 1px solid #dedede;
-		padding: 15px;
-		margin-top: 10px;
 		.sbTitle {
 			margin: 0 0 10px;
 		}
-		.trending-entries {
+		.trending-sidebar-wrap {
+			width: 100%;
+			float: left;
+			border: 1px solid #dedede;
+			padding: 15px;
+		}
+		#sbContent, .sbWrap {
 			width: 100%;
 			float: left;
 		}
@@ -9438,14 +9448,32 @@ body.single-post {
 .stickySidebar {
 	background-color: #FFF;
 	position: relative;
+	.helper {
+		width: 100%;
+		float: left;
+	}
+	&.not-fixed {
+		#sidebar-single-post {
+			height: 65vh;
+			overflow-y: scroll;
+		}
+	}
 	@include tab {
 		right: 0;
-		&.fixed {
-			overflow-x: hidden;
-			overflow-y: auto;
+		#sidebar-single-post {
+			background-color: #FFF;
+			&.fixed {
+				top: 12vh;
+			}
 		}
 		&.overflow {
-			height: 75vh
+			// height: 75vh
+
+		}
+		&.not-fixed {
+			#sidebar-single-post {
+				top: 22vh;
+			}
 		}
 	}
 }
@@ -9453,6 +9481,7 @@ body.single-post {
 .sideBarAds {
 	width: 100%;
 	float: left;
+	margin-bottom: 20px;
 	.adBox {
 		width: 100%;
 		float: left;
@@ -9469,6 +9498,10 @@ body.single-post {
 @media screen and (max-width:820px) {
 	body.single-post #main .singleSidebar {margin-top:0!important;}		
 	.singleSidebar {padding-left: 20px;padding-right: 20px;}
-	body.single-post #sidebar-single-post {margin:10px 0 40px;}
+	body.single-post #sidebar-single-post {
+		margin:10px 0 40px;
+		position:relative !important;
+		width: 100%!important;
+	}
 }
 
