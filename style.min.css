@@ -3364,7 +3364,7 @@ div.ctct-form-embed div.ctct-form-defaults p.ctct-form-text{font-size:15px !impo
 .sidebar-sponsored-posts .titlediv{display:block;width:100%;float:left;color:#424141}
 .sidebar-sponsored-posts .titlediv span{display:block;width:100%}
 .sidebar-sponsored-posts .titlediv .t1{font-size:15px;line-height:1.2;margin-bottom:5px;color:#636363}
-.sidebar-sponsored-posts .titlediv .t2{font-family:"UniversLTPro-65Bold";font-size:20px;font-weight:500;line-height:1.2;color:#924020}
+.sidebar-sponsored-posts .titlediv .t2{font-family:"UniversLTPro-65Bold";font-size:20px;font-weight:500;line-height:1.2;color:#424141}
 .sidebar-sponsored-posts .titlediv:hover .t2{color:#c4a92f}
 .content-inner-wrap{margin-bottom:20px}
 body.single-post div.category{margin-top:0}
@@ -3401,7 +3401,16 @@ body.single-post .ads_home_leaderboard{max-width:918px}
 }.sideBarAds{width:100%;float:left;margin-bottom:20px}
 .sideBarAds .adBox{width:100%;float:left;margin-bottom:8px}
 .sideBarAds a,.sideBarAds img{display:block;width:100%;height:auto;float:left}
-@media screen and (max-width:820px){body.single-post #main .singleSidebar{margin-top:0 !important}
+.new-share-buttons{background:#FFF;margin-top:30px;margin-bottom:30px;-webkit-transition:all ease .3s;transition:all ease .3s}
+.new-share-buttons.fixed{width:100%;position:fixed;left:0;bottom:0;z-index:999999;margin-top:0;margin-bottom:0;padding-top:10px;padding-bottom:10px;box-shadow:0 0 15px rgba(0,0,0,0.1)}
+.main-navigation #primary-menu a.redbutton,.mobilemain #primary-menu a.redbutton{display:inline-block;background:red;color:#FFF;position:relative;padding:6px 15px 4px;line-height:1.2;border-radius:100px;margin-right:10px;text-align:center}
+body.social-media-sticky{padding-bottom:60px}
+body.social-media-sticky .grecaptcha-badge{bottom:60px !important}
+@media screen and (max-width:1025px){.logo,h1.logo{width:90px}
+.main-navigation a{padding:0 12px;top:8px}
+.main-navigation #primary-menu a.redbutton{top:2px}
+}@media screen and (max-width:767px){body.single-post #main .singleSidebar{margin-top:0 !important}
 .singleSidebar{padding-left:20px;padding-right:20px}
 body.single-post #sidebar-single-post{margin:10px 0 40px;position:relative !important;width:100% !important}
+.main-navigation #primary-menu a.redbutton,.mobilemain #primary-menu a.redbutton{display:block;padding:10px 20px 6px;margin-top:15px;margin-bottom:15px}
 }

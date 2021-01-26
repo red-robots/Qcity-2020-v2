@@ -27,6 +27,18 @@ jQuery(document).ready(function ($) {
         }
     });
 	
+    if( $("#primary-menu a").length>0 ) {
+        $("#primary-menu a").each(function(){
+            var parent = $(this).parent();
+            var str = $(this).text().replace(/\s/g,'-').toLowerCase();
+            if(str=='donate') {
+                $(this).addClass("redbutton");
+                parent.addClass("donate-btn");
+            }
+        });
+    }
+    
+
 	/*
 	*
 	*	Current Page Active
@@ -1021,6 +1033,28 @@ jQuery(document).ready(function ($) {
         } else {
             $(".stickySidebar").removeClass('overflow');
         }
+    }
+
+
+    $(window).on("scroll resize",function(){
+        if( $("#shareThisPost").length>0 ) {
+            inViewport(".entry-footer");
+        }
+    });
+
+    function inViewport(elem){
+        $(elem).each(function(){
+            var divPos = $(this).offset().top,
+            topOfWindow = $(window).scrollTop();
+
+            if( divPos < topOfWindow+400 ){
+                $("body").addClass('social-media-sticky');
+                $("#shareThisPost").addClass('animated fadeIn fixed');
+            } else {
+                $("body").removeClass('social-media-sticky');
+                $("#shareThisPost").removeClass('fadeIn fixed');
+            }
+        });
     }
 
 

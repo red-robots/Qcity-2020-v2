@@ -21,14 +21,6 @@ $story_sponsor_website = get_field("story_sponsor_website","option");
 				<?php } ?>
 			</div>
 
-			<div class="share-link">
-				<?php if ( do_shortcode('[social_warfare]') ) { ?>
-					<a href="#" id="sharerLink"><i class="fas fa-share"></i> <span>Share</span></a>
-					<div class="share">
-						<?php echo do_shortcode('[social_warfare]'); ?>
-					</div>
-				<?php } ?>
-			</div>
 		</div>
 		<div class="arrow-down"><span></span></div>
 	</div>
