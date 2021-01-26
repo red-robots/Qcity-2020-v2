@@ -982,20 +982,24 @@ jQuery(document).ready(function ($) {
 
     getSidebarHelperSize();  
 
-    document.addEventListener("scroll", function(){
-      checkOffset();
-      if ($(window).scrollTop() > offset.top) {
-        $('#sidebar-single-post').addClass('fixed');
-      } else {
-        $('#sidebar-single-post').removeClass('fixed');
-      }
-    });
+    if( $('#sidebar-single-post').length>0 ) {
 
-    if ($(window).scrollTop() > offset.top) {
-        checkOffset();
-        $('#sidebar-single-post').addClass('fixed');
-    } else {
-        $('#sidebar-single-post').removeClass('fixed');
+        document.addEventListener("scroll", function(){
+            checkOffset();
+            if ($(window).scrollTop() > offset.top) {
+                $('#sidebar-single-post').addClass('fixed');
+            } else {
+                $('#sidebar-single-post').removeClass('fixed');
+            }
+        });
+
+        if ($(window).scrollTop() > offset.top) {
+            checkOffset();
+            $('#sidebar-single-post').addClass('fixed');
+        } else {
+            $('#sidebar-single-post').removeClass('fixed');
+        }
+
     }
 
       

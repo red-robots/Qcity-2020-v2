@@ -14,7 +14,11 @@ textarea {
 h1, h2, h3, h4, h5, h6 {
 	clear: both;
 	font-family: $font-heading;
+	font-weight: 600;
 	line-height: 1.1;
+}
+b, strong {
+	font-weight: 600;
 }
 .entry-content {
 	h3 {
@@ -1689,14 +1693,13 @@ a {
 	margin: 0 0 40px;
 	.stitle {
 		font-size: 16px;
-		font-weight: 800;
+		font-weight: 400;
 		line-height: 1.2;
 		margin: 0 0 10px;
 	}
 	.ptitle {
-		font-family: $font-heading;
 		font-size: 14px;
-		font-weight: 400;
+		font-weight: 600;
 		line-height: 1.2;
 		color: $color__text-main;
 		transition: all ease .3s;
@@ -1800,6 +1803,7 @@ a {
 		.posttitle {
 			display: inline-block;
 			text-decoration: none;
+			font-weight: 600;
 			color: $color__text-main;
 			&:hover {
 				color: $color-yellow;
@@ -2782,19 +2786,24 @@ section.stickies-new.stickyPostsTop {
 	}
 
 	.story-block.stickRightBlock {
-		padding: 0 0;
+		padding: 0 0!important;
 		margin: 0 0;
 		height: auto;
-		// @include tab {
-		// 	height: 33.33%;
-		// }
+		border-bottom: 1px solid #CCC;
+		@include mid {
+			border-bottom: none;
+		}
+		&:last-child {
+			border-bottom: none;
+		}
 		.inside {
 			width: 100%;
 			float: left;
-			padding:  15px;
+			padding: 20px 15px;
 			transition: all ease .3s;
-			@include tab {
+			@include mid {
 				height: 100%;
+				padding: 10px 15px;
 			}
 			// padding: 12px 0;
 		}
@@ -2884,7 +2893,9 @@ section.stickies-new.stickyPostsTop {
 				position: absolute;
 				top: 0;
 				left: 0;
-				height: 100%;
+				@include tab {
+					height: 100%!important;
+				}
 			}
 		}
 		&:hover {
@@ -6199,7 +6210,7 @@ section.stickies-new{
 		    	border-radius: 16px;
 		    	font-size: 14px;
 		    	line-height: 1;
-		    	padding: 9px 15px 6px;
+		    	padding: 7px 15px 7px;
 		    	text-transform: uppercase;
 		    	&.btn1 {
 		    		display: none;
@@ -9045,9 +9056,12 @@ body.modal-open {
 		display: none!important;
 	}
 	section.stickies-new.stickyPostsTop .story-block.stickRightBlock .textwrap {
-		border-bottom: 1px solid #ccc;
-		padding-bottom: 15px;
-    margin-bottom: 5px;
+		// border-bottom: 1px solid #ccc;
+		// padding-bottom: 15px;
+  //   margin-bottom: 5px;
+  	border-bottom: none;
+  	padding-bottom: 0;
+  	margin-bottom: 0;
 	}
 	section.home-sponsored.v2 {
 		margin-top: 15px;
@@ -9521,7 +9535,7 @@ body.single-post {
 	background: #FF0000;
 	color: #FFF;
 	position: relative;
-	padding: 6px 15px 4px;
+	padding: 4px 15px 5px;
 	line-height: 1.2;
 	border-radius: 100px;
 	margin-right: 10px;
@@ -9560,7 +9574,7 @@ body.social-media-sticky {
 	.main-navigation #primary-menu a.redbutton,
 	.mobilemain #primary-menu a.redbutton {
 		display: block;
-		padding: 10px 20px 6px;
+		padding: 7px 20px 8px;
 		margin-top: 15px;
     margin-bottom: 15px;
 	}
