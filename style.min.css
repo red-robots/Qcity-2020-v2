@@ -2261,9 +2261,11 @@ section.stickies-new.stickyPostsTop .stickLeft .inside{width:100%;height:100%;po
 section.stickies-new.stickyPostsTop .stickRight{padding-left:0}
 @media(min-width:820px){section.stickies-new.stickyPostsTop .stickRight{padding-left:1.1vw}
 }@media(min-width:960px){section.stickies-new.stickyPostsTop .stickRight{padding-left:18px}
-}section.stickies-new.stickyPostsTop .story-block.stickRightBlock{padding:0 0 !important;margin:0;height:auto;border-bottom:1px solid #CCC}
-@media(min-width:960px){section.stickies-new.stickyPostsTop .story-block.stickRightBlock{border-bottom:0}
-}section.stickies-new.stickyPostsTop .story-block.stickRightBlock:last-child{border-bottom:0}
+}section.stickies-new.stickyPostsTop .story-block.stickRightBlock{padding:0 0 !important;margin:0 0 10px;height:auto;position:relative}
+@media(min-width:960px){section.stickies-new.stickyPostsTop .story-block.stickRightBlock{margin:0}
+}section.stickies-new.stickyPostsTop .story-block.stickRightBlock:after{content:"";display:block;width:calc(100% - 30px);border-bottom:1px solid #CCC;position:relative;margin:0 auto;float:left;left:15px}
+@media(min-width:960px){section.stickies-new.stickyPostsTop .story-block.stickRightBlock:after{display:none}
+}section.stickies-new.stickyPostsTop .story-block.stickRightBlock:last-child:after{border-bottom:0}
 section.stickies-new.stickyPostsTop .story-block.stickRightBlock .inside{width:100%;float:left;padding:20px 15px;-webkit-transition:all ease .3s;transition:all ease .3s}
 @media(min-width:960px){section.stickies-new.stickyPostsTop .story-block.stickRightBlock .inside{height:100%;padding:10px 15px}
 }section.stickies-new.stickyPostsTop .story-block.stickRightBlock .textwrap{width:100%;float:left;position:relative;-webkit-transition:all ease .3s;transition:all ease .3s}
@@ -2955,7 +2957,7 @@ figure.wp-block-embed{margin:1em 20px}
 body.home #content .wrapper{padding-left:20px;padding-right:20px}
 section.home-bottom{margin:0}
 #content section.stickies-new.stickyPostsTop .stickRight{margin-top:20px}
-#content section.stickies-new.stickyPostsTop .story-block.stickRightBlock .desc .inner{padding:20px}
+#content section.stickies-new.stickyPostsTop .story-block.stickRightBlock .desc .inner{padding:20px 20px 10px}
 #content .story-image.s2{margin-left:-20px;margin-right:-20px}
 }.mobile-version .mobile-bottom-ads{position:relative;top:-25px}
 .mobile-version .mobile-bottom-ads div,.mobile-version .mobile-bottom-ads span,.mobile-version .mobile-bottom-ads a{display:block;width:100%}

@@ -2787,13 +2787,26 @@ section.stickies-new.stickyPostsTop {
 
 	.story-block.stickRightBlock {
 		padding: 0 0!important;
-		margin: 0 0;
+		margin: 0 0 10px;
 		height: auto;
-		border-bottom: 1px solid #CCC;
+		position: relative;
 		@include mid {
-			border-bottom: none;
+			margin: 0 0;
 		}
-		&:last-child {
+		&:after {
+			content:"";
+			display: block;
+			width: calc(100% - 30px);
+			border-bottom: 1px solid #CCC;
+			position: relative;
+			margin: 0 auto;
+			float: left;
+			left: 15px;
+			@include mid {
+				display: none;
+			}
+		}
+		&:last-child:after {
 			border-bottom: none;
 		}
 		.inside {
@@ -7054,7 +7067,7 @@ section.gravityform{
 		}
 		.story-block.stickRightBlock {
 			.desc .inner {
-				padding: 20px;
+				padding: 20px 20px 10px;
 			}
 		}
 	}
