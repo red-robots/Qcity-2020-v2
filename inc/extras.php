@@ -1053,3 +1053,109 @@ function getTermId($slug) {
 //     $result = $wpdb->get_results($query);
 //     print_r($result);
 // }
+
+function getMoreNewsPosts($limit=3) {
+    global $wpdb;
+    $query = "SELECT p.* FROM ".$wpdb->prefix."posts p, ".$wpdb->prefix."postmeta m
+              WHERE p.ID=m.post_id AND m.meta_key='home_more_news' AND TRIM(IFNULL(m.meta_value,'')) <> '' AND p.post_status='publish' AND p.post_type='post'
+                ORDER BY p.ID DESC LIMIT " . $limit;
+    $entries = $wpdb->get_results($query);
+    return ($entries) ? $entries : '';
+}
+
+function getCommentaryPosts($limit=3) {
+    $termName = 'commentaries';
+    $args = array(
+      'post_type'               =>'post',
+      'post_status'         => 'publish',       
+      'posts_per_page'  => $limit,
+      'orderby'   => 'ID',
+        'order'         => 'DESC',
+      'tax_query'               => array(
+                array(
+                  'taxonomy' => 'category',
+                  'field'    => 'slug',
+                  'terms'    => $termName,
+                  'operator' => 'IN'
+                )
+        )
+    );
+    $commentaries = new WP_Query($args);
+    return ($commentaries) ? $commentaries : '';
+}
+
+function getGravityFormList() {
+    global $wpdb;
+    $query = "SELECT id, title FROM ".$wpdb->prefix."gf_form WHERE is_active=1 AND is_trash=0 ORDER BY title ASC";
+    $result = $wpdb->get_results($query);
+    return ($result) ? $result : '';
+}
+
+add_action( 'admin_footer', 'admin_footer_custom_js' );
+function admin_footer_custom_js(){
+$gfforms = (getGravityFormList()) ? json_encode(getGravityFormList()) : ''; ?>
+<script type="text/javascript">
+jQuery(document).ready(function($){
+    var gravityForms = '<?php echo $gfforms; ?>';
+    if(gravityForms) {
+        var gravityFormItems = JSON.parse(gravityForms);
+        var gf_fields_arrs = ['homeFormShortcode','homeSBFormShortcode'];
+        $(gf_fields_arrs).each(function(k,v){
+            var gfContainer = '[data-name="'+v+'"]';
+            if( $(gfContainer).length>0 ) {
+                var gfParent = $(gfContainer);
+                var gfInput = gfParent.find(".acf-input input");
+                var gfcurrentVal = gfInput.val();
+                gfInput.hide();
+
+                var gf_options = '<select class="gravityFormOpts" data-ui="1" data-ajax="1" data-multiple="0" data-placeholder="Select" data-allow_null="1">';
+                    gf_options += '<option value="-1">NONE</option>';
+                    $(gravityFormItems).each(function(k,v){
+                        gf_selected = (gfcurrentVal && gfcurrentVal==v.id) ? ' selected':'';
+                        gf_options += '<option value="'+v.id+'"'+gf_selected+'>'+v.title+' [ID:'+v.id+']</option>';
+                    });
+                gf_options += '</select>';
+
+                gfParent.find(".acf-input").append(gf_options);
+            }
+        });
+
+
+        $(document).on("change","select.gravityFormOpts",function(e){
+            var opt = $(this).val();
+            var fieldWrap = $(this).parents(".acf-input");
+            var gfInput = fieldWrap.find(".acf-input-wrap input");
+            if(opt>0) {
+                gfInput.val(opt);
+            } else {
+                gfInput.val("");
+            }
+        });
+
+        // if( $('[data-name="homeFormShortcode"]').length>0 ) {
+        //     var gfInput = $('[data-name="homeFormShortcode"]').find(".acf-input input");
+        //     var gfcurrentVal = gfInput.val();
+        //         gfInput.hide();
+        //     var gf_options = '<select class="gravityFormOpts" data-ui="1" data-ajax="1" data-multiple="0" data-placeholder="Select" data-allow_null="1">';
+        //         gf_options += '<option value="-1">NONE</option>';
+        //     $(gravityFormItems).each(function(k,v){
+        //         gf_selected = (gfcurrentVal && gfcurrentVal==v.id) ? ' selected':'';
+        //         gf_options += '<option value="'+v.id+'"'+gf_selected+'>'+v.title+' [ID:'+v.id+']</option>';
+        //     });
+        //     gf_options += '</select>';
+
+        //     $('[data-name="homeFormShortcode"]').find(".acf-input").append(gf_options);
+        //     $(document).on("change","select.gravityFormOpts",function(){
+        //         var opt = $(this).val();
+        //         if(opt>0) {
+        //             gfInput.val(opt);
+        //         } else {
+        //             gfInput.val("");
+        //         }
+        //     });
+        // }
+    }
+});
+</script>
+<?php } ?>
+

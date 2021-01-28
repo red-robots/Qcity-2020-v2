@@ -68,6 +68,13 @@ if( !defined('HIDE_ADS') ){
 
 	<div class="content-single-page">
 
+		<?php /* SOCIAL MEDIA SHARE */ ?>
+		<?php if ( do_shortcode('[sharethis-inline-buttons]') ) { ?>
+		<div id="shareThisPost" class="share new-share-buttons">
+			<?php echo do_shortcode('[sharethis-inline-buttons]'); ?>
+		</div>
+		<?php } ?>
+
 		<?php if ( comments_open() || get_comments_number() ) : ?>
 
 		<div class="comments-section">
@@ -97,14 +104,6 @@ if( !defined('HIDE_ADS') ){
 			 ); ?>
 		</div>
 		<?php endif; ?>
-
-
-		<?php /* SOCIAL MEDIA SHARE */ ?>
-		<?php if ( do_shortcode('[sharethis-inline-buttons]') ) { ?>
-		<div id="shareThisPost" class="share new-share-buttons">
-			<?php echo do_shortcode('[sharethis-inline-buttons]'); ?>
-		</div>
-		<?php } ?>
 		
 		
 		<footer class="entry-footer">

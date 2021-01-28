@@ -288,7 +288,7 @@ function change_post_menu_label() {
 function change_post_object_label() {
   global $wp_post_types;
   $labels = &$wp_post_types['post']->labels;
-  $labels->name = 'Newss';
+  $labels->name = 'News';
   $labels->singular_name = 'News';
   $labels->add_new = 'Add News';
   $labels->add_new_item = 'Add News';

@@ -10,7 +10,6 @@
     
     <?php /* West Side Connect  or Hearken Subscription Form */ ?>
     <!-- <script async src="https://modules.wearehearken.com/wndr/embed/868.js"></script> -->
-    
     <!-- <div class="desktop-version" style="margin-bottom: 20px">
         <script async src="https://modules.wearehearken.com/qcitymetro/embed/4551.js"></script>
     </div> -->
@@ -87,5 +86,27 @@
         </article>
         <?php endwhile; wp_reset_postdata(); ?>
     </div>  
+    <?php } ?>
+
+    <?php /* SUBSCRIPTION FORM */ ?>
+    <?php
+    $homeSBFormTitle = get_field("homeSBFormTextTitle","option");
+    $homeSBFormText = get_field("homeSBFormTextContent","option");
+    $homeGravityFormId = get_field("homeSBFormShortcode","option");
+    if ($homeGravityFormId) {
+        $gfshortcode = '[gravityform id="'.$homeGravityFormId.'" title="false" description="false" ajax="true"]'; 
+        if( do_shortcode($gfshortcode) ) { ?>   
+        <div class="home-sb-subscribe-form">
+            <div class="form-inside">
+            <?php if ($homeSBFormTitle) { ?>
+                <h3 class="gfTitle"><?php echo $homeSBFormTitle ?></h3>
+            <?php } ?>
+            <?php if ($homeSBFormText) { ?>
+                <div class="gftxt"><?php echo $homeSBFormText ?></div>
+            <?php } ?>
+            <?php echo do_shortcode($gfshortcode); ?>
+            </div>
+        </div>
+        <?php } ?>
     <?php } ?>
 </section>

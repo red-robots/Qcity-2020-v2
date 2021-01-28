@@ -116,7 +116,23 @@
                     $total = $wp_query->found_posts;	
     				 while ( $wp_query->have_posts() ) :  $wp_query->the_post();
                         $existingIDS[] = get_the_ID();
-                        
+                        if($i == 2){
+                            
+                            //get_template_part( 'template-parts/sponsored-paid');
+
+                            echo '<div class="moreNewsWrap">';
+                            get_template_part( 'template-parts/headlines-blocks');
+                            echo '</div>';
+                        }
+
+                        else if($i == 4){
+                            get_template_part( 'template-parts/commentary-posts');
+                        }
+
+
+
+    		    		//include( locate_template('template-parts/story-block.php', false, false) );
+
     		    		get_template_part( 'template-parts/story-block');
                         $i++;
 

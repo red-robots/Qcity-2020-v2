@@ -13,7 +13,7 @@
  */
 
 get_header(); ?>
-<div class="wrapper newHomeLayout">
+<div class="wrapper">
 	<div id="primary" class="content-area-full">
 		<main id="main" class="site-main" role="main">
 
@@ -23,11 +23,11 @@ get_header(); ?>
 		$subscribe_button_name  = get_field('subscribe_button_name');
 		$show_instagram_feeds  = get_field('show_instagram_feeds','option');
 
-		include( locate_template('home-parts/top.php') );
-
-		// include( locate_template('template-parts/hero.php') ); 
+		include( locate_template('template-parts/hero.php') ); 
 		include( locate_template('template-parts/sponsored-posts.php') );
+
 		include( locate_template('template-parts/home-stories.php') );
+		
 		include( locate_template('template-parts/subscribe-bar.php') ); 
 
 		if($show_instagram_feeds=='on') {
@@ -92,11 +92,7 @@ jQuery(document).ready(function($){
 	  }
 	}
 
-	/* Change the subscribe button name */
-  // if( $(".form-subscribe-blue .gform_footer").length>0 ) {
-  // 	$(".form-subscribe-blue .gform_footer input.gform_button").addClass('textchange');
-  // 	$(".form-subscribe-blue .gform_footer input.gform_button").val("Subscribe");
-  // }
+  	
 
 
 });

@@ -2058,8 +2058,9 @@ body.sticky-sponsor.single-story .new-page-fullwrap .share-link{padding-right:95
 }body.sticky-sponsor.single-story.logged-in.admin-bar .story-view-all{top:180px}
 @media(min-width:820px){body.sticky-sponsor.single-story.logged-in.admin-bar .story-view-all{top:140px}
 }a{-webkit-transition:all ease .3s;transition:all ease .3s}
-.commentaries-section{display:block;width:100%;float:left;border:1px solid #e6e6e6;background:#f9f9f9;padding:15px;margin:0 0 40px}
-.commentaries-section .stitle{font-size:16px;font-weight:400;line-height:1.2;margin:0 0 10px}
+.commentaries-section{display:block;width:100%;float:left;border:1px solid #e6e6e6;background:#f9f9f9;padding:15px;margin:0}
+@media(min-width:820px){.commentaries-section{margin:0 0 40px}
+}.commentaries-section .stitle{font-size:16px;font-weight:400;line-height:1.2;margin:0 0 10px}
 .commentaries-section .ptitle{font-size:14px;font-weight:600;line-height:1.2;color:#424141;-webkit-transition:all ease .3s;transition:all ease .3s}
 .commentaries-section .ptitle a{display:inline-block;color:#424141;text-decoration:none}
 .commentaries-section .ptitle a:hover{color:#c4a92f}
@@ -2069,10 +2070,10 @@ body.sticky-sponsor.single-story .new-page-fullwrap .share-link{padding-right:95
 }.commentaries-section .entry-block .inner{text-decoration:none;display:-webkit-box;display:-ms-flexbox;display:-webkit-flex;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-flex-direction:row;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row}
 .commentaries-section .entry-block .titlediv,.commentaries-section .entry-block .photodiv{display:block;position:relative}
 .commentaries-section .entry-block .titlediv{width:70%}
-.commentaries-section .entry-block .photodiv{width:30%;padding-left:10px}
+.commentaries-section .entry-block .photodiv{width:30%;padding-right:10px}
 .commentaries-section .entry-block .photodiv .pic{width:100%;float:left;background-color:#CCC;background-position:top center;background-repeat:no-repeat;background-size:cover}
 .commentaries-section .entry-block .photodiv img.helper{width:100%;height:auto;float:left}
-.commentaries-section .entry-block .by{display:block;font-size:12px;margin-top:2px;color:#9a9a9a}
+.commentaries-section .entry-block .by{display:block;font-size:10px;line-height:1.1;text-transform:uppercase;margin-top:2px;color:#a2a2a2}
 .commentaries-section .entry-block .inner:hover .ptitle{color:#c4a92f}
 .moreNewsSection{display:block;width:100%;float:left;padding-left:20px;padding-right:20px;margin-top:0;position:relative;top:18px}
 .moreNewsSection .innerwrap{width:100%;float:left;padding-top:20px;border-top:2px solid #d4d4d4}
@@ -2131,7 +2132,7 @@ section.news-home{width:100%;float:left;margin:0 0 40px 0}
 }header.section-title{width:100%;clear:both;margin:0 0 15px 0;position:relative;text-align:center}
 @media screen and (min-width:768px){header.section-title{text-align:left}
 }header.section-title:after{content:'';height:2px;position:absolute;bottom:0;left:0;background-color:#58595b;width:100%}
-header.section-title h1,header.section-title h2{width:auto;display:inline-block;background-color:#58595b;color:#fff;padding:7px 30px 4px 15px;border-radius:5px 5px 0 0;font-weight:normal;font-size:14px}
+header.section-title h1,header.section-title h2{width:auto;display:inline-block;background-color:#58595b;color:#fff;padding:6px 20px 7px 15px;border-radius:5px 5px 0 0;font-weight:normal;font-size:14px;line-height:1.2}
 @media screen and (min-width:768px){header.section-title h1,header.section-title h2{border-radius:0 10px 0 0}
 }.story-image{width:100%;margin-bottom:40px}
 .story-image img{width:100%}
@@ -3359,6 +3360,7 @@ body.single .post-subscription-form iframe{width:100% !important;height:800px}
 .sidebarSubscribe div.ctct-form-embed div.ctct-form-defaults p.ctct-form-footer{display:none !important}
 .sidebarSubscribe .ctctSubscribeForm div.ctct-form-embed form.ctct-form-custom input.ctct-form-element{background-color:#FFF;border:none !important}
 .ctct-inline-form div.ctct-form-embed form.ctct-form-custom div.ctct-form-field{margin:0 0 10px}
+.ctct-inline-form div.ctct-form-embed form.ctct-form-custom h2,.ctct-inline-form div.ctct-form-embed form.ctct-form-custom div,.ctct-inline-form div.ctct-form-embed form.ctct-form-custom p,.ctct-inline-form div.ctct-form-embed form.ctct-form-custom label.ctct-form-label{color:#000 !important}
 .ctct-inline-form #gdpr_text p.ctct-gdpr-text{font-size:10px;line-height:1.3}
 div.ctct-form-embed div.ctct-form-defaults p.ctct-form-text{font-size:15px !important;margin:0 0 15px !important}
 .sidebar-sponsored-posts article,.sidebar-sponsored-posts .inside{width:100%;float:left}
@@ -3412,6 +3414,79 @@ body.single-post .ads_home_leaderboard{max-width:918px}
 .main-navigation #primary-menu a.redbutton,.mobilemain #primary-menu a.redbutton{display:inline-block;background:red;color:#FFF;position:relative;padding:4px 15px 5px;line-height:1.2;border-radius:100px;margin-right:10px;text-align:center}
 body.social-media-sticky{padding-bottom:60px}
 body.social-media-sticky .grecaptcha-badge{bottom:60px !important}
+.form-subscribe-blue{padding:0 0 10px 0}
+@media(min-width:820px){.form-subscribe-blue{padding:0 15px 10px 15px}
+}.form-subscribe-blue .form-inside{background:#1c788c;color:#FFF;padding:30px 30px 35px;position:relative}
+.form-subscribe-blue h3.gfTitle{font-size:20px;font-weight:500;line-height:1.2}
+.form-subscribe-blue .gftxt{font-size:15px;line-height:1.4}
+.form-subscribe-blue .gform_wrapper{margin-bottom:0}
+.form-subscribe-blue .gform_wrapper form,.form-subscribe-blue .gform_wrapper .gform_body{width:100%;position:relative}
+.form-subscribe-blue .gform_wrapper label.gfield_label{display:none}
+.form-subscribe-blue .gform_wrapper ul.gform_fields{margin:0;padding:0;list-style:none}
+.form-subscribe-blue .gform_wrapper ul.gform_fields li{margin:0 0 !important;padding:0 0 !important;position:relative;width:100% !important}
+.form-subscribe-blue .gform_wrapper ul.gform_fields li input[type="text"],.form-subscribe-blue .gform_wrapper ul.gform_fields li input[type="email"]{width:100% !important;height:30px;line-height:30px;-webkit-appearance:none;border:1px solid #FFF;background:#FFF;color:#000;font-size:16px;padding:5px 10px !important}
+.form-subscribe-blue .gform_wrapper ul.gform_fields li input[type="text"]:focus,.form-subscribe-blue .gform_wrapper ul.gform_fields li input[type="email"]:focus{outline:0;box-shadow:0 0 13px rgba(0,0,0,0.35)}
+.form-subscribe-blue .gform_wrapper ul.gform_fields li.gfield_error{background-color:transparent;border-top:0;border-bottom:0}
+.form-subscribe-blue .gform_wrapper ul.gform_fields li.gfield_error input[type="text"],.form-subscribe-blue .gform_wrapper ul.gform_fields li.gfield_error input[type="email"]{border:1px solid #f54848 !important;background:#ffe8e8}
+.form-subscribe-blue .gform_wrapper .gform_footer{margin:15px 0 0 0;padding:0}
+.form-subscribe-blue .gform_wrapper .gform_footer input.gform_button{cursor:pointer;padding:0;width:100%;height:30px;font-size:15px;font-weight:500;line-height:1;border:0;border-radius:0;box-shadow:none;text-shadow:none;-webkit-appearance:none;background:#c4a92f;color:#FFF !important;margin:0 auto}
+.form-subscribe-blue .gform_wrapper .gform_footer input.gform_button.textchange{color:#FFF !important}
+.form-subscribe-blue .gform_wrapper .gform_footer input.gform_button:hover{background:#924020}
+.form-subscribe-blue .gform_wrapper .validation_error,.form-subscribe-blue .gform_wrapper .validation_message{color:#f75050 !important}
+.form-subscribe-blue .gform_wrapper .validation_error{display:none !important}
+@media(min-width:820px){.form-subscribe-blue .gform_wrapper ul.gform_fields li{padding-right:23% !important}
+.form-subscribe-blue .gform_wrapper ul.gform_fields .validation_message{margin:0;padding:0;width:100%;position:absolute;left:2px;bottom:-14px;font-size:10px}
+.form-subscribe-blue .gform_wrapper .gform_footer{width:20%;height:30px;position:absolute;top:0;right:0;margin:0}
+.form-subscribe-blue .gform_wrapper .gform_footer input.gform_button{width:100% !important;height:100%;position:absolute;right:0;bottom:0}
+}.newHomeLayout section.stickies-new.stickyPostsTop{display:block}
+.newHomeLayout section.stickies-new.stickyPostsTop .stickLeft{width:100%;float:left;padding-top:0}
+@media(min-width:820px){.newHomeLayout section.stickies-new.stickyPostsTop .stickLeft{width:50%}
+}.newHomeLayout section.stickies-new.stickyPostsTop .stickRight{width:100%;float:left}
+@media(min-width:820px){.newHomeLayout section.stickies-new.stickyPostsTop .stickRight{width:50%}
+}.newHomeLayout section.stickies-new.stickyPostsTop article.big-post .article-link{position:relative}
+.more-news-commentaries{width:100%;float:left}
+.more-news-commentaries .moreNewsSection.more-section-col{padding:0}
+.more-news-commentaries .moreNewsSection.more-section-col .innerwrap{padding:0;border-top:0}
+.more-news-commentaries .moreNewsSection.more-section-col .entry{position:relative;padding-left:16px}
+.more-news-commentaries .moreNewsSection.more-section-col .entry span.num{position:absolute;top:15px;left:2px;font-size:14px;font-weight:500;line-height:1}
+.more-news-commentaries .moreNewsSection.more-section-col .entry.ctr1 span.num{top:0}
+.more-news-commentaries .moreNewsSection.more-section-col .entry .posttitle{font-size:14px}
+.more-news-commentaries .moreNewsSection.more-section-col .postdate{margin-top:4px;font-size:10px;line-height:1.1;text-transform:uppercase;color:#a2a2a2}
+.more-news-commentaries .commentaries-section.more-section-col{background:0;border:0}
+.more-news-commentaries .commentaries-section.more-section-col .photodiv{width:23%}
+.more-news-commentaries .commentaries-section.more-section-col .titlediv{width:77%}
+.more-news-commentaries.twocol .flexwrap{display:block;width:100%;float:left;margin-left:0;margin-right:0}
+.more-news-commentaries.twocol .moreNewsSection{width:100%;float:left;margin-top:20px}
+@media(min-width:820px){.more-news-commentaries.twocol .moreNewsSection{width:48%;margin-top:0}
+}.more-news-commentaries.twocol .moreNewsSection .entry{width:100%;float:left;padding-top:15px;padding-bottom:15px;padding-right:0;border-bottom:1px solid #efefef}
+.more-news-commentaries.twocol .moreNewsSection .entry.ctr1{padding-top:0 !important}
+.more-news-commentaries.twocol .commentaries-section{width:100%;float:left;margin-top:30px}
+@media(min-width:820px){.more-news-commentaries.twocol .commentaries-section{width:48%;float:right;margin-top:0}
+}.more-news-commentaries.twocol .commentaries-section .flexwrap{padding-top:4px}
+.more-news-commentaries.twocol .commentaries-section .entry-block{width:100%;float:left;position:relative;padding-left:0;padding-right:0;margin-top:0;margin-bottom:0}
+@media(min-width:820px){.more-news-commentaries.twocol .commentaries-section .entry-block{margin-top:18px}
+}.more-news-commentaries.twocol .commentaries-section .entry-block.ctr1{margin-top:0}
+.home-sb-subscribe-form{width:100%;float:left;background:#f1f1f1;padding:15px}
+.home-sb-subscribe-form .gfTitle{color:#36c;font-size:.85rem;font-weight:700;text-transform:uppercase;margin-bottom:12px}
+.home-sb-subscribe-form .gftxt{font-size:14px;line-height:1.3}
+.home-sb-subscribe-form .gform_wrapper{margin-top:10px;margin-bottom:0}
+.home-sb-subscribe-form .gform_wrapper .validation_error{font-size:13px;line-height:1.3;display:none !important}
+.home-sb-subscribe-form .gform_wrapper ul.gform_fields input[type="text"],.home-sb-subscribe-form .gform_wrapper ul.gform_fields input[type="email"],.home-sb-subscribe-form .gform_wrapper ul.gform_fields textarea{-webkit-transition:all ease .3s;transition:all ease .3s;background:#FFF;font-size:14px !important;padding:5px 8px !important;font-size:14px !important;line-height:1.2}
+.home-sb-subscribe-form .gform_wrapper ul.gform_fields input[type="text"]:focus,.home-sb-subscribe-form .gform_wrapper ul.gform_fields input[type="email"]:focus,.home-sb-subscribe-form .gform_wrapper ul.gform_fields textarea:focus{outline:0;box-shadow:0 0 10px rgba(0,0,0,0.15)}
+.home-sb-subscribe-form .gform_wrapper ul.gform_fields input[type="text"],.home-sb-subscribe-form .gform_wrapper ul.gform_fields input[type="email"]{height:25px;line-height:25px}
+.home-sb-subscribe-form .gform_wrapper ul.gform_fields li.gfield{margin-top:0;margin-bottom:10px;padding-top:0;position:relative}
+.home-sb-subscribe-form .gform_wrapper ul.gform_fields li.gfield div.ginput_container input[type="text"],.home-sb-subscribe-form .gform_wrapper ul.gform_fields li.gfield div.ginput_container input[type="email"]{width:100% !important}
+.home-sb-subscribe-form .gform_wrapper ul.gform_fields li.gfield div.ginput_container_textarea textarea{height:60px}
+.home-sb-subscribe-form .gform_wrapper ul.gform_fields li.gfield span.name_first,.home-sb-subscribe-form .gform_wrapper ul.gform_fields li.gfield span.name_last{font-size:12px;line-height:1;position:relative}
+.home-sb-subscribe-form .gform_wrapper ul.gform_fields li.gfield span.name_first label,.home-sb-subscribe-form .gform_wrapper ul.gform_fields li.gfield span.name_last label{position:relative;top:2px;margin-bottom:0}
+.home-sb-subscribe-form .gform_wrapper ul.gform_fields li.gfield .validation_message{margin:0;font-size:12px;padding-top:5px !important}
+.home-sb-subscribe-form .gform_wrapper ul.gform_fields label.gfield_label{font-size:13px;line-height:1}
+.home-sb-subscribe-form .gform_wrapper ul.gform_fields ul.gfield_checkbox li{position:relative;padding-left:20px !important;font-size:14px;line-height:1.2 !important}
+.home-sb-subscribe-form .gform_wrapper ul.gform_fields ul.gfield_checkbox li input[type="checkbox"]{margin:0;position:absolute;top:3px;left:0}
+.home-sb-subscribe-form .gform_wrapper .top_label div.ginput_container{margin-top:0}
+.home-sb-subscribe-form .gform_wrapper .gform_footer.top_label{margin-top:15px;margin-bottom:0;padding-top:0;padding-bottom:0}
+.home-sb-subscribe-form .gform_wrapper .gform_footer.top_label input.gform_button{cursor:pointer;padding:10px 15px 8px;width:100%;font-size:15px;font-weight:500;line-height:1;border:0;border-radius:0;box-shadow:none;text-shadow:none;-webkit-appearance:none;background:#c4a92f;color:#FFF;margin:0 auto}
+.home-sb-subscribe-form .gform_wrapper .gform_footer.top_label input.gform_button:hover{background:#924020}
 @media screen and (max-width:1025px){.logo,h1.logo{width:90px}
 .main-navigation a{padding:0 12px;top:8px}
 .main-navigation #primary-menu a.redbutton{top:2px}
