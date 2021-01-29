@@ -10080,8 +10080,24 @@ body.social-media-sticky {
 		margin-bottom: 20px;
 	}
 	.home-stories-feed {
-		width: auto;
-		float: none;
+		// width: auto;
+		// float: none;
+		margin-left: 0;
+		margin-right: 0;
+		&:after {
+			content:"";
+			width: calc(100% + 60px);
+			height: 100%;
+			background: #000;
+			position: absolute;
+			top: 0;
+			left: -30px;
+		}
+		.inner {
+			overflow: hidden;
+			position: relative;
+			z-index: 10;
+		}
 	}
 
 	/* HOME TOP SECTION */
