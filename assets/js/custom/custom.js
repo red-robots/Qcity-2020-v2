@@ -1002,21 +1002,25 @@ jQuery(document).ready(function ($) {
 
     }
 
-      
+    if( $("#sidebar-single-post").length>0 ) {
+        var helperWidth = $(".stickySidebar .helper").width();
+        $("#sidebar-single-post").attr('data-width',helperWidth+"px");
+    }
+
     $(window).resize(function() {  
         getSidebarHelperSize();    
     });
 
     function getSidebarHelperSize() {
-        var helperWidth = $(".stickySidebar .helper").width();
-        $("#sidebar-single-post").css('width',helperWidth+"px");
-        var sbHeight = $("#sidebar-single-post").height();
-        //var sb = Math.round(sbHeight/3);
-        //var totalHeight = sbHeight + sb;
-        var windowHeight = $(window).height();
-        if(sbHeight>windowHeight) {
-            $("#singleSidebar").addClass("not-fixed");
-        } 
+        if( $("#sidebar-single-post").length>0 ) {
+            var helperWidth = $(".stickySidebar .helper").width();
+            $("#sidebar-single-post").css('width',helperWidth+"px");
+            var sbHeight = $("#sidebar-single-post").height();
+            var windowHeight = $(window).height();
+            if(sbHeight>windowHeight) {
+                $("#singleSidebar").addClass("not-fixed");
+            } 
+        }
     }
 
 
@@ -1062,6 +1066,49 @@ jQuery(document).ready(function ($) {
     }
 
 
+    /* Content that will be visible only on mobile (SINGLE POST) */
+    moveElementsOnMobile();
+    $(window).on("resize",function(){
+        moveElementsOnMobile();
+    });
+    function moveElementsOnMobile() {
+        var screenWidth = $(window).width();
+        if(screenWidth<821) {
+            // Trending
+            if( $("body.single-post #singleSidebar .trending-sidebar-wrap").length>0 ) {
+                if( $("#trendingBlock").text()=='' ) {
+                    $("body.single-post #singleSidebar").clone().appendTo("#trendingBlock");
+                }
+            }
+            // Sponsored Content
+            if( $("body.single-post .c-sponsor-block").length>0 ) {
+                if( $("#sponsoredContentBlock").text()=='' ) {
+                    $("body.single-post .c-sponsor-block").clone().appendTo("#sponsoredContentBlock");
+                }
+            }
+            // Related Articles
+            if( $("body.single-post .rp4wp-related-post").length>0 ) {
+                if( $("#relatedArticlesBlock").text()=='' ) {
+                    $("body.single-post .rp4wp-related-post").clone().appendTo("#relatedArticlesBlock");
+                }
+            }
+            // West Side Connect 
+            if( $("body.single-post #beforeFooter").length>0 ) {
+                if( $("#westSideConnectBlock").text()=='' ) {
+                    $("body.single-post #beforeFooter").clone().appendTo("#westSideConnectBlock");
+                }
+            }
+        } else {
+            $("#mobileBlocks #trendingBlock").html("");
+            $("#mobileBlocks #sponsoredContentBlock").html("");
+            $("#mobileBlocks #relatedArticlesBlock").html("");
+            $("#mobileBlocks #westSideConnectBlock").html("");
+            var ssp_width = $("#sidebar-single-post").attr("data-width");
+            $("#sidebar-single-post").css("width","263px");
+        }
+    }
+
+    
 
 
 });// END #####################################    END

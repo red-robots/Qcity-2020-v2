@@ -64,7 +64,7 @@ $footer_title_article_right = get_field('footer_title_article_right', 'option');
     </div>
 	
 	<!--- Trending Articles -->
-	<div class="ad" >
+	<div id="footTrending" class="ad" >
        <header class="before-footer-title ">
             <h2 ><?php echo $footer_title_article_right; ?></h2>
         </header>
@@ -103,9 +103,6 @@ $footer_title_article_right = get_field('footer_title_article_right', 'option');
                 endif; 
                 wp_reset_postdata();
             ?>
-
-            
         </div>
-		
 	</div>
 </section>

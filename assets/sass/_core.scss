@@ -4406,12 +4406,13 @@ section.home-bottom {
 }
 
 .more a {
-    padding: 10px 0;
-    color: #fff;
-    display: block;
-    text-decoration: none;
-    -webkit-transition: all ease 0.2s;
-    transition: all ease 0.2s;
+	padding: 8px 0 10px;
+	color: #fff;
+	display: block;
+	text-decoration: none;
+	-webkit-transition: all ease 0.2s;
+	transition: all ease 0.2s;
+	line-height:1.2
 }
 
 .subscribe {
@@ -9408,6 +9409,10 @@ body.single-post {
 		max-width: 100%;
 	}
 	#sidebar-single-post {
+		max-width: 263px;
+	}
+	#mobileBlocks,
+	#sidebar-single-post {
 		width: 100%;
 		float: right;
 		.sbTitle {
@@ -9550,6 +9555,9 @@ body.single-post {
 		padding-top: 10px;
 		padding-bottom: 10px;
 		box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+	}
+	@media screen and (max-width:480px) {
+		.st-btn {margin-bottom:10px;}
 	}
 }
 
@@ -9967,6 +9975,27 @@ body.social-media-sticky {
 	}
 }
 
+.mobile-visible-section {
+	display: none;
+	width: 100%;
+	float: left;
+	@media screen and (max-width:820px) {
+		display: block;
+	}
+	.singleSidebar {
+		padding-left: 0;
+		padding-right: 0;
+	}
+	#mobileBlock {
+		width: 100%;
+		float: left;
+	}
+	#westSideConnectBlock {
+		margin-left: -20px;
+		margin-right: -20px;
+	}
+}
+
 @media screen and (max-width:1025px) {
 	.logo, h1.logo {
 		width: 90px;
@@ -9980,13 +10009,55 @@ body.social-media-sticky {
 	}
 }
 
-
+@media screen and (max-width:820px) {
+	#footTrending{display:none!important}
+	body.single-post #main {
+		width: 100%;
+		.content-single-page {
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
+	body.single-post #content .story-image.s2 {
+		margin-left: 0;
+		margin-right: 0;
+		margin-bottom: 0;
+	}
+	body.single-post section.home-bottom .biz-dir {
+		margin: 0 0!important;
+	}
+	.site .site-header {
+		z-index: 9999991;
+	}
+	#sidebar-single-post {max-width: 100%!important;}
+	body.single-post #trendingBlock #singleSidebar.stickySidebar {
+		position: relative!important;
+		top: 0;
+		left: 0;
+		#sidebar-single-post {
+			width: 100%!important;
+		}
+	}
+	body.single-post .sideBarAds,
+	body.single-post .entry-footer .rp4wp-related-post,
+	body.single-post .entry-footer .c-sponsor-block,
+	body.single-post #beforeFooter .biz-dir.mobile-gap,
+	body.single-post #singleSidebar.stickySidebar {
+		display: none;
+	}
+	body.single-post #mobileBlocks {
+		#singleSidebar.stickySidebar,
+		#beforeFooter .biz-dir.mobile-gap {
+			display: block!important;
+		}
+	}
+}
 
 @media screen and (max-width:767px) {
 	body.single-post #main .singleSidebar {margin-top:0!important;}		
 	.singleSidebar {padding-left: 20px;padding-right: 20px;}
 	body.single-post #sidebar-single-post {
-		margin:10px 0 40px;
+		margin:10px 0 30px;
 		position:relative !important;
 		width: 100%!important;
 	}
