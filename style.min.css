@@ -3508,6 +3508,7 @@ body.single-post #trendingBlock #singleSidebar.stickySidebar{position:relative !
 body.single-post #trendingBlock #singleSidebar.stickySidebar #sidebar-single-post{width:100% !important}
 body.single-post .sideBarAds,body.single-post .entry-footer .rp4wp-related-post,body.single-post .entry-footer .c-sponsor-block,body.single-post #beforeFooter .biz-dir.mobile-gap,body.single-post #singleSidebar.stickySidebar{display:none}
 body.single-post #mobileBlocks #singleSidebar.stickySidebar,body.single-post #mobileBlocks #beforeFooter .biz-dir.mobile-gap{display:block !important}
+.wp-block-image figcaption{width:100%;margin-top:20px;margin-bottom:20px}
 }@media screen and (max-width:767px){body.single-post #main .singleSidebar{margin-top:0 !important}
 .singleSidebar{padding-left:20px;padding-right:20px}
 body.single-post #sidebar-single-post{margin:10px 0 30px;position:relative !important;width:100% !important}

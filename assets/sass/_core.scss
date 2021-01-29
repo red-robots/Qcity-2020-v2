@@ -10056,6 +10056,11 @@ body.social-media-sticky {
 			display: block!important;
 		}
 	}
+	.wp-block-image figcaption {
+		width: 100%;
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
 }
 
 @media screen and (max-width:767px) {
