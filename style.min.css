@@ -3500,7 +3500,7 @@ body.social-media-sticky .grecaptcha-badge{bottom:60px !important}
 }@media screen and (max-width:820px){#footTrending{display:none !important}
 body.single-post #main{width:100%}
 body.single-post #main .content-single-page{padding-left:0;padding-right:0}
-body.single-post #content .story-image.s2{margin-left:0;margin-right:0;margin-bottom:0}
+body.single-post #content .story-image.s2{margin-bottom:0}
 body.single-post section.home-bottom .biz-dir{margin:0 0 !important}
 .site .site-header{z-index:9999991}
 #sidebar-single-post{max-width:100% !important}
