@@ -9442,6 +9442,11 @@ body.single-post {
 			.trendImg {
 				width: 100%;
 				float: left;
+				a {
+					display: block;
+					width: 100%;
+					float: left;
+				}
 				img {
 					width: 100%;
 					height: auto;
@@ -9572,6 +9577,11 @@ body.single-post {
 	border-radius: 100px;
 	margin-right: 10px;
 	text-align: center;
+	transition: all ease .3s;
+	&:hover {
+		background: tint(#FF0000,30%);
+		box-shadow: 0 3px 13px rgba(0,0,0,0.3);
+	}
 }
 body.social-media-sticky {
 	padding-bottom: 60px;

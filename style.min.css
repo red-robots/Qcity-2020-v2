@@ -3392,6 +3392,7 @@ body.single-post #mobileBlocks #sbContent,body.single-post #mobileBlocks .sbWrap
 body.single-post #mobileBlocks ol,body.single-post #sidebar-single-post ol{width:100%;float:left;margin:0;padding:0;list-style:none}
 body.single-post #mobileBlocks li.entry,body.single-post #sidebar-single-post li.entry{width:100%;float:left;border-top:1px solid #dedede;position:relative}
 body.single-post #mobileBlocks li.entry .trendImg,body.single-post #sidebar-single-post li.entry .trendImg{width:100%;float:left}
+body.single-post #mobileBlocks li.entry .trendImg a,body.single-post #sidebar-single-post li.entry .trendImg a{display:block;width:100%;float:left}
 body.single-post #mobileBlocks li.entry .trendImg img,body.single-post #sidebar-single-post li.entry .trendImg img{width:100%;height:auto;float:left}
 body.single-post #mobileBlocks li.entry .headline,body.single-post #sidebar-single-post li.entry .headline{width:100%;float:left;margin:0;position:relative;padding:18px 0 12px 25px}
 body.single-post #mobileBlocks li.entry .headline:before,body.single-post #sidebar-single-post li.entry .headline:before{counter-increment:trending-counter;content:counter(trending-counter);font-weight:700;font-size:.9rem;color:#924020;position:absolute;top:16px;left:0}
@@ -3413,7 +3414,8 @@ body.single-post .ads_home_leaderboard{max-width:918px}
 .new-share-buttons{background:#FFF;margin-top:30px;margin-bottom:30px;-webkit-transition:all ease .3s;transition:all ease .3s}
 .new-share-buttons.fixed{width:100%;position:fixed;left:0;bottom:0;z-index:999999;margin-top:0;margin-bottom:0;padding-top:10px;padding-bottom:10px;box-shadow:0 0 15px rgba(0,0,0,0.1)}
 @media screen and (max-width:480px){.new-share-buttons .st-btn{margin-bottom:10px}
-}.main-navigation #primary-menu a.redbutton,.mobilemain #primary-menu a.redbutton{display:inline-block;background:red;color:#FFF;position:relative;padding:4px 15px 5px;line-height:1.2;border-radius:100px;margin-right:10px;text-align:center}
+}.main-navigation #primary-menu a.redbutton,.mobilemain #primary-menu a.redbutton{display:inline-block;background:red;color:#FFF;position:relative;padding:4px 15px 5px;line-height:1.2;border-radius:100px;margin-right:10px;text-align:center;-webkit-transition:all ease .3s;transition:all ease .3s}
+.main-navigation #primary-menu a.redbutton:hover,.mobilemain #primary-menu a.redbutton:hover{background:#ff4d4d;box-shadow:0 3px 13px rgba(0,0,0,0.3)}
 body.social-media-sticky{padding-bottom:60px}
 body.social-media-sticky .grecaptcha-badge{bottom:60px !important}
 .form-subscribe-blue{padding:0 0 10px 0}

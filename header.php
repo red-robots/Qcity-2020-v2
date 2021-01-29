@@ -155,6 +155,10 @@ $start_end = $dateToday . ',' . date('Ym') . $nexday;
           $subscribeName = ( isset($subscribeButton['title']) && $subscribeButton['title'] ) ? $subscribeButton['title']:'';
           $subscribeURL = ( isset($subscribeButton['url']) && $subscribeButton['url'] ) ? $subscribeButton['url']:'';
           $subscribeTarget = ( isset($subscribeButton['target']) && $subscribeButton['target'] ) ? $subscribeButton['target']:'_self';
+          $redButton = get_field("mainNavRedButton","option");
+          $redButtonName = ( isset($redButton['title']) && $redButton['title'] ) ? $redButton['title'] : '';
+          $redButtonLink = ( isset($redButton['url']) && $redButton['url'] ) ? $redButton['url'] : '';
+          $redButtonTarget = ( isset($redButton['target']) && $redButton['target'] ) ? $redButton['target'] : '_self';
           ?>
           <?php if ($subscribeText || $subscribeButton) { ?>
           <section class="red-band">
@@ -189,7 +193,13 @@ $start_end = $dateToday . ',' . date('Ym') . $nexday;
 				<?php wp_nav_menu(array('theme_location'=>'burger','menu_class'=>'main','container'=>'ul')); ?>
 			</nav>
 
-    </div>        
+    </div>      
+
+    <?php if ($redButtonName && $redButtonLink) { ?>
+    <div class="headRedButton" style="display:none">
+      <a href="<?php echo $redButtonLink ?>" target="<?php echo $redButtonTarget ?>" class="headerRedBtn redbutton"><?php echo $redButtonName ?></a>
+    </div>
+    <?php } ?>  
 	
 	</header><!-- #masthead -->
 

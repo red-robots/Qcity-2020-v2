@@ -27,16 +27,17 @@ jQuery(document).ready(function ($) {
         }
     });
 	
-    if( $("#primary-menu a").length>0 ) {
-        $("#primary-menu a").each(function(){
-            var parent = $(this).parent();
-            var str = $(this).text().replace(/\s/g,'-').toLowerCase();
-            if(str=='donate') {
-                $(this).addClass("redbutton");
-                parent.addClass("donate-btn");
-            }
-        });
-    }
+
+    // if( $("#primary-menu a").length>0 ) {
+    //     $("#primary-menu a").each(function(){
+    //         var parent = $(this).parent();
+    //         var str = $(this).text().replace(/\s/g,'-').toLowerCase();
+    //         if(str=='donate') {
+    //             $(this).addClass("redbutton");
+    //             parent.addClass("donate-btn");
+    //         }
+    //     });
+    // }
     
 
 	/*
@@ -1109,6 +1110,13 @@ jQuery(document).ready(function ($) {
     }
 
     
-
+    /* Header RED BUTTON */
+    if( $(".headRedButton").length>0 ) {
+        var customLink = $(".headRedButton").html();
+        var customMenuLink = '<li class="menu-item red-button-link">'+customLink+'</li>';
+        if($("ul#primary-menu li.red-button-link").length==0) {
+            $("ul#primary-menu").append(customMenuLink);
+        }
+    }
 
 });// END #####################################    END

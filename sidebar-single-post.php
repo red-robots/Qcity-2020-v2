@@ -80,7 +80,7 @@ if($postType=='post') { ?>
 										<?php if ($i==1) { ?>
 											<?php if ($image) { ?>
 											<div class="trendImg">
-												<img src="<?php echo $image ?>" alt="<?php echo $altImg; ?>">
+												<a href="<?php echo $pagelink; ?>"><img src="<?php echo $image ?>" alt="<?php echo $altImg; ?>"></a>
 											</div>	
 											<?php } ?>
 										<?php } ?>
