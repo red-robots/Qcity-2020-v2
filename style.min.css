@@ -3496,6 +3496,8 @@ body.social-media-sticky .grecaptcha-badge{bottom:60px !important}
 }.mobile-visible-section .singleSidebar{padding-left:0;padding-right:0}
 .mobile-visible-section #mobileBlock{width:100%;float:left}
 .mobile-visible-section #westSideConnectBlock{margin-left:-20px;margin-right:-20px}
+.stickRightBlockWrapper{width:100%;float:left}
+#emailBlockMobileView{display:none}
 @media screen and (max-width:1025px){.logo,h1.logo{width:90px}
 .main-navigation a{padding:0 12px;top:8px}
 .main-navigation #primary-menu a.redbutton{top:2px}
@@ -3511,6 +3513,13 @@ body.single-post #trendingBlock #singleSidebar.stickySidebar #sidebar-single-pos
 body.single-post .sideBarAds,body.single-post .entry-footer .rp4wp-related-post,body.single-post .entry-footer .c-sponsor-block,body.single-post #beforeFooter .biz-dir.mobile-gap,body.single-post #singleSidebar.stickySidebar{display:none}
 body.single-post #mobileBlocks #singleSidebar.stickySidebar,body.single-post #mobileBlocks #beforeFooter .biz-dir.mobile-gap{display:block !important}
 .wp-block-image figcaption{width:100%;margin-top:20px;margin-bottom:20px}
+.home-stories-feed{width:auto;float:none}
+#emailBlockMobileView{display:block}
+#emailBlockMobileView .form-subscribe-blue{margin-top:20px;padding:0}
+.right.stickRight .form-subscribe-blue{display:none !important}
+#content section.stickies-new.stickyPostsTop .stickRight{margin-top:10px}
+.more-news-commentaries.twocol .moreNewsSection{margin-top:0}
+.more-news-commentaries.twocol .commentaries-section{margin-bottom:20px}
 }@media screen and (max-width:767px){body.single-post #main .singleSidebar{margin-top:0 !important}
 .singleSidebar{padding-left:20px;padding-right:20px}
 body.single-post #sidebar-single-post{margin:10px 0 30px;position:relative !important;width:100% !important}

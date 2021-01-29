@@ -72,7 +72,7 @@ if($stickyPosts) {
 
 
 ?>
-<section class="stickies-new stickyPostsTop">
+<section id="homeTopElements" class="stickies-new stickyPostsTop">
 
 	<div class="left stickLeft">
 		<?php /* BIG POST */ ?>
@@ -93,7 +93,7 @@ if($stickyPosts) {
 			$bigPostLink = get_permalink($mainID);
 			$featured_posts[] = $mainID;
 			?>
-			<div class="inside">
+			<div id="homeFeatArticle" class="inside">
 				<article id="post-<?php echo $mainID; ?>" class="big-post">
 					<div class="bigPhoto">
 					<?php if( has_post_thumbnail($bigPost) ) {  ?>
@@ -120,6 +120,7 @@ if($stickyPosts) {
 			</div>
 		<?php } ?>
 
+		<div id="emailBlockMobileView"></div>
 
 		<?php /* More News and Commentary */ ?>
 		<?php
@@ -263,6 +264,7 @@ if($stickyPosts) {
 		
 		
 		if($right_items) { ?>
+			<div class="stickRightBlockWrapper">
 			<?php foreach ($right_items as $e) { 
 				$right_id = $e->ID;
 				$r_title = $e->post_title;
@@ -323,6 +325,8 @@ if($stickyPosts) {
 					</div>
 				</article>
 			<?php } ?>
+			</div>
 		<?php } ?>
 	</div>
 </section>
+

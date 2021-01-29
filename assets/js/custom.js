@@ -1099,6 +1099,15 @@ jQuery(document).ready(function ($) {
                     $("body.single-post #beforeFooter").clone().appendTo("#westSideConnectBlock");
                 }
             }
+
+            /* HOME TOP SECTION - FOR MOBILE ONLY */
+            if( $(".form-subscribe-blue").length>0 ) {
+                $(".form-subscribe-blue").appendTo("#emailBlockMobileView");
+            }
+            if( $(".more-news-commentaries").length>0 ) {
+                $(".more-news-commentaries").insertAfter(".right.stickRight");
+            }
+
         } else {
             $("#mobileBlocks #trendingBlock").html("");
             $("#mobileBlocks #sponsoredContentBlock").html("");
@@ -1106,6 +1115,14 @@ jQuery(document).ready(function ($) {
             $("#mobileBlocks #westSideConnectBlock").html("");
             var ssp_width = $("#sidebar-single-post").attr("data-width");
             $("#sidebar-single-post").css("width","263px");
+
+            /* HOME TOP SECTION - FOR MOBILE ONLY */
+            if( $("#emailBlockMobileView .form-subscribe-blue").length>0 ) {
+                $("#emailBlockMobileView .form-subscribe-blue").prependTo(".stickRight.right");
+            }
+            if( $(".left.stickLeft .more-news-commentaries").length==0 ) {
+                $(".more-news-commentaries").appendTo(".left.stickLeft");
+            }
         }
     }
 
@@ -1118,5 +1135,6 @@ jQuery(document).ready(function ($) {
             $("ul#primary-menu").append(customMenuLink);
         }
     }
+
 
 });// END #####################################    END
