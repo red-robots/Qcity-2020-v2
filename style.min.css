@@ -3445,7 +3445,7 @@ body.social-media-sticky .grecaptcha-badge{bottom:60px !important}
 @media(min-width:820px){.newHomeLayout section.stickies-new.stickyPostsTop .stickLeft{width:50%}
 }.newHomeLayout section.stickies-new.stickyPostsTop .stickRight{width:100%;float:left}
 @media(min-width:820px){.newHomeLayout section.stickies-new.stickyPostsTop .stickRight{width:50%}
-}.newHomeLayout section.stickies-new.stickyPostsTop article.big-post .article-link{position:relative}
+}.newHomeLayout section.stickies-new.stickyPostsTop article.big-post .article-link{position:absolute;top:0;left:0;width:100%;height:100%;z-index:20}
 .more-news-commentaries{width:100%;float:left}
 .more-news-commentaries .moreNewsSection.more-section-col{padding:0}
 .more-news-commentaries .moreNewsSection.more-section-col .innerwrap{padding:0;border-top:0}
