@@ -12,7 +12,7 @@ if($gravityFormId) {
 			<h3 class="gfTitle"><?php echo $hformTitle ?></h3>
 		<?php } ?>
 		<?php if ($hformText) { ?>
-			<div class="gftxt"><?php echo $hformTitle ?></div>
+			<div class="gftxt"><?php echo $hformText ?></div>
 		<?php } ?>
 		<?php echo do_shortcode($gfshortcode); ?>
 		</div>
