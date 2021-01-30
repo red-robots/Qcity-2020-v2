@@ -1134,5 +1134,67 @@ jQuery(document).ready(function($){
     }
 });
 </script>
-<?php } ?>
+<?php } 
 
+
+add_action( 'admin_head', 'acf_custom_admin_styles' );
+function acf_custom_admin_styles(){ ?>
+<style type="text/css">
+    .acf-field[data-name="tier_1_desc"],
+    .acf-field[data-name="tier_1_btn"],
+    .acf-field[data-name="tier_1_btn_link"],
+
+    .acf-field[data-name="tier_2_desc"],
+    .acf-field[data-name="tier_2_btn"],
+    .acf-field[data-name="tier_2_btn_link"],
+
+    .acf-field[data-name="tier_3_desc"],
+    .acf-field[data-name="tier_3_btn"],
+    .acf-field[data-name="tier_3_btn_link"] {
+        display: none!important;
+    }
+    .acf-field-flexible-content [data-layout="tier_data"] {
+        margin-top: 10px;
+    }
+    .acf-field-flexible-content [data-layout="tier_data"] .acf-fc-layout-handle {
+        position: relative;
+        color: transparent;
+    }
+    .acf-field-flexible-content [data-layout="tier_data"] .acf-fc-layout-handle:before {
+        content:attr(data-title);
+        display: inline-block;
+        font-size: 15px;
+        font-weight: bold;
+        line-height: 1.2;
+        position: absolute;
+        top: 8px;
+        left: 42px;
+        color: #000;
+        z-index: 5;
+    }
+    body.wp-admin .interface-interface-skeleton__editor {
+        padding-bottom: 50px;
+    }
+</style>
+<script type="text/javascript">
+jQuery(document).ready(function($){
+    /* ACF Flexible Content For Tiers Content (DONATE page) */
+    if( $('[data-layout="tier_data"]').length > 0 ) {
+        $('[data-layout="tier_data"]').each(function(){
+            var str = $(this).find('[data-name="title"] .acf-input-wrap input').val();
+            var title = ( str.replace(/\s+/g,'').trim() ) ? str.replace(/\s+/g,' ').trim() : '(Blank)';
+            $(this).find(".acf-fc-layout-handle").attr("data-title",title);
+        });
+    }
+    $(document).on('keyup','[data-layout="tier_data"] [data-name="title"] .acf-input-wrap input',function(){
+        var val = $(this).val();
+        var parent = $(this).parents('[data-layout="tier_data"]');
+        if(val) {
+            parent.find(".acf-fc-layout-handle").attr("data-title",val);
+        } else {
+            parent.find(".acf-fc-layout-handle").attr("data-title",'Untitled');
+        }
+    });
+});
+</script>
+<?php } 

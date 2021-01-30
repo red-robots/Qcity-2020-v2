@@ -159,6 +159,10 @@ $start_end = $dateToday . ',' . date('Ym') . $nexday;
           $redButtonName = ( isset($redButton['title']) && $redButton['title'] ) ? $redButton['title'] : '';
           $redButtonLink = ( isset($redButton['url']) && $redButton['url'] ) ? $redButton['url'] : '';
           $redButtonTarget = ( isset($redButton['target']) && $redButton['target'] ) ? $redButton['target'] : '_self';
+          $customMenuLink = '';
+          if($redButtonName && $redButtonLink) {
+            $customMenuLink = '<li class="menu-item red-button-link"><a href="'.$redButtonLink.'" target="'.$redButtonTarget.'" class="headerRedBtn redbutton">'.$redButtonName.'</a></li>';
+          }
           ?>
           <?php if ($subscribeText || $subscribeButton) { ?>
           <section class="red-band">
@@ -180,7 +184,17 @@ $start_end = $dateToday . ',' . date('Ym') . $nexday;
 							<div class="burger">
 							  <span></span>
 							</div>
-							<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu', 'menu_class'=>'desktop-version' ) ); ?>
+							<?php 
+                wp_nav_menu( 
+                  array( 
+                    'theme_location' => 'primary', 
+                    'menu_id' => 'primary-menu', 
+                    'menu_class'=>'desktop-version',
+                    'echo' => true,
+                    'items_wrap' => '<ul id="primary-menu" class="with-custom-link %2$s">%3$s'.$customMenuLink.'</ul>'
+                  )
+                ); 
+              ?>
               <?php //get_search_form(); ?>
 						</div>
 					</nav><!-- #site-navigation -->
@@ -188,30 +202,32 @@ $start_end = $dateToday . ',' . date('Ym') . $nexday;
 			</div>
 			<nav class="mobilemenu">
 				<div class="mobilemain">
-					<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu' ) ); ?>
+					<?php //wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu' ) ); 
+            wp_nav_menu( 
+              array( 
+                'theme_location' => 'primary', 
+                'menu_id' => 'primary-menu', 
+                'menu_class'=>'mobile-version',
+                'echo' => true,
+                'items_wrap' => '<ul id="primary-menu" class="with-custom-link %2$s">%3$s'.$customMenuLink.'</ul>'
+              )
+            ); 
+          ?>
 				</div>
 				<?php wp_nav_menu(array('theme_location'=>'burger','menu_class'=>'main','container'=>'ul')); ?>
 			</nav>
 
     </div>      
-
-    <?php if ($redButtonName && $redButtonLink) { ?>
-    <div class="headRedButton" style="display:none">
-      <a href="<?php echo $redButtonLink ?>" target="<?php echo $redButtonTarget ?>" class="headerRedBtn redbutton"><?php echo $redButtonName ?></a>
-    </div>
-    <?php } ?>  
 	
 	</header><!-- #masthead -->
 
-	<div id="content" class="site-content mobile-body" >
+	<div id="content" class="site-content mobile-body">
 
-  
-<?php if($electionCatId!=$current_term_id) { ?>
-  <div class="ads_home_leaderboard">
-    <?php 
-        $ads_header = get_ads_script('leaderboard-ad-home');
-        echo $ads_header['ad_script'];
-     ?>       
-  </div>
-<?php } ?>
+  <?php if($electionCatId!=$current_term_id) { ?>
+    <?php if ( $ads_header = get_ads_script('leaderboard-ad-home') ) { ?>
+    <div class="ads_home_leaderboard">
+      <?php echo $ads_header['ad_script'] ?>
+    </div>
+    <?php } ?>
+  <?php } ?>
    

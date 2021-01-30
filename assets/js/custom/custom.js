@@ -1128,13 +1128,13 @@ jQuery(document).ready(function ($) {
 
     
     /* Header RED BUTTON */
-    if( $(".headRedButton").length>0 ) {
-        var customLink = $(".headRedButton").html();
-        var customMenuLink = '<li class="menu-item red-button-link">'+customLink+'</li>';
-        if($("ul#primary-menu li.red-button-link").length==0) {
-            $("ul#primary-menu").append(customMenuLink);
-        }
-    }
+    // if( $(".headRedButton").length>0 ) {
+    //     var customLink = $(".headRedButton").html();
+    //     var customMenuLink = '<li class="menu-item red-button-link">'+customLink+'</li>';
+    //     if($("ul#primary-menu li.red-button-link").length==0) {
+    //         $("ul#primary-menu").append(customMenuLink);
+    //     }
+    // }
 
 
 });// END #####################################    END
