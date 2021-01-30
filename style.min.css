@@ -3546,6 +3546,7 @@ body.single-post #mobileBlocks #singleSidebar.stickySidebar,body.single-post #mo
 #content section.stickies-new.stickyPostsTop .stickRight{margin-top:10px}
 .more-news-commentaries.twocol .moreNewsSection{margin-top:0}
 .more-news-commentaries.twocol .commentaries-section{margin-bottom:20px}
+.newHomeLayout .ads-home{display:block !important;width:100%;float:left;margin-bottom:30px}
 }@media screen and (max-width:767px){body.single-post #main .singleSidebar{margin-top:0 !important}
 .singleSidebar{padding-left:20px;padding-right:20px}
 body.single-post #sidebar-single-post{margin:10px 0 30px;position:relative !important;width:100% !important}

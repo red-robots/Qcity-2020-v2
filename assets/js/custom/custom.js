@@ -1108,6 +1108,10 @@ jQuery(document).ready(function ($) {
                 $(".more-news-commentaries").insertAfter(".right.stickRight");
             }
 
+            if( $(".ads-home").length>0 ) {
+                $(".ads-home").insertBefore('section.home-bottom');
+            }
+
         } else {
             $("#mobileBlocks #trendingBlock").html("");
             $("#mobileBlocks #sponsoredContentBlock").html("");
@@ -1122,6 +1126,10 @@ jQuery(document).ready(function ($) {
             }
             if( $(".left.stickLeft .more-news-commentaries").length==0 ) {
                 $(".more-news-commentaries").appendTo(".left.stickLeft");
+            }
+
+            if( $(".ads-home").length>0 ) {
+                $(".ads-home").insertBefore('.twocol.qcity-news-container');
             }
         }
     }

@@ -27,6 +27,8 @@ if($entries) {
 $trending = new WP_Query( $args );	
 $placeholder = get_template_directory_uri() . '/images/rectangle.png';
 
+/* TRENDING ARTICLES */
+
 if($postType=='post') { ?>
 
 <?php if ($entries) { ?>
