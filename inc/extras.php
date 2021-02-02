@@ -1123,51 +1123,6 @@ function getGravityFormList() {
     return ($result) ? $result : '';
 }
 
-add_action( 'admin_footer', 'admin_footer_custom_js' );
-function admin_footer_custom_js(){
-$gfforms = (getGravityFormList()) ? json_encode(getGravityFormList()) : ''; ?>
-<script type="text/javascript">
-jQuery(document).ready(function($){
-    var gravityForms = '<?php echo $gfforms; ?>';
-    if(gravityForms) {
-        var gravityFormItems = JSON.parse(gravityForms);
-        var gf_fields_arrs = ['homeFormShortcode','homeSBFormShortcode'];
-        // $(gf_fields_arrs).each(function(k,v){
-        //     var gfContainer = '[data-name="'+v+'"]';
-        //     if( $(gfContainer).length>0 ) {
-        //         var gfParent = $(gfContainer);
-        //         var gfInput = gfParent.find(".acf-input input");
-        //         var gfcurrentVal = gfInput.val();
-        //         gfInput.hide();
-
-        //         var gf_options = '<select class="gravityFormOpts" data-ui="1" data-ajax="1" data-multiple="0" data-placeholder="Select" data-allow_null="1">';
-        //             gf_options += '<option value="-1">NONE</option>';
-        //             $(gravityFormItems).each(function(k,v){
-        //                 gf_selected = (gfcurrentVal && gfcurrentVal==v.id) ? ' selected':'';
-        //                 gf_options += '<option value="'+v.id+'"'+gf_selected+'>'+v.title+' [ID:'+v.id+']</option>';
-        //             });
-        //         gf_options += '</select>';
-
-        //         gfParent.find(".acf-input").append(gf_options);
-        //     }
-        // });
-
-
-        // $(document).on("change","select.gravityFormOpts",function(e){
-        //     var opt = $(this).val();
-        //     var fieldWrap = $(this).parents(".acf-input");
-        //     var gfInput = fieldWrap.find(".acf-input-wrap input");
-        //     if(opt>0) {
-        //         gfInput.val(opt);
-        //     } else {
-        //         gfInput.val("");
-        //     }
-        // });
-    }
-});
-</script>
-<?php } 
-
 
 add_action( 'admin_head', 'acf_custom_admin_styles' );
 function acf_custom_admin_styles(){ ?>
