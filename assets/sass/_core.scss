@@ -9512,22 +9512,29 @@ body.single-post {
 .stickySidebar {
 	background-color: #FFF;
 	position: relative;
+	#sidebar-single-post {
+		transition: all ease .2s;
+	}
 	.helper {
 		width: 100%;
 		float: left;
 	}
 	&.not-fixed {
 		#sidebar-single-post {
+			position: relative!important;
 			height: 65vh;
-			overflow-y: scroll;
+			// overflow-y: scroll;
 		}
 	}
 	@include tab {
 		right: 0;
 		#sidebar-single-post {
 			background-color: #FFF;
+			margin-top: 6vh;
+			position: relative;
 			&.fixed {
-				top: 12vh;
+				margin-top: 0;
+				top: 15vh;
 			}
 		}
 		&.overflow {

@@ -3405,11 +3405,12 @@ body.single-post #mobileBlocks li.entry:first-child,body.single-post #sidebar-si
 body.single-post #mobileBlocks li.entry:last-child .headline,body.single-post #sidebar-single-post li.entry:last-child .headline{padding-bottom:0}
 body.single-post .ads_home_leaderboard{max-width:918px}
 .stickySidebar{background-color:#FFF;position:relative}
+.stickySidebar #sidebar-single-post{-webkit-transition:all ease .2s;transition:all ease .2s}
 .stickySidebar .helper{width:100%;float:left}
-.stickySidebar.not-fixed #sidebar-single-post{height:65vh;overflow-y:scroll}
+.stickySidebar.not-fixed #sidebar-single-post{position:relative !important;height:65vh}
 @media(min-width:820px){.stickySidebar{right:0}
-.stickySidebar #sidebar-single-post{background-color:#FFF}
-.stickySidebar #sidebar-single-post.fixed{top:12vh}
+.stickySidebar #sidebar-single-post{background-color:#FFF;margin-top:6vh;position:relative}
+.stickySidebar #sidebar-single-post.fixed{margin-top:0;top:15vh}
 .stickySidebar.not-fixed #sidebar-single-post{top:22vh}
 }.sideBarAds{width:100%;float:left;margin-bottom:20px}
 .sideBarAds .adBox{width:100%;float:left;margin-bottom:8px}
