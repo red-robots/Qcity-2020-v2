@@ -1186,7 +1186,7 @@ jQuery(document).ready(function($){
 </script>
 <?php } 
 
-
+$gravityFormsSelections = array('homeFormShortcode','homeSBFormShortcode');
 function acf_load_gravity_form_choices( $field ) {
     // reset choices
     $field['choices'] = array();
@@ -1202,6 +1202,8 @@ function acf_load_gravity_form_choices( $field ) {
     }
     return $field;
 }
+foreach($gravityFormsSelections as $fieldname) {
+    add_filter('acf/load_field/name='.$fieldname, 'acf_load_gravity_form_choices');
+}
 
-add_filter('acf/load_field/name=homeFormShortcode', 'acf_load_gravity_form_choices');
 
