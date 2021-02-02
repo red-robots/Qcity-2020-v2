@@ -62,11 +62,9 @@ if( !defined('HIDE_ADS') ){
 		</div>
 	</div><!-- .entry-content -->
 
-	<?php /* SUBSCRIPTION FORM */ ?>
-	<div class="subscribe-form-single">
-	<?php get_template_part( 'home-parts/subscribe-form'); ?>
-	</div>
-  
+	<?php if( $subscribeCode = get_field("singleSubscriptionCode","option") ) { ?>
+		<div class="ctctSubscribeForm"><div class="formWrap"><?php echo $subscribeCode ?></div></div>
+	<?php } ?>
 
 	<div class="content-single-page">
 

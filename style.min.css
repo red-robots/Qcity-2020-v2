@@ -2785,7 +2785,7 @@ section.stickies-new .right .story-block .desc .excerpt{font-size:1rem;margin-to
 .clearfix{clear:both !important}
 .footer-more{margin:20px 0}
 .entry-content h2{font-size:1.8rem}
-.single-page-excerpt{font-size:1.3rem}
+.single-page-excerpt{font-size:16px}
 .items-before-footer{background-color:#efefef;text-align:center;padding:30px}
 .items-before-footer .before-footer-title{text-transform:uppercase;margin-bottom:20px}
 .items-before-footer .before-footer-title h2{font-size:1.2em}
@@ -3452,7 +3452,8 @@ body.social-media-sticky .grecaptcha-badge{bottom:60px !important}
 .form-subscribe-blue.sidebar-SF .gform_wrapper ul.gform_fields li input[type="text"],.form-subscribe-blue.sidebar-SF .gform_wrapper ul.gform_fields li input[type="email"]{padding:5px 8px !important;font-size:14px !important}
 .form-subscribe-blue.sidebar-SF .gform_wrapper .gform_footer{width:26%}
 .form-subscribe-blue.sidebar-SF .gform_wrapper .gform_footer input.gform_button{font-size:13px}
-}.newHomeLayout{margin-top:20px}
+}.subscribe-form-single .form-subscribe-blue{padding:0}
+.newHomeLayout{margin-top:20px}
 .newHomeLayout section.stickies-new.stickyPostsTop{display:block}
 .newHomeLayout section.stickies-new.stickyPostsTop .stickLeft{width:100%;float:left;padding-top:0}
 @media(min-width:820px){.newHomeLayout section.stickies-new.stickyPostsTop .stickLeft{width:50%}

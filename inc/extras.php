@@ -982,6 +982,54 @@ function get_total_events_by_date() {
   return $final_total;
 }
 
+function getAllCategoriesByTermSlug($catSlugs,$taxonomy='category') {
+    global $wpdb;
+    $catList = array();
+    if($catSlugs) {
+        foreach($catSlugs as $slug) {
+            $query = "SELECT term.term_id FROM ".$wpdb->prefix."terms term, ".$wpdb->prefix."term_taxonomy tax 
+                      WHERE term.term_id=tax.term_id AND tax.taxonomy='".$taxonomy."' AND term.slug='".$slug."'";
+            $result = $wpdb->get_results($query);
+            if($result) {
+                foreach($result as $row) {
+                    $catList[] = $row->term_id;
+                }
+            }
+        }
+    }
+    return $catList;
+}
+
+function getAllPostsByTermSlug($catSlugs) {
+    global $wpdb;
+    $postsIds = array();
+    if($catSlugs) {
+        foreach($catSlugs as $slug) {
+            $query = "SELECT term.term_id,term.slug FROM ".$wpdb->prefix."terms term, ".$wpdb->prefix."term_taxonomy tax 
+                      WHERE term.term_id=tax.term_id AND tax.taxonomy='category' AND term.slug='".$slug."'";
+            $result = $wpdb->get_results($query);
+
+            /* Get all the posts assigned to these categories */
+            if($result) {
+                foreach($result as $row) {
+                    $term_id = $row->term_id;
+                    $post_queries = "SELECT p.ID,p.post_title,term.term_id,term.slug FROM ".$wpdb->prefix."posts p, ".$wpdb->prefix."term_relationships rel, ".$wpdb->prefix."terms term 
+                    WHERE p.ID=rel.object_id AND rel.term_taxonomy_id=term.term_id AND rel.term_taxonomy_id=".$term_id." AND p.post_type='post' AND p.post_status='publish'";
+                    $post_result = $wpdb->get_results($post_queries);
+                    if($post_result) {
+                        foreach($post_result as $p) {
+                            $postsIds[] = $p->ID;
+                        }
+                    }
+                }
+            }
+            
+        }
+    }
+
+    return ($postsIds) ? array_unique($postsIds) : array();
+}
+
 function get_news_posts_with_videos($limitNum=null) {
     global $wpdb;
     $whichCatId = get_field("elect_which_category","option");
@@ -1028,14 +1076,7 @@ function get_count_stories() {
     // $post = get_posts($args);
     return ($result) ? $result->total : 0;
 }
-
-// add_filter("gform_init_scripts_footer", "init_scripts");
-// function init_scripts() {
-//     return true;
-// }
 add_filter( 'gform_init_scripts_footer', '__return_true' );
-
-
 
 function getTermId($slug) {
     global $wpdb;
@@ -1044,15 +1085,6 @@ function getTermId($slug) {
     $exclude_term_id = ($res) ? $res->term_id : '';
     return $exclude_term_id;
 }
-
-// getTrendingPosts(0,6);
-// function getTrendingPosts($offset=0,$limit=6) {
-//     global $wpdb;
-//     $query = "SELECT p.ID,p.post_title,p.post_date,meta.meta_value AS post_views_count FROM ".$wpdb->prefix."posts p, ".$wpdb->prefix."postmeta meta
-//               WHERE p.ID=meta.post_id AND p.post_type='post' AND p.post_status='publish' AND meta.meta_key='views' AND meta.meta_value>0 ORDER BY meta.meta_value,p.post_date DESC LIMIT ".$offset.", ".$limit;
-//     $result = $wpdb->get_results($query);
-//     print_r($result);
-// }
 
 function getMoreNewsPosts($limit=3) {
     global $wpdb;
@@ -1198,3 +1230,23 @@ jQuery(document).ready(function($){
 });
 </script>
 <?php } 
+
+
+function acf_load_gravity_form_choices( $field ) {
+    // reset choices
+    $field['choices'] = array();
+    $choices = getGravityFormList();
+    if( $choices && is_array($choices) ) {       
+        foreach( $choices as $choice ) {
+            $post_id = $choice->id;
+            $post_title = $choice->title;
+            
+            $field['choices'][ $post_id ] = $post_title;
+            
+        }   
+    }
+    return $field;
+}
+
+add_filter('acf/load_field/name=homeFormShortcode', 'acf_load_gravity_form_choices');
+

@@ -1,11 +1,16 @@
 <?php
 /* Exclude posts from this category */
-$excludeTerm = 'sponsored-post';
-$excludeCat 	= get_category_by_slug($excludeTerm); 
-$excludeCatID 	= ( isset($excludeCat->term_id) && $excludeCat->term_id ) ? $excludeCat->term_id : '';
+// $excludeTerm = 'sponsored-post';
+// $excludeCat 	= get_category_by_slug($excludeTerm); 
+// $excludeCatID 	= ( isset($excludeCat->term_id) && $excludeCat->term_id ) ? $excludeCat->term_id : '';
+
+$exclude_categories = array('sponsored-post','commentaries');
+$excludePosts = getAllPostsByTermSlug( $exclude_categories );
+$excludeCatID = getAllCategoriesByTermSlug($exclude_categories,'category');
 $stickyPosts = get_option('sticky_posts');
 $rightPostItems = (get_stick_to_right_posts()) ? get_stick_to_right_posts() : array();
 $postWithVideos = (get_news_posts_with_videos()) ? get_news_posts_with_videos() : array();
+$exlude_post_ids = array();
 
 if($rightPostItems || $postWithVideos) {
 	$newDataList = array();
@@ -37,20 +42,42 @@ $mainArgs = array(
 	'order'		=> 'DESC',
 );
 
+if($excludePosts) {
+	$exlude_post_ids = $excludePosts;
+}
 if($rightPostItems) {
-	$mainArgs['post__not_in'] = $rightPostItems;
+	if($exlude_post_ids) {
+		$exlude_post_ids = array_merge($exlude_post_ids,$rightPostItems);
+	} else {
+		$exlude_post_ids = $rightPostItems;
+	}
 }
 
-if($excludeCatID) {
-	$mainArgs['tax_query'] = array(
-	    array(
-	        'taxonomy' => 'category',
-	        'field'    => 'id',
-	        'terms'    => $excludeCatID,
-	        'operator' => 'NOT IN'
-	    )
-	);
+$postsNotIn = ($exlude_post_ids) ? array_unique($exlude_post_ids) : array();
+if($postsNotIn) {
+	$mainArgs['post__not_in'] = $postsNotIn;
 }
+
+// if($rightPostItems) {
+// 	if($exlude_post_ids) {
+// 		$mergedIds = array_merge($rightPostItems,)
+// 	} else {
+// 		$exlude_post_ids = $rightPostItems;
+// 	}
+// 	//$mainArgs['post__not_in'] = $rightPostItems;
+// }
+
+
+// if($excludeCatID) {
+// 	$mainArgs['tax_query'] = array(
+// 	    array(
+// 	        'taxonomy' => 'category',
+// 	        'field'    => 'id',
+// 	        'terms'    => $excludeCatID,
+// 	        'operator' => 'NOT IN'
+// 	    )
+// 	);
+// }
 
 
 $bigPost = array();
@@ -68,8 +95,6 @@ if($stickyPosts) {
 		$bigPost = $mainPost[0];
 	}
 }
-
-
 
 ?>
 <section id="homeTopElements" class="stickies-new stickyPostsTop">

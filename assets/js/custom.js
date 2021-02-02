@@ -947,8 +947,32 @@ jQuery(document).ready(function ($) {
             var placeholder = assetsDIR + "video-helper.png";
             var imgSrc = $(this).find(".rp4wp_component_image img.wp-post-image").attr("src");
             var newImage = '<img src="'+placeholder+'" alt="" aria-hidden="true" class="prplaceholder" />';
-            $(this).find(".rp4wp_component_image a").attr("style","background-image:url('"+imgSrc+"')")
+            // $(this).find(".rp4wp_component_image a").attr("style","background-image:url('"+imgSrc+"')")
+            var imgThumbURL = '';
+            if( $(this).find("img.wp-post-image").length>0 ) {
+                var srcset = '';
+                if( typeof $(this).find("img.wp-post-image").attr("srcset")!='undefined' ) {
+                    srcset = $(this).find("img.wp-post-image").attr("srcset");
+                    if(srcset) {
+                        var srcparts = srcset.split(",");
+                        if( srcparts && typeof srcparts[2]!='undefined' ) {
+                            var image_file_src = srcparts[2];
+                            var matches = image_file_src.match(/\bhttps?:\/\/\S+/gi);
+                            if( typeof matches[0]!='undefined' ) {
+                                imgThumbURL = matches[0];
+                            }
+                        }
+                    }
+                }
+                else if( typeof $(this).find("img.wp-post-image").attr("data-src")!='undefined' ) {
+                    imgThumbURL = $(this).find("img.wp-post-image").attr("data-src");
+                }
+            }
+            if(imgThumbURL) {
+                $(this).find(".rp4wp_component_image a").attr("style","background-image:url('"+imgThumbURL+"')");
+            }
             $(this).find(".rp4wp_component_image a").append(newImage);
+
         });
     }
 

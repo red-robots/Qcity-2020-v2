@@ -6071,7 +6071,7 @@ body.page-template-page-membership {
 }
 
 .single-page-excerpt{
-	font-size: 1.3rem;
+	font-size: 16px;
 }
 
 .items-before-footer{
@@ -9767,8 +9767,11 @@ body.social-media-sticky {
 		}
 	}
 }
-
-
+.subscribe-form-single {
+	.form-subscribe-blue {
+		padding: 0 0;
+	}
+}
 .newHomeLayout {
 	margin-top: 20px;
 	section.stickies-new.stickyPostsTop {
