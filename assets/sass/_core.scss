@@ -10228,7 +10228,8 @@ body.social-media-sticky {
 
 	/* HOME TOP SECTION */
 	#emailBlockMobileView {
-		display: block;
+		// display: block;
+		display: none!important;
 		.form-subscribe-blue {
 			margin-top: 20px;
 			padding: 0 0;
