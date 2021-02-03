@@ -3555,6 +3555,7 @@ section.home-bottom .biz-dir div.more{margin-bottom:0}
 .jobs .biz-job-wrap{margin-bottom:0}
 .jobs div.more{margin-bottom:10px}
 .home-sb-subscribe-form .gform_wrapper .gform_footer.top_label input.gform_button{padding-top:4px;padding-bottom:3px}
+.newsHomeV2 .sidebar-sponsored-posts{width:100%;float:left}
 }@media screen and (max-width:767px){body.single-post #main .singleSidebar{margin-top:0 !important}
 .singleSidebar{padding-left:20px;padding-right:20px}
 body.single-post #sidebar-single-post{margin:10px 0 30px;position:relative !important;width:100% !important}

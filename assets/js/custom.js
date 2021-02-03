@@ -1140,6 +1140,10 @@ jQuery(document).ready(function ($) {
                 $(".home-sb-subscribe-form").addClass('mobile');
             }
 
+            if( $(".sidebar-sponsored-posts").length>0 ) {
+                $(".sidebar-sponsored-posts").insertBefore('.twocol.qcity-news-container');
+            }
+
         } else {
             $("#mobileBlocks #trendingBlock").html("");
             $("#mobileBlocks #sponsoredContentBlock").html("");
@@ -1162,6 +1166,10 @@ jQuery(document).ready(function ($) {
             if( $(".home-sb-subscribe-form").length>0 ) {
                 $(".home-sb-subscribe-form").appendTo('#home-sb-form');
                 $(".home-sb-subscribe-form").removeClass('mobile');
+            }
+
+            if( $(".sidebar-sponsored-posts").length>0 ) {
+                $(".sidebar-sponsored-posts").insertBefore('#home-sb-form');
             }
         }
     }
