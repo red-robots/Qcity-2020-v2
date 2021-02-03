@@ -1079,7 +1079,6 @@ jQuery(document).ready(function ($) {
         $(elem).each(function(){
             var divPos = $(this).offset().top,
             topOfWindow = $(window).scrollTop();
-
             if( divPos < topOfWindow+400 ){
                 $("body").addClass('social-media-sticky');
                 $("#shareThisPost").addClass('animated fadeIn fixed');
@@ -1136,6 +1135,11 @@ jQuery(document).ready(function ($) {
                 $(".ads-home").insertBefore('section.home-bottom');
             }
 
+            if( $(".home-sb-subscribe-form").length>0 ) {
+                $(".home-sb-subscribe-form").insertAfter('section.home-bottom');
+                $(".home-sb-subscribe-form").addClass('mobile');
+            }
+
         } else {
             $("#mobileBlocks #trendingBlock").html("");
             $("#mobileBlocks #sponsoredContentBlock").html("");
@@ -1154,6 +1158,10 @@ jQuery(document).ready(function ($) {
 
             if( $(".ads-home").length>0 ) {
                 $(".ads-home").insertBefore('.twocol.qcity-news-container');
+            }
+            if( $(".home-sb-subscribe-form").length>0 ) {
+                $(".home-sb-subscribe-form").appendTo('#home-sb-form');
+                $(".home-sb-subscribe-form").removeClass('mobile');
             }
         }
     }

@@ -9926,6 +9926,9 @@ body.social-media-sticky {
 	float: left;
 	background: #f1f1f1;
 	padding: 15px;
+	&.mobile {
+		margin-bottom: 30px;
+	}
 	.gfTitle {
 		color: #36c;
 		font-size: .85rem;
@@ -10231,6 +10234,7 @@ body.social-media-sticky {
 		// display: block;
 		display: none!important;
 		.form-subscribe-blue {
+			display: none!important;
 			margin-top: 20px;
 			padding: 0 0;
 		}
@@ -10250,6 +10254,23 @@ body.social-media-sticky {
 		width: 100%;
 		float: left;
 		margin-bottom: 30px;
+	}
+	section.home-bottom .biz-dir {
+		margin-right: 0;
+		margin-bottom: 5px;
+		div.more {
+			margin-bottom: 0;
+		}
+	}
+	.jobs .biz-job-wrap {
+		margin-bottom: 0;
+	}
+	.jobs div.more {
+		margin-bottom: 10px;
+	}
+	.home-sb-subscribe-form .gform_wrapper .gform_footer.top_label input.gform_button {
+		padding-top: 4px;
+		padding-bottom: 3px;
 	}
 }
 

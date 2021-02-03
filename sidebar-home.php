@@ -89,5 +89,7 @@
     <?php } ?>
 
     <?php /* SUBSCRIPTION FORM */ ?>
+    <aside id="home-sb-form">
     <?php get_template_part('template-parts/subscription/west-side'); ?>
+    </aside>
 </section>
