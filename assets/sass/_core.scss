@@ -7539,6 +7539,7 @@ section.c-sponsor-block.sponsor-paid-wrapper {
 	.c-sponsor-image-link {
 		display: block;
 		width: 100%;
+		height: 100%;
 		float: left;
 		background-size: cover;
 		background-position: top center;
@@ -7546,6 +7547,7 @@ section.c-sponsor-block.sponsor-paid-wrapper {
 		img {
 			width: 100%;
 			height: auto;
+			visibility: hidden;
 		}
 		img.c-sponsor-block__image {
 			display: none;

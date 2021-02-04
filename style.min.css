@@ -3047,8 +3047,8 @@ header.section-title h1,header.section-title h2{padding:8px 15px 4px}
 section.c-sponsor-block.sponsor-paid-wrapper .sponsor-col-paid{width:100%}
 @media(min-width:820px){section.c-sponsor-block.sponsor-paid-wrapper .sponsor-col-paid{width:48%}
 }@media(min-width:820px){section.c-sponsor-block.sponsor-paid-wrapper .sponsor-col-paid.sponsor-col-image{padding-left:18px}
-}section.c-sponsor-block.sponsor-paid-wrapper .c-sponsor-image-link{display:block;width:100%;float:left;background-size:cover;background-position:top center;background-repeat:no-repeat}
-section.c-sponsor-block.sponsor-paid-wrapper .c-sponsor-image-link img{width:100%;height:auto}
+}section.c-sponsor-block.sponsor-paid-wrapper .c-sponsor-image-link{display:block;width:100%;height:100%;float:left;background-size:cover;background-position:top center;background-repeat:no-repeat}
+section.c-sponsor-block.sponsor-paid-wrapper .c-sponsor-image-link img{width:100%;height:auto;visibility:hidden}
 section.c-sponsor-block.sponsor-paid-wrapper .c-sponsor-image-link img.c-sponsor-block__image{display:none}
 .mobileSubscribe{display:none;width:100%;position:fixed;bottom:0;left:0;background:#924020;z-index:100000}
 .mobileSubscribe .inner{padding:25px 20px 20px;color:#FFF;text-align:center;font-size:16px;line-height:1.3}
