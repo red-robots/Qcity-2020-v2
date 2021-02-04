@@ -27,14 +27,19 @@ if ( $commentaries->have_posts() )  { ?>
 					} else {
 						$authorName = get_the_author_meta( 'display_name' , $authorID );
 					}
-					$avatarURL = get_avatar_url($authorID);
+					//$avatarURL = get_avatar_url($authorID);
 				}
-				$picBg = ($avatarURL) ? ' style="background-image:url('.$avatarURL.')"':'';
+				$authorPicId = get_field("custom_picture","user_".$authorID);'';
+				$imgsrc = wp_get_attachment_image_src($authorPicId,'medium_large');
+				$nopic = get_bloginfo('template_url') . '/images/nophoto.png';
+				$avatarURL = ($imgsrc) ? $imgsrc[0] : $nopic;
+				
+				//$picBg = ($avatarURL) ? ' style="background-image:url('.$avatarURL.')"':'';
 			?>
 			<div class="entry-block ctr<?php echo $ctr ?>">
 				<a href="<?php echo get_permalink(); ?>" class="inner">
 					<span class="photodiv">
-						<span class="pic"<?php echo $picBg ?>>
+						<span class="pic" style="background-image:url('<?php echo $avatarURL ?>')">
 							<img src="<?php echo $square ?>" alt="" aria-hidden="true" class="helper">
 						</span>
 					</span>

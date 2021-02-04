@@ -11,6 +11,13 @@ $stickyPosts = get_option('sticky_posts');
 $rightPostItems = (get_stick_to_right_posts()) ? get_stick_to_right_posts() : array();
 $postWithVideos = (get_news_posts_with_videos()) ? get_news_posts_with_videos() : array();
 $exlude_post_ids = array();
+$moreNewsItems = getMoreNewsPosts(3);
+$moreNewsIDs = array();
+if($moreNewsItems) {
+	foreach($moreNewsItems as $m) {
+		$moreNewsIDs[] = $m->ID;
+	}
+}
 
 if($rightPostItems || $postWithVideos) {
 	$newDataList = array();
@@ -55,8 +62,21 @@ if($rightPostItems) {
 
 $postsNotIn = ($exlude_post_ids) ? array_unique($exlude_post_ids) : array();
 if($postsNotIn) {
-	$mainArgs['post__not_in'] = $postsNotIn;
+	if($moreNewsIDs) {
+		$postsNotIn = array_merge($postsNotIn,$moreNewsIDs);
+	}
+} else {
+	if($moreNewsIDs) {
+		$postsNotIn = $moreNewsIDs;
+	}
 }
+if($postsNotIn) {
+	$mainArgs['post__not_in'] = $postsNotIn;
+	foreach($postsNotIn as $p) {
+		$featured_posts[] = $p;
+	}
+}
+
 
 // if($rightPostItems) {
 // 	if($exlude_post_ids) {
@@ -144,6 +164,7 @@ if($stickyPosts) {
 				</article>
 			</div>
 		<?php } ?>
+		
 
 		<div id="emailBlockMobileView"></div>
 
@@ -286,8 +307,7 @@ if($stickyPosts) {
 				}
 			}
 		}
-		
-		
+
 		if($right_items) { ?>
 			<div class="stickRightBlockWrapper">
 			<?php foreach ($right_items as $e) { 
@@ -300,7 +320,6 @@ if($stickyPosts) {
 				if( $video ) {
 					$embed = youtube_setup($video);
 				}
-				$featured_posts[] = $right_id;
 				$placeholder = get_template_directory_uri() . '/images/right-image-placeholder.png';
 				$default_image = get_template_directory_uri() . '/images/default.png';
 				$thumbId = get_post_thumbnail_id($right_id);
@@ -314,6 +333,7 @@ if($stickyPosts) {
 				$post_author = ($guest_author) ? $guest_author : $author_default;
 				$postedByArr = array($post_author,$rpostdate);
 				$postedBy = ($postedByArr && array_filter($postedByArr) ) ? implode(" <span class='sep'>|</span> ", array_filter($postedByArr) ) : '';
+				$featured_posts[] = $right_id;
 				?>
 				<article class="story-block stickRightBlock">
 					<div class="inside">

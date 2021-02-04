@@ -1,4 +1,5 @@
 <?php
+	$text = ( isset($text) && $text ) ? $text : '';
 	$obj = get_queried_object();
 	$currentTermId = ( isset($obj->term_id) && $obj->term_id ) ? $obj->term_id : '';
 	$subscribeOpts = get_field('post_category_subscription','option');

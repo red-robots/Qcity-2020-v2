@@ -15,23 +15,23 @@ $post_id = get_the_ID();
 $sidebar_event_text 	= get_field('sidebar_event_text', 'option');
 $sidebar_business_text 	= get_field('sidebar_business_text', 'option');
 $sidebar_post_text 		= get_field('sidebar_post_text', 'option');
-$trendingBlock = false;
+$trendingBlock = array();
 
 if ( ! is_active_sidebar( 'sidebar-1' ) ) {
 	return;
 }
 if( (get_post_type() == 'post') && !(is_page('events')) ) {
 	$title = 'Trending';
-	$trendingBlock = true;
-	// $qp = 'post';
-	// $args = array(
-	// 	'post_type'			=> $qp,
-	// 	'posts_per_page'=> 6,
-	// 	'post_status'		=> 'publish',	
-	// 	'meta_key' 			=> 'views',
-	// 	'orderby' 			=> 'post_date meta_value_num',
-	// 	'order'					=> 'DESC'
-	// );
+	$trendingBlock[] = true;
+	$qp = 'post';
+	$args = array(
+		'post_type'			=> $qp,
+		'posts_per_page'=> 6,
+		'post_status'		=> 'publish',	
+		'meta_key' 			=> 'views',
+		'orderby' 			=> 'post_date meta_value_num',
+		'order'					=> 'DESC'
+	);
 } elseif( is_page('qcity-biz') ) {
 	$title = 'Latest Business Articles';
 	$qp = 'business_listing';
@@ -61,7 +61,17 @@ if( (get_post_type() == 'post') && !(is_page('events')) ) {
 	);
 } elseif( (get_post_type() == 'page') && ( is_page('media-gallery') )  ) {
 	$title = 'Trending';
-	$trendingBlock = true;
+	$trendingBlock[] = true;
+	$qp = 'post';
+	$args = array(
+			'post_type'			=> $qp,
+			'posts_per_page' 	=> 6,
+			'post_status' 	  	=> 'publish',
+			'paged'             => 1,
+			'meta_key' 			=> 'views',
+			'orderby' 			=> 'post_date meta_value_num',
+			'order'					=> 'DESC'
+	);
 } elseif( is_page('events') ) {
 	$title = 'Entertainment';
 	$qp = 'entertainment';
@@ -122,19 +132,68 @@ if( is_page('events') ) {
 
 	<?php  if( ( (get_post_type() != 'post') ||  is_category() )  ): ?>
 	
-		<?php
-		/* SUBSCRIPTION FORM */
-		include( locate_template('sidebar-subscription-form.php') );
-		?>
+	<?php
+	/* SUBSCRIPTION FORM */
+	include( locate_template('sidebar-subscription-form.php') );
+	?>
 
 		<?php
 		$isTrending = ($trendingBlock) ? ' sb-trending-posts':'';
 		if($trendingBlock) { 
-			/* TRENDING POSTS */
-			include( locate_template('template-parts/trending-posts-widget.php') );
-		} else { 
+			$trendingEntries = get_posts($args);
+			$listOrders = array();
+			if($trendingEntries) {
+				foreach($trendingEntries as $e) {
+					$id = $e->ID;
+					$views = get_post_meta($id,'views',true);
+					$listOrders[$id] = $views;
+				} 
+				arsort($listOrders);
+				?>
+
+				<div id="sb-trending-posts" class="next-stories">
+					<h3><?php echo $title; ?></h3>
+					<div class="sidebar-container">
+					<?php $i=1; foreach($listOrders as $pid=>$v) {
+						$img  = get_field('event_image',$pid);
+						$image = get_template_directory_uri() . '/images/default.png';
+						$altImg = '';
+						if( $img ){
+						  $image = $img['url'];
+						  $altImg = ( isset($img['title']) && $img['title'] ) ? $img['title']:'';
+						} elseif ( has_post_thumbnail($pid) ) {
+							$thumbid = get_post_thumbnail_id($pid);
+						  $image = get_the_post_thumbnail_url($pid);
+						  $altImg = get_the_title($thumbid);
+						} 
+						$viewsCount = get_post_meta($pid,'views',true);
+						$postDate = get_the_date('d/m/Y');
+						$pagelink = get_permalink($pid);
+						$posttitle = get_the_title($pid); ?>
+						<article data-postdate="<?php echo $postDate ?>" data-views="<?php echo $viewsCount ?>" class="small">
+                <a href="<?php echo $pagelink; ?>">
+									<div class="img">
+									  <img src="<?php echo $image; ?>" alt="<?php echo $altImg; ?>">
+									</div>
+									<div class="xtitle"><?php echo $posttitle; ?></div>
+                </a>
+            </article>
+					<?php $i++; } wp_reset_postdata(); ?>
+					</div>
+				</div>
+				<div class="more">
+					<a class="gray qcity-sidebar-load-more" data-trending="1" data-page="1" data-action="qcity_sidebar_load_more" data-qp="<?php echo $qp; ?>" data-postid="<?php echo $post_id; ?>">
+						<span class="load-text">Load More</span>
+						<span class="load-icon"><i class="fas fa-sync-alt spin"></i></span>
+					</a>
+				</div>	
+				<?php
+			}
+		?>
+
+		<?php } else { 
 			$wp_query = new WP_Query( $args );		
-			if ($wp_query->have_posts()) { ?>
+			if ($wp_query->have_posts()) : ?>
 				<div class="next-stories<?php echo $isTrending; ?>">
 					<h3><?php echo $title; ?></h3>
 					<div class="sidebar-container">
@@ -154,12 +213,10 @@ if( is_page('events') ) {
 							<span class="load-icon"><i class="fas fa-sync-alt spin"></i></span>
 						</a>
 					</div>	
-					</div>	
-			<?php } ?>
-				
+				<?php endif; ?>
 			<?php } ?>
 
-			
+			</div>
 
 
 

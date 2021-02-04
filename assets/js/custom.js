@@ -1174,6 +1174,56 @@ jQuery(document).ready(function ($) {
         }
     }
 
+    $(window).on('scroll', function () {
+        if ($(window).scrollTop() > 50) {
+            $('body').addClass('scrolled');
+        } else {
+            $('body').removeClass('scrolled');
+        }
+    });
+
+    // $('#widget-trending-post').stickySidebar({
+    //     sidebarTopMargin: 20,
+    //     footerThreshold: 100
+    // });
+    sticky_trending_posts_static();
+    sticky_trending_posts();
+    $(window).on('scroll resize', function () {
+        sticky_trending_posts();
+    });
+
+    
+    function sticky_trending_posts() {
+        var ts = $("#widget-trending-post").width();
+        var logoHeight = $("div.logo img").height();
+        var adminbar = ( $("#wpadminbar").length>0 ) ? $("#wpadminbar").height() : 0;
+        var offset = logoHeight+adminbar+30;
+        var divHeight = $("#widget-singleSidebar").height() + offset;
+        var windowHeight = $(window).height();
+
+        if($('body').hasClass('scrolled')) {
+            $("#widget-singleSidebar").css("top",offset+"px");
+        } else {
+            $("#widget-singleSidebar").css("top","0");
+        }
+        $("#widget-trending-post").css("width",ts+"px");
+    }
+    function sticky_trending_posts_static() {
+        var ts = $("#widget-trending-post").width();
+        var logoHeight = $("div.logo img").height();
+        var adminbar = ( $("#wpadminbar").length>0 ) ? $("#wpadminbar").height() : 0;
+        var offset = logoHeight+adminbar+30;
+        var divHeight = $("#widget-singleSidebar").height() + offset;
+        var windowHeight = $(window).height();
+        if(divHeight>windowHeight) {
+            var wh = Math.round(windowHeight/1.5);
+            $("#widget-trending-post").css("height",wh+"px");
+            $("#widget-trending-post").addClass('overflow');
+        } else {
+            $("#widget-trending-post").css("height","auto");
+            $("#widget-trending-post").removeClass('overflow');
+        }
+    }
     
     /* Header RED BUTTON */
     // if( $(".headRedButton").length>0 ) {
