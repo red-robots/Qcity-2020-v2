@@ -70,4 +70,10 @@
                 <?php $biz_dir =  get_ads_script('business-directory-home'); echo $biz_dir['ad_script']  ?>                
     </div> <!-- Business Directory Home -->
 
+
+    <?php /* SUBSCRIPTION FORM */ ?>
+    <div class="ad" style="display: inline-block; text-align: center;">
+    <?php get_template_part('template-parts/subscription/west-side'); ?>
+  	</div>
+
 </section>

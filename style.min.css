@@ -3528,6 +3528,7 @@ body.social-media-sticky .grecaptcha-badge{bottom:60px !important}
 .home-sb-subscribe-form .gform_wrapper .gform_footer.top_label{margin-top:15px;margin-bottom:0;padding-top:0;padding-bottom:0}
 .home-sb-subscribe-form .gform_wrapper .gform_footer.top_label input.gform_button{cursor:pointer;padding:10px 15px 8px;width:100%;font-size:15px;font-weight:500;line-height:1;border:0;border-radius:0;box-shadow:none;text-shadow:none;-webkit-appearance:none;background:#c4a92f;color:#FFF;margin:0 auto}
 .home-sb-subscribe-form .gform_wrapper .gform_footer.top_label input.gform_button:hover{background:#924020}
+div.ad .home-sb-subscribe-form{margin-bottom:30px}
 .mobile-visible-section{display:none;width:100%;float:left}
 @media screen and (max-width:820px){.mobile-visible-section{display:block}
 }.mobile-visible-section .singleSidebar{padding-left:0;padding-right:0}

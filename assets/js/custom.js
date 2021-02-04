@@ -1135,10 +1135,10 @@ jQuery(document).ready(function ($) {
                 $(".ads-home").insertBefore('section.home-bottom');
             }
 
-            if( $(".home-sb-subscribe-form").length>0 ) {
-                $(".home-sb-subscribe-form").insertAfter('section.home-bottom');
-                $(".home-sb-subscribe-form").addClass('mobile');
-            }
+            // if( $(".home-sb-subscribe-form").length>0 ) {
+            //     $(".home-sb-subscribe-form").insertAfter('section.home-bottom');
+            //     $(".home-sb-subscribe-form").addClass('mobile');
+            // }
 
             if( $(".sidebar-sponsored-posts").length>0 ) {
                 $(".sidebar-sponsored-posts").insertBefore('.twocol.qcity-news-container');
@@ -1163,10 +1163,11 @@ jQuery(document).ready(function ($) {
             if( $(".ads-home").length>0 ) {
                 $(".ads-home").insertBefore('.twocol.qcity-news-container');
             }
-            if( $(".home-sb-subscribe-form").length>0 ) {
-                $(".home-sb-subscribe-form").appendTo('#home-sb-form');
-                $(".home-sb-subscribe-form").removeClass('mobile');
-            }
+            
+            // if( $(".home-sb-subscribe-form").length>0 ) {
+            //     $(".home-sb-subscribe-form").appendTo('#home-sb-form');
+            //     $(".home-sb-subscribe-form").removeClass('mobile');
+            // }
 
             if( $(".sidebar-sponsored-posts").length>0 ) {
                 $(".sidebar-sponsored-posts").insertBefore('#home-sb-form');
