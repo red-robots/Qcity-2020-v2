@@ -1140,9 +1140,14 @@ jQuery(document).ready(function ($) {
             //     $(".home-sb-subscribe-form").addClass('mobile');
             // }
 
-            if( $(".sidebar-sponsored-posts").length>0 ) {
-                $(".sidebar-sponsored-posts").insertBefore('.twocol.qcity-news-container');
+            // if( $(".sidebar-sponsored-posts").length>0 ) {
+            //     $(".sidebar-sponsored-posts").insertBefore('.twocol.qcity-news-container');
+            // }
+
+            if( $("#sponsoredPostDiv").length>0 ) {
+                $("#sponsoredPostDiv").insertAfter('.home-instagram-feeds');
             }
+
 
         } else {
             $("#mobileBlocks #trendingBlock").html("");
@@ -1161,16 +1166,21 @@ jQuery(document).ready(function ($) {
             }
 
             if( $(".ads-home").length>0 ) {
-                $(".ads-home").insertBefore('.twocol.qcity-news-container');
+                //$(".ads-home").insertBefore('.twocol.qcity-news-container');
+                $(".ads-home").insertBefore('.newsHomeV2 .mobile-version');
             }
-            
+
             // if( $(".home-sb-subscribe-form").length>0 ) {
             //     $(".home-sb-subscribe-form").appendTo('#home-sb-form');
             //     $(".home-sb-subscribe-form").removeClass('mobile');
             // }
 
-            if( $(".sidebar-sponsored-posts").length>0 ) {
-                $(".sidebar-sponsored-posts").insertBefore('#home-sb-form');
+            // if( $(".sidebar-sponsored-posts").length>0 ) {
+            //     $(".sidebar-sponsored-posts").insertBefore('#home-sb-form');
+            // }
+
+            if( $("#sponsoredPostDiv").length>0 ) {
+                $("#sponsoredPostDiv").insertBefore('#sponsoredPostDivider');
             }
         }
     }
