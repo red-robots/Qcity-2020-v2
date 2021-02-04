@@ -9383,6 +9383,13 @@ div.ctct-form-embed div.ctct-form-defaults p.ctct-form-text {
 			}
 		}
 	}
+	&.mobile {
+		display: none;
+	}
+	@media screen and (max-width:820px) {
+		&.desktop { display: none; }
+		&.mobile { display: block; }
+	}
 }
 .content-inner-wrap {
 	margin-bottom: 20px;
