@@ -23,120 +23,62 @@
     <!-- Small Optional Ad Right -->
 
     <?php 
-    $args = array(     
-        'category_name'     => 'offers-invites+sponsored-post',        
-        'post_type'         => 'post',        
-        'post_status'       => 'publish',
-        'posts_per_page'    => 3,
-        'orderby'           => 'rand',
-        'meta_query'        => array(
-            array(
-                'key'       => 'sponsored_content_post',
-                'compare'   => '=',
-                'value'     => 1,
-            ),      
-        ),
-    );
-    $sponsors = new WP_Query($args);
-    if( $sponsors->have_posts() ) { ?>
+    $numdays = 61;
+    $perpage = 3;
+    $sponsors = get_sponsored_posts('offers-invites+sponsored-post',$numdays,$perpage);
+    $sponsor_section_title = 'Sponsored Content';
+    if( $sponsors ) { ?>
     <div id="sponsoredPostDivider"></div>
     <div id="sponsoredPostDiv">
-        <div class="sidebar-sponsored-posts desktop">
-            <div class="sbTitle">Sponsored Content</div>
-            <?php while( $sponsors->have_posts() ):   $sponsors->the_post(); ?>
-                <?php
-                $sp_id = get_the_ID();
-                $sponsorCompanies = get_field('sponsors');
-                $info = get_field("spcontentInfo","option");
-                if($info) {
-                    $i_title = $info['title'];
-                    $i_text = $info['text'];
-                    $i_display = ($info['display'] && $info['display']=='on') ?  true : false;
-                } else {
-                    $i_title = '';
-                    $i_text = '';
-                    $i_display = '';
+      <div class="sidebar-sponsored-posts">
+          <div class="sbTitle"><?php echo $sponsor_section_title ?></div>
+          <?php $ctr=1; foreach($sponsors as $row) {
+            $sp_id = $row->ID;
+            $posttitle = $row->post_title;
+            $sponsorCompanies = get_field('sponsors',$sp_id);
+            $info = get_field("spcontentInfo","option");
+            if($info) {
+                $i_title = $info['title'];
+                $i_text = $info['text'];
+                $i_display = ($info['display'] && $info['display']=='on') ?  true : false;
+            } else {
+                $i_title = '';
+                $i_text = '';
+                $i_display = '';
+            }
+            $sponsorsList = '';
+            if($sponsorCompanies) {
+                $n=1; foreach($sponsorCompanies as $s) {
+                    $comma = ($n>1) ? ', ':'';
+                    $sponsorsList .= $comma . $s->post_title;
+                    $n++;
                 }
-                $sponsorsList = '';
-                if($sponsorCompanies) {
-                    $n=1; foreach($sponsorCompanies as $s) {
-                        $comma = ($n>1) ? ', ':'';
-                        $sponsorsList .= $comma . $s->post_title;
-                        $n++;
-                    }
-                }
-                $default = get_template_directory_uri() . '/images/right-image-placeholder.png';
-                $featImage =  ( has_post_thumbnail() ) ? wp_get_attachment_image_src( get_post_thumbnail_id(), 'large') : '';
-                $bgImg = ($featImage) ? $featImage[0] : $default;
-                ?>
-            <article id="sponsoredPost<?php echo $sp_id?>">
-                <div class="inside">
-                    <a href="<?php echo get_the_permalink();?>" class="thumb">
-                        <img src="<?php echo get_template_directory_uri() . '/images/right-image-placeholder.png'; ?>" alt="" aria-hidden="true">
-                        <?php if ($featImage) { ?>
-                        <span class="featImage" style="background-image:url('<?php echo $bgImg?>')"></span> 
-                        <?php } ?>
-                    </a>
+            }
+            $default = get_template_directory_uri() . '/images/right-image-placeholder.png';
+            $featImage =  ( has_post_thumbnail($sp_id) ) ? wp_get_attachment_image_src( get_post_thumbnail_id($sp_id), 'large') : '';
+            $bgImg = ($featImage) ? $featImage[0] : $default;
+            $pagelink = get_the_permalink($sp_id); 
+            $postdate = get_the_date('F j,Y',$sp_id); ?>
+            <article id="sponsoredPost<?php echo $sp_id?>" class="sp-item sp<?php echo $ctr ?>">
+              <div class="inside">
+                  <a href="<?php echo $pagelink;?>" class="thumb">
+                      <img src="<?php echo get_template_directory_uri() . '/images/right-image-placeholder.png'; ?>" alt="" aria-hidden="true">
+                      <?php if ($featImage) { ?>
+                      <span class="featImage" style="background-image:url('<?php echo $bgImg?>')"></span> 
+                      <?php } ?>
+                  </a>
 
-                    <a href="<?php echo get_the_permalink();?>" class="titlediv">
-                        <?php if ($sponsorsList) { ?>
-                        <span class="t1"><?php echo $sponsorsList ?></span>
-                        <?php } ?>
-                        <span class="t2"><?php echo get_the_title(); ?></span>
-                    </a>
-                </div>
+                  <a href="<?php echo $pagelink;?>" class="titlediv">
+                      <?php if ($sponsorsList) { ?>
+                      <span class="t1"><?php echo $sponsorsList ?></span>
+                      <?php } ?>
+                      <span class="t2"><?php echo $posttitle; ?></span>
+                      <span class="postdate" style="display:none"><?php echo $postdate; ?></span>
+                  </a>
+              </div>
             </article>
-            <?php endwhile; wp_reset_postdata(); ?>
-        </div>
-
-        <div class="sidebar-sponsored-posts mobile">
-            <div class="sbTitle">Sponsored Content</div>
-            <?php $ctr=1; while( $sponsors->have_posts() ):   $sponsors->the_post(); ?>
-                <?php if($ctr==1) {
-                    $sp_id = get_the_ID();
-                    $sponsorCompanies = get_field('sponsors');
-                    $info = get_field("spcontentInfo","option");
-                    if($info) {
-                        $i_title = $info['title'];
-                        $i_text = $info['text'];
-                        $i_display = ($info['display'] && $info['display']=='on') ?  true : false;
-                    } else {
-                        $i_title = '';
-                        $i_text = '';
-                        $i_display = '';
-                    }
-                    $sponsorsList = '';
-                    if($sponsorCompanies) {
-                        $n=1; foreach($sponsorCompanies as $s) {
-                            $comma = ($n>1) ? ', ':'';
-                            $sponsorsList .= $comma . $s->post_title;
-                            $n++;
-                        }
-                    }
-                    $default = get_template_directory_uri() . '/images/right-image-placeholder.png';
-                    $featImage =  ( has_post_thumbnail() ) ? wp_get_attachment_image_src( get_post_thumbnail_id(), 'large') : '';
-                    $bgImg = ($featImage) ? $featImage[0] : $default;
-                    ?>
-                <article id="sponsoredPost<?php echo $sp_id?>">
-                    <div class="inside">
-                        <a href="<?php echo get_the_permalink();?>" class="thumb">
-                            <img src="<?php echo get_template_directory_uri() . '/images/right-image-placeholder.png'; ?>" alt="" aria-hidden="true">
-                            <?php if ($featImage) { ?>
-                            <span class="featImage" style="background-image:url('<?php echo $bgImg?>')"></span> 
-                            <?php } ?>
-                        </a>
-
-                        <a href="<?php echo get_the_permalink();?>" class="titlediv">
-                            <?php if ($sponsorsList) { ?>
-                            <span class="t1"><?php echo $sponsorsList ?></span>
-                            <?php } ?>
-                            <span class="t2"><?php echo get_the_title(); ?></span>
-                        </a>
-                    </div>
-                </article>
-                <?php } ?>
-            <?php $ctr++; endwhile; wp_reset_postdata(); ?>
-        </div>
+          <?php $ctr++; } ?>
+      </div>
     </div>
 
 

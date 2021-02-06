@@ -1207,3 +1207,102 @@ foreach($gravityFormsSelections as $fieldname) {
 }
 
 
+function get_sponsored_posts($terms,$numdays=61,$perpage=3) {
+    global $wpdb;
+    $prefix = $wpdb->prefix;
+    $slugs = explode("+",$terms);
+    $in_terms = str_replace("+",",",$terms);
+    $entries = array();
+    $items = array();
+    $final_output = array();
+    foreach($slugs as $slug) {
+        $query = "SELECT p.ID,p.post_title,p.post_date, terms.term_id, terms.name AS catname, terms.slug AS catslug FROM ".$prefix."posts p, ".$prefix."term_relationships rel, ".$prefix."terms terms,".$prefix."term_taxonomy tax
+                  WHERE rel.term_taxonomy_id=terms.term_id AND rel.term_taxonomy_id=tax.term_taxonomy_id AND tax.taxonomy='category' AND terms.slug='".$slug."'
+                  AND p.ID=rel.object_id AND p.post_type='post' AND p.post_status='publish' AND  DATE(p.post_date) >= DATE(NOW()) - INTERVAL ".$numdays." DAY ORDER BY p.post_date DESC";
+        $result = $wpdb->get_results($query);
+        if($result) {
+            foreach($result as $row) {
+                $entries[$row->catslug][] = $row->ID;
+            }
+        }
+    }
+
+    if($entries) {
+        $slug1 = $slugs[0];
+        $slug2 = $slugs[1];
+        $group1 = ( isset($entries[$slug1]) && $entries[$slug1] ) ? $entries[$slug1] : array();
+        $group2 = ( isset($entries[$slug2]) && $entries[$slug2] ) ? $entries[$slug2] : array();
+        if($group1 && $group2) {
+            foreach($group2 as $pid) {
+                if(in_array($pid,$group1) ) {
+                    $data = get_post($pid);
+                    $items[] = $data;
+                }
+            }
+        }
+    }
+    
+    if($items) {
+        $total = count($items);
+        $range = range(0,($total-1));
+        shuffle($range);
+        $ctr=1; foreach($range as $i) {
+            if($ctr<=$perpage) {
+                $data = $items[$i];
+                $final_output[] = $data;
+            }
+            $ctr++;
+        }
+    }
+
+    return $final_output;
+}
+
+function get_trending_articles($perpage=5) {
+    global $wpdb;
+    $current_date = date('Y-m-d');
+    $currentMonth = date('m');
+    $previousMonth = $currentMonth-1;
+    $currentYear = date('Y');
+    $currentDateUnix = strtotime(date('Y-m-d'));
+    $listMax = 5;
+    $maxdays = 10;
+    $trendingArticles = array();
+    $trendingPostIDs = array();
+    for( $i=1; $i<=$maxdays; $i++ ) {
+        $min = "-".$i." days";
+        $prevdate = date('Y-m-d',strtotime($min));
+        $query = "SELECT p.ID, p.post_title, p.post_date, meta.meta_value AS views FROM ".$wpdb->prefix."posts p LEFT JOIN ".$wpdb->prefix."postmeta meta
+        ON p.ID=meta.post_id WHERE meta.meta_key='views' AND meta.meta_value>0 AND p.post_type='post' AND p.post_status='publish' AND DATE(p.post_date)='".$prevdate."'";
+        $result = $wpdb->get_results($query);
+        if($result) {
+            foreach($result as $row) {
+                $trendingArticles[] = $row;
+            }
+        }
+    }
+
+
+    if($trendingArticles) {
+        $keys = array_column($trendingArticles, 'views');
+        array_multisort($keys, SORT_DESC, $trendingArticles);
+        foreach($trendingArticles as $t) {
+            $trendingPostIDs[] = $t->ID;
+        }
+    }
+
+    $entries = array();
+    $raw_entries = array();
+    if($trendingPostIDs) {
+        $trending_count = count($trendingPostIDs);
+        if($trending_count>$listMax) {
+            for($n=0; $n<$listMax; $n++) {
+                $entries[] =  $trendingPostIDs[$n];
+            }
+        } else {
+            $entries = $trendingPostIDs;
+        }
+    }
+    return $entries;
+}
+

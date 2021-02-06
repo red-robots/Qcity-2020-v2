@@ -4,7 +4,7 @@
 // $excludeCat 	= get_category_by_slug($excludeTerm); 
 // $excludeCatID 	= ( isset($excludeCat->term_id) && $excludeCat->term_id ) ? $excludeCat->term_id : '';
 
-$exclude_categories = array('sponsored-post','commentaries');
+$exclude_categories = array('sponsored-post','commentaries','sponsored-post');
 $excludePosts = getAllPostsByTermSlug( $exclude_categories );
 $excludeCatID = getAllCategoriesByTermSlug($exclude_categories,'category');
 $stickyPosts = get_option('sticky_posts');
@@ -164,7 +164,7 @@ if($stickyPosts) {
 				</article>
 			</div>
 		<?php } ?>
-		
+
 
 		<div id="emailBlockMobileView"></div>
 

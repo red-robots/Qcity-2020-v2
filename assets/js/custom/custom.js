@@ -902,10 +902,10 @@ jQuery(document).ready(function ($) {
     }
 
 
-    /* Move `Sponsored By` Box on top of `Sponsored Content` box (bottom page) */
-    if( $(".sponsoredInfoBox").length>0 && $(".sponsored-by").length > 0 ) {
-        $(".sponsored-by").appendTo(".sponsoredInfoBox");
-    }
+    // /* Move `Sponsored By` Box on top of `Sponsored Content` box (bottom page) */
+    // if( $(".sponsoredInfoBox").length>0 && $(".sponsored-by").length > 0 ) {
+    //     $(".sponsored-by").appendTo(".sponsoredInfoBox");
+    // }
 
     /* Sponsored Content - Tool tip */
     if( $(".whatIsThisTxt").length > 0 && $("#sponsorToolTip").length > 0 ) {

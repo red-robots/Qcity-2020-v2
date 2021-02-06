@@ -117,9 +117,11 @@ if( !defined('HIDE_ADS') ){
 		</div>
 
 		<footer class="entry-footer">
-
+			
 			<?php if ($is_sponsored_post) { ?>
-				<div class="sponsoredInfoBox"></div>
+
+				<?php get_template_part( 'template-parts/sponsored-by-info'); ?>
+				
 			<?php } else { ?>
 				<?php if( $chooseAuthor ): ?>
 					<div class="author-block">
@@ -190,7 +192,9 @@ if( !defined('HIDE_ADS') ){
 				<?php rp4wp_children(); ?>
 			<?php } ?>
 
-			<?php get_template_part( 'template-parts/sponsored-paid'); ?>
+			<?php //get_template_part( 'template-parts/sponsored-paid');
+				get_template_part( 'template-parts/sponsored-content-widget');
+			?>
 		</footer><!-- .entry-footer -->
 	</div>
 

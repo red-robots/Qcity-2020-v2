@@ -13,7 +13,7 @@ if($entries) { ?>
 						$posttitle = $e->post_title;
 						//$terms = get_the_terms($postid,'category');
 						$terms = false;
-						$postdate = get_the_date('F j, Y');
+						$postdate = get_the_date('F j, Y',$postid);
 						?>
 						<div class="entry ctr<?php echo $ctr; ?>">
 							<span class="num"><?php echo $ctr; ?>.</span>

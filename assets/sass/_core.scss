@@ -1253,8 +1253,7 @@ section.red-band {
 	}
 	h2 {
 		font-size: 18px;
-		margin-bottom: 15px;
-		font-weight: normal;
+		font-weight: 500;
 		margin-bottom: 15px;
 	}
 	img {
@@ -1270,6 +1269,16 @@ section.red-band {
 			background-color: $color-red;
 			color: #fff;
 			padding: 8px;
+		}
+	}
+	.sponsor-logo {
+		max-width: 400px;
+		width: 100%;
+		margin: 0 auto;
+		a,img {
+			display: block;
+			width: 100%;
+			height: auto;
 		}
 	}
 }
@@ -4618,9 +4627,12 @@ body.home .subscribe-wrap .subscribe {
 
 
 .c-sponsor-block__label {
-    left: .92rem;
-    position: absolute;
-    top: .92rem;
+  left: .92rem;
+  position: absolute;
+  top: .92rem;
+  @media screen and (max-width:820px) {
+  	left: 0;
+  }
 }
 
 .t-size-xs {
@@ -4641,7 +4653,18 @@ body.home .subscribe-wrap .subscribe {
 	}
 }
 
-
+body.single-post {
+	.sponsor-paid-wrapper {
+		.c-sponsor-block__label {
+			left: 0;
+			padding-left: 10px;
+		}
+		.c-sponsor-block__main {
+			padding-left: 10px;
+		}
+	}
+	
+}
 
 .l-display-block {
     display: block;
@@ -6079,7 +6102,8 @@ body.page-template-page-membership {
 	background-color: #efefef;
 	text-align: center;
 	padding: 30px;
-
+	position: relative;
+	z-index: 50;
 
 	.before-footer-title{
 		text-transform: uppercase;
@@ -9318,6 +9342,10 @@ div.ctct-form-embed div.ctct-form-defaults p.ctct-form-text {
 	margin: 0 0 15px!important;
 }
 .sidebar-sponsored-posts {
+	&.mobile {
+		width: 100%;
+		float: left;
+	}
 	article, .inside {
 		width: 100%;
 		float: left;
@@ -9379,6 +9407,13 @@ div.ctct-form-embed div.ctct-form-defaults p.ctct-form-text {
 			// color: $color-red;
 			color: $color__text-main;
 		}
+		.postdate {
+			margin-top: 5px;
+			font-size: 0.5em;
+			line-height: 1.1;
+			text-transform: uppercase;
+			color: #a2a2a2;
+		}
 		&:hover {
 			.t2 {
 				color: $color-yellow;
@@ -9389,8 +9424,23 @@ div.ctct-form-embed div.ctct-form-defaults p.ctct-form-text {
 		display: none;
 	}
 	@media screen and (max-width:820px) {
+		width: 100%;
+		float: left;
 		&.desktop { display: none; }
 		&.mobile { display: block; }
+		.sp-item {display:none;}
+		.sp-item.sp1 {
+			display: block;
+			margin-bottom: 15px;
+			border-bottom: 1px solid #dedcdc;
+			padding-bottom: 23px;
+		}
+	}
+}
+#sponsoredPostDiv {
+	@media screen and (max-width:820px) {
+		width: 100%;
+		float: left;
 	}
 }
 .content-inner-wrap {
@@ -10296,6 +10346,59 @@ body.archive #primary #main {
 	padding-left: 0;
 	padding-right: 0;
 }
+.items-before-footer {
+	.home-bottom.single-article-bottom {
+		@include flexgroup();
+		.jobs.desktop-version,
+		#footTrending {
+			width: 100%;
+			margin: 0 0!important;
+			@include tab {
+				width: 30%;
+			}
+		}
+		.flexbox {
+			margin: 0 0!important;
+			padding: 15px;
+			background-color: transparent!important;
+			.fxdata {
+				height: 100%;
+				div.more {
+					margin-bottom: 0;
+				}
+			}
+			.before-footer-title  {
+				background-color: #efefef;
+				margin-bottom: 0;
+				padding-bottom: 20px;
+			}
+			&.bgwhite {
+				.fxdata {
+					background: #FFF;
+				}
+				.txtwrap {
+					padding: 20px;
+				}
+			}
+		}
+	}
+	.footer-content-list {
+		min-height: unset;
+	}
+	#adverts {
+		a {
+			display: block;
+			max-width: 100%!important;
+    	width: 100%!important;
+    	margin:20px auto 0;
+		}
+		img {
+			max-width: 100%;
+			width: 100%;
+			height: auto;
+		}
+	}
+}
 
 @media screen and (max-width:1025px) {
 	.logo, h1.logo {
@@ -10350,6 +10453,11 @@ body.archive #primary #main {
 		#singleSidebar.stickySidebar,
 		#beforeFooter .biz-dir.mobile-gap {
 			display: block!important;
+		}
+		#singleSidebar #widget-trending-post {
+			width: 100%!important;
+			height: auto!important;
+			margin-top: 30px;
 		}
 	}
 	.wp-block-image figcaption {
@@ -10425,13 +10533,11 @@ body.archive #primary #main {
 		width: 100%;
 		float: left;
 	}
-}
 
-@media screen and (max-width:767px) {
 	body.single-post #main .singleSidebar {margin-top:0!important;}		
 	.singleSidebar {padding-left: 20px;padding-right: 20px;}
 	body.single-post #sidebar-single-post {
-		margin:10px 0 30px;
+		margin:22px 0 30px;
 		position:relative !important;
 		width: 100%!important;
 	}
@@ -10442,6 +10548,7 @@ body.archive #primary #main {
 		margin-top: 15px;
     margin-bottom: 15px;
 	}
+
 }
 
 
