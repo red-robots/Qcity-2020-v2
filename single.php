@@ -23,8 +23,9 @@ if($terms) {
 		}
 	}
 }
+$content_class = ($is_sponsored_post) ? 'is-sponsored-post':'normal-post';
 ?>
-<div id="primary" class="content-area-full">
+<div id="primary" class="content-area-full <?php echo $content_class ?>">
 	<main id="main" class="site-main" role="main">
 		<?php while ( have_posts() ) : the_post(); ?>
 		<div class="single-page">
@@ -86,10 +87,13 @@ if($terms) {
 		</div>
 		<?php endwhile; ?>
 		
+
+		<?php if (!$is_sponsored_post) { ?>
 		<div id="singleSidebar" class="singleSidebar stickySidebar">
 		<?php get_template_part( 'template-parts/trending-posts-widget');	?>
 		</div>
-		
+		<?php } ?>
+
 		<?php //get_sidebar('single-post'); ?>
 	</main>
 </div>

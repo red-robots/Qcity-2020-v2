@@ -10400,6 +10400,24 @@ body.archive #primary #main {
 	}
 }
 
+#primary.is-sponsored-post {
+	max-width: 740px;
+	width: 100%;
+	margin: 0 auto;
+	padding-left: 20px;
+	padding-right: 20px;
+	#main.site-main, .single-page {
+		max-width: 100%!important;
+		width: 100%!important;
+		padding-left: 0!important;
+		padding-right: 0!important;
+	}
+}
+body.single-post .entry-footer, .sponsoredDataDiv {
+	width: 100%;
+	float: left;
+}
+
 @media screen and (max-width:1025px) {
 	.logo, h1.logo {
 		width: 90px;
@@ -10548,7 +10566,17 @@ body.archive #primary #main {
 		margin-top: 15px;
     margin-bottom: 15px;
 	}
-
+	.sponsoredInfoBox {
+		margin-top: 20px;
+	}
+	.entry-footer .sponsoredInfoBox {
+		display: none;
+	}
+	#sponsoredContentBlock.mobileBlock {
+		section.c-sponsor-block.sponsor-paid-wrapper {
+			margin-top: 20px;
+		}
+	}
 }
 
 

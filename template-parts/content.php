@@ -113,11 +113,12 @@ if( !defined('HIDE_ADS') ){
 			<div id="trendingBlock" class="mobileBlock"></div>
 			<div id="sponsoredContentBlock" class="mobileBlock"></div>
 			<div id="relatedArticlesBlock" class="mobileBlock"></div>
+			<div id="sponsoredByBlock" class="mobileBlock"></div>
 			<div id="westSideConnectBlock" class="mobileBlock"></div>
 		</div>
 
 		<footer class="entry-footer">
-			
+
 			<?php if ($is_sponsored_post) { ?>
 
 				<?php get_template_part( 'template-parts/sponsored-by-info'); ?>
@@ -167,26 +168,7 @@ if( !defined('HIDE_ADS') ){
 					}
 				}
 			}
-
-			if($is_sponsored) {
-				$info = get_field("spcontentInfo","option");
-        if($info) {
-            $i_title = $info['title'];
-            $i_text = $info['text'];
-            $i_display = ($info['display'] && $info['display']=='on') ?  true : false;
-        } else {
-            $i_title = '';
-            $i_text = '';
-            $i_display = '';
-        } ?>	
-			
-				<?php if ($i_display && $i_text) { ?>
-	       <div class="sponsoredInfoWrap">
-	       		<div class="sponsoredInfo"><?php echo $i_text ?></div>
-	       </div>
-	      <?php } ?>
-      <?php } ?>
-
+			?>
 
 			<?php if ( function_exists('rp4wp_children') ) { ?>
 				<?php rp4wp_children(); ?>

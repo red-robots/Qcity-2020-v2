@@ -1122,6 +1122,12 @@ jQuery(document).ready(function ($) {
                     $("body.single-post #beforeFooter").clone().appendTo("#westSideConnectBlock");
                 }
             }
+            // Sponsored By
+            if( $("body.single-post .sponsoredDataDiv").length>0 ) {
+                if( $("#sponsoredByBlock .sponsoredDataDiv").text()=='' ) {
+                    $("body.single-post .sponsoredDataDiv").appendTo("#sponsoredByBlock");
+                }
+            }
 
             /* HOME TOP SECTION - FOR MOBILE ONLY */
             if( $(".form-subscribe-blue").length>0 ) {
@@ -1181,6 +1187,11 @@ jQuery(document).ready(function ($) {
 
             if( $("#sponsoredPostDiv").length>0 ) {
                 $("#sponsoredPostDiv").insertBefore('#sponsoredPostDivider');
+            }
+
+            // Sponsored By
+            if( $("#sponsoredByBlock .sponsoredDataDiv").length>0 ) {
+                $("body.single-post .sponsoredDataDiv").prependTo("body.single-post .entry-footer");
             }
         }
     }

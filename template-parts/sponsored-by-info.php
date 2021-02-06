@@ -21,30 +21,50 @@ if($sponsors_page_id) {
 $sponsorLinkOpen = ($logo_link) ? '<a href="'.$logo_link.'" target="_blank">':'';
 $sponsorLinkClose = ($logo_link) ? '</a>':'';
 ?>
-<div class="sponsoredInfoBox">
-	<div class="sponsored-by">
-		<div class="sponsor-sidebar-wrapper">
-			<h2>Sponsored By:</h2>
-			<?php if($logo) { ?>
-				<div class="sponsor-logo">
-				<?php echo $sponsorLinkOpen; ?>
-					<img src="<?php echo $logo['url'];?>" alt="<?php echo $logo['alt'];?>">
-				<?php echo $sponsorLinkClose; ?>
-				</div>
-			<?php } ?>
+<div class="sponsoredDataDiv">
+	<div class="sponsoredInfoBox">
+		<div class="sponsored-by">
+			<div class="sponsor-sidebar-wrapper">
+				<h2>Sponsored By:</h2>
+				<?php if($logo) { ?>
+					<div class="sponsor-logo">
+					<?php echo $sponsorLinkOpen; ?>
+						<img src="<?php echo $logo['url'];?>" alt="<?php echo $logo['alt'];?>">
+					<?php echo $sponsorLinkClose; ?>
+					</div>
+				<?php } ?>
 
-			<?php if($description) { ?>
-				<div class="description">
-					<?php echo $description;?>
-				</div>
-			<?php } ?>
+				<?php if($description) { ?>
+					<div class="description">
+						<?php echo $description;?>
+					</div>
+				<?php } ?>
 
-			<?php if($link && $link_text) { ?>
-				<div class="policy-link">
-					<a href="<?php echo $link;?>" target="_blank"><?php echo $link_text;?></a>
-				</div>
-			<?php } ?>
+				<?php if($link && $link_text) { ?>
+					<div class="policy-link">
+						<a href="<?php echo $link;?>" target="_blank"><?php echo $link_text;?></a>
+					</div>
+				<?php } ?>
+			</div>
 		</div>
 	</div>
+
+		<?php  $info = get_field("spcontentInfo","option");
+      if($info) {
+          $i_title = $info['title'];
+          $i_text = $info['text'];
+          $i_display = ($info['display'] && $info['display']=='on') ?  true : false;
+      } else {
+          $i_title = '';
+          $i_text = '';
+          $i_display = '';
+      } ?>	
+		
+			<?php if ($i_display && $i_text) { ?>
+       <div class="sponsoredInfoWrap">
+       		<div class="sponsoredInfo"><?php echo $i_text ?></div>
+       </div>
+      <?php } ?>
+
 </div>
 <?php } ?>
