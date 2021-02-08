@@ -50,12 +50,14 @@
 	<?php get_template_part('template-parts/business-directory-footer'); ?>
 	
 	<!--- Advertisements -->
-	<div class="ad" style="display: inline-block; text-align: center;">
-        <div class="desktop-version align-center"> <!-- Business Directory Home -->
+	<div class="ad" style="display:none; text-align: center;">
+        <div class="desktop-version align-center">
+        	<!-- Business Directory Home -->
             <?php $ads_bottom = get_ads_script('business-directory-home'); 
                 echo $ads_bottom['ad_script'];
             ?>                
-        </div> <!-- Business Directory Home -->
+        </div>
+        <!-- Business Directory Home -->
 	</div>
 
     <div class="mobile-version hearken">
