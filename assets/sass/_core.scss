@@ -10600,6 +10600,20 @@ body.single-post .entry-footer, .sponsoredDataDiv {
 		top: 0;
 	}
 }
+body.archive,
+body.scrolled.archive {
+	.widget-area.category-post .form-subscribe-blue {
+		opacity: 1 !important;
+	}
+	#widget-singleSidebar {
+		position: relative !important;
+		top: 0 !important;
+	}
+	#widget-singleSidebar #widget-trending-post {
+		height: auto!important;
+		overflow: visible;
+	}
+}
 
 
 
