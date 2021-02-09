@@ -23,9 +23,10 @@
     <!-- Small Optional Ad Right -->
 
     <?php 
-    $numdays = 61;
+    $numdays = 71;
     $perpage = 3;
-    $sponsors = get_sponsored_posts('offers-invites+sponsored-post',$numdays,$perpage);
+    //$sponsors = get_sponsored_posts('offers-invites+sponsored-post',$numdays,$perpage);
+    $sponsors = get_sponsored_posts('sponsored-post',$numdays,$perpage);
     $sponsor_section_title = 'Sponsored Content';
     if( $sponsors ) { ?>
     <div id="sponsoredPostDivider"></div>

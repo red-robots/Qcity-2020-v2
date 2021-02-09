@@ -881,12 +881,14 @@ function shortenText($string, $limit, $break=".", $pad="...") {
 
 
 
-function get_stick_to_right_posts() {
+function get_stick_to_right_posts($limit=3) {
   global $wpdb;
   $post_ids = array();
+  $limit_sql = ($limit) ? ' LIMIT '.$limit:'';
   $query = "SELECT p.ID FROM ".$wpdb->prefix."posts p, ".$wpdb->prefix."postmeta m
             WHERE p.ID=m.post_id AND m.meta_key='custom_meta_post_visibility' AND m.meta_value=1 AND p.post_status='publish' AND p.post_type='post'
-            ORDER BY p.post_date DESC";
+            ORDER BY p.post_date DESC".$limit_sql;
+
   $result = $wpdb->get_results($query);
   if($result) {
     foreach($result as $row) {
@@ -895,6 +897,8 @@ function get_stick_to_right_posts() {
   }
   return ($post_ids) ? $post_ids : '';
 }
+
+
 
 function get_stick_to_top_posts() {
   global $wpdb;
@@ -1227,19 +1231,30 @@ function get_sponsored_posts($terms,$numdays=61,$perpage=3) {
         }
     }
 
+    $count_slug = ($slugs) ? count($slugs) : 0;
     if($entries) {
-        $slug1 = $slugs[0];
-        $slug2 = $slugs[1];
+      if($count_slug>1) {
+        $slug1 = ( isset($slugs[0]) && $slugs[0] ) ? $slugs[0] : '';
+        $slug2 = ( isset($slugs[1]) && $slugs[1] ) ? $slugs[1] : '';
         $group1 = ( isset($entries[$slug1]) && $entries[$slug1] ) ? $entries[$slug1] : array();
         $group2 = ( isset($entries[$slug2]) && $entries[$slug2] ) ? $entries[$slug2] : array();
         if($group1 && $group2) {
             foreach($group2 as $pid) {
                 if(in_array($pid,$group1) ) {
-                    $data = get_post($pid);
-                    $items[] = $data;
+                    if( $data = get_post($pid) ) {
+                      $items[] = $data;
+                    }
                 }
             }
         }
+      } else {
+        $k = $slugs[0];
+        foreach($entries[$k] as $pid) {
+          if( $data = get_post($pid) ) {
+            $items[] = $data;
+          }
+        }
+      }
     }
     
     if($items) {

@@ -49,27 +49,26 @@
 	</div>
 	<?php get_template_part('template-parts/business-directory-footer'); ?>
 	
-	<!--- Advertisements -->
-	<div class="ad" style="display:none; text-align: center;">
-        <div class="desktop-version align-center">
-        	<!-- Business Directory Home -->
-            <?php $ads_bottom = get_ads_script('business-directory-home'); 
-                echo $ads_bottom['ad_script'];
-            ?>                
-        </div>
-        <!-- Business Directory Home -->
-	</div>
+		<!--- Advertisements -->
+		<div class="ad" style="display:none; text-align: center;">
+	    <div class="desktop-version align-center">
+	    	<!-- Business Directory Home -->
+	        <?php $ads_bottom = get_ads_script('business-directory-home'); 
+	            echo $ads_bottom['ad_script'];
+	        ?>                
+	    </div>
+	    <!-- Business Directory Home -->
+		</div>
 
     <div class="mobile-version hearken">
     	<?php if( $right_rail = get_ads_script('right-rail') ) {  ?>
-		<div class="mobile-bottom-ads"><?php echo $right_rail['ad_script']; ?></div>
+			<div class="mobile-bottom-ads"><?php echo $right_rail['ad_script']; ?></div>
     	<?php } ?>
-
         <script async src="https://modules.wearehearken.com/qcitymetro/embed/4551.js"></script>
     </div>
 
     <div class="mobile-version" style="margin-top: 20px; text-align: center"> <!-- Business Directory Home -->
-                <?php $biz_dir =  get_ads_script('business-directory-home'); echo $biz_dir['ad_script']  ?>                
+    	<?php $biz_dir =  get_ads_script('business-directory-home'); echo $biz_dir['ad_script']  ?>                
     </div> <!-- Business Directory Home -->
 
 
