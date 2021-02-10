@@ -1224,11 +1224,11 @@ jQuery(document).ready(function ($) {
         var windowHeight = $(window).height();
 
         if($('body').hasClass('scrolled')) {
-            $("#widget-singleSidebar").css("top",offset+"px");
+            $("body.single #widget-singleSidebar").css("top",offset+"px");
         } else {
-            $("#widget-singleSidebar").css("top","0");
+            $("body.single #widget-singleSidebar").css("top","0");
         }
-        $("#widget-trending-post").css("width",ts+"px");
+        $("body.single #widget-trending-post").css("width",ts+"px");
     }
     function sticky_trending_posts_static() {
         var ts = $("#widget-trending-post").width();
@@ -1239,11 +1239,11 @@ jQuery(document).ready(function ($) {
         var windowHeight = $(window).height();
         if(divHeight>windowHeight) {
             var wh = Math.round(windowHeight/1.5);
-            $("#widget-trending-post").css("height",wh+"px");
-            $("#widget-trending-post").addClass('overflow');
+            $("body.single #widget-trending-post").css("height",wh+"px");
+            $("body.single #widget-trending-post").addClass('overflow');
         } else {
-            $("#widget-trending-post").css("height","auto");
-            $("#widget-trending-post").removeClass('overflow');
+            $("body.single #widget-trending-post").css("height","auto");
+            $("body.single #widget-trending-post").removeClass('overflow');
         }
     }
     
